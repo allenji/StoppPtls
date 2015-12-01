@@ -1,0 +1,22 @@
+<lcgdict>
+  <class name="CandidateCscHit"/>
+  <class name="std::vector<CandidateCscHit>"/>
+  <class name="edm::Wrapper<CandidateCscHit>"/>
+  <class name="edm::Wrapper<std::vector<CandidateCscHit> >"/>
+      
+  <class name="CandidateCscSeg"/>
+  <class name="std::vector<CandidateCscSeg>"/>
+  <class name="edm::Wrapper<CandidateCscSeg>"/>
+  <class name="edm::Wrapper<std::vector<CandidateCscSeg> >"/>
+
+  <class name="CandidateDTSeg"/>
+  <class name="std::vector<CandidateDTSeg>"/>
+  <class name="edm::Wrapper<CandidateDTSeg>"/>
+  <class name="edm::Wrapper<std::vector<CandidateDTSeg> >"/>
+
+  <class name="CandidateRpcHit"/>
+  <class name="std::vector<CandidateRpcHit>"/>
+  <class name="edm::Wrapper<CandidateRpcHit>"/>
+  <class name="edm::Wrapper<std::vector<CandidateRpcHit> >"/>
+</lcgdict>
+
