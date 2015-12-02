@@ -36,6 +36,11 @@
 #include "DataFormats/CaloTowers/interface/CaloTowerCollection.h"
 #include "DataFormats/CaloTowers/interface/CaloTowerDetId.h"
 
+//hcalnoise
+#include "DataFormats/METReco/interface/HcalNoiseHPD.h"
+#include "DataFormats/METReco/interface/HcalNoiseRBX.h"
+#include "DataFormats/METReco/interface/HcalNoiseSummary.h"
+
 //include Cscs
 #include "DataFormats/CSCRecHit/interface/CSCSegment.h"
 #include "DataFormats/CSCRecHit/interface/CSCSegmentCollection.h"
@@ -87,6 +92,8 @@ class CandidateCscHitProducer : public edm::EDProducer {
     void doEvents(edm::Event&, const edm::EventSetup&);
     void doMuonDTs(edm::Event&, const edm::EventSetup&);      
     void doMuonRPCs(edm::Event&, const edm::EventSetup&);
+
+    void pulseShapeVariables(const std::vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router);
   public:
     struct calotower_gt : public std::binary_function<CaloTower, CaloTower, bool> {
     bool operator()(const CaloTower& x, const CaloTower& y) {
@@ -102,5 +109,6 @@ class CandidateCscHitProducer : public edm::EDProducer {
     edm::InputTag DTRecHitsTag_;
     edm::InputTag DT4DSegmentsTag_;
     edm::InputTag rpcRecHitsTag_;
+    edm::InputTag rbxTag_;
 
 };

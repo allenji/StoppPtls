@@ -16,6 +16,7 @@
 //
 //
 #include "CandidateCscHitProducer.h"
+using namespace reco;
 using namespace std;
 using namespace edm;
 
@@ -25,7 +26,8 @@ CandidateCscHitProducer::CandidateCscHitProducer(const edm::ParameterSet& iConfi
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
   DTRecHitsTag_     (iConfig.getParameter<edm::InputTag> ("DTRecHitsTag")),
   DT4DSegmentsTag_  (iConfig.getParameter<edm::InputTag> ("DT4DSegmentsTag")),
-  rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag"))
+  rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
+  rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise")))
 {
     produces<std::vector<CandidateCscHit> > ();
     produces<std::vector<CandidateCscSeg> > ();
@@ -179,6 +181,51 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
     edm::LogWarning("MissingProduct") << "CaloTowers not found.  Branches will not be filled";
   }
 
+  /**************************begin adding pulse shape**************************/
+  edm::Handle<HcalNoiseRBXCollection> rbxs;
+  iEvent.getByLabel(rbxTag_, rbxs);
+  cout << rbxs.isValid() << endl;
+  if (rbxs.isValid())
+  {
+    double maxCharge = 0;
+    HcalNoiseHPD maxHPD;
+    
+    for (auto it = rbxs->begin(); it!= rbxs->end(); ++it) {
+      vector<HcalNoiseHPD> hpds = it->HPDs();
+      for (auto hpd = hpds.begin(); hpd!=hpds.end(); ++hpd) {
+        double totalCharge = 0;
+        for (int i = 0; i !=10; ++i) {
+          totalCharge += hpd -> big5Charge().at(i);
+        }
+        if (totalCharge > maxCharge) {
+          maxCharge = totalCharge;
+          maxHPD = *hpd;
+        }
+      }//loop on HPDs
+    }//loop on RBXs
+    vector<double> tphpd5TimeSamples;
+    for (int i = 0; i != 10; ++i) {
+      tphpd5TimeSamples.push_back(std::max(0., static_cast<double>(maxHPD.big5Charge().at(i))));
+    }
+    unsigned tphpd5PeakSample;
+    double tphpd5Total;
+    double tphpd5R1;
+    double tphpd5R2;
+    double tphpd5RPeak;
+    double tphpd5ROuter;
+
+    pulseShapeVariables(tphpd5TimeSamples, tphpd5PeakSample, tphpd5Total, tphpd5R1, tphpd5R2, tphpd5RPeak, tphpd5ROuter);
+
+    event->set_topHPD5PeakSample(tphpd5PeakSample);
+    event->set_topHPD5Total(tphpd5Total);
+    event->set_topHPD5R1(tphpd5R1);
+    event->set_topHPD5R2(tphpd5R2);
+    event->set_topHPD5RPeak(tphpd5RPeak);
+    event->set_topHPD5ROuter(tphpd5ROuter);
+  }
+  /**************************end adding pulse shape**************************/
+  
+
   iEvent.put(event);
   
  
@@ -276,5 +323,70 @@ void CandidateCscHitProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSet
   }//loop on rpc hits
   iEvent.put(candRpcHits);
 }
+
+void CandidateCscHitProducer::pulseShapeVariables(const vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router){
+
+  ipeak = 3;
+  total = 0.;
+  r1 = 0.;
+  r2 = 0.;
+  rpeak = 0.;
+  router = 0.;
+
+  for (int i=0; i<HBHEDataFrame::MAXSAMPLES; ++i) {
+    if (samples.at(i) > samples.at(ipeak)) {
+      ipeak = i;
+    }
+    total += samples.at(i);
+  }
+
+  if (total==0.) return;
+  
+  // R1
+  if (ipeak < HBHEDataFrame::MAXSAMPLES-1) {
+    if (samples.at(ipeak) > 0.) { 
+      r1 = samples.at(ipeak+1) / samples.at(ipeak);
+    }
+    else r1 = 1.;
+  }
+  
+  // R2
+  if (ipeak < HBHEDataFrame::MAXSAMPLES-2) {
+    if (samples.at(ipeak+1) > 0. &&
+  samples.at(ipeak+1) > samples.at(ipeak+2)) {
+      r2 = samples.at(ipeak+2) / samples.at(ipeak+1);
+    }
+    else r2 = 1.;
+  }
+
+  // Rpeak - leading digi
+  rpeak = samples.at(ipeak) / total;
+  
+  // Router - leading digi
+  double foursample=0.;
+  for (int i=-1; i<3; ++i) {
+    if (ipeak+i > 0 && ipeak+i<(int)HBHEDataFrame::MAXSAMPLES) { //JIM:  why is this condition "> 0" and not "> = 0"??
+      foursample += samples.at(ipeak+i);
+    }
+  }
+  router = 1. - (foursample / total);
+  /*
+  //  Dump diagnostic information
+  LogDebug ("StoppedHSCPTreeProducer")  <<"--------------------";
+  LogDebug ("StoppedHSCPTreeProducer")  <<"NOISE SUMMARY OUTPUT";
+  for (uint i=0;i<samples.size();++i)
+  LogDebug ("StoppedHSCPTreeProducer")  <<samples[i]<<"\t";
+  LogDebug ("StoppedHSCPTreeProducer")  <<"total = "<<total<<"  foursample = "<<foursample;
+  LogDebug ("StoppedHSCPTreeProducer")  <<"ipeak = "<<ipeak;
+  if (ipeak<(int)HBHEDataFrame::MAXSAMPLES)
+  LogDebug ("StoppedHSCPTreeProducer")  <<"Peak value = "<<samples.at(ipeak);
+  else
+  LogDebug ("StoppedHSCPTreeProducer")  <<"Peak value = N/A";
+  LogDebug ("StoppedHSCPTreeProducer")  <<"R1 = "<<r1;
+  LogDebug ("StoppedHSCPTreeProducer")  <<"R2 = "<<r2;
+  LogDebug ("StoppedHSCPTreeProducer")  <<"Router = "<<router;
+  LogDebug ("StoppedHSCPTreeProducer")  <<"Rpeak = "<<rpeak;
+  */ 
+} 
 //define this as a plug-in
 DEFINE_FWK_MODULE(CandidateCscHitProducer);
