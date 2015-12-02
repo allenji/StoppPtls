@@ -43,7 +43,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     dropMetaData = cms.untracked.string('ALL'),
     eventAutoFlushCompressedSize = cms.untracked.int32(15728640),
     fastCloning = cms.untracked.bool(False),
-    fileName = cms.untracked.string("RECOWithStoppedParticleEvents_1.root"),
+    fileName = cms.untracked.string("RECOWithStoppedParticleEvents_2.root"),
     outputCommands = process.MINIAODSIMEventContent.outputCommands,
     overrideInputFileSplitLevels = cms.untracked.bool(True),
 )

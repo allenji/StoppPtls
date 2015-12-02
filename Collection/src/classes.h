@@ -2,6 +2,7 @@
 #include "DataFormats/Common/interface/Wrapper.h"
 #include "StoppPtls/Collection/interface/CandidateCscHit.h"
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
+#include "StoppPtls/Collection/interface/CandidateEvent.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 
@@ -17,6 +18,11 @@ namespace {
     std::vector<CandidateCscSeg>               candidateCscSeg1;
     edm::Wrapper<CandidateCscSeg>         candidateCscSeg2;
     edm::Wrapper<std::vector<CandidateCscSeg> > candidateCscSeg3;
+
+    CandidateEvent                       candidateEvent0;
+    std::vector<CandidateEvent>               candidateEvent1;
+    edm::Wrapper<CandidateEvent>         candidateEvent2;
+    edm::Wrapper<std::vector<CandidateEvent> > candidateEvent3;
 
     CandidateDTSeg                       candidateDTSeg0;
     std::vector<CandidateDTSeg>               candidateDTSeg1;

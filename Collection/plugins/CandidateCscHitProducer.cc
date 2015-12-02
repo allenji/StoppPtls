@@ -22,15 +22,18 @@ using namespace edm;
 CandidateCscHitProducer::CandidateCscHitProducer(const edm::ParameterSet& iConfig) :
   cscRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("cscRecHitsTag")),
   cscSegmentsTag_   (iConfig.getParameter<edm::InputTag> ("cscSegmentsTag")),
+  caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
   DTRecHitsTag_     (iConfig.getParameter<edm::InputTag> ("DTRecHitsTag")),
   DT4DSegmentsTag_  (iConfig.getParameter<edm::InputTag> ("DT4DSegmentsTag")),
   rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag"))
 {
     produces<std::vector<CandidateCscHit> > ();
     produces<std::vector<CandidateCscSeg> > ();
-    produces<std::vector<CandidateEvent> > ();
+    //produces<std::vector<CandidateEvent> > ();
     produces<std::vector<CandidateDTSeg> > ();
     produces<std::vector<CandidateRpcHit> > ();
+
+    produces<CandidateEvent> ();
 }
 
 
@@ -139,7 +142,46 @@ void CandidateCscHitProducer::doCscSegments(edm::Event& iEvent, const edm::Event
 
 void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+  auto_ptr<CandidateEvent> event(new CandidateEvent());
+  //doGlobalCalo
+  edm::Handle<CaloTowerCollection> caloTowers;
+  iEvent.getByLabel(caloTowerTag_,caloTowers);
 
+  if (caloTowers.isValid()) {
+    
+    std::vector<CaloTower> caloTowersTmp;
+    caloTowersTmp.insert(caloTowersTmp.end(), caloTowers->begin(), caloTowers->end());
+    sort(caloTowersTmp.begin(), caloTowersTmp.end(), calotower_gt());
+    
+    int iphiFirst=caloTowersTmp.begin()->iphi();
+    bool keepgoing=true;
+    for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
+  twr!=caloTowersTmp.end() && keepgoing;
+  ++twr) {
+      
+      if (fabs(twr->eta()) < 1.3) {  
+
+  // tower same iphi as leading tower
+        if (twr->iphi()==iphiFirst) {
+          /*event_->nTowerSameiPhi++;
+          event_->nTowerLeadingIPhi++;
+          event_->eHadLeadingIPhi += twr->hadEnergy();*/
+          event->increment_nTowerSameiPhi();
+        }
+        else {
+          keepgoing=false;
+        }
+      }  
+    } // loop on caloTowers
+    //event_->leadingIPhiFractionValue=event_->leadingIPhiFraction();
+  }
+  else {
+    edm::LogWarning("MissingProduct") << "CaloTowers not found.  Branches will not be filled";
+  }
+
+  iEvent.put(event);
+  
+ 
 }
 
 void CandidateCscHitProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetup& iSetup)

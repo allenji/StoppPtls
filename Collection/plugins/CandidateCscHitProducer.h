@@ -31,6 +31,11 @@
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/InputTag.h"
 #include "FWCore/Framework/interface/ESHandle.h"
+
+// towers
+#include "DataFormats/CaloTowers/interface/CaloTowerCollection.h"
+#include "DataFormats/CaloTowers/interface/CaloTowerDetId.h"
+
 //include Cscs
 #include "DataFormats/CSCRecHit/interface/CSCSegment.h"
 #include "DataFormats/CSCRecHit/interface/CSCSegmentCollection.h"
@@ -63,9 +68,8 @@
 #include "StoppPtls/Collection/interface/CandidateCscHit.h"
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
+#include "StoppPtls/Collection/interface/CandidateEvent.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
-
-
 //
 // class declaration
 //
@@ -83,10 +87,20 @@ class CandidateCscHitProducer : public edm::EDProducer {
     void doEvents(edm::Event&, const edm::EventSetup&);
     void doMuonDTs(edm::Event&, const edm::EventSetup&);      
     void doMuonRPCs(edm::Event&, const edm::EventSetup&);
+  public:
+    struct calotower_gt : public std::binary_function<CaloTower, CaloTower, bool> {
+    bool operator()(const CaloTower& x, const CaloTower& y) {
+      return ( x.hadEnergy() > y.hadEnergy() );
+    }
+    };
+  
+  private:
       // ----------member data ---------------------------
     edm::InputTag cscRecHitsTag_;
     edm::InputTag cscSegmentsTag_;
+    edm::InputTag caloTowerTag_;
     edm::InputTag DTRecHitsTag_;
     edm::InputTag DT4DSegmentsTag_;
     edm::InputTag rpcRecHitsTag_;
+
 };

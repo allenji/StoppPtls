@@ -9,6 +9,11 @@
   <class name="edm::Wrapper<CandidateCscSeg>"/>
   <class name="edm::Wrapper<std::vector<CandidateCscSeg> >"/>
 
+  <class name="CandidateEvent"/>
+  <class name="std::vector<CandidateEvent>"/>
+  <class name="edm::Wrapper<CandidateEvent>"/>
+  <class name="edm::Wrapper<std::vector<CandidateEvent> >"/>
+
   <class name="CandidateDTSeg"/>
   <class name="std::vector<CandidateDTSeg>"/>
   <class name="edm::Wrapper<CandidateDTSeg>"/>
