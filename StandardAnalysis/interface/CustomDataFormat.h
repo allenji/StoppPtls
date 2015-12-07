@@ -8,7 +8,11 @@
 
   #undef jets_TYPE
 
-  #define jets_TYPE reco::CaloJet
+  #define jets_TYPE CandidateJet
+  #undef events_TYPE
+  #define events_TYPE CandidateEvent
+
+  #undef events_INVALID
   
   #define cschits_TYPE CandidateCscHit
   #define cscsegs_TYPE CandidateCscSeg
@@ -19,5 +23,7 @@
   #include "StoppPtls/Collection/interface/CandidateCscHit.h"
   #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
   #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
+  #include "StoppPtls/Collection/interface/CandidateEvent.h"
+  #include "StoppPtls/Collection/interface/CandidateJet.h"
   #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 #endif
