@@ -4,6 +4,7 @@
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "StoppPtls/Collection/interface/CandidateEvent.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
+#include "StoppPtls/Collection/interface/CandidateJet.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 
 
@@ -28,6 +29,11 @@ namespace {
     std::vector<CandidateDTSeg>               candidateDTSeg1;
     edm::Wrapper<CandidateDTSeg>         candidateDTSeg2;
     edm::Wrapper<std::vector<CandidateDTSeg> > candidateDTSeg3;
+
+    CandidateJet                       candidateJet0;
+    std::vector<CandidateJet>               candidateJet1;
+    edm::Wrapper<CandidateJet>         candidateJet2;
+    edm::Wrapper<std::vector<CandidateJet> > candidateJet3;
 
     CandidateRpcHit                       candidateRpcHit0;
     std::vector<CandidateRpcHit>               candidateRpcHit1;

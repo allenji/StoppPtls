@@ -19,6 +19,11 @@
   <class name="edm::Wrapper<CandidateDTSeg>"/>
   <class name="edm::Wrapper<std::vector<CandidateDTSeg> >"/>
 
+  <class name="CandidateJet"/>
+  <class name="std::vector<CandidateJet>"/>
+  <class name="edm::Wrapper<CandidateJet>"/>
+  <class name="edm::Wrapper<std::vector<CandidateJet> >"/>
+
   <class name="CandidateRpcHit"/>
   <class name="std::vector<CandidateRpcHit>"/>
   <class name="edm::Wrapper<CandidateRpcHit>"/>
