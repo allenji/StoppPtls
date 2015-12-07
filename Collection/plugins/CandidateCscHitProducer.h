@@ -36,6 +36,10 @@
 #include "DataFormats/CaloTowers/interface/CaloTowerCollection.h"
 #include "DataFormats/CaloTowers/interface/CaloTowerDetId.h"
 
+// vertices
+#include "DataFormats/VertexReco/interface/Vertex.h"
+#include "DataFormats/VertexReco/interface/VertexFwd.h"
+
 //hcalnoise
 #include "DataFormats/METReco/interface/HcalNoiseHPD.h"
 #include "DataFormats/METReco/interface/HcalNoiseRBX.h"
@@ -61,12 +65,16 @@
 #include "Geometry/DTGeometry/interface/DTGeometry.h"
 #include "DataFormats/MuonDetId/interface/DTLayerId.h"
 #include "DataFormats/MuonDetId/interface/DTWireId.h"
-
+//jets
+#include "DataFormats/JetReco/interface/CaloJetCollection.h"
 // RPC hits
 #include "DataFormats/RPCRecHit/interface/RPCRecHit.h"
 #include "DataFormats/RPCRecHit/interface/RPCRecHitCollection.h"
 #include "Geometry/RPCGeometry/interface/RPCGeometry.h"
 #include "Geometry/RPCGeometry/interface/RPCChamber.h"
+
+//helper class
+#include "StoppedHSCP/Ntuples/interface/LhcFills.h"
 
 
 
@@ -74,6 +82,7 @@
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
 #include "StoppPtls/Collection/interface/CandidateEvent.h"
+#include "StoppPtls/Collection/interface/CandidateJet.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 //
 // class declaration
@@ -96,9 +105,16 @@ class CandidateCscHitProducer : public edm::EDProducer {
     void pulseShapeVariables(const std::vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router);
   public:
     struct calotower_gt : public std::binary_function<CaloTower, CaloTower, bool> {
-    bool operator()(const CaloTower& x, const CaloTower& y) {
-      return ( x.hadEnergy() > y.hadEnergy() );
-    }
+      bool operator()(const CaloTower& x, const CaloTower& y) {
+        return ( x.hadEnergy() > y.hadEnergy() );
+      }
+    };
+
+
+    struct jete_gt : public std::binary_function<reco::CaloJet, reco::CaloJet, bool> {
+      bool operator()(const reco::CaloJet& x, const reco::CaloJet& y) {
+        return ( x.energy() > y.energy() );
+      }
     };
   
   private:
@@ -108,7 +124,18 @@ class CandidateCscHitProducer : public edm::EDProducer {
     edm::InputTag caloTowerTag_;
     edm::InputTag DTRecHitsTag_;
     edm::InputTag DT4DSegmentsTag_;
+    edm::InputTag hcalNoiseFilterResultTag_;
+    edm::InputTag jetTag_;
     edm::InputTag rpcRecHitsTag_;
     edm::InputTag rbxTag_;
+    edm::InputTag verticesTag_;
+
+    LhcFills lhcfills_;
+    // cuts
+    double jetMinEnergy_;
+    double jetMaxEta_;
+    double towerMinEnergy_;
+    double towerMaxEta_;
+    
 
 };

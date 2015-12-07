@@ -26,16 +26,25 @@ CandidateCscHitProducer::CandidateCscHitProducer(const edm::ParameterSet& iConfi
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
   DTRecHitsTag_     (iConfig.getParameter<edm::InputTag> ("DTRecHitsTag")),
   DT4DSegmentsTag_  (iConfig.getParameter<edm::InputTag> ("DT4DSegmentsTag")),
+  hcalNoiseFilterResultTag_ (iConfig.getUntrackedParameter<edm::InputTag> ("hcalNoiseFilterResultTag",edm::InputTag("HBHENoiseFilterResultProducer","HBHENoiseFilterResult"))),
+  jetTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("jetTag",edm::InputTag("ak4CaloJets"))),
   rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
-  rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise")))
+  rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise"))),
+  verticesTag_      (iConfig.getUntrackedParameter<edm::InputTag> ("verticesTag", edm::InputTag("offlinePrimaryVertices"))),
+
+  jetMinEnergy_(iConfig.getUntrackedParameter<double>("jetMinEnergy", 1.)),
+  jetMaxEta_(iConfig.getUntrackedParameter<double>("jetMaxEta", 3.)),
+  towerMinEnergy_(iConfig.getUntrackedParameter<double>("towerMinEnergy", 1.)),
+  towerMaxEta_(iConfig.getUntrackedParameter<double>("towerMaxEta", 1.3))
 {
     produces<std::vector<CandidateCscHit> > ();
     produces<std::vector<CandidateCscSeg> > ();
     //produces<std::vector<CandidateEvent> > ();
     produces<std::vector<CandidateDTSeg> > ();
+    produces<std::vector<CandidateJet> > ();
     produces<std::vector<CandidateRpcHit> > ();
 
-    produces<CandidateEvent> ();
+    produces<std::vector<CandidateEvent> > ();
 }
 
 
@@ -144,8 +153,15 @@ void CandidateCscHitProducer::doCscSegments(edm::Event& iEvent, const edm::Event
 
 void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  auto_ptr<CandidateEvent> event(new CandidateEvent());
-  //doGlobalCalo
+  auto_ptr<vector<CandidateEvent> > events(new vector<CandidateEvent> ());
+  
+  CandidateEvent event;
+  
+  event.set_bx(iEvent.bunchCrossing());
+  event.set_run(iEvent.id().run());
+  event.set_fill(lhcfills_.getFillFromRun(event.run()));
+  event.set_bxWrtBunch(static_cast<int>(abs(lhcfills_.getBxWrtBunch(event.fill(), event.bx()))));
+  /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
   iEvent.getByLabel(caloTowerTag_,caloTowers);
 
@@ -168,7 +184,7 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
           /*event_->nTowerSameiPhi++;
           event_->nTowerLeadingIPhi++;
           event_->eHadLeadingIPhi += twr->hadEnergy();*/
-          event->increment_nTowerSameiPhi();
+          event.increment_nTowerSameiPhi();
         }
         else {
           keepgoing=false;
@@ -179,6 +195,75 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
   }
   else {
     edm::LogWarning("MissingProduct") << "CaloTowers not found.  Branches will not be filled";
+  }
+  edm::Handle<CaloJetCollection> calojets;
+  iEvent.getByLabel(jetTag_, calojets);
+  auto n_jet = calojets->end() - calojets->begin();
+  cout << "The jet number is" << n_jet << endl;
+  if (calojets.isValid()) {
+    vector<CaloJet> jets;
+    jets.insert(jets.end(), calojets->begin(), calojets->end());
+    sort(jets.begin(), jets.end(), jete_gt());
+
+    auto_ptr<vector<CandidateJet> > candjets(new vector<CandidateJet> ());
+
+    vector<double> tmp(75, 0);
+    int tower_N = 0;
+    vector<CaloJet> bjets;
+    for (auto it = jets.begin(); it !=jets.end(); ++it) {
+      if (it->energy() > jetMinEnergy_){
+        if(fabs(it->eta()) < jetMaxEta_){
+          bjets.push_back(*it);
+          CandidateJet candjet(*it);
+          candjets->push_back(candjet);
+        }
+        for (int i = 0; i< it->nConstituents(); ++i){
+          CaloTowerPtr tower = it->getCaloConstituent(i);
+          if(tower->energy() > towerMinEnergy_ && fabs(tower->eta()) < towerMaxEta_) {
+            if (tower_N < 100) {
+              tmp.at(tower->iphi()) += tower->energy();
+            }
+          }
+        }//loop over towers
+      }
+    }//loop over jets
+    iEvent.put(candjets);
+    if (!bjets.size())
+      event.set_leadingIPhiFractionValue(0.);
+    else {
+      auto max = max_element(tmp.begin(), tmp.end());
+      double leadingIPhiFractionValue = (*max)/bjets[0].energy();
+      event.set_leadingIPhiFractionValue(leadingIPhiFractionValue);
+    }
+  }
+  else {
+    edm::LogWarning("MissingProduct") << "CaloJets not found";
+  }
+  /***************************end doGlobalCalo*********************************/
+  edm::Handle<reco::VertexCollection> recoVertices;
+  iEvent.getByLabel(verticesTag_, recoVertices);
+
+  unsigned nvtx = 0;
+  if (recoVertices.isValid()) {
+    for (auto it = recoVertices->begin(); it != recoVertices->end(); ++it) {
+      if (! it->isFake())
+        ++nvtx;
+    }
+    event.set_nVtx(nvtx);
+  }
+  else {
+    edm::LogWarning("MissingProduct") << "Vertices not found";
+  }
+
+  edm::Handle<bool> flag;
+  iEvent.getByLabel(hcalNoiseFilterResultTag_, flag);
+
+  event.set_noiseFilterResult(1);
+  if (flag.isValid()){
+    event.set_noiseFilterResult(*flag.product());
+  }
+  else {
+    edm::LogWarning("MissingProduct") << "No noise result filter flag in the event";
   }
 
   /**************************begin adding pulse shape**************************/
@@ -216,17 +301,17 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
 
     pulseShapeVariables(tphpd5TimeSamples, tphpd5PeakSample, tphpd5Total, tphpd5R1, tphpd5R2, tphpd5RPeak, tphpd5ROuter);
 
-    event->set_topHPD5PeakSample(tphpd5PeakSample);
-    event->set_topHPD5Total(tphpd5Total);
-    event->set_topHPD5R1(tphpd5R1);
-    event->set_topHPD5R2(tphpd5R2);
-    event->set_topHPD5RPeak(tphpd5RPeak);
-    event->set_topHPD5ROuter(tphpd5ROuter);
+    event.set_topHPD5PeakSample(tphpd5PeakSample);
+    event.set_topHPD5Total(tphpd5Total);
+    event.set_topHPD5R1(tphpd5R1);
+    event.set_topHPD5R2(tphpd5R2);
+    event.set_topHPD5RPeak(tphpd5RPeak);
+    event.set_topHPD5ROuter(tphpd5ROuter);
   }
   /**************************end adding pulse shape**************************/
   
-
-  iEvent.put(event);
+  events->push_back(event);
+  iEvent.put(events);
   
  
 }
