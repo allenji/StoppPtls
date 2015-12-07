@@ -1,12 +1,31 @@
 import FWCore.ParameterSet.Config as cms
 import copy
 
-basicSelection = cms.PSet(
-    name = cms.string("BasicSelection"),
-    triggers = cms.vstring(""),
+from StoppPtls.StandardAnalysis.Cuts import *
+
+StoppPtlsSelection = cms.PSet(
+    name = cms.string("StoppedParticlesSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
-        inputCollection = cms.vstring("jets"),
-        cutString = cms.string("energy > 0"),
-        numberRequired = cms.string(">0"),
-    ),
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutOuterDT,
+      cutOuterRpc,
+      cutRpcPair,
+      cutCloseRpcPair,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      cutNoise,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter
+    )
 )
