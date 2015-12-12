@@ -214,7 +214,13 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
       if (it->energy() > jetMinEnergy_){
         if(fabs(it->eta()) < jetMaxEta_){
           bjets.push_back(*it);
-          CandidateJet candjet(*it);
+          CandidateJet candjet;
+          candjet.set_energy(it->energy());
+          candjet.set_et(it->et());
+          candjet.set_eta(it->eta());
+          candjet.set_phi(it->phi());
+          candjet.set_n60(it->n60());
+          candjet.set_n90(it->n90());
           candjets->push_back(candjet);
         }
         for (int i = 0; i< it->nConstituents(); ++i){
