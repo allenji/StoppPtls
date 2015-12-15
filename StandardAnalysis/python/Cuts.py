@@ -131,27 +131,27 @@ cutOuterRpc = cms.PSet (
 ##rpcPair
 ######################################
 cutRpcPair = cms.PSet (
-    inputCollection = cms.vstring("rpchits"),
-    cutString = cms.string("fabs ( deltaPhi ( rpchit , rpchit ) ) > 3."),
-    numberRequired = cms.string("< 1")
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("maxRPCDeltaPhi < 3"),
+    numberRequired = cms.string("= 1")
 )
 
 ######################################
 ##rpcClosePair
 ######################################
 cutCloseRpcPair = cms.PSet(
-    cutString = cms.string('fabs ( deltaPhi ( rpchit , rpchit ) ) > 1.57'),
-    inputCollection = cms.vstring('rpchits'),
-    numberRequired = cms.string('< 2')
+    cutString = cms.string('nCloseRPCPairs < 2'),
+    inputCollection = cms.vstring('eventvariables'),
+    numberRequired = cms.string('= 1')
 )
 
 #######################################
 ##dtPair
 ######################################
 cutDTPair = cms.PSet(
-    cutString = cms.string('fabs ( deltaPhi ( dtseg , dtseg ) ) > 1.57'),
-    inputCollection = cms.vstring('dtsegs'),
-    numberRequired = cms.string('< 1')
+    cutString = cms.string('maxDeltaPhi < 1.57'),
+    inputCollection = cms.vstring('eventvariables'),
+    numberRequired = cms.string('= 1')
 )
 
 ######################################
