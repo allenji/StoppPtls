@@ -6,7 +6,7 @@ process.load('Configuration/StandardSequences/Services_cff')
 process.load ('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (200)
 )
 
 process.source = cms.Source ("PoolSource",
@@ -90,9 +90,9 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 
 process.RECOSIMoutput.outputCommands.append ("drop *")
 process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
-process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
+#process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
 process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
-process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")
+#process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")
 
 process.RECOSIMoutput.outputCommands.append ("keep *_*_*_STOPPPTLS")
 
