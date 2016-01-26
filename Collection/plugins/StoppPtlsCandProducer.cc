@@ -1,9 +1,9 @@
 // -*- C++ -*-
 //
 // Package:    StoppPtls/Collection
-// Class:      CandidateCscHitProducer
+// Class:      StoppPtlsCandProducer
 // 
-/**\class CandidateCscHitProducer CandidateCscHitProducer.cc StoppPtls/Collection/plugins/CandidateCscHitProducer.cc
+/**\class StoppPtlsCandProducer StoppPtlsCandProducer.cc StoppPtls/Collection/plugins/StoppPtlsCandProducer.cc
 
  Description: [one line class summary]
 
@@ -15,12 +15,12 @@
 //         Created:  Mon, 23 Nov 2015 15:02:33 GMT
 //
 //
-#include "CandidateCscHitProducer.h"
+#include "StoppPtlsCandProducer.h"
 using namespace reco;
 using namespace std;
 using namespace edm;
 
-CandidateCscHitProducer::CandidateCscHitProducer(const edm::ParameterSet& iConfig) :
+StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   cscRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("cscRecHitsTag")),
   cscSegmentsTag_   (iConfig.getParameter<edm::InputTag> ("cscSegmentsTag")),
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
@@ -48,7 +48,7 @@ CandidateCscHitProducer::CandidateCscHitProducer(const edm::ParameterSet& iConfi
 }
 
 
-CandidateCscHitProducer::~CandidateCscHitProducer()
+StoppPtlsCandProducer::~StoppPtlsCandProducer()
 { 
 }
 
@@ -59,7 +59,7 @@ CandidateCscHitProducer::~CandidateCscHitProducer()
 
 // ------------ method called to produce the data  ------------
 void
-CandidateCscHitProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
     doCscHits(iEvent, iSetup);
     doCscSegments(iEvent, iSetup);
@@ -69,7 +69,7 @@ CandidateCscHitProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSet
 }
 
 
-void CandidateCscHitProducer::doCscHits(edm::Event& iEvent, const edm::EventSetup& iSetup)
+void StoppPtlsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   edm::Handle<CSCRecHit2DCollection> hits;
   iEvent.getByLabel(cscRecHitsTag_, hits);
@@ -96,7 +96,7 @@ void CandidateCscHitProducer::doCscHits(edm::Event& iEvent, const edm::EventSetu
 }
 
 
-void CandidateCscHitProducer::doCscSegments(edm::Event& iEvent, const edm::EventSetup& iSetup){
+void StoppPtlsCandProducer::doCscSegments(edm::Event& iEvent, const edm::EventSetup& iSetup){
   // get the segments
   edm::Handle<CSCSegmentCollection> segments;
   iEvent.getByLabel(cscSegmentsTag_, segments);
@@ -151,11 +151,12 @@ void CandidateCscHitProducer::doCscSegments(edm::Event& iEvent, const edm::Event
     iEvent.put(candCscSegs);
 }
 
-void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
+void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   auto_ptr<vector<CandidateEvent> > events(new vector<CandidateEvent> ());
   
   CandidateEvent event;
+  //cout<<iEvent.id().run()<<":" << iEvent.luminosityBlock() << ":" << iEvent.id().event() << endl;
   
   event.set_bx(iEvent.bunchCrossing());
   event.set_run(iEvent.id().run());
@@ -170,27 +171,28 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
     std::vector<CaloTower> caloTowersTmp;
     caloTowersTmp.insert(caloTowersTmp.end(), caloTowers->begin(), caloTowers->end());
     sort(caloTowersTmp.begin(), caloTowersTmp.end(), calotower_gt());
-    
-    int iphiFirst=caloTowersTmp.begin()->iphi();
-    bool keepgoing=true;
-    for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
-  twr!=caloTowersTmp.end() && keepgoing;
-  ++twr) {
-      
-      if (fabs(twr->eta()) < 1.3) {  
+    if(caloTowersTmp.begin() != caloTowersTmp.end()){
+      int iphiFirst=caloTowersTmp.begin()->iphi();
+      bool keepgoing=true;
+      for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
+      twr!=caloTowersTmp.end() && keepgoing;
+    ++twr) {
+        
+        if (fabs(twr->eta()) < 1.3) {  
 
-  // tower same iphi as leading tower
-        if (twr->iphi()==iphiFirst) {
-          /*event_->nTowerSameiPhi++;
-          event_->nTowerLeadingIPhi++;
-          event_->eHadLeadingIPhi += twr->hadEnergy();*/
-          event.increment_nTowerSameiPhi();
-        }
-        else {
-          keepgoing=false;
-        }
-      }  
-    } // loop on caloTowers
+    // tower same iphi as leading tower
+          if (twr->iphi()==iphiFirst) {
+            /*event_->nTowerSameiPhi++;
+            event_->nTowerLeadingIPhi++;
+            event_->eHadLeadingIPhi += twr->hadEnergy();*/
+            event.increment_nTowerSameiPhi();
+          }
+          else {
+            keepgoing=false;
+          }
+        }  
+      } // loop on caloTowers
+    }
     //event_->leadingIPhiFractionValue=event_->leadingIPhiFraction();
   }
   else {
@@ -198,8 +200,6 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
   }
   edm::Handle<CaloJetCollection> calojets;
   iEvent.getByLabel(jetTag_, calojets);
-  auto n_jet = calojets->end() - calojets->begin();
-  cout << "The jet number is" << n_jet << endl;
   if (calojets.isValid()) {
     vector<CaloJet> jets;
     jets.insert(jets.end(), calojets->begin(), calojets->end());
@@ -275,7 +275,6 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
   /**************************begin adding pulse shape**************************/
   edm::Handle<HcalNoiseRBXCollection> rbxs;
   iEvent.getByLabel(rbxTag_, rbxs);
-  cout << rbxs.isValid() << endl;
   if (rbxs.isValid())
   {
     double maxCharge = 0;
@@ -322,7 +321,7 @@ void CandidateCscHitProducer::doEvents(edm::Event& iEvent, const edm::EventSetup
  
 }
 
-void CandidateCscHitProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetup& iSetup)
+void StoppPtlsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   edm::ESHandle<DTGeometry> dtGeom;
   iSetup.get<MuonGeometryRecord>().get(dtGeom);
@@ -385,7 +384,7 @@ void CandidateCscHitProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetu
   iEvent.put(candDTs);
 }
 
-void CandidateCscHitProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup& iSetup){
+void StoppPtlsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup& iSetup){
   edm::Handle<RPCRecHitCollection> hits;
   iEvent.getByLabel(rpcRecHitsTag_, hits);
   edm::ESHandle<RPCGeometry> rpcGeom;
@@ -415,7 +414,7 @@ void CandidateCscHitProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSet
   iEvent.put(candRpcHits);
 }
 
-void CandidateCscHitProducer::pulseShapeVariables(const vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router){
+void StoppPtlsCandProducer::pulseShapeVariables(const vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router){
 
   ipeak = 3;
   total = 0.;
@@ -480,4 +479,4 @@ void CandidateCscHitProducer::pulseShapeVariables(const vector<double> &samples,
   */ 
 } 
 //define this as a plug-in
-DEFINE_FWK_MODULE(CandidateCscHitProducer);
+DEFINE_FWK_MODULE(StoppPtlsCandProducer);

@@ -1,9 +1,9 @@
 // -*- C++ -*-
 //
 // Package:    StoppPtls/Collection
-// Class:      CandidateCscHitProducer
+// Class:      StoppPtlsCandProducer
 // 
-/**\class CandidateCscHitProducer CandidateCscHitProducer.cc StoppPtls/Collection/plugins/CandidateCscHitProducer.cc
+/**\class StoppPtlsCandProducer StoppPtlsCandProducer.cc StoppPtls/Collection/plugins/StoppPtlsCandProducer.cc
 
  Description: [one line class summary]
 
@@ -88,10 +88,10 @@
 // class declaration
 //
 
-class CandidateCscHitProducer : public edm::EDProducer {
+class StoppPtlsCandProducer : public edm::EDProducer {
   public:
-    explicit CandidateCscHitProducer(const edm::ParameterSet&);
-    ~CandidateCscHitProducer();
+    explicit StoppPtlsCandProducer(const edm::ParameterSet&);
+    ~StoppPtlsCandProducer();
 
   private:
     virtual void produce(edm::Event&, const edm::EventSetup&) override;
