@@ -6,12 +6,12 @@ process.load('Configuration/StandardSequences/Services_cff')
 process.load ('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (200)
+    input = cms.untracked.int32 (-1)
 )
 
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
-      "root://cmsxrootd.fnal.gov//store/data/Run2015D/NoBPTX/RECO/PromptReco-v3/000/257/969/00000/045C3147-9F69-E511-B508-02163E013477.root"
+      "root://cmsxrootd-site.fnal.gov//store/data/Run2015D/NoBPTX/RECO/PromptReco-v4/000/258/750/00000/F205BC24-4672-E511-AA15-02163E01473C.root"
       #"file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/test/MyOutputFile_numEvent100.root"
     ),
 )
@@ -66,7 +66,7 @@ process.load('Configuration.EventContent.EventContent_cff')
 # Apply lumi mask; comment out to process all events  
 import FWCore.PythonUtilities.LumiList as LumiList
 import FWCore.ParameterSet.Types as CfgTypes
-myLumis = LumiList.LumiList(filename = os.environ['CMSSW_BASE']+'/src/StoppedHSCP/Ntuples/data/Cert_246908-259891_13TeV_PromptReco_Collisions15_25ns_JSON.txt').getCMSSWString().split(',')
+myLumis = LumiList.LumiList(filename = os.environ['CMSSW_BASE']+'/src/StoppedHSCP/Ntuples/data/Cert_246908-260627_13TeV_PromptReco_Collisions15_25ns_JSON_Silver.txt').getCMSSWString().split(',')
 process.source.lumisToProcess = CfgTypes.untracked(CfgTypes.VLuminosityBlockRange())
 process.source.lumisToProcess.extend(myLumis)
 
