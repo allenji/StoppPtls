@@ -37,10 +37,6 @@
   #define basicjets_TYPE INVALID_TYPE
   #define basicjets_INVALID
 
-  #undef muons_TYPE
-  #define muons_TYPE INVALID_TYPE
-  #define muons_INVALID
-
   #undef photons_TYPE
   #define photons_TYPE INVALID_TYPE
   #define photons_INVALID
