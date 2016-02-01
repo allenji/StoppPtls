@@ -86,7 +86,6 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   else {
     (*eventvariables)["secondJetEnergy"] = -1.0;
   }
-  (*eventvariables)["nima"] = 1.0;
 }
 
 #include "FWCore/Framework/interface/MakerMacros.h"
