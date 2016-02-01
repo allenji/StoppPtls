@@ -80,6 +80,12 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     (*eventvariables)["maxDeltaJetPhi"] = maxDeltaJetPhi;
   }
   (*eventvariables)["jetnumber"] = jets->size();
+  if (jets->size() > 0) {
+    (*eventvariables)["leadingJetEnergy"] = (jets->at(0)).energy();
+  }
+  else {
+    (*eventvariables)["leadingJetEnergy"] = (jets->at(0)).energy();
+  }
   if (jets->size() > 1) {
     (*eventvariables)["secondJetEnergy"] = (jets->at(1)).energy();
   }
