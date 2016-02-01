@@ -29,3 +29,10 @@ StoppPtlsSelection = cms.PSet(
       cutHpdROuter
     )
 )
+
+SecondJetSelection = cms.PSet(
+     name = cms.string("SecondJetSelection"),
+     triggers = cms.vstring(),
+     cuts = cms.VPSet(
+     )
+)
