@@ -423,6 +423,18 @@ OtherDtHistograms = cms.PSet(
             title = cms.string("Maximum DT Segment-Jet #delta#phi; Maximum DT Segment-Jet #delta#phi"),
             binsX = cms.untracked.vdouble(32, 0, 3.2),
             inputVariables = cms.vstring("maxDeltaJetPhi"),
+        ),
+        cms.PSet (
+            name = cms.string("nOuterDT"),
+            title = cms.string("Number of DT Segments with r>560 cm; Number of Outer DT Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("outerDT"),
+        ),
+        cms.PSet (
+            name = cms.string("nInnerDT"),
+            title = cms.string("Number of DT Segments with r<560 cm; Number of Inner DT Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("innerDT"),
         )
         )
 )
@@ -441,6 +453,18 @@ OtherRpcHistograms = cms.PSet(
             title = cms.string("Number of Close RPC Pairs; Number of Close RPC Pairs"),
             binsX = cms.untracked.vdouble(50, 0, 50),
             inputVariables = cms.vstring("nCloseRPCPairs"),
+        ),
+        cms.PSet (
+            name = cms.string("nOuterRPC"),
+            title = cms.string("Number of RPC Segments with r>560 cm; Number of Outer RPC Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("outerRPC"),
+        ),
+        cms.PSet (
+            name = cms.string("nInnerRPC"),
+            title = cms.string("Number of RPC Segments with r<560 cm; Number of Inner RPC Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("innerRPC"),
         )
         )
 )
