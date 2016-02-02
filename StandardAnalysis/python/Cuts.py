@@ -37,12 +37,24 @@ cutCscSegNumber = cms.PSet(
     numberRequired = cms.string("= 1")
 )
 
+cutCscSegNumberInverted = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("cscSegN > 0"),
+    numberRequired = cms.string("= 1")
+)
+
 #######################################
 ##hcalnoise
 #######################################
 cutNoise = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("noiseFilterResult = 1"),
+    numberRequired = cms.string(">= 1")
+)
+
+cutNoiseInverted = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("noiseFilterResult != 1"),
     numberRequired = cms.string(">= 1")
 )
 
@@ -160,6 +172,15 @@ cutDTPair = cms.PSet(
 cutMaxDeltaJetPhi = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaJetPhi < 1'),
+    numberRequired = cms.string('= 1')
+)
+
+#######################################
+##select cosmics
+#######################################
+cutCosmics = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || nCloseRPCPairs >= 2 || maxRPCDeltaPhi >= 3. || outerDT >= 1 || outerRPC >= 2'),
     numberRequired = cms.string('= 1')
 )
 

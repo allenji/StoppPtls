@@ -99,7 +99,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ##### Attach the channels and histograms to the process ########################
 ################################################################################
 
-add_channels (process, [SecondJetSelection], cms.VPSet (secondJetHistograms), weights, collectionMap_Custom, variableProducers)
+add_channels (process, [SecondJetSelection], cms.VPSet (SecondJetHistograms), weights, collectionMap_Custom, variableProducers)
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
