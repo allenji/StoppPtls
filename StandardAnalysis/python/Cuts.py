@@ -38,10 +38,16 @@ cutCscSegNumber = cms.PSet(
 )
 
 cutCscSegNumberInverted = cms.PSet(
-    inputCollection = cms.vstring("eventvariables"),
-    cutString = cms.string("cscSegN > 0"),
-    numberRequired = cms.string("= 1")
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits > -1"),
+    numberRequired = cms.string(">= 1")
 )
+# This cut on eventvariables has the same effect:  
+# cutCscSegNumberInverted = cms.PSet(
+#     inputCollection = cms.vstring("eventvariables"),
+#     cutString = cms.string("cscSegN > 0"),
+#     numberRequired = cms.string("= 1")
+# )
 
 #######################################
 ##hcalnoise
