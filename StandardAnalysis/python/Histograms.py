@@ -72,6 +72,84 @@ StoppedParticleHistograms = cms.PSet(
         )
 )
 
+GenParticleHistograms = cms.PSet(
+    inputCollection = cms.vstring("mcparticles"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("genParticleId"),
+            title = cms.string("Gen Particle Id; Gen Particle Id"),
+            binsX = cms.untracked.vdouble(2000, -2000, 2000),
+            inputVariables = cms.vstring("pdgId"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticleMass"),
+            title = cms.string("Gen Particle Mass; Gen Particle Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("mass"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticleStatus"),
+            title = cms.string("Gen Particle Status; Gen Particle Status"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("status"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticleP"),
+            title = cms.string("Gen Particle Momentum; Gen Particle p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("p"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticlePt"),
+            title = cms.string("Gen Particle Transverse Momentum; Gen Particle p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pt"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticlePx"),
+            title = cms.string("Gen Particle x Component of Momentum; Gen Particle p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("px"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticlePy"),
+            title = cms.string("Gen Particle y Component of Momentum; Gen Particle p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("py"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticlePz"),
+            title = cms.string("Gen Particle z Component of Momentum; Gen Particle p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("pz"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticleEta"),
+            title = cms.string("Gen Particle Pseudorapidity; Gen Particle #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticlePhi"),
+            title = cms.string("Gen Particle #phi; Gen Particle #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi"),
+            ),
+        cms.PSet (
+            name = cms.string("genParticleNMothers"),
+            title = cms.string("Gen Particle Number of Mothers; Gen Particle Number of Mothers"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("numberOfMothers"),
+        ),
+        cms.PSet (
+            name = cms.string("genParticleNDaughters"),
+            title = cms.string("Gen Particle Number of Daughters; Gen Particle Number of Daughters"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("numberOfDaughters"),
+        ),
+)
+)
+
 EventHistograms = cms.PSet(
     inputCollection = cms.vstring("events"),
     histograms = cms.VPSet (
@@ -421,7 +499,7 @@ CscSegmentHistograms = cms.PSet(
         ),
         cms.PSet (
             name = cms.string("cscSegZ_cscSegTime"),
-            title = cms.string("CSC Segment x vs CSC Segment Time; CSC Segment Z [cm]; CSC Segment Time [ns]"),
+            title = cms.string("CSC Segment z vs CSC Segment Time; CSC Segment Z [cm]; CSC Segment Time [ns]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
             binsY = cms.untracked.vdouble(100, -200, 200),
             inputVariables = cms.vstring("z","time"),

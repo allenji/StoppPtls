@@ -18,7 +18,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
-        # 'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
+        #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         ),
                              )
 
@@ -102,6 +102,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 
 histograms = cms.VPSet()
 histograms.append(StoppedParticleHistograms)
+histograms.append(GenParticleHistograms)
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
 histograms.append(NoiseHistograms)
