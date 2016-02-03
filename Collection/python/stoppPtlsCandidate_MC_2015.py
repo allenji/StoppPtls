@@ -89,6 +89,8 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 process.RECOSIMoutput.outputCommands.append ("drop *")
 process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
 process.RECOSIMoutput.outputCommands.append ("keep *_genParticles_*_*")
+process.RECOSIMoutput.outputCommands.append ("keep recoGenJets_*_*_*")
+process.RECOSIMoutput.outputCommands.append ("keep recoGenMETs_*_*_*")
 #process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
 process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
 #process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")

@@ -57,6 +57,10 @@
 #define  mcparticles_TYPE reco::GenParticle
 #undef  mcparticles_INVALID
 
+//#undef  genjets_TYPE
+//#define  genjets_TYPE reco::GenJet
+//#undef  genjets_INVALID
+
 #include "DataFormats/JetReco/interface/CaloJet.h"
 #include "StoppPtls/Collection/interface/CandidateCscHit.h"
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"

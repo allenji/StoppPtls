@@ -150,6 +150,54 @@ GenParticleHistograms = cms.PSet(
 )
 )
 
+GenJetHistograms = cms.PSet(
+    inputCollection = cms.vstring("genjets"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("genJetP"),
+            title = cms.string("Gen Jet Momentum; Gen Jet p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("p"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetPt"),
+            title = cms.string("Gen Jet Transverse Momentum; Gen Jet p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pt"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetPx"),
+            title = cms.string("Gen Jet x Component of Momentum; Gen Jet p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("px"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetPy"),
+            title = cms.string("Gen Jet y Component of Momentum; Gen Jet p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("py"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetPz"),
+            title = cms.string("Gen Jet z Component of Momentum; Gen Jet p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("pz"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetEta"),
+            title = cms.string("Gen Jet Pseudorapidity; Gen Jet #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta"),
+        ),
+        cms.PSet (
+            name = cms.string("genJetPhi"),
+            title = cms.string("Gen Jet #phi; Gen Jet #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi"),
+            ),
+)
+)
+
 EventHistograms = cms.PSet(
     inputCollection = cms.vstring("events"),
     histograms = cms.VPSet (

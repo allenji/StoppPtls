@@ -103,6 +103,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 histograms = cms.VPSet()
 histograms.append(StoppedParticleHistograms)
 histograms.append(GenParticleHistograms)
+#histograms.append(GenJetHistograms)
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
 histograms.append(NoiseHistograms)

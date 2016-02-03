@@ -7,6 +7,6 @@ candidateStoppPtls = cms.EDProducer ("StoppPtlsCandProducer",
                                      DTRecHitsTag = cms.InputTag ("dt1DRecHits", ""),
                                      DT4DSegmentsTag = cms.InputTag ("dt4DSegments",""),
                                      rpcRecHitsTag = cms.InputTag ("rpcRecHits",""),
-                                     genParticlesTag = cms.InputTag ("genParticles", ""),
+                                     #genParticlesTag = cms.InputTag ("genParticles", ""),
                                      producer = cms.untracked.string("g4SimHits")
                                      )
