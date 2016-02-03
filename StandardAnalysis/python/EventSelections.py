@@ -3,6 +3,7 @@ import copy
 
 from StoppPtls.StandardAnalysis.Cuts import *
 
+
 StoppPtlsSelection = cms.PSet(
     name = cms.string("StoppedParticlesSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -63,3 +64,9 @@ SecondJetSelection = cms.PSet(
      )
 )
 
+NoCuts = cms.PSet(
+    name = cms.string("NoCuts"),
+    triggers = cms.vstring(""), 
+    cuts = cms.VPSet(
+        )
+    )

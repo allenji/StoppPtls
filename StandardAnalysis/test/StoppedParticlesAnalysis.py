@@ -17,8 +17,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-        #'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
-        'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
+        'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
+        # 'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         ),
                              )
 
@@ -117,11 +117,12 @@ histograms.append(TowerHistograms)
 histograms.append(HpdHistograms)
 
 
-#add_channels (process, [StoppPtlsSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [StoppPtlsSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
