@@ -77,11 +77,16 @@
 #include "StoppedHSCP/Ntuples/interface/LhcFills.h"
 
 
+//generator
+//#include "DataFormats/HepMCCandidate/interface/GenParticle.h"
+//#include "SimGeneral/HepPDTRecord/interface/ParticleDataTable.h"
+
 
 #include "StoppPtls/Collection/interface/CandidateCscHit.h"
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
 #include "StoppPtls/Collection/interface/CandidateEvent.h"
+//#include "StoppPtls/Collection/interface/CandidateGenParticle.h"
 #include "StoppPtls/Collection/interface/CandidateJet.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 //
@@ -89,53 +94,64 @@
 //
 
 class StoppPtlsCandProducer : public edm::EDProducer {
-  public:
-    explicit StoppPtlsCandProducer(const edm::ParameterSet&);
-    ~StoppPtlsCandProducer();
-
-  private:
-    virtual void produce(edm::Event&, const edm::EventSetup&) override;
-
-    void doCscHits(edm::Event&, const edm::EventSetup&);
-    void doCscSegments(edm::Event&, const edm::EventSetup&);
-    void doEvents(edm::Event&, const edm::EventSetup&);
-    void doMuonDTs(edm::Event&, const edm::EventSetup&);      
-    void doMuonRPCs(edm::Event&, const edm::EventSetup&);
-
-    void pulseShapeVariables(const std::vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router);
-  public:
-    struct calotower_gt : public std::binary_function<CaloTower, CaloTower, bool> {
-      bool operator()(const CaloTower& x, const CaloTower& y) {
-        return ( x.hadEnergy() > y.hadEnergy() );
-      }
-    };
-
-
-    struct jete_gt : public std::binary_function<reco::CaloJet, reco::CaloJet, bool> {
-      bool operator()(const reco::CaloJet& x, const reco::CaloJet& y) {
-        return ( x.energy() > y.energy() );
-      }
-    };
+public:
+  explicit StoppPtlsCandProducer(const edm::ParameterSet&);
+  ~StoppPtlsCandProducer();
   
-  private:
-      // ----------member data ---------------------------
-    edm::InputTag cscRecHitsTag_;
-    edm::InputTag cscSegmentsTag_;
-    edm::InputTag caloTowerTag_;
-    edm::InputTag DTRecHitsTag_;
-    edm::InputTag DT4DSegmentsTag_;
-    edm::InputTag hcalNoiseFilterResultTag_;
-    edm::InputTag jetTag_;
-    edm::InputTag rpcRecHitsTag_;
-    edm::InputTag rbxTag_;
-    edm::InputTag verticesTag_;
+private:
+  virtual void produce(edm::Event&, const edm::EventSetup&) override;
+  
+  void doCscHits(edm::Event&, const edm::EventSetup&);
+  void doCscSegments(edm::Event&, const edm::EventSetup&);
+  void doEvents(edm::Event&, const edm::EventSetup&);
+  void doMuonDTs(edm::Event&, const edm::EventSetup&);      
+  void doMuonRPCs(edm::Event&, const edm::EventSetup&);
+  void pulseShapeVariables(const std::vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router);
+  void doMC(CandidateEvent&, edm::Event&, const edm::EventSetup&);
+  
+public:
+  struct calotower_gt : public std::binary_function<CaloTower, CaloTower, bool> {
+    bool operator()(const CaloTower& x, const CaloTower& y) {
+      return ( x.hadEnergy() > y.hadEnergy() );
+    }
+  };
+  
+  struct jete_gt : public std::binary_function<reco::CaloJet, reco::CaloJet, bool> {
+    bool operator()(const reco::CaloJet& x, const reco::CaloJet& y) {
+      return ( x.energy() > y.energy() );
+    }
+  };
+  
+  //struct genParticle_pt : public std::binary_function<reco::GenParticle, reco::GenParticle, bool> {
+  //bool operator()(const reco::GenParticle& x, const reco::GenParticle& y) {
+  //return ( x.pt() > y.pt() ) ;
+  //}
+  //};
+  
+private:
+  // ----------member data ---------------------------
+  bool isMC_;
 
-    LhcFills lhcfills_;
-    // cuts
-    double jetMinEnergy_;
-    double jetMaxEta_;
-    double towerMinEnergy_;
-    double towerMaxEta_;
-    
+  edm::InputTag cscRecHitsTag_;
+  edm::InputTag cscSegmentsTag_;
+  edm::InputTag caloTowerTag_;
+  edm::InputTag DTRecHitsTag_;
+  edm::InputTag DT4DSegmentsTag_;
+  edm::InputTag hcalNoiseFilterResultTag_;
+  edm::InputTag jetTag_;
+  edm::InputTag rpcRecHitsTag_;
+  edm::InputTag rbxTag_;
+  edm::InputTag verticesTag_;
+  //edm::InputTag genParticlesTag_;
+  std::string mcProducerTag_;
 
+  LhcFills lhcfills_;
+  // cuts
+  double jetMinEnergy_;
+  double jetMaxEta_;
+  double towerMinEnergy_;
+  double towerMaxEta_;
+
+  //edm::ESHandle<HepPDT::ParticleDataTable> fPDGTable;  
+  
 };

@@ -2,22 +2,32 @@
 #define CANDIDATEEVENT_H
 class CandidateEvent
 {
-  public:
-    CandidateEvent():
-      bx_(0),
-      run_(0),
-      fill_(0),
-      bxWrtBunch_(0),
-      nVtx_(0),
-      noiseFilterResult_(0),
-      nTowerSameiPhi_(0),
-      leadingIPhiFractionValue_(0.),
-      topHPD5PeakSample_(0),
-      topHPD5Total_(-999.),
-      topHPD5R1_(-999.),
-      topHPD5R2_(-999.),
-      topHPD5RPeak_(-999.),
-      topHPD5ROuter_(-999.)
+ public:
+ CandidateEvent():
+  bx_(0),
+    run_(0),
+    fill_(0),
+    bxWrtBunch_(0),
+    nVtx_(0),
+    noiseFilterResult_(0),
+    nTowerSameiPhi_(0),
+    leadingIPhiFractionValue_(0.),
+    topHPD5PeakSample_(0),
+    topHPD5Total_(-999.),
+    topHPD5R1_(-999.),
+    topHPD5R2_(-999.),
+    topHPD5RPeak_(-999.),
+    topHPD5ROuter_(-999.),
+    stoppedParticleName_(""),
+    stoppedParticleId_(-999),
+    stoppedParticleMass_(-999.),
+    stoppedParticleCharge_(-999.),
+    stoppedParticleX_(-999.),
+    stoppedParticleY_(-999.),
+    stoppedParticleZ_(-999.),
+    stoppedParticleR_(-999.),
+    stoppedParticlePhi_(-999.),
+    stoppedParticleTime_(-999.)
   {}
   public:
     void set_bx(ULong_t bx) {bx_ = bx;}
@@ -36,6 +46,17 @@ class CandidateEvent
     void set_topHPD5R2(double topHPD5R2) {topHPD5R2_ = topHPD5R2;}
     void set_topHPD5RPeak(double topHPD5RPeak) {topHPD5RPeak_ = topHPD5RPeak;}
     void set_topHPD5ROuter(double topHPD5ROuter) {topHPD5ROuter_ = topHPD5ROuter;}
+
+    void set_stoppedParticleName(std::string stoppedParticleName) {stoppedParticleName_ = stoppedParticleName;}
+    void set_stoppedParticleId(int stoppedParticleId) {stoppedParticleId_ = stoppedParticleId;}
+    void set_stoppedParticleMass(double stoppedParticleMass) {stoppedParticleMass_ = stoppedParticleMass;}
+    void set_stoppedParticleCharge(double stoppedParticleCharge) {stoppedParticleCharge_ = stoppedParticleCharge;}
+    void set_stoppedParticleX(double stoppedParticleX) {stoppedParticleX_ = stoppedParticleX;}
+    void set_stoppedParticleY(double stoppedParticleY) {stoppedParticleY_ = stoppedParticleY;}
+    void set_stoppedParticleZ(double stoppedParticleZ) {stoppedParticleZ_ = stoppedParticleZ;}
+    void set_stoppedParticleR(double stoppedParticleR) {stoppedParticleR_ = stoppedParticleR;}
+    void set_stoppedParticlePhi(double stoppedParticlePhi) {stoppedParticlePhi_ = stoppedParticlePhi;}
+    void set_stoppedParticleTime(double stoppedParticleTime) {stoppedParticleTime_ = stoppedParticleTime;}
 
     ULong_t bx() {return bx_;}
     ULong_t run() {return run_;}
@@ -57,6 +78,16 @@ class CandidateEvent
     double topHPD5RPeak() {return topHPD5RPeak_;}
     double topHPD5ROuter() {return topHPD5ROuter_;}
     
+    std::string stoppedParticleName() {return stoppedParticleName_;}
+    int stoppedParticleId() {return stoppedParticleId_;}
+    double stoppedParticleMass() {return stoppedParticleMass_;}
+    double stoppedParticleCharge() {return stoppedParticleCharge_;}
+    double stoppedParticleX() {return stoppedParticleX_;}
+    double stoppedParticleY() {return stoppedParticleY_;}
+    double stoppedParticleZ() {return stoppedParticleZ_;}
+    double stoppedParticleR() {return stoppedParticleR_;}
+    double stoppedParticlePhi() {return stoppedParticlePhi_;}
+    double stoppedParticleTime() {return stoppedParticleTime_;}
 
 
   private:
@@ -90,6 +121,17 @@ class CandidateEvent
     double   topHPD5R2_;
     double   topHPD5RPeak_;
     double   topHPD5ROuter_;
+
+    std::string stoppedParticleName_;
+    int stoppedParticleId_;
+    double stoppedParticleMass_;
+    double stoppedParticleCharge_;
+    double stoppedParticleX_;
+    double stoppedParticleY_;
+    double stoppedParticleZ_;
+    double stoppedParticleR_;
+    double stoppedParticlePhi_;
+    double stoppedParticleTime_;
 
 };
 

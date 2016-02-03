@@ -8,6 +8,8 @@ class CandidateCscSeg {
     void set_chamber(int chamber) {chamber_ = chamber;}
     void set_nHits(int nHits) {nHits_ = nHits;}
     void set_phi(double phi) {phi_ = phi;}
+    void set_x(double x) {x_ = x;}
+    void set_y(double y) {y_ = y;}
     void set_z(double z) {z_ = z;}
     void set_r(double r) {r_ = r;}
     void set_dirPhi(double dirPhi) {dirPhi_ = dirPhi;}
@@ -20,6 +22,8 @@ class CandidateCscSeg {
     const int chamber() const {return chamber_;}
     const int nHits() const {return nHits_;}
     const double phi() const {return phi_;}
+    const double x() const {return x_;}
+    const double y() const {return y_;}
     const double z() const {return z_;}
     const double r() const {return r_;}
     const double dirPhi() const {return dirPhi_;}
@@ -33,6 +37,8 @@ class CandidateCscSeg {
     int chamber_;
     int nHits_;
     double phi_;
+    double x_;
+    double y_;
     double z_;
     double r_;
     double dirPhi_;

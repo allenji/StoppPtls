@@ -52,6 +52,8 @@ process.HBHENoiseFilterResultProducer.minIsolatedNoiseSumEt = cms.double(999999.
 
 #load producer
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
+process.candidateStoppPtls.isMC = False
+
 process.filter_step = cms.Path(process.hltHighLevel*process.hltStoppedHSCPHpdFilter)
 
 process.noisefilter = cms.Path(

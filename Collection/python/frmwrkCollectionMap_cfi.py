@@ -7,5 +7,6 @@ collectionMap_Custom = cms.PSet (
   cschits           =  cms.InputTag  ('candidateStoppPtls',''),
   cscsegs           =  cms.InputTag  ('candidateStoppPtls',''),
   dtsegs            =  cms.InputTag  ('candidateStoppPtls',''),
-  rpchits           =  cms.InputTag  ('candidateStoppPtls','')
+  rpchits           =  cms.InputTag  ('candidateStoppPtls',''),
+  genparticles      =  cms.InputTag  ('candidateStoppPtls','')
 )

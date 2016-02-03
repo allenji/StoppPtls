@@ -21,6 +21,7 @@ using namespace std;
 using namespace edm;
 
 StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
+  isMC_             (iConfig.getUntrackedParameter<bool>("isMC",false)),
   cscRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("cscRecHitsTag")),
   cscSegmentsTag_   (iConfig.getParameter<edm::InputTag> ("cscSegmentsTag")),
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
@@ -31,6 +32,8 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
   rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise"))),
   verticesTag_      (iConfig.getUntrackedParameter<edm::InputTag> ("verticesTag", edm::InputTag("offlinePrimaryVertices"))),
+  //genParticlesTag_  (iConfig.getUntrackedParameter<edm::InputTag> ("genParticlesTag", edm::InputTag("genParticles"))),
+  mcProducerTag_    (iConfig.getUntrackedParameter<std::string>("producer", "g4SimHits")),
 
   jetMinEnergy_(iConfig.getUntrackedParameter<double>("jetMinEnergy", 1.)),
   jetMaxEta_(iConfig.getUntrackedParameter<double>("jetMaxEta", 3.)),
@@ -43,8 +46,10 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
     produces<std::vector<CandidateDTSeg> > ();
     produces<std::vector<CandidateJet> > ();
     produces<std::vector<CandidateRpcHit> > ();
+    //produces<std::vector<CandidateGenParticle> > ();
 
     produces<std::vector<CandidateEvent> > ();
+
 }
 
 
@@ -61,11 +66,16 @@ StoppPtlsCandProducer::~StoppPtlsCandProducer()
 void
 StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-    doCscHits(iEvent, iSetup);
-    doCscSegments(iEvent, iSetup);
-    doEvents(iEvent, iSetup);
-    doMuonDTs(iEvent, iSetup);
-    doMuonRPCs(iEvent, iSetup);
+  doCscHits(iEvent, iSetup);
+  doCscSegments(iEvent, iSetup);
+  doEvents(iEvent, iSetup);
+  doMuonDTs(iEvent, iSetup);
+  doMuonRPCs(iEvent, iSetup);
+  //if (isMC_){
+  //iSetup.getData(fPDGTable);
+    //doMC(iEvent, iSetup);
+  //}  
+
 }
 
 
@@ -133,6 +143,8 @@ void StoppPtlsCandProducer::doCscSegments(edm::Event& iEvent, const edm::EventSe
         candCscSeg.set_chamber(id.chamber());
         candCscSeg.set_nHits(seg->nRecHits());
         candCscSeg.set_phi(globalPos.phi());
+        candCscSeg.set_x(globalPos.x());
+        candCscSeg.set_y(globalPos.y());
         candCscSeg.set_z(globalPos.z());
         candCscSeg.set_r(sqrt((globalPos.x()*globalPos.x()) + (globalPos.y()*globalPos.y())));
         candCscSeg.set_dirTheta(globalVec.theta());
@@ -157,7 +169,8 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   
   CandidateEvent event;
   //cout<<iEvent.id().run()<<":" << iEvent.luminosityBlock() << ":" << iEvent.id().event() << endl;
-  
+  if(isMC_) doMC(event, iEvent, iSetup);
+
   event.set_bx(iEvent.bunchCrossing());
   event.set_run(iEvent.id().run());
   event.set_fill(lhcfills_.getFillFromRun(event.run()));
@@ -408,6 +421,7 @@ void StoppPtlsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup
     candRpcHit.set_rho(rhitglobal.perp());
     candRpcHit.set_phi(rhitglobal.phi());
     candRpcHit.set_region(detId.region());
+    candRpcHit.set_bx((*rpcIter).BunchX());
     
     candRpcHits->push_back(candRpcHit); 
   }//loop on rpc hits
@@ -478,5 +492,119 @@ void StoppPtlsCandProducer::pulseShapeVariables(const vector<double> &samples, u
   LogDebug ("StoppedHSCPTreeProducer")  <<"Rpeak = "<<rpeak;
   */ 
 } 
+
+void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, const edm::EventSetup& iSetup){
+
+  // Fill variables based on the StoppedParticles vectors made by RHStopTracer module
+  edm::Handle<std::vector<std::string> > names;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesName", names);
+  edm::Handle<std::vector<float> > xs;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesX", xs);
+  edm::Handle<std::vector<float> > ys;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesY", ys);
+  edm::Handle<std::vector<float> > zs;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesZ", zs);
+  edm::Handle<std::vector<float> > times;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesTime", times);
+  edm::Handle<std::vector<int> > ids;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesPdgId", ids);
+  edm::Handle<std::vector<float> > masses;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesMass", masses);
+  edm::Handle<std::vector<float> > charges;
+  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesCharge", charges);
+
+  if (!names.isValid() || !xs.isValid() || !ys.isValid() || !zs.isValid() || !times.isValid() 
+      || !ids.isValid() || !masses.isValid() || !charges.isValid() ){
+    edm::LogError ("MissingProduct") << "StoppedParticles* vectors not available. Branch "
+				     << "will not be filled." << std::endl;
+  } 
+  else if (names->size() != xs->size() || xs->size() != ys->size() || ys->size() != zs->size() || ids->size()!= names->size()) {
+    edm::LogError ("StoppPtsCandProducer") << "mismatch array sizes name/x/y/z:"
+					   << names->size() << '/' << xs->size() << '/' 
+					   << ys->size() << '/' << zs->size() << '/' << ids->size() << std::endl;
+  } 
+  else {
+    for (size_t i = 0; i < names->size(); ++i) {
+      float phi = ((*ys)[i]==0 && (*xs)[i]==0) ? 0 : atan2((*ys)[i],(*xs)[i]);
+      
+      event.set_stoppedParticleName(names->at(i));
+      event.set_stoppedParticleId(ids->at(i));
+      event.set_stoppedParticleMass(masses->at(i));
+      event.set_stoppedParticleCharge(charges->at(i));
+      event.set_stoppedParticleX(xs->at(i));
+      event.set_stoppedParticleY(ys->at(i));
+      event.set_stoppedParticleZ(zs->at(i));
+      event.set_stoppedParticleR(sqrt(xs->at(i)*xs->at(i) + ys->at(i)*ys->at(i)));
+      event.set_stoppedParticlePhi(phi);
+      event.set_stoppedParticleTime(times->at(i));
+    }//end of loop over stopped particles
+  }//end of if stopped particles are valid
+
+  /*
+  edm::Handle<reco::GenParticleCollection> genParticles;
+  iEvent.getByLabel(genParticlesTag_, genParticles);
+  if (!genParticles.isValid()) {
+    edm::LogError ("MissingProduct") << "Stage 1 Gen particle collection not found. Branch "
+				     << "will not be filled." << std::endl;
+  }
+  else {
+    std::vector<GenParticle> genParticles_;
+    genParticles_.insert(genParticles_.end(), genParticles->begin(), genParticles->end());
+    std::sort(genParticles_.begin(), genParticles_.end(), genParticle_pt());
+
+    auto_ptr<vector<CandidateGenParticle> > candGenParticles(new vector<CandidateGenParticle> ());
+    
+    for(size_t i=0; i<genParticles_.size(); i++){
+      const reco::GenParticle & p = genParticles_.at(i);
+      //std::cout<<"for reco gen part "<<i<<", pid is: "<<p.pdgId()<<", pt is: "<<p.pt()<<", eta is: "<<p.eta()<<", phi is: "<<p.phi()<<std::endl;
+
+      Double_t charge_ = 999.0;
+      const HepPDT::ParticleData* PData_ = fPDGTable->particle(HepPDT::ParticleID(p.pdgId()));
+      if(PData_==0) {
+	LogDebug ("StoppPtlsCandProducer") << "Error getting HepPDT data table for "
+						 << p.pdgId() << ". Unable to fill charge "<< std::endl;
+      } else {
+	charge_ = PData_->charge();
+      }
+
+      int motherId_ = -999;
+      if(p.mother()){
+	const reco::Candidate* mother_ = p.mother();
+	motherId_ = mother_->pdgId();
+      }
+      
+      std::vector<int> daughterId_;
+      std::vector<int> daughterStatus_;
+      for(size_t j=0; j<p.numberOfDaughters(); j++){
+	const reco::Candidate* daughter_ = p.daughter(j);
+	daughterId_.push_back(daughter_->pdgId());
+	daughterStatus_.push_back(daughter_->status());
+      }
+
+      CandidateGenParticle candGenParticle;
+      candGenParticle.set_id(p.pdgId());
+      candGenParticle.set_mass(p.mass());
+      candGenParticle.set_charge(charge_);
+      candGenParticle.set_px(p.px());
+      candGenParticle.set_py(p.py());
+      candGenParticle.set_pz(p.pz());
+      candGenParticle.set_pt(p.pt());
+      candGenParticle.set_p(p.p());
+      candGenParticle.set_eta(p.eta());
+      candGenParticle.set_phi(p.phi());
+      candGenParticle.set_status(p.status());
+      candGenParticle.set_nMothers(p.numberOfMothers());
+      candGenParticle.set_motherId(motherId_);
+      candGenParticle.set_nDaughters(p.numberOfDaughters());
+      candGenParticle.set_daughterId(daughterId_);
+      candGenParticle.set_daughterStatus(daughterStatus_);
+
+      candGenParticles->push_back(candGenParticle); 
+    }//end of loop over gen particles
+    iEvent.put(candGenParticles);
+  }//end of if gen particles collection is valid
+  */
+}//end of doMC()
+
 //define this as a plug-in
 DEFINE_FWK_MODULE(StoppPtlsCandProducer);

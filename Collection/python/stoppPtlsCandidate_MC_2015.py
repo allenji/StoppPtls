@@ -53,6 +53,8 @@ process.HBHENoiseFilterResultProducer.minIsolatedNoiseSumEt = cms.double(999999.
 
 #load producer
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
+process.candidateStoppPtls.isMC = True
+
 process.filter_step = cms.Path(process.hltHighLevel*process.hltStoppedHSCPHpdFilter)
 
 process.noisefilter = cms.Path(
@@ -86,6 +88,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 
 process.RECOSIMoutput.outputCommands.append ("drop *")
 process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
+process.RECOSIMoutput.outputCommands.append ("keep *_genParticles_*_*")
 #process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
 process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
 #process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")

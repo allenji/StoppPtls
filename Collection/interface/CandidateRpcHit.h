@@ -9,6 +9,7 @@ class CandidateRpcHit {
     void set_rho(double rho) {rho_ = rho;}
     void set_phi(double phi) {phi_ = phi;}
     void set_region(int region) {region_ = region;}
+    void set_bx(int bx) {bx_ = bx;}
 
     const double x() const {return x_;}
     const double y() const {return y_;}
@@ -17,6 +18,7 @@ class CandidateRpcHit {
     const double rho() const {return rho_;}
     const double phi() const {return phi_;}
     const int region() const {return region_;}
+    const int bx() const {return bx_;}
   private:
     double x_;
     double y_;
@@ -25,5 +27,6 @@ class CandidateRpcHit {
     double rho_;
     double phi_;
     int region_;
+    int bx_;
 };
 #endif //CANDIDATERPCHIT_H
