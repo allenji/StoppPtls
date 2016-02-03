@@ -17,9 +17,10 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-                               'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
+        #'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
+        'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         ),
-)
+                             )
 
 # FIXME:  set_input does not work (because of error with /usr/bin/file) in CMSSW_7_4_5_ROOT5   
 # argument can be a ROOT file, directory, or dataset name*
@@ -100,6 +101,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ################################################################################
 
 histograms = cms.VPSet()
+histograms.append(StoppedParticleHistograms)
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
 histograms.append(NoiseHistograms)

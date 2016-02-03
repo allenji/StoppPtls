@@ -5,6 +5,73 @@ import FWCore.ParameterSet.Config as cms
 ##### Set up the histograms to be plotted #####
 ###############################################
 
+StoppedParticleHistograms = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("stoppedParticleId"),
+            title = cms.string("Stopped Particle Id; Stopped Particle Id"),
+            binsX = cms.untracked.vdouble(2000, -2000, 2000),
+            inputVariables = cms.vstring("stoppedParticleId"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleMass"),
+            title = cms.string("Stopped Particle Mass; Stopped Particle Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("stoppedParticleMass"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleCharge"),
+            title = cms.string("Stopped Particle Charge; Stopped Particle Charge"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("stoppedParticleCharge"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleX"),
+            title = cms.string("Stopped Particle X; Stopped Particle X [cm]"),
+            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            inputVariables = cms.vstring("stoppedParticleX"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleY"),
+            title = cms.string("Stopped Particle Y; Stopped Particle Y [cm]"),
+            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            inputVariables = cms.vstring("stoppedParticleY"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleZ"),
+            title = cms.string("Stopped Particle Z; Stopped Particle Z [cm]"),
+            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            inputVariables = cms.vstring("stoppedParticleZ"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleR"),
+            title = cms.string("Stopped Particle R; Stopped Particle R [cm]"),
+            binsX = cms.untracked.vdouble(200, 0, 3000),
+            inputVariables = cms.vstring("stoppedParticleR"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticlePhi"),
+            title = cms.string("Stopped Particle Phi; Stopped Particle Phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("stoppedParticlePhi"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleTime"),
+            title = cms.string("Stopped Particle Decay Time; Stopped Particle Decay Time [ns]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("stoppedParticleTime"),
+        ),
+        cms.PSet (
+            name = cms.string("stoppedParticleX_stoppedParticleY"),
+            title = cms.string("Stopped Particle X vs Y; Stopped Particle X [cm]; Stopped Particle Y [cm]"),
+            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            binsY = cms.untracked.vdouble(200, -3000, 3000),
+            inputVariables = cms.vstring("stoppedParticleX","stoppedParticleY"),
+        ),
+        )
+)
+
 EventHistograms = cms.PSet(
     inputCollection = cms.vstring("events"),
     histograms = cms.VPSet (
@@ -309,18 +376,18 @@ CscSegmentHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(10, 0, 10),
             inputVariables = cms.vstring("nHits"),
         ),
-        #cms.PSet (
-            #name = cms.string("cscSegX"),
-            #title = cms.string("CSC Segment X; CSC Segment X [cm]"),
-            #binsX = cms.untracked.vdouble(300, -1500, 1500),
-            #inputVariables = cms.vstring("x"),
-        #),
-        #cms.PSet (
-            #name = cms.string("cscSegY"),
-            #title = cms.string("CSC Segment Y; CSC Segment Y [cm]"),
-            #binsX = cms.untracked.vdouble(300, -1500, 1500),
-            #inputVariables = cms.vstring("y"),
-        #),
+        cms.PSet (
+            name = cms.string("cscSegX"),
+            title = cms.string("CSC Segment X; CSC Segment X [cm]"),
+            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("x"),
+        ),
+        cms.PSet (
+            name = cms.string("cscSegY"),
+            title = cms.string("CSC Segment Y; CSC Segment Y [cm]"),
+            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("y"),
+        ),
         cms.PSet (
             name = cms.string("cscSegZ"),
             title = cms.string("CSC Segment Z; CSC Segment Z [cm]"),
@@ -346,8 +413,15 @@ CscSegmentHistograms = cms.PSet(
             inputVariables = cms.vstring("phi"),
             ),
         cms.PSet (
+            name = cms.string("cscSegX_cscSegY"),
+            title = cms.string("CSC Segment x vs CSC Segment y; CSC Segment x [cm]; CSC Segment y [cm]"),
+            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("x","y"),
+        ),
+        cms.PSet (
             name = cms.string("cscSegZ_cscSegTime"),
-            title = cms.string("CSC Segment Time vs CSC Segment Z; CSC Segment Z [cm]; CSC Segment Time [ns]"),
+            title = cms.string("CSC Segment x vs CSC Segment Time; CSC Segment Z [cm]; CSC Segment Time [ns]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
             binsY = cms.untracked.vdouble(100, -200, 200),
             inputVariables = cms.vstring("z","time"),
@@ -359,35 +433,35 @@ RpcHitsHistograms = cms.PSet(
     inputCollection = cms.vstring("rpchits"),
     histograms = cms.VPSet (
         cms.PSet (
-            name = cms.string("rpcSegRegion"),
+            name = cms.string("rpcHitRegion"),
             title = cms.string("RPC Hit Region; RPC Hit Region"),
             binsX = cms.untracked.vdouble(4, -2, 2),
             inputVariables = cms.vstring("region"),
         ),
         cms.PSet (
-            name = cms.string("rpcSegX"),
+            name = cms.string("rpcHitX"),
             title = cms.string("RPC Hit X; RPC Hit X [cm]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
             inputVariables = cms.vstring("x"),
         ),
         cms.PSet (
-            name = cms.string("rpcSegY"),
+            name = cms.string("rpcHitY"),
             title = cms.string("RPC Hit Y; RPC Hit Y [cm]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
             inputVariables = cms.vstring("y"),
         ),
         cms.PSet (
-            name = cms.string("rpcSegZ"),
+            name = cms.string("rpcHitZ"),
             title = cms.string("RPC Hit Z; RPC Hit Z [cm]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
             inputVariables = cms.vstring("z"),
         ),
-        #cms.PSet (
-            #name = cms.string("rpcSegBX"),
-            #title = cms.string("RPC Hit BX; RPC Hit BX"),
-            #binsX = cms.untracked.vdouble(100, -10, 10),
-            #inputVariables = cms.vstring("BunchX"),
-        #),
+        cms.PSet (
+            name = cms.string("rpcHitBx"),
+            title = cms.string("RPC Hit BX; RPC Hit BX"),
+            binsX = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("bx"),
+        ),
         cms.PSet (
             name = cms.string("rpcHitR"),
             title = cms.string("RPC Hit Radius; RPC Hit Radius [cm]"),
@@ -456,13 +530,13 @@ OtherRpcHistograms = cms.PSet(
         ),
         cms.PSet (
             name = cms.string("nOuterRPC"),
-            title = cms.string("Number of RPC Segments with r>560 cm; Number of Outer RPC Segments"),
+            title = cms.string("Number of RPC Hits with r>560 cm; Number of Outer RPC Hits"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("outerRPC"),
         ),
         cms.PSet (
             name = cms.string("nInnerRPC"),
-            title = cms.string("Number of RPC Segments with r<560 cm; Number of Inner RPC Segments"),
+            title = cms.string("Number of RPC Hits with r<560 cm; Number of Inner RPC Hits"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("innerRPC"),
         )
