@@ -16,12 +16,11 @@ datasetsSig = [
 ]
 
 datasetsData = [
-  'NoBPTX_2015D_v3',
-  'NoBPTX_2015D_v4',
+  'NoBPTX_2015D',
 ]
 
-#datasets = datasetsSig + datasetsData
+datasets = datasetsSig + datasetsData
 #datasets = datasetsSig
-datasets = datasetsData
+#datasets = datasetsData
 
 InputCondorArguments = {}
