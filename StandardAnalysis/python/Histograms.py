@@ -262,6 +262,36 @@ NumberOfObjectsHistograms = cms.PSet(
             inputVariables = cms.vstring("jetN"),
             ),
         cms.PSet (
+            name = cms.string("nJetsEMin10"),
+            title = cms.string("Number of Jets with E>10 GeV; Number of Jets with E>10 GeV"),
+            binsX = cms.untracked.vdouble(8, -0.5, 7.5),
+            inputVariables = cms.vstring("nJetsEMin10"),
+            ),
+        cms.PSet (
+            name = cms.string("nJetsEMin20"),
+            title = cms.string("Number of Jets with E>20 GeV; Number of Jets with E>20 GeV"),
+            binsX = cms.untracked.vdouble(8, -0.5, 7.5),
+            inputVariables = cms.vstring("nJetsEMin20"),
+            ),
+        cms.PSet (
+            name = cms.string("nJetsEMin50"),
+            title = cms.string("Number of Jets with E>50 GeV; Number of Jets with E>50 GeV"),
+            binsX = cms.untracked.vdouble(8, -0.5, 7.5),
+            inputVariables = cms.vstring("nJetsEMin50"),
+            ),
+        cms.PSet (
+            name = cms.string("nJetsEMin100"),
+            title = cms.string("Number of Jets with E>100 GeV; Number of Jets with E>100 GeV"),
+            binsX = cms.untracked.vdouble(8, -0.5, 7.5),
+            inputVariables = cms.vstring("nJetsEMin100"),
+            ),
+        cms.PSet (
+            name = cms.string("nJetsEMin200"),
+            title = cms.string("Number of Jets with E>200 GeV; Number of Jets with E>200 GeV"),
+            binsX = cms.untracked.vdouble(8, -0.5, 7.5),
+            inputVariables = cms.vstring("nJetsEMin200"),
+            ),
+        cms.PSet (
             name = cms.string("nDtSeg_nRpcHit"),
             title = cms.string("Number of RPC Hits vs DT Segments; Number of DT Segments; Number of RPC Hits"),
             binsX = cms.untracked.vdouble(30, 0, 30),

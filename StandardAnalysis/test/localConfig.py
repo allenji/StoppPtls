@@ -20,7 +20,7 @@ datasetsData = [
 ]
 
 datasets = datasetsSig + datasetsData
-#datasets = datasetsSig
+datasets = datasetsSig
 #datasets = datasetsData
 
 InputCondorArguments = {}

@@ -108,12 +108,25 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     (*eventvariables)["secondJetN90"] = -1;
   }
 
+  int nJetsEMin10  = 0;
+  int nJetsEMin20  = 0;
+  int nJetsEMin50  = 0;
+  int nJetsEMin100 = 0;
+  int nJetsEMin200 = 0;
+
   if (jets->size() == 0 && dtsegs->size() ==0){
     (*eventvariables)["maxDeltaJetPhi"] = -1.0;
   }
   else {
     double maxDeltaJetPhi = -1.;
     for ( auto itjet = jets->begin(); itjet != jets->end(); ++itjet){
+
+      if (itjet->energy() > 10)  nJetsEMin10++; 
+      if (itjet->energy() > 20)  nJetsEMin20++; 
+      if (itjet->energy() > 50)  nJetsEMin50++; 
+      if (itjet->energy() > 100) nJetsEMin100++; 
+      if (itjet->energy() > 200) nJetsEMin200++; 
+
       for (auto itdt = dtsegs->begin(); itdt != dtsegs->end(); ++itdt){
         double deltajetphi = acos(cos(itdt->phi() - itjet->phi()));
         if (deltajetphi > maxDeltaJetPhi)
@@ -122,6 +135,13 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     }
     (*eventvariables)["maxDeltaJetPhi"] = maxDeltaJetPhi;
   }
+
+  (*eventvariables)["nJetsEMin10"]  = nJetsEMin10; // Should be identical to NJets.  
+  (*eventvariables)["nJetsEMin20"]  = nJetsEMin20; 
+  (*eventvariables)["nJetsEMin50"]  = nJetsEMin50; 
+  (*eventvariables)["nJetsEMin100"] = nJetsEMin100; 
+  (*eventvariables)["nJetsEMin200"] = nJetsEMin200; 
+  
 }
 
 #include "FWCore/Framework/interface/MakerMacros.h"
