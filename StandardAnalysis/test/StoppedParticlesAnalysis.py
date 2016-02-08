@@ -121,8 +121,11 @@ histograms.append(HpdHistograms)
 
 # add_channels (process, [StoppPtlsSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [HaloControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoiseControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [PrePreSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
 

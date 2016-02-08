@@ -3,7 +3,7 @@ import copy
 
 from StoppPtls.StandardAnalysis.Cuts import *
 
-
+#full analysis selection
 StoppPtlsSelection = cms.PSet(
     name = cms.string("StoppedParticlesSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -31,6 +31,7 @@ StoppPtlsSelection = cms.PSet(
     )
 )
 
+#Halo Selection (invert halo veto)
 HaloSelection = cms.PSet(
     name = cms.string("BeamHaloSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -39,6 +40,36 @@ HaloSelection = cms.PSet(
       )
 )
 
+#Halo N-1 Selection (full selection except halo veto)
+#For nCscSeg plot
+HaloControlSelection = cms.PSet(
+    name = cms.string("BeamHaloControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutOuterDT,
+      cutOuterRpc,
+      cutRpcPair,
+      cutCloseRpcPair,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      cutNoise,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter
+    )
+)
+
+#Cosmic Selection (invert cosmic veto and cut out halo)
+#For RPC hits and DT segment plots
 CosmicSelection = cms.PSet(
     name = cms.string("CosmicMuonSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -49,6 +80,7 @@ CosmicSelection = cms.PSet(
         )
 )
 
+#Noise Selection (invert noise veto)
 NoiseSelection = cms.PSet(
     name = cms.string("HcalNoiseSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -57,6 +89,36 @@ NoiseSelection = cms.PSet(
       )
 )
 
+#Noise N-1 ish Selection (preselection [cutJetEnergy + cutJetEta] + cosmic veto + halo veto)
+#For noise filter result, n90jet, ntowiPhi, and other noise plots
+NoiseControlSelection = cms.PSet(
+    name = cms.string("HcalNoiseControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutCscSegNumber,
+      cutOuterDT,
+      cutOuterRpc,
+      cutRpcPair,
+      cutCloseRpcPair,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      cutJetEnergy,
+      cutJetEta,
+    )
+)
+
+#Pre Pre Selection (trigger + BX veto + vertex veto)
+#For jetE, jetEta plots
+PrePreSelection = cms.PSet(
+    name = cms.string("StoppedParticlesSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      )
+)
+
+#Selection for Second Jet analysis
 SecondJetSelection = cms.PSet(
      name = cms.string("SecondJetSelection"),
      triggers = cms.vstring(),
@@ -64,6 +126,7 @@ SecondJetSelection = cms.PSet(
      )
 )
 
+#No cuts (including no trigger) selection
 NoCuts = cms.PSet(
     name = cms.string("NoCuts"),
     triggers = cms.vstring(""), 
