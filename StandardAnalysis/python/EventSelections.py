@@ -69,7 +69,6 @@ HaloControlSelection = cms.PSet(
 )
 
 #Cosmic Selection (invert cosmic veto and cut out halo)
-#For RPC hits and DT segment plots
 CosmicSelection = cms.PSet(
     name = cms.string("CosmicMuonSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
@@ -78,6 +77,29 @@ CosmicSelection = cms.PSet(
         cutCosmics,
         cutCscSegNumber 
         )
+)
+
+#Cosmic N-1 selection (full selection except cosmic veto)
+#For RPC hits and DT segment plots
+CosmicControlSelection = cms.PSet(
+    name = cms.string("CosmicMuonControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutNoise,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter
+    )
 )
 
 #Noise Selection (invert noise veto)
@@ -119,7 +141,7 @@ PrePreSelection = cms.PSet(
 )
 
 #Signal Trigger Selection
-#For Bx, vertex number plots?
+#For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
