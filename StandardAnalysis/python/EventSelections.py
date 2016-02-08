@@ -110,11 +110,20 @@ NoiseControlSelection = cms.PSet(
 #Pre Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
 PrePreSelection = cms.PSet(
-    name = cms.string("StoppedParticlesSelection"),
+    name = cms.string("PrePreSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
+      )
+)
+
+#Signal Trigger Selection
+#For Bx, vertex number plots?
+TriggerSelection = cms.PSet(
+    name = cms.string("TriggerSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
       )
 )
 
