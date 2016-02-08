@@ -644,13 +644,13 @@ OtherDtHistograms = cms.PSet(
     histograms = cms.VPSet (
         cms.PSet (
             name = cms.string("maxDTDeltaPhi"),
-            title = cms.string("Maximum DT #delta#phi; Maximum DT #delta#phi"),
+            title = cms.string("Maximum DT #Delta#phi; Maximum DT #Delta#phi"),
             binsX = cms.untracked.vdouble(32, 0, 3.2),
             inputVariables = cms.vstring("maxDeltaPhi"),
         ),
         cms.PSet (
             name = cms.string("maxDTDeltaJetPhi"),
-            title = cms.string("Maximum DT Segment-Jet #delta#phi; Maximum DT Segment-Jet #delta#phi"),
+            title = cms.string("Maximum DT Segment-Jet #Delta#phi; Maximum DT Segment-Jet #Delta#phi"),
             binsX = cms.untracked.vdouble(32, 0, 3.2),
             inputVariables = cms.vstring("maxDeltaJetPhi"),
         ),
@@ -674,7 +674,7 @@ OtherRpcHistograms = cms.PSet(
     histograms = cms.VPSet (
         cms.PSet (
             name = cms.string("maxRPCDeltaPhi"),
-            title = cms.string("Maximum RPC #delta#phi; Maximum RPC #delta#phi"),
+            title = cms.string("Maximum RPC #Delta#phi; Maximum RPC #Delta#phi"),
             binsX = cms.untracked.vdouble(32, 0, 3.2),
             inputVariables = cms.vstring("maxRPCDeltaPhi"),
         ),
