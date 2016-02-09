@@ -150,6 +150,222 @@ GenParticleHistograms = cms.PSet(
 )
 )
 
+NeutralinoHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("neutralinoMass"),
+            title = cms.string("#tilde{#chi^{0}} Mass; #tilde{#chi^{0}} Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("neutralinoMass"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoP"),
+            title = cms.string("#tilde{#chi^{0}} Momentum; #tilde{#chi^{0}} p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("neutralinoP"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoPt"),
+            title = cms.string("#tilde{#chi^{0}} Transverse Momentum; #tilde{#chi^{0}} p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("neutralinoPt"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoPx"),
+            title = cms.string("#tilde{#chi^{0}} x Component of Momentum; #tilde{#chi^{0}} p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoPx"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoPy"),
+            title = cms.string("#tilde{#chi^{0}} y Component of Momentum; #tilde{#chi^{0}} p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoPy"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoPz"),
+            title = cms.string("#tilde{#chi^{0}} z Component of Momentum; #tilde{#chi^{0}} p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoPz"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoEta"),
+            title = cms.string("#tilde{#chi^{0}} Pseudorapidity; #tilde{#chi^{0}} #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("neutralinoEta"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoPhi"),
+            title = cms.string("#tilde{#chi^{0}} #phi; #tilde{#chi^{0}} #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("neutralinoPhi"),
+            ),
+)
+)
+
+GluonHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("gluonMass"),
+            title = cms.string("g Mass; g Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("gluonMass"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonP"),
+            title = cms.string("g Momentum; g p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("gluonP"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonPt"),
+            title = cms.string("g Transverse Momentum; g p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("gluonPt"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonPx"),
+            title = cms.string("g x Component of Momentum; g p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("gluonPx"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonPy"),
+            title = cms.string("g y Component of Momentum; g p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("gluonPy"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonPz"),
+            title = cms.string("g z Component of Momentum; g p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("gluonPz"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonEta"),
+            title = cms.string("g Pseudorapidity; g #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("gluonEta"),
+        ),
+        cms.PSet (
+            name = cms.string("gluonPhi"),
+            title = cms.string("g #phi; g #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("gluonPhi"),
+            ),
+)
+)
+
+UHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("uMass"),
+            title = cms.string("u Mass; u Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("uMass"),
+        ),
+        cms.PSet (
+            name = cms.string("uP"),
+            title = cms.string("u Momentum; u p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("uP"),
+        ),
+        cms.PSet (
+            name = cms.string("uPt"),
+            title = cms.string("u Transverse Momentum; u p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("uPt"),
+        ),
+        cms.PSet (
+            name = cms.string("uPx"),
+            title = cms.string("u x Component of Momentum; u p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("uPx"),
+        ),
+        cms.PSet (
+            name = cms.string("uPy"),
+            title = cms.string("u y Component of Momentum; u p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("uPy"),
+        ),
+        cms.PSet (
+            name = cms.string("uPz"),
+            title = cms.string("u z Component of Momentum; u p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("uPz"),
+        ),
+        cms.PSet (
+            name = cms.string("uEta"),
+            title = cms.string("u Pseudorapidity; u #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("uEta"),
+        ),
+        cms.PSet (
+            name = cms.string("uPhi"),
+            title = cms.string("u #phi; u #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("uPhi"),
+            ),
+)
+)
+
+UbarHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("ubarMass"),
+            title = cms.string("#bar{u} Mass; #bar{u} Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("ubarMass"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarP"),
+            title = cms.string("#bar{u} Momentum; #bar{u} p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("ubarP"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarPt"),
+            title = cms.string("#bar{u} Transverse Momentum; #bar{u} p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("ubarPt"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarPx"),
+            title = cms.string("#bar{u} x Component of Momentum; #bar{u} p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("ubarPx"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarPy"),
+            title = cms.string("#bar{u} y Component of Momentum; #bar{u} p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("ubarPy"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarPz"),
+            title = cms.string("#bar{u} z Component of Momentum; #bar{u} p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("ubarPz"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarEta"),
+            title = cms.string("#bar{u} Pseudorapidity; #bar{u} #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("ubarEta"),
+        ),
+        cms.PSet (
+            name = cms.string("ubarPhi"),
+            title = cms.string("#bar{u} #phi; #bar{u} #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("ubarPhi"),
+            ),
+)
+)
+
 GenJetHistograms = cms.PSet(
     inputCollection = cms.vstring("genjets"),
     histograms = cms.VPSet (

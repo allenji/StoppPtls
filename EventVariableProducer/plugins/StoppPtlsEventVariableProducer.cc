@@ -16,11 +16,15 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
+  edm::Handle<std::vector<CandidateEvent> > events;
+  edm::Handle<std::vector<reco::GenParticle> > mcparticles;
 
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("jets"), jets, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("dtsegs"), dtsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("cscsegs"), cscsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("rpchits"), rpchits, event);
+  anatools::getCollection (collections_.getParameter<edm::InputTag> ("events"), events, event);
+  anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
 
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
@@ -33,6 +37,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double outerDT = 0.00000001; // avoid divide by zero
   int innerDT = 0;
 
+  //loop over DT segments
   for (decltype(dtsegs->size()) i = 0; i != dtsegs->size(); ++i) {
     if (i == 0)
       testPhi = (dtsegs->at(i)).phi();
@@ -53,6 +58,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double outerRPC = 0.00000001;
   double innerRPC = 0;
 
+  //loop over RPC hits
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
     if (i == 0)
       testPhi = (rpchits->at(i)).phi();
@@ -144,6 +150,8 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 
   set<int> nLayers;
   double minDeltaPhiCscJet = 999.;
+
+  //loop over csc segments
   for (auto itcsc = cscsegs->begin(); itcsc != cscsegs->end(); ++itcsc){
     int chamber = chamberType(itcsc->station(), itcsc->ring());
     int endcap = (itcsc->z() > 0) ? 1 : -1;
@@ -160,6 +168,159 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["minDeltaPhiCscJet"] = minDeltaPhiCscJet;
 
 
+  //gen particles
+  double neutralinoMass = -999;
+  double neutralinoPx = -999;
+  double neutralinoPy = -999;
+  double neutralinoPz = -999;
+  double neutralinoPt = -999;
+  double neutralinoP = -999;
+  double neutralinoEta = -999;
+  double neutralinoPhi = -999;
+
+  double gluonMass = -999;
+  double gluonPx = -999;
+  double gluonPy = -999;
+  double gluonPz = -999;
+  double gluonPt = -999;
+  double gluonP = -999;
+  double gluonEta = -999;
+  double gluonPhi = -999;
+
+  double uMass = -999;
+  double uPx = -999;
+  double uPy = -999;
+  double uPz = -999;
+  double uPt = -999;
+  double uP = -999;
+  double uEta = -999;
+  double uPhi = -999;
+
+  double ubarMass = -999;
+  double ubarPx = -999;
+  double ubarPy = -999;
+  double ubarPz = -999;
+  double ubarPt = -999;
+  double ubarP = -999;
+  double ubarEta = -999;
+  double ubarPhi = -999;
+  
+  for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
+    if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
+      //std::cout<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+
+      //loop over rhadron daughters
+      for(size_t j=0; j<itmcpart->numberOfDaughters(); j++){
+	const reco::Candidate* daughter = itmcpart->daughter(j);
+	int partId = daughter->pdgId();
+	//std::cout<<"  daughter pdgid is: "<<partId<<std::endl;
+
+	//look for sparticle (gluino, stop - left and right handed, stau)
+	if (fabs(partId) == 1000021 || fabs(partId) == 1000006 || fabs(partId) == 2000006 || fabs(partId) == 1000015 || fabs(partId) == 2000015){
+	  const reco::Candidate* sparticle = daughter;
+
+	  //loop over sparticle's daughters
+	  for(size_t k=0; k<sparticle->numberOfDaughters(); k++){	    
+	    const reco::Candidate* daughter2 = sparticle->daughter(k);
+	    //std::cout<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
+
+	    //look for neutralino
+	    if(fabs(daughter2->pdgId())==1000022){
+	      const reco::Candidate* neutralino = daughter2;
+	      //std::cout<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
+	      neutralinoMass = neutralino->mass();
+	      neutralinoPx = neutralino->px();
+	      neutralinoPy = neutralino->py();
+	      neutralinoPz = neutralino->pz();
+	      neutralinoPt = neutralino->pt();
+	      neutralinoP = neutralino->p();
+	      neutralinoEta = neutralino->eta();
+	      neutralinoPhi = neutralino->phi();
+	    }//end of if neutralino
+
+	    //look for gluon
+	    if(fabs(daughter2->pdgId())==21){
+	      const reco::Candidate* gluon = daughter2;
+	      //std::cout<<"  gluon mass is: "<<gluon->mass()<<", px is: "<<gluon->px()<<", py: "<<gluon->py()<<", pz: "<<gluon->pz()<<std::endl;
+	      gluonMass = gluon->mass();
+	      gluonPx = gluon->px();
+	      gluonPy = gluon->py();
+	      gluonPz = gluon->pz();
+	      gluonPt = gluon->pt();
+	      gluonP = gluon->p();
+	      gluonEta = gluon->eta();
+	      gluonPhi = gluon->phi();
+	    }//end of if gluon
+
+	    //look for up quark
+	    if(daughter2->pdgId()==2){
+	      const reco::Candidate* u = daughter2;
+	      //std::cout<<"  u mass is: "<<u->mass()<<", px is: "<<u->px()<<", py: "<<u->py()<<", pz: "<<u->pz()<<std::endl;
+	      uMass = u->mass();
+	      uPx = u->px();
+	      uPy = u->py();
+	      uPz = u->pz();
+	      uPt = u->pt();
+	      uP = u->p();
+	      uEta = u->eta();
+	      uPhi = u->phi();
+	    }//end of if u
+
+	    //look for ubar quark
+	    if(daughter2->pdgId()==-2){
+	      const reco::Candidate* ubar = daughter2;
+	      //std::cout<<"  ubar mass is: "<<ubar->mass()<<", px is: "<<ubar->px()<<", py: "<<ubar->py()<<", pz: "<<ubar->pz()<<std::endl;
+	      ubarMass = ubar->mass();
+	      ubarPx = ubar->px();
+	      ubarPy = ubar->py();
+	      ubarPz = ubar->pz();
+	      ubarPt = ubar->pt();
+	      ubarP = ubar->p();
+	      ubarEta = ubar->eta();
+	      ubarPhi = ubar->phi();
+	    }//end of if ubar
+
+	  }//end of loop over sparticle's daughters
+	}//end of if gluino, stop - left and right handed, stau
+      }//end of loop over daughters of stopped particle
+    }//end of mcpart matched to stopped particle
+  }//end of loop over mcparticles
+
+  (*eventvariables)["neutralinoMass"] = neutralinoMass;
+  (*eventvariables)["neutralinoPx"] = neutralinoPx;
+  (*eventvariables)["neutralinoPy"] = neutralinoPy;
+  (*eventvariables)["neutralinoPz"] = neutralinoPz;
+  (*eventvariables)["neutralinoPt"] = neutralinoPt;
+  (*eventvariables)["neutralinoP"] = neutralinoP;
+  (*eventvariables)["neutralinoEta"] = neutralinoEta;
+  (*eventvariables)["neutralinoPhi"] = neutralinoPhi;
+
+  (*eventvariables)["gluonMass"] = gluonMass;
+  (*eventvariables)["gluonPx"] = gluonPx;
+  (*eventvariables)["gluonPy"] = gluonPy;
+  (*eventvariables)["gluonPz"] = gluonPz;
+  (*eventvariables)["gluonPt"] = gluonPt;
+  (*eventvariables)["gluonP"] = gluonP;
+  (*eventvariables)["gluonEta"] = gluonEta;
+  (*eventvariables)["gluonPhi"] = gluonPhi;
+
+  (*eventvariables)["uMass"] = uMass;
+  (*eventvariables)["uPx"] = uPx;
+  (*eventvariables)["uPy"] = uPy;
+  (*eventvariables)["uPz"] = uPz;
+  (*eventvariables)["uPt"] = uPt;
+  (*eventvariables)["uP"] = uP;
+  (*eventvariables)["uEta"] = uEta;
+  (*eventvariables)["uPhi"] = uPhi;
+
+  (*eventvariables)["ubarMass"] = ubarMass;
+  (*eventvariables)["ubarPx"] = ubarPx;
+  (*eventvariables)["ubarPy"] = ubarPy;
+  (*eventvariables)["ubarPz"] = ubarPz;
+  (*eventvariables)["ubarPt"] = ubarPt;
+  (*eventvariables)["ubarP"] = ubarP;
+  (*eventvariables)["ubarEta"] = ubarEta;
+  (*eventvariables)["ubarPhi"] = ubarPhi;
 
 }
 

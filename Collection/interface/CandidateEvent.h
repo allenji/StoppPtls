@@ -78,16 +78,16 @@ class CandidateEvent
     double topHPD5RPeak() {return topHPD5RPeak_;}
     double topHPD5ROuter() {return topHPD5ROuter_;}
     
-    std::string stoppedParticleName() {return stoppedParticleName_;}
-    int stoppedParticleId() {return stoppedParticleId_;}
-    double stoppedParticleMass() {return stoppedParticleMass_;}
-    double stoppedParticleCharge() {return stoppedParticleCharge_;}
-    double stoppedParticleX() {return stoppedParticleX_;}
-    double stoppedParticleY() {return stoppedParticleY_;}
-    double stoppedParticleZ() {return stoppedParticleZ_;}
-    double stoppedParticleR() {return stoppedParticleR_;}
-    double stoppedParticlePhi() {return stoppedParticlePhi_;}
-    double stoppedParticleTime() {return stoppedParticleTime_;}
+    std::string stoppedParticleName() const {return stoppedParticleName_;}
+    int stoppedParticleId() const {return stoppedParticleId_;}
+    double stoppedParticleMass() const {return stoppedParticleMass_;}
+    double stoppedParticleCharge() const {return stoppedParticleCharge_;}
+    double stoppedParticleX() const {return stoppedParticleX_;}
+    double stoppedParticleY() const {return stoppedParticleY_;}
+    double stoppedParticleZ() const {return stoppedParticleZ_;}
+    double stoppedParticleR() const {return stoppedParticleR_;}
+    double stoppedParticlePhi() const {return stoppedParticlePhi_;}
+    double stoppedParticleTime() const {return stoppedParticleTime_;}
 
 
   private:
