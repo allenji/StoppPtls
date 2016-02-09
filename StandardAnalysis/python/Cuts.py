@@ -202,3 +202,29 @@ cutJetN90 = cms.PSet(
     cutString = cms.string('leadingJetN90 > 3'),
     numberRequired = cms.string('= 1')
 )
+
+
+#######################################
+##halo tag and probe selection
+#######################################
+
+#at least 1 jet
+cutJetNumber = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy > 0."),
+    numberRequired = cms.string(">= 1")
+)
+
+#csc segments in at least 3 layers
+cutCscSegNLayers = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nCscLayers >= 3"),
+    numberRequired = cms.string("= 1")
+)
+
+#min delta phi between csc seg and jet
+cutMinDeltaPhiCscJet = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('minDeltaPhiCscJet < 0.4'),
+    numberRequired = cms.string('= 1')
+)

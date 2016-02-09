@@ -669,6 +669,24 @@ OtherDtHistograms = cms.PSet(
         )
 )
 
+OtherCscHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("minDeltaPhiCscJet"),
+            title = cms.string("Minimum CSC Segment-Jet #Delta#phi; Minimum CSC Segment-Jet #Delta#phi"),
+            binsX = cms.untracked.vdouble(32, 0, 3.2),
+            inputVariables = cms.vstring("minDeltaPhiCscJet"),
+        ),
+        cms.PSet (
+            name = cms.string("nCscLayers"),
+            title = cms.string("Number of Layers in CSC Segments; Number of Layers in CSC Segments"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nCscLayers"),
+            ),
+        )
+)
+
 OtherRpcHistograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (

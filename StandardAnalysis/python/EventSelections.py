@@ -68,6 +68,17 @@ HaloControlSelection = cms.PSet(
     )
 )
 
+#Halo tag and probe Selection
+HaloTagAndProbeSelection = cms.PSet(
+    name = cms.string("BeamHaloTagAndProbeSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+        cutJetNumber,
+        cutCscSegNLayers,
+        cutMinDeltaPhiCscJet
+        )
+)
+
 #Cosmic Selection (invert cosmic veto and cut out halo)
 CosmicSelection = cms.PSet(
     name = cms.string("CosmicMuonSelection"),

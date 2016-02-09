@@ -13,6 +13,7 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
 
   private:
     void AddVariables(const edm::Event &);
+    int chamberType(int, int);
 };
 
 

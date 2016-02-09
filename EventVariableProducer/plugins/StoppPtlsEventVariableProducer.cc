@@ -141,7 +141,36 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nJetsEMin50"]  = nJetsEMin50; 
   (*eventvariables)["nJetsEMin100"] = nJetsEMin100; 
   (*eventvariables)["nJetsEMin200"] = nJetsEMin200; 
-  
+
+  set<int> nLayers;
+  double minDeltaPhiCscJet = 999.;
+  for (auto itcsc = cscsegs->begin(); itcsc != cscsegs->end(); ++itcsc){
+    int chamber = chamberType(itcsc->station(), itcsc->ring());
+    int endcap = (itcsc->z() > 0) ? 1 : -1;
+    int layer = chamber * endcap;
+    nLayers.insert(layer);
+
+    if (jets->size() > 0){
+      double deltaphicscjet = acos(cos(itcsc->phi() - jets->begin()->phi()));
+      if(deltaphicscjet < minDeltaPhiCscJet) 
+	minDeltaPhiCscJet = deltaphicscjet;
+    }//end of if at least 1 jet
+  }//end of loop over csc segments
+  (*eventvariables)["nCscLayers"] = nLayers.size();
+  (*eventvariables)["minDeltaPhiCscJet"] = minDeltaPhiCscJet;
+
+
+
+}
+
+// Shamelessly stolen from DataFormats/MuonDetId/src/CSCDetId.cc#100
+int StoppPtlsEventVariableProducer::chamberType(int iStation, int iRing) {
+  int i = 2*iStation + iRing;
+  if (iStation == 1) {
+    i = i - 1;
+    if (i>4) i = 1;
+  }
+  return i;
 }
 
 #include "FWCore/Framework/interface/MakerMacros.h"
