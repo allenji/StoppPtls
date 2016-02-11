@@ -1,6 +1,8 @@
 from OSUT3Analysis.Configuration.configurationOptions import *
 from OSUT3Analysis.Configuration.RECOSamples import *
 
+intLumi = 2460
+
 #config_file = "SecondJetAnalysis.py"
 config_file = "StoppedParticlesAnalysis.py"
 
@@ -20,7 +22,7 @@ datasetsData = [
 ]
 
 datasets = datasetsSig + datasetsData
-datasets = datasetsSig
+#datasets = datasetsSig
 #datasets = datasetsData
 
 InputCondorArguments = {}
