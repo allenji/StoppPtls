@@ -8,7 +8,7 @@ cutJetEnergy = cms.PSet(
     inputCollection = cms.vstring("jets"),
     cutString = cms.string("energy > 70"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("E_{jet} > 70\GeV")
+    alias = cms.string("E_{jet} > 70 \GeV")
 )
 
 ########################################
@@ -61,7 +61,7 @@ cutNoise = cms.PSet(
 
 cutNoiseInverted = cms.PSet(
     inputCollection = cms.vstring("events"),
-    cutString = cms.string("noiseFilterResult != 1"),
+    cutString = cms.string("noiseFilterResult = 1"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("HCAL noise")
 )
@@ -83,7 +83,7 @@ cutTowerFraction = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("leadingIPhiFractionValue < 0.95"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("E_{iphi}/E_{jet} < 0.95")
+    alias = cms.string("$E_{i\phi}/E_{jet}$ < 0.95")
 )
 
 ######################################
@@ -93,7 +93,7 @@ cutHpdR1 = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("( topHPD5R1 > 0.15 ) && ( topHPD5R1 <= 1.0 ) = 1"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("R_{1} > 0.15")
+    alias = cms.string("$R_{1}$ > 0.15")
 )
 
 ######################################
@@ -103,7 +103,7 @@ cutHpdR2 = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("( topHPD5R2 > 0.1 ) && ( topHPD5R2 < 0.8 ) = 1"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("R_{2} > 0.1")
+    alias = cms.string("$R_{2}$ > 0.1")
 )
 
 ######################################
@@ -113,7 +113,7 @@ cutHpdRPeak = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("( topHPD5RPeak > 0.3 ) && ( topHPD5RPeak < 0.7 ) = 1"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("0.3 < R_{Peak} < 0.7")
+    alias = cms.string("0.3 < $R_{Peak}$ < 0.7")
 )
 
 ######################################
@@ -133,7 +133,7 @@ cutHpdROuter = cms.PSet(
     inputCollection = cms.vstring("events"),
     cutString = cms.string("( topHPD5ROuter < 0.3 ) && ( topHPD5ROuter >= 0.0 ) = 1"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("R_{Outer} < 0.3")
+    alias = cms.string("$R_{Outer}$ < 0.3")
 )
 
 ######################################
@@ -163,7 +163,7 @@ cutRpcPair = cms.PSet (
     inputCollection = cms.vstring("eventvariables"),
     cutString = cms.string("maxRPCDeltaPhi < 3"),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("#Delta#phi(RPCHit_{i}, RPCHit_[j}) < 3)")
+    alias = cms.string("$\Delta\phi$(RPCHit_{i}, RPCHit_{j}) < 3)")
 )
 
 ######################################
@@ -173,7 +173,7 @@ cutCloseRpcPair = cms.PSet(
     cutString = cms.string('nCloseRPCPairs < 2'),
     inputCollection = cms.vstring('eventvariables'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("nCloseRPCPairs < 2")
+    alias = cms.string("Number of close RPC pairs < 2")
 )
 
 #######################################
@@ -183,7 +183,7 @@ cutDTPair = cms.PSet(
     cutString = cms.string('maxDeltaPhi < 1.57'),
     inputCollection = cms.vstring('eventvariables'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("#Delta#phi(DTSegment_{i}, DTSegment_[j}) < #pi/2)")
+    alias = cms.string("$\Delta\phi$(DTSegment_{i}, DTSegment_{j}) < $\pi/2$")
 )
 
 ######################################
@@ -193,7 +193,7 @@ cutMaxDeltaJetPhi = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaJetPhi < 1'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("#Delta#phi(DTSegment_{i}, Leading jet) < 1)")
+    alias = cms.string("$\Delta\phi$(DTSegment_{i}, Leading jet) < 1")
 )
 
 #######################################
@@ -203,7 +203,7 @@ cutCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || nCloseRPCPairs >= 2 || maxRPCDeltaPhi >= 3. || outerDT >= 1 || outerRPC >= 2'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("Cosmics (OR of DT segments and RPC hit cuts")
+    alias = cms.string("Cosmics (OR of DT segments and RPC hit cuts)")
 )
 
 #######################################
@@ -213,7 +213,7 @@ cutJetEta = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('leadingJetEta < 1'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("#eta_{jet} < 1.0")
+    alias = cms.string("$\eta_{jet}$ < 1.0")
 )
 
 #######################################
@@ -252,5 +252,5 @@ cutMinDeltaPhiCscJet = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('minDeltaPhiCscJet < 0.4'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("#Delta#phi(CSCSegment_{i}, Leading jet) < 0.4)")
+    alias = cms.string("$\Delta\phi$(CSCSegment_{i}, Leading jet) < 0.4")
 )

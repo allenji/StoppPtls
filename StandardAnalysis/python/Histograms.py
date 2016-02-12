@@ -11,7 +11,7 @@ StoppedParticleHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("stoppedParticleId"),
             title = cms.string("Stopped Particle Id; Stopped Particle Id"),
-            binsX = cms.untracked.vdouble(2000, -2000, 2000),
+            binsX = cms.untracked.vdouble(2000, -2000000, 2000000),
             inputVariables = cms.vstring("stoppedParticleId"),
         ),
         cms.PSet (
@@ -29,25 +29,25 @@ StoppedParticleHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("stoppedParticleX"),
             title = cms.string("Stopped Particle X; Stopped Particle X [cm]"),
-            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
             inputVariables = cms.vstring("stoppedParticleX"),
         ),
         cms.PSet (
             name = cms.string("stoppedParticleY"),
             title = cms.string("Stopped Particle Y; Stopped Particle Y [cm]"),
-            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
             inputVariables = cms.vstring("stoppedParticleY"),
         ),
         cms.PSet (
             name = cms.string("stoppedParticleZ"),
             title = cms.string("Stopped Particle Z; Stopped Particle Z [cm]"),
-            binsX = cms.untracked.vdouble(200, -3000, 3000),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
             inputVariables = cms.vstring("stoppedParticleZ"),
         ),
         cms.PSet (
             name = cms.string("stoppedParticleR"),
             title = cms.string("Stopped Particle R; Stopped Particle R [cm]"),
-            binsX = cms.untracked.vdouble(200, 0, 3000),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
             inputVariables = cms.vstring("stoppedParticleR"),
         ),
         cms.PSet (
@@ -65,8 +65,8 @@ StoppedParticleHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("stoppedParticleX_stoppedParticleY"),
             title = cms.string("Stopped Particle X vs Y; Stopped Particle X [cm]; Stopped Particle Y [cm]"),
-            binsX = cms.untracked.vdouble(200, -3000, 3000),
-            binsY = cms.untracked.vdouble(200, -3000, 3000),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            binsY = cms.untracked.vdouble(200, -1000, 1000),
             inputVariables = cms.vstring("stoppedParticleX","stoppedParticleY"),
         ),
         )

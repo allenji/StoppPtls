@@ -82,10 +82,10 @@ class CandidateEvent
     int stoppedParticleId() const {return stoppedParticleId_;}
     double stoppedParticleMass() const {return stoppedParticleMass_;}
     double stoppedParticleCharge() const {return stoppedParticleCharge_;}
-    double stoppedParticleX() const {return stoppedParticleX_;}
-    double stoppedParticleY() const {return stoppedParticleY_;}
-    double stoppedParticleZ() const {return stoppedParticleZ_;}
-    double stoppedParticleR() const {return stoppedParticleR_;}
+    double stoppedParticleX() const {return 1.0*stoppedParticleX_/10;} //convert mm to cm
+    double stoppedParticleY() const {return 1.0*stoppedParticleY_/10;}
+    double stoppedParticleZ() const {return 1.0*stoppedParticleZ_/10;}
+    double stoppedParticleR() const {return 1.0*stoppedParticleR_/10;}
     double stoppedParticlePhi() const {return stoppedParticlePhi_;}
     double stoppedParticleTime() const {return stoppedParticleTime_;}
 

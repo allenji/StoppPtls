@@ -26,6 +26,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("events"), events, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
 
+
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
   (*eventvariables)["cscSegN"] = cscsegs->size();
@@ -204,87 +205,110 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double ubarP = -999;
   double ubarEta = -999;
   double ubarPhi = -999;
+
+  bool matched = false;
+  auto stopped_genParticle = mcparticles->begin();
   
   for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
+    //if mcparticle matched to correct stopped particle ID
     if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
+      matched = true;
+      stopped_genParticle = itmcpart;
       //std::cout<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
-
-      //loop over rhadron daughters
-      for(size_t j=0; j<itmcpart->numberOfDaughters(); j++){
-	const reco::Candidate* daughter = itmcpart->daughter(j);
-	int partId = daughter->pdgId();
-	//std::cout<<"  daughter pdgid is: "<<partId<<std::endl;
-
-	//look for sparticle (gluino, stop - left and right handed, stau)
-	if (fabs(partId) == 1000021 || fabs(partId) == 1000006 || fabs(partId) == 2000006 || fabs(partId) == 1000015 || fabs(partId) == 2000015){
-	  const reco::Candidate* sparticle = daughter;
-
-	  //loop over sparticle's daughters
-	  for(size_t k=0; k<sparticle->numberOfDaughters(); k++){	    
-	    const reco::Candidate* daughter2 = sparticle->daughter(k);
-	    //std::cout<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
-
-	    //look for neutralino
-	    if(fabs(daughter2->pdgId())==1000022){
-	      const reco::Candidate* neutralino = daughter2;
-	      //std::cout<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
-	      neutralinoMass = neutralino->mass();
-	      neutralinoPx = neutralino->px();
-	      neutralinoPy = neutralino->py();
-	      neutralinoPz = neutralino->pz();
-	      neutralinoPt = neutralino->pt();
-	      neutralinoP = neutralino->p();
-	      neutralinoEta = neutralino->eta();
-	      neutralinoPhi = neutralino->phi();
-	    }//end of if neutralino
-
-	    //look for gluon
-	    if(fabs(daughter2->pdgId())==21){
-	      const reco::Candidate* gluon = daughter2;
-	      //std::cout<<"  gluon mass is: "<<gluon->mass()<<", px is: "<<gluon->px()<<", py: "<<gluon->py()<<", pz: "<<gluon->pz()<<std::endl;
-	      gluonMass = gluon->mass();
-	      gluonPx = gluon->px();
-	      gluonPy = gluon->py();
-	      gluonPz = gluon->pz();
-	      gluonPt = gluon->pt();
-	      gluonP = gluon->p();
-	      gluonEta = gluon->eta();
-	      gluonPhi = gluon->phi();
-	    }//end of if gluon
-
-	    //look for up quark
-	    if(daughter2->pdgId()==2){
-	      const reco::Candidate* u = daughter2;
-	      //std::cout<<"  u mass is: "<<u->mass()<<", px is: "<<u->px()<<", py: "<<u->py()<<", pz: "<<u->pz()<<std::endl;
-	      uMass = u->mass();
-	      uPx = u->px();
-	      uPy = u->py();
-	      uPz = u->pz();
-	      uPt = u->pt();
-	      uP = u->p();
-	      uEta = u->eta();
-	      uPhi = u->phi();
-	    }//end of if u
-
-	    //look for ubar quark
-	    if(daughter2->pdgId()==-2){
-	      const reco::Candidate* ubar = daughter2;
-	      //std::cout<<"  ubar mass is: "<<ubar->mass()<<", px is: "<<ubar->px()<<", py: "<<ubar->py()<<", pz: "<<ubar->pz()<<std::endl;
-	      ubarMass = ubar->mass();
-	      ubarPx = ubar->px();
-	      ubarPy = ubar->py();
-	      ubarPz = ubar->pz();
-	      ubarPt = ubar->pt();
-	      ubarP = ubar->p();
-	      ubarEta = ubar->eta();
-	      ubarPhi = ubar->phi();
-	    }//end of if ubar
-
-	  }//end of loop over sparticle's daughters
-	}//end of if gluino, stop - left and right handed, stau
-      }//end of loop over daughters of stopped particle
-    }//end of mcpart matched to stopped particle
+      break;
+    }
+    //sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
+    else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
+      matched = true;
+      stopped_genParticle = itmcpart;
+      //std::cout<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+      break;
+    }
   }//end of loop over mcparticles
+
+  if(matched){
+    //loop over rhadron daughters
+    for(size_t j=0; j<stopped_genParticle->numberOfDaughters(); j++){
+      const reco::Candidate* daughter = stopped_genParticle->daughter(j);
+      int partId = daughter->pdgId();
+      //std::cout<<"  daughter pdgid is: "<<partId<<std::endl;
+      
+      //look for sparticle (gluino, stop - left and right handed, stau) 
+      if (fabs(partId) == 1000021 || fabs(partId) == 1000006 || fabs(partId) == 2000006 || fabs(partId) == 1000015 || fabs(partId) == 2000015){
+	const reco::Candidate* sparticle = daughter;
+	
+	//loop over sparticle's daughters
+	for(size_t k=0; k<sparticle->numberOfDaughters(); k++){	    
+	  const reco::Candidate* daughter2 = sparticle->daughter(k);
+	  //std::cout<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
+	  
+	  //look for neutralino
+	  if(fabs(daughter2->pdgId())==1000022){
+	    const reco::Candidate* neutralino = daughter2;
+	    //std::cout<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
+	    neutralinoMass = neutralino->mass();
+	    neutralinoPx = neutralino->px();
+	    neutralinoPy = neutralino->py();
+	    neutralinoPz = neutralino->pz();
+	    neutralinoPt = neutralino->pt();
+	    neutralinoP = neutralino->p();
+	    neutralinoEta = neutralino->eta();
+	    neutralinoPhi = neutralino->phi();
+	  }//end of if neutralino
+	  
+	  //look for gluon
+	  if(fabs(daughter2->pdgId())==21){
+	    const reco::Candidate* gluon = daughter2;
+	    //std::cout<<"  gluon mass is: "<<gluon->mass()<<", px is: "<<gluon->px()<<", py: "<<gluon->py()<<", pz: "<<gluon->pz()<<std::endl;
+	    gluonMass = gluon->mass();
+	    gluonPx = gluon->px();
+	    gluonPy = gluon->py();
+	    gluonPz = gluon->pz();
+	    gluonPt = gluon->pt();
+	    gluonP = gluon->p();
+	    gluonEta = gluon->eta();
+	    gluonPhi = gluon->phi();
+	  }//end of if gluon
+	  
+	  //look for up quark
+	  if(daughter2->pdgId()==2){
+	    const reco::Candidate* u = daughter2;
+	    //std::cout<<"  u mass is: "<<u->mass()<<", px is: "<<u->px()<<", py: "<<u->py()<<", pz: "<<u->pz()<<std::endl;
+	    uMass = u->mass();
+	    uPx = u->px();
+	    uPy = u->py();
+	    uPz = u->pz();
+	    uPt = u->pt();
+	    uP = u->p();
+	    uEta = u->eta();
+	    uPhi = u->phi();
+	  }//end of if u
+	  
+	  //look for ubar quark
+	  if(daughter2->pdgId()==-2){
+	    const reco::Candidate* ubar = daughter2;
+	    //std::cout<<"  ubar mass is: "<<ubar->mass()<<", px is: "<<ubar->px()<<", py: "<<ubar->py()<<", pz: "<<ubar->pz()<<std::endl;
+	    ubarMass = ubar->mass();
+	    ubarPx = ubar->px();
+	    ubarPy = ubar->py();
+	    ubarPz = ubar->pz();
+	    ubarPt = ubar->pt();
+	    ubarP = ubar->p();
+	    ubarEta = ubar->eta();
+	    ubarPhi = ubar->phi();
+	  }//end of if ubar
+	}//end of loop over sparticle's daughters
+      }//end of if gluino, stop - left and right handed, stau
+    }//end of loop over daughters of stopped particle
+  }//end of if matched
+  
+  else{
+    std::cout<<"stopped particle id "<<events->begin()->stoppedParticleId()<<" is NOT MATCHED TO A GEN PARTICLE!!"<<std::endl;
+    std::cout<<"mcparticles are: "<<endl;
+    for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
+      std::cout<<"  "<<itmcpart->pdgId()<<std::endl;
+    }
+  }//end of if not matched
 
   (*eventvariables)["neutralinoMass"] = neutralinoMass;
   (*eventvariables)["neutralinoPx"] = neutralinoPx;
@@ -321,10 +345,10 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["ubarP"] = ubarP;
   (*eventvariables)["ubarEta"] = ubarEta;
   (*eventvariables)["ubarPhi"] = ubarPhi;
-
-}
-
-// Shamelessly stolen from DataFormats/MuonDetId/src/CSCDetId.cc#100
+  
+}//end of AddVariables()
+  
+  // Shamelessly stolen from DataFormats/MuonDetId/src/CSCDetId.cc#100
 int StoppPtlsEventVariableProducer::chamberType(int iStation, int iRing) {
   int i = 2*iStation + iRing;
   if (iStation == 1) {
