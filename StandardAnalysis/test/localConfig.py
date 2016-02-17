@@ -21,8 +21,14 @@ datasetsData = [
   'NoBPTX_2015D',
 ]
 
+datasetsControl = [
+    'StpPtls_controlSample_2015'
+]
+
+#datasets = datasetsSig + datasetsData + datasetsControl
 datasets = datasetsSig + datasetsData
 #datasets = datasetsSig
 #datasets = datasetsData
+#datasets = datasetsControl
 
 InputCondorArguments = {}
