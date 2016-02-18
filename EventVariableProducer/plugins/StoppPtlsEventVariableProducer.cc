@@ -16,16 +16,18 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
+  /*
   edm::Handle<std::vector<CandidateEvent> > events;
   edm::Handle<std::vector<reco::GenParticle> > mcparticles;
-
+  */
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("jets"), jets, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("dtsegs"), dtsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("cscsegs"), cscsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("rpchits"), rpchits, event);
+  /*
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("events"), events, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
-
+  */
 
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
@@ -168,7 +170,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nCscLayers"] = nLayers.size();
   (*eventvariables)["minDeltaPhiCscJet"] = minDeltaPhiCscJet;
 
-
+  /*
   //gen particles
   double neutralinoMass = -999;
   double neutralinoPx = -999;
@@ -345,7 +347,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["ubarP"] = ubarP;
   (*eventvariables)["ubarEta"] = ubarEta;
   (*eventvariables)["ubarPhi"] = ubarPhi;
-  
+  */  
 }//end of AddVariables()
   
   // Shamelessly stolen from DataFormats/MuonDetId/src/CSCDetId.cc#100
