@@ -140,6 +140,21 @@ NoiseControlSelection = cms.PSet(
     )
 )
 
+#Alternate Noise N-1 ish Selection (preselection [cutJetEnergy + cutJetEta] + vertex veto + cosmic veto(no RPC hits) + halo veto)
+AltNoiseControlSelection = cms.PSet(
+    name = cms.string("AltHcalNoiseControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      cutJetEnergy,
+      cutJetEta,
+    )
+)
+
 #Pre Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
 PrePreSelection = cms.PSet(

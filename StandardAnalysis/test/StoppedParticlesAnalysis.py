@@ -100,13 +100,28 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ##### Attach the channels and histograms to the process ########################
 ################################################################################
 
+selections = []
+selections.append(StoppPtlsSelection)
+#selections.append(HaloSelection)
+#selections.append(HaloControlSelection)
+#selections.append(HaloTagAndProbeSelection)
+#selections.append(CosmicSelection)
+#selections.append(CosmicControlSelection)
+#selections.append(NoiseSelection)
+#selections.append(NoiseControlSelection)
+#selections.append(AltNoiseControlSelection)
+#selections.append(PrePreSelection)
+#selections.append(TriggerSelection)
+#selections.append(SecondJetSelection)
+#selections.append(NoCuts)
+
 histograms = cms.VPSet()
-histograms.append(StoppedParticleHistograms)
-histograms.append(GenParticleHistograms)
-histograms.append(NeutralinoHistograms)
-histograms.append(GluonHistograms)
-histograms.append(UHistograms)
-histograms.append(UbarHistograms)
+#histograms.append(StoppedParticleHistograms)
+#histograms.append(GenParticleHistograms)
+#histograms.append(NeutralinoHistograms)
+#histograms.append(GluonHistograms)
+#histograms.append(UHistograms)
+#histograms.append(UbarHistograms)
 #histograms.append(GenJetHistograms)
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
@@ -123,6 +138,8 @@ histograms.append(OtherRpcHistograms)
 histograms.append(TowerHistograms)
 histograms.append(HpdHistograms)
 
+
+add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
 
 # add_channels (process, [StoppPtlsSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
