@@ -19,3 +19,5 @@
 #osudb --location /store/user/weifengji/HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_800 create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_800/USER
 
 #osudb --location /store/user/weifengji/HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1000 create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1000/USER
+
+#osudb --location /data/users/weifengji/condor/Cosmics_Ntuples_CosmicsPreselection/readfile_cosmicPre create /Cosmics_Preselction/Spring-74x/USER
