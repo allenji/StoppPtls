@@ -58,6 +58,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 
   double maxRPCDeltaPhi = -1.;
   unsigned closeRPCPairs = 0;
+  unsigned oppositeRPCPairs = 0;
   double outerRPC = 0.00000001;
   double innerRPC = 0;
 
@@ -74,14 +75,45 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       if (deltaPhi > 1.57) {
         closeRPCPairs++;
       }
+      if (deltaPhi > 3.0) {
+        oppositeRPCPairs++;
+      }
     }
     if(rpchits->at(i).r()>560) outerRPC++;
     else innerRPC++;
   }
   (*eventvariables)["maxRPCDeltaPhi"] = maxRPCDeltaPhi;
   (*eventvariables)["nCloseRPCPairs"] = closeRPCPairs;
+  (*eventvariables)["nOppositeRPCPairs"] = oppositeRPCPairs;
   (*eventvariables)["outerRPC"] = outerRPC;
   (*eventvariables)["innerRPC"] = innerRPC;
+
+  unsigned ljetRPCPairsST1 = 0;
+  unsigned ljetRPCPairsGT1 = 0;
+  unsigned ljetRPCPairsGT1p5 = 0;
+  unsigned ljetRPCPairsGT0p5 = 0;
+  if (jets->size() > 0 && rpchits->size() > 0) {
+    double jetphi = jets->begin()->phi();
+    for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+      double deltajetRPCphi = acos(cos((rpchits->at(i)).phi()-jetphi));
+      if (deltajetRPCphi < 1) {
+        ljetRPCPairsST1++;
+      }
+      if (deltajetRPCphi > 1) {
+        ljetRPCPairsGT1++;
+      }
+      if (deltajetRPCphi > 1.5) {
+        ljetRPCPairsGT1p5++;
+      }
+      if (deltajetRPCphi > 0.5) {
+        ljetRPCPairsGT0p5++;
+      }
+    }
+  }
+  (*eventvariables)["nLJetRPCPairsDeltaPhiST1"] = ljetRPCPairsST1;
+  (*eventvariables)["nLJetRPCPairsDeltaPhiGT1"] = ljetRPCPairsGT1;
+  (*eventvariables)["nLJetRPCPairsDeltaPhiGT1p5"] = ljetRPCPairsGT1p5;
+  (*eventvariables)["nLJetRPCPairsDeltaPhiGT0p5"] = ljetRPCPairsGT0p5;
   
   if (jets->size() > 0){
     (*eventvariables)["leadingJetEnergy"] = jets->begin()->energy();
