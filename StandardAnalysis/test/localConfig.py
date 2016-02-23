@@ -3,8 +3,8 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2460
 
-#config_file = "SecondJetAnalysis.py"
-config_file = "StoppedParticlesAnalysis.py"
+config_file = "SecondJetAnalysis.py"
+#config_file = "StoppedParticlesAnalysis.py"
 
 datasetsSig = [
   'GluinoToUUbarChi0_1200_200',
@@ -22,13 +22,26 @@ datasetsData = [
 ]
 
 datasetsControl = [
-    'StpPtls_controlSample_2015'
+    'StpPtls_controlSample_2015',
 ]
 
+datasetsCosmic = [
+    'cosmic_preselection',
+]
+
+datasetsSig_2BodyDecay = [
+    'GluinoToGChi0_1200_400',
+    'GluinoToGChi0_1200_600',
+    'GluinoToGChi0_1200_800',
+    'GluinoToGChi0_1200_1000',
+]
+    
 #datasets = datasetsSig + datasetsData + datasetsControl
-datasets = datasetsSig + datasetsData
+#datasets = datasetsSig + datasetsData
 #datasets = datasetsSig
 #datasets = datasetsData
 #datasets = datasetsControl
+#datasets = datasetsCosmic + datasetsSig_2BodyDecay
+#datasets = datasetsDummy
 
 InputCondorArguments = {}
