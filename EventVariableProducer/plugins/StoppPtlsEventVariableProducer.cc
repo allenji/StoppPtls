@@ -36,53 +36,51 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nima"] = 1.0;
 
   double maxDeltaPhi = -1.;
-  double testPhi = -1.;
   double outerDT = 0.00000001; // avoid divide by zero
   int innerDT = 0;
 
   //loop over DT segments
   for (decltype(dtsegs->size()) i = 0; i != dtsegs->size(); ++i) {
-    if (i == 0)
-      testPhi = (dtsegs->at(i)).phi();
-    else {
-      double deltaphi = acos(cos((dtsegs->at(i)).phi()-testPhi));
+    for (decltype(i) j = 0; j < i; ++j){
+      double deltaphi = acos(cos((dtsegs->at(i)).phi()-(dtsegs->at(j)).phi()));
       if (deltaphi > maxDeltaPhi) maxDeltaPhi = deltaphi;
     }
-
     if(dtsegs->at(i).r()>560) outerDT++;
     else innerDT++;
   }
+
   (*eventvariables)["maxDeltaPhi"] = maxDeltaPhi;
   (*eventvariables)["outerDT"] = outerDT;
   (*eventvariables)["innerDT"] = innerDT;
 
   double maxRPCDeltaPhi = -1.;
+  double maxRPCDeltaPhi_outer = -1.;
   unsigned closeRPCPairs = 0;
   unsigned oppositeRPCPairs = 0;
+  unsigned totalRPCPairs = 0;
   double outerRPC = 0.00000001;
   double innerRPC = 0;
 
   //loop over RPC hits
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-    if (i == 0)
-      testPhi = (rpchits->at(i)).phi();
-    else {
-      double deltaphi = acos(cos((rpchits->at(i)).phi()-testPhi));
-      if (deltaphi > maxRPCDeltaPhi) maxRPCDeltaPhi = deltaphi;
-    }
-    for (decltype(i) j = i+1; j < rpchits->size(); ++j){
+    for (decltype(i) j = 0; j < i; ++j){
+      totalRPCPairs++;
       double deltaPhi = acos(cos((rpchits->at(i)).phi()-(rpchits->at(j)).phi()));
-      if (deltaPhi > 1.57) {
-        closeRPCPairs++;
-      }
-      if (deltaPhi > 3.0) {
-        oppositeRPCPairs++;
+      if (deltaPhi > maxRPCDeltaPhi) maxRPCDeltaPhi = deltaPhi;
+      if (deltaPhi > 1.57) closeRPCPairs++;
+      if (deltaPhi > 3.0) oppositeRPCPairs++;      
+
+      if(rpchits->at(i).r()>560 && rpchits->at(j).r()>560){
+        double deltaPhi_outer = acos(cos((rpchits->at(i)).phi()-(rpchits->at(j)).phi()));
+        if (deltaPhi_outer > maxRPCDeltaPhi_outer) maxRPCDeltaPhi_outer = deltaPhi_outer;
       }
     }
     if(rpchits->at(i).r()>560) outerRPC++;
     else innerRPC++;
   }
+
   (*eventvariables)["maxRPCDeltaPhi"] = maxRPCDeltaPhi;
+  (*eventvariables)["maxRPCDeltaPhi_outer"] = maxRPCDeltaPhi_outer;
   (*eventvariables)["nCloseRPCPairs"] = closeRPCPairs;
   (*eventvariables)["nOppositeRPCPairs"] = oppositeRPCPairs;
   (*eventvariables)["outerRPC"] = outerRPC;
