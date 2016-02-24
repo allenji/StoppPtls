@@ -163,7 +163,7 @@ cutRpcPair = cms.PSet (
     inputCollection = cms.vstring("eventvariables"),
     cutString = cms.string("maxRPCDeltaPhi < 3"),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("$\Delta\phi$(RPCHit_{i}, RPCHit_{j}) < 3)")
+    alias = cms.string("max($\Delta\phi$(RPCHit_{i}, RPCHit_{j})) < 3)")
 )
 
 ######################################
@@ -183,7 +183,7 @@ cutDTPair = cms.PSet(
     cutString = cms.string('maxDeltaPhi < 1.57'),
     inputCollection = cms.vstring('eventvariables'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("$\Delta\phi$(DTSegment_{i}, DTSegment_{j}) < $\pi/2$")
+    alias = cms.string("max($\Delta\phi$(DTSegment_{i}, DTSegment_{j})) < $\pi/2$")
 )
 
 ######################################
@@ -193,7 +193,7 @@ cutMaxDeltaJetPhi = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaJetPhi < 1'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("$\Delta\phi$(DTSegment_{i}, Leading jet) < 1")
+    alias = cms.string("max($\Delta\phi$(DTSegment_{i}, Leading jet)) < 1")
 )
 
 #######################################
