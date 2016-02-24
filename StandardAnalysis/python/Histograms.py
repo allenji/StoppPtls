@@ -913,6 +913,12 @@ OtherRpcHistograms = cms.PSet(
             inputVariables = cms.vstring("maxRPCDeltaPhi"),
         ),
         cms.PSet (
+            name = cms.string("maxRPCDeltaPhi_outer"),
+            title = cms.string("Maximum Outer RPC #Delta#phi; Maximum Outer RPC #Delta#phi"),
+            binsX = cms.untracked.vdouble(32, 0, 3.2),
+            inputVariables = cms.vstring("maxRPCDeltaPhi_outer"),
+        ),
+        cms.PSet (
             name = cms.string("nCloseRPCPairs"),
             title = cms.string("Number of Close RPC Pairs; Number of Close RPC Pairs"),
             binsX = cms.untracked.vdouble(50, 0, 50),
