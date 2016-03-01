@@ -438,7 +438,7 @@ EventHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("fill"),
             title = cms.string("Fill Number; Fill Number"),
-            binsX = cms.untracked.vdouble(200, 3000, 5000),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
             inputVariables = cms.vstring("fill"),
         ),
         cms.PSet (
@@ -513,7 +513,7 @@ NumberOfObjectsHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(30, 0, 30),
             binsY = cms.untracked.vdouble(30, 0, 30),
             inputVariables = cms.vstring("dtSegN","rpcHitN"),
-            )
+            ),
         )
 )
 
@@ -935,7 +935,43 @@ OtherRpcHistograms = cms.PSet(
             title = cms.string("Number of RPC Hits with r<560 cm; Number of Inner RPC Hits"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("innerRPC"),
-        )
+        ),
+        cms.PSet (
+            name = cms.string("nOuterRPCbarrel"),
+            title = cms.string("Number of RPC Barrel Hits with r>560 cm; Number of Outer RPC Barrel Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("outerRPCbarrel"),
+        ),
+        cms.PSet (
+            name = cms.string("nInnerRPCbarrel"),
+            title = cms.string("Number of RPC Barrel Hits with r<560 cm; Number of Inner RPC Barrel Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("innerRPCbarrel"),
+        ),
+        cms.PSet (
+            name = cms.string("nRPCbarrel"),
+            title = cms.string("Number of RPC Barrel Hits; Number of RPC Barrel Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("RPCbarrel"),
+        ),
+        cms.PSet (
+            name = cms.string("nOuterRPCendcap"),
+            title = cms.string("Number of RPC Endcap Hits with r>560 cm; Number of Outer RPC Endcap Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("outerRPCendcap"),
+        ),
+        cms.PSet (
+            name = cms.string("nInnerRPCendcap"),
+            title = cms.string("Number of RPC Endcap Hits with r<560 cm; Number of Inner RPC Endcap Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("innerRPCendcap"),
+        ),
+        cms.PSet (
+            name = cms.string("nRPCendcap"),
+            title = cms.string("Number of RPC Endcap Hits; Number of RPC Endcap Hits"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("RPCendcap"),
+        ),
         )
 )
 

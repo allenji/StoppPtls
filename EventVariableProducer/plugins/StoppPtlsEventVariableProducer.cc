@@ -61,6 +61,14 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double outerRPC = 0.00000001;
   double innerRPC = 0;
 
+  int outerRPCbarrel = 0;
+  int innerRPCbarrel = 0;
+  int RPCbarrel = 0;
+  int outerRPCendcap = 0;
+  int innerRPCendcap = 0;
+  int RPCendcap = 0;
+
+
   //loop over RPC hits
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
     for (decltype(i) j = 0; j < i; ++j){
@@ -77,6 +85,16 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     }
     if(rpchits->at(i).r()>560) outerRPC++;
     else innerRPC++;
+    if(rpchits->at(i).region()==0){ //barrel
+      RPCbarrel++;
+      if(rpchits->at(i).r()>560) outerRPCbarrel++;
+      else innerRPCbarrel++;
+    }
+    else{ //endcap
+      RPCendcap++;
+      if(rpchits->at(i).r()>560) outerRPCendcap++;
+      else innerRPCendcap++;
+    }
   }
 
   (*eventvariables)["maxRPCDeltaPhi"] = maxRPCDeltaPhi;
@@ -85,6 +103,13 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nOppositeRPCPairs"] = oppositeRPCPairs;
   (*eventvariables)["outerRPC"] = outerRPC;
   (*eventvariables)["innerRPC"] = innerRPC;
+
+  (*eventvariables)["outerRPCbarrel"] = outerRPCbarrel;
+  (*eventvariables)["innerRPCbarrel"] = innerRPCbarrel;
+  (*eventvariables)["RPCbarrel"] = RPCbarrel;
+  (*eventvariables)["outerRPCendcap"] = outerRPCendcap;
+  (*eventvariables)["innerRPCendcap"] = innerRPCendcap;
+  (*eventvariables)["RPCendcap"] = RPCendcap;
 
   unsigned ljetRPCPairsST1 = 0;
   unsigned ljetRPCPairsGT1 = 0;
