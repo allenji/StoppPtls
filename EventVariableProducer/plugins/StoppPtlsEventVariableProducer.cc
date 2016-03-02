@@ -1,5 +1,7 @@
+#include <TVector3.h>
 #include "OSUT3Analysis/AnaTools/interface/CommonUtils.h"
 #include "StoppPtls/EventVariableProducer/plugins/StoppPtlsEventVariableProducer.h"
+#include "DataFormats/Math/interface/deltaR.h"
 
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg)
@@ -115,6 +117,17 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   unsigned ljetRPCPairsGT1 = 0;
   unsigned ljetRPCPairsGT1p5 = 0;
   unsigned ljetRPCPairsGT0p5 = 0;
+
+  unsigned ljetRPCPairsDeltaR0p6 = 0; // deltaR<jet, rpchit> <= 0.6
+  unsigned ljetRPCPairsDeltaR0p8 = 0;
+  unsigned ljetRPCPairsDeltaR1p0 = 0;
+  unsigned ljetRPCPairsDeltaR1p2 = 0;
+
+  unsigned ljetOuterRPCPairsDeltaR0p6 = 0;
+  unsigned ljetOuterRPCPairsDeltaR0p8 = 0;
+  unsigned ljetOuterRPCPairsDeltaR1p0 = 0;
+  unsigned ljetOuterRPCPairsDeltaR1p2 = 0;
+
   if (jets->size() > 0 && rpchits->size() > 0) {
     double jetphi = jets->begin()->phi();
     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
@@ -131,6 +144,30 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       if (deltajetRPCphi > 0.5) {
         ljetRPCPairsGT0p5++;
       }
+
+      TVector3 tvec((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+      double rpc_eta = tvec.Eta();
+      double deltaR = reco::deltaR (jets->begin()->eta(), jets->begin()->phi(), rpc_eta, (rpchits->at(i)).phi());
+      if (deltaR < 0.6) {
+        ljetRPCPairsDeltaR0p6++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR0p6++;
+      }
+      if (deltaR < 0.8) {
+        ljetRPCPairsDeltaR0p8++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR0p8++;
+      }
+      if (deltaR < 1.0) {
+        ljetRPCPairsDeltaR1p0++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR1p0++;
+      }
+      if (deltaR < 1.2) {
+        ljetRPCPairsDeltaR1p2++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR1p2++;
+      }
     }
   }
   (*eventvariables)["nLJetRPCPairsDeltaPhiST1"] = ljetRPCPairsST1;
@@ -138,6 +175,17 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nLJetRPCPairsDeltaPhiGT1p5"] = ljetRPCPairsGT1p5;
   (*eventvariables)["nLJetRPCPairsDeltaPhiGT0p5"] = ljetRPCPairsGT0p5;
   
+  (*eventvariables)["nLJetRPCPairsDeltaR0p6"] = ljetRPCPairsDeltaR0p6;
+  (*eventvariables)["nLJetRPCPairsDeltaR0p8"] = ljetRPCPairsDeltaR0p8;
+  (*eventvariables)["nLJetRPCPairsDeltaR1p0"] = ljetRPCPairsDeltaR1p0;
+  (*eventvariables)["nLJetRPCPairsDeltaR1p2"] = ljetRPCPairsDeltaR1p2;
+
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR0p6"] = ljetOuterRPCPairsDeltaR0p6;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR0p8"] = ljetOuterRPCPairsDeltaR0p8;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR1p0"] = ljetOuterRPCPairsDeltaR1p0;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR1p2"] = ljetOuterRPCPairsDeltaR1p2;
+
+
   if (jets->size() > 0){
     (*eventvariables)["leadingJetEnergy"] = jets->begin()->energy();
     (*eventvariables)["leadingJetEt"] = jets->begin()->et();
