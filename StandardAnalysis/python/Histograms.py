@@ -813,19 +813,19 @@ RpcHitsHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("rpcHitX"),
             title = cms.string("RPC Hit X; RPC Hit X [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
             inputVariables = cms.vstring("x"),
         ),
         cms.PSet (
             name = cms.string("rpcHitY"),
             title = cms.string("RPC Hit Y; RPC Hit Y [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
             inputVariables = cms.vstring("y"),
         ),
         cms.PSet (
             name = cms.string("rpcHitZ"),
             title = cms.string("RPC Hit Z; RPC Hit Z [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1500, 1500),
             inputVariables = cms.vstring("z"),
         ),
         cms.PSet (

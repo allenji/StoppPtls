@@ -82,6 +82,24 @@ RpcStudyHistograms = cms.PSet(
             inputVariables = cms.vstring("nLJetRPCPairsDeltaR1p2"),
         ),
         cms.PSet (
+            name = cms.string("nLJetRPCPairsDeltaR1p4"),
+            title = cms.string("nLJetRPCPairsDeltaR < 1.4; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetRPCPairsDeltaR1p4"),
+        ),
+        cms.PSet (
+            name = cms.string("nLJetRPCPairsDeltaR1p6"),
+            title = cms.string("nLJetRPCPairsDeltaR < 1.6; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetRPCPairsDeltaR1p6"),
+        ),
+        cms.PSet (
+            name = cms.string("nLJetRPCPairsDeltaR1p8"),
+            title = cms.string("nLJetRPCPairsDeltaR < 1.8; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetRPCPairsDeltaR1p8"),
+        ),
+        cms.PSet (
             name = cms.string("nLJetOuterRPCPairsDeltaR0p6"),
             title = cms.string("nLJetOuterRPCPairsDeltaR < 0.6; Number of pairs"),
             binsX = cms.untracked.vdouble(20, 0, 20),
@@ -104,6 +122,24 @@ RpcStudyHistograms = cms.PSet(
             title = cms.string("nLJetOuterRPCPairsDeltaR < 1.2; Number of pairs"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nLJetOuterRPCPairsDeltaR1p2"),
+        ),
+        cms.PSet (
+            name = cms.string("nLJetOuterRPCPairsDeltaR1p4"),
+            title = cms.string("nLJetOuterRPCPairsDeltaR < 1.4; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetOuterRPCPairsDeltaR1p4"),
+        ),
+        cms.PSet (
+            name = cms.string("nLJetOuterRPCPairsDeltaR1p6"),
+            title = cms.string("nLJetOuterRPCPairsDeltaR < 1.6; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetOuterRPCPairsDeltaR1p6"),
+        ),
+        cms.PSet (
+            name = cms.string("nLJetOuterRPCPairsDeltaR1p8"),
+            title = cms.string("nLJetOuterRPCPairsDeltaR < 1.8; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nLJetOuterRPCPairsDeltaR1p8"),
         ),
     )
 )
