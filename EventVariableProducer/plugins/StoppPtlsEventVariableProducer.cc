@@ -113,6 +113,31 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["innerRPCendcap"] = innerRPCendcap;
   (*eventvariables)["RPCendcap"] = RPCendcap;
 
+  unsigned nCloseOuterAllRpcPairDeltaR0p4 = 0;
+  unsigned nCloseOuterAllRpcPairDeltaR0p6 = 0;
+  unsigned nCloseOuterAllRpcPairDeltaR0p8 = 0;
+
+  if (rpchits->size() > 1) {
+    for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+      if ((rpchits->at(i)).r() < 560) continue;
+      else {
+        for (decltype(i) j = 0; j != i; ++j) {
+           TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+           TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
+           double rpc_eta_i = tveci.Eta();
+           double rpc_eta_j = tvecj.Eta();
+           double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
+           if (deltaR < 0.4) nCloseOuterAllRpcPairDeltaR0p4++;
+           if (deltaR < 0.6) nCloseOuterAllRpcPairDeltaR0p6++;
+           if (deltaR < 0.8) nCloseOuterAllRpcPairDeltaR0p8++;
+        }
+      }
+    }
+  }
+  (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p4"] = nCloseOuterAllRpcPairDeltaR0p4;
+  (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p6"] = nCloseOuterAllRpcPairDeltaR0p6;
+  (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p8"] = nCloseOuterAllRpcPairDeltaR0p8;
+
   unsigned ljetRPCPairsST1 = 0;
   unsigned ljetRPCPairsGT1 = 0;
   unsigned ljetRPCPairsGT1p5 = 0;
@@ -122,11 +147,17 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   unsigned ljetRPCPairsDeltaR0p8 = 0;
   unsigned ljetRPCPairsDeltaR1p0 = 0;
   unsigned ljetRPCPairsDeltaR1p2 = 0;
+  unsigned ljetRPCPairsDeltaR1p4 = 0;
+  unsigned ljetRPCPairsDeltaR1p6 = 0;
+  unsigned ljetRPCPairsDeltaR1p8 = 0;
 
   unsigned ljetOuterRPCPairsDeltaR0p6 = 0;
   unsigned ljetOuterRPCPairsDeltaR0p8 = 0;
   unsigned ljetOuterRPCPairsDeltaR1p0 = 0;
   unsigned ljetOuterRPCPairsDeltaR1p2 = 0;
+  unsigned ljetOuterRPCPairsDeltaR1p4 = 0;
+  unsigned ljetOuterRPCPairsDeltaR1p6 = 0;
+  unsigned ljetOuterRPCPairsDeltaR1p8 = 0;
 
   if (jets->size() > 0 && rpchits->size() > 0) {
     double jetphi = jets->begin()->phi();
@@ -168,6 +199,21 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
         if ((rpchits->at(i)).r() > 560)
           ljetOuterRPCPairsDeltaR1p2++;
       }
+      if (deltaR < 1.4) {
+        ljetRPCPairsDeltaR1p4++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR1p4++;
+      }
+      if (deltaR < 1.6) {
+        ljetRPCPairsDeltaR1p6++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR1p6++;
+      }
+      if (deltaR < 1.8) {
+        ljetRPCPairsDeltaR1p8++;
+        if ((rpchits->at(i)).r() > 560)
+          ljetOuterRPCPairsDeltaR1p8++;
+      }
     }
   }
   (*eventvariables)["nLJetRPCPairsDeltaPhiST1"] = ljetRPCPairsST1;
@@ -179,11 +225,17 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nLJetRPCPairsDeltaR0p8"] = ljetRPCPairsDeltaR0p8;
   (*eventvariables)["nLJetRPCPairsDeltaR1p0"] = ljetRPCPairsDeltaR1p0;
   (*eventvariables)["nLJetRPCPairsDeltaR1p2"] = ljetRPCPairsDeltaR1p2;
+  (*eventvariables)["nLJetRPCPairsDeltaR1p4"] = ljetRPCPairsDeltaR1p4;
+  (*eventvariables)["nLJetRPCPairsDeltaR1p6"] = ljetRPCPairsDeltaR1p6;
+  (*eventvariables)["nLJetRPCPairsDeltaR1p8"] = ljetRPCPairsDeltaR1p8;
 
   (*eventvariables)["nLJetOuterRPCPairsDeltaR0p6"] = ljetOuterRPCPairsDeltaR0p6;
   (*eventvariables)["nLJetOuterRPCPairsDeltaR0p8"] = ljetOuterRPCPairsDeltaR0p8;
   (*eventvariables)["nLJetOuterRPCPairsDeltaR1p0"] = ljetOuterRPCPairsDeltaR1p0;
   (*eventvariables)["nLJetOuterRPCPairsDeltaR1p2"] = ljetOuterRPCPairsDeltaR1p2;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR1p4"] = ljetOuterRPCPairsDeltaR1p4;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR1p6"] = ljetOuterRPCPairsDeltaR1p6;
+  (*eventvariables)["nLJetOuterRPCPairsDeltaR1p8"] = ljetOuterRPCPairsDeltaR1p8;
 
 
   if (jets->size() > 0){
