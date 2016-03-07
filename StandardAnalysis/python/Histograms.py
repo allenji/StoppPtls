@@ -853,6 +853,20 @@ RpcHitsHistograms = cms.PSet(
             inputVariables = cms.vstring("phi"),
             )
         )
+        cms.PSet (
+            name = cms.string("rpcHitXVsY"),
+            title = cms.string("RPC Hit X vs Y; RPC Hit X[cm]; RPC Hit Y[cm]"),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
+            binsY = cms.untracked.vdouble(100, -1000, 1000),
+            inputVariables = cms.vstring("x", "y"),
+        )
+        cms.PSet (
+            name = cms.string("rpcHitZVsR"),
+            title = cms.string("RPC Hit Z vs R; RPC Hit Z[cm]; RPC Hit R[cm]"),
+            binsX = cms.untracked.vdouble(120, -1200, 1200),
+            binsY = cms.untracked.vdouble(75, 0, 750),
+            inputVariables = cms.vstring("z", "r"),
+        )
 )
 
 OtherDtHistograms = cms.PSet(
