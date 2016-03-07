@@ -113,27 +113,63 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["innerRPCendcap"] = innerRPCendcap;
   (*eventvariables)["RPCendcap"] = RPCendcap;
 
+  unsigned nCloseAllAllRpcPairDeltaR0p2 = 0; //rpchit-rpchit pairs, selected from all available rpc hits
+  unsigned nCloseAllAllRpcPairDeltaR0p4 = 0;
+  unsigned nCloseAllAllRpcPairDeltaR0p6 = 0;
+  unsigned nCloseAllAllRpcPairDeltaR0p8 = 0;
+  unsigned nCloseOuterAllRpcPairDeltaR0p2 = 0; //rpchit-rpchit pairs, the first rpchit is in outer barrel, no such restriction on the second rpchit
   unsigned nCloseOuterAllRpcPairDeltaR0p4 = 0;
   unsigned nCloseOuterAllRpcPairDeltaR0p6 = 0;
   unsigned nCloseOuterAllRpcPairDeltaR0p8 = 0;
 
   if (rpchits->size() > 1) {
     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-      if ((rpchits->at(i)).r() < 560) continue;
+      if ((rpchits->at(i)).r() < 560) {
+        for (decltype(i) j = 0; j != i; ++j) {
+          TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+          TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
+          double rpc_eta_i = tveci.Eta();
+          double rpc_eta_j = tvecj.Eta();
+          double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
+          if (deltaR < 0.2) nCloseAllAllRpcPairDeltaR0p2++;
+          if (deltaR < 0.4) nCloseAllAllRpcPairDeltaR0p4++;
+          if (deltaR < 0.6) nCloseAllAllRpcPairDeltaR0p6++;
+          if (deltaR < 0.8) nCloseAllAllRpcPairDeltaR0p8++;
+        }
+          
+      }
       else {
         for (decltype(i) j = 0; j != i; ++j) {
-           TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
-           TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
-           double rpc_eta_i = tveci.Eta();
-           double rpc_eta_j = tvecj.Eta();
-           double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
-           if (deltaR < 0.4) nCloseOuterAllRpcPairDeltaR0p4++;
-           if (deltaR < 0.6) nCloseOuterAllRpcPairDeltaR0p6++;
-           if (deltaR < 0.8) nCloseOuterAllRpcPairDeltaR0p8++;
+          TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+          TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
+          double rpc_eta_i = tveci.Eta();
+          double rpc_eta_j = tvecj.Eta();
+          double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
+          if (deltaR < 0.2) {
+            nCloseAllAllRpcPairDeltaR0p2++;
+            nCloseOuterAllRpcPairDeltaR0p2++;
+          }
+          if (deltaR < 0.4) {
+            nCloseAllAllRpcPairDeltaR0p4++;
+            nCloseOuterAllRpcPairDeltaR0p4++;
+          }
+          if (deltaR < 0.6) {
+            nCloseAllAllRpcPairDeltaR0p6++;
+            nCloseOuterAllRpcPairDeltaR0p6++;
+          }
+          if (deltaR < 0.8) {
+            nCloseAllAllRpcPairDeltaR0p8++;
+            nCloseOuterAllRpcPairDeltaR0p8++;
+          }
         }
       }
     }
   }
+  (*eventvariables)["nCloseAllAllRpcPairDeltaR0p2"] = nCloseAllAllRpcPairDeltaR0p2;
+  (*eventvariables)["nCloseAllAllRpcPairDeltaR0p4"] = nCloseAllAllRpcPairDeltaR0p4;
+  (*eventvariables)["nCloseAllAllRpcPairDeltaR0p6"] = nCloseAllAllRpcPairDeltaR0p6;
+  (*eventvariables)["nCloseAllAllRpcPairDeltaR0p8"] = nCloseAllAllRpcPairDeltaR0p8;
+  (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p2"] = nCloseOuterAllRpcPairDeltaR0p2;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p4"] = nCloseOuterAllRpcPairDeltaR0p4;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p6"] = nCloseOuterAllRpcPairDeltaR0p6;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p8"] = nCloseOuterAllRpcPairDeltaR0p8;
