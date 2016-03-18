@@ -48,7 +48,10 @@
   <use name="TrackingTools/Records"/>
   <use name="TrackPropagation/SteppingHelixPropagator"/>
   <use name="StoppPtls/Collection"/>
-  <use name="StoppedHSCP/Ntuples"/>
+  <use name="StoppPtls/Livetime"/>
+
+  <use  name="OSUT3Analysis/AnaTools"/>
+  <use  name="OSUT3Analysis/Collections"/>
 
   <flags EDM_PLUGIN="1"/>
 
