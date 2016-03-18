@@ -254,3 +254,13 @@ cutMinDeltaPhiCscJet = cms.PSet(
     numberRequired = cms.string('= 1'),
     alias = cms.string("$\Delta\phi$(CSCSegment_{i}, Leading jet) < 0.4")
 )
+
+########################################
+## for rpc study
+#######################################
+cutDT = cms.PSet(
+    inputCollection = cms.vstring("dtsegs"),
+    cutString = cms.string("abs(r) > -1"),
+    numberRequired = cms.string("= 0"),
+    alias = cms.string("no DT segments")
+)

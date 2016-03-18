@@ -33,10 +33,15 @@ datasetsCosmic = [
 
 datasetsSig_2BodyDecay = [
     'GluinoToGChi0_1200_200',
-    'GluinoToGChi0_1200_400',
-    'GluinoToGChi0_1200_600',
-    'GluinoToGChi0_1200_800',
     'GluinoToGChi0_1200_1000',
+]
+
+datasetsRpcStudy = [
+    'GluinoToGChi0_1200_1000_noiseFrate0p4',
+    'GluinoToGChi0_1200_1000_noiseFrate0p6',
+    'GluinoToGChi0_1200_1000_noiseFrate0p8',
+    'GluinoToGChi0_1200_1000_noiseFrate1p0',
+    'GluinoToGChi0_1200_1000_nonoise',
 ]
     
 #datasets = datasetsSig + datasetsData + datasetsControl
@@ -46,6 +51,8 @@ datasetsSig_2BodyDecay = [
 #datasets = datasetsControl
 #datasets = datasetsCosmic + datasetsSig_2BodyDecay
 #datasets = datasetsControl + datasetsCosmic + datasetsSig_2BodyDecay
+#datasets = datasetsCosmic + datasetsSig_2BodyDecay
 #datasets = datasetsDummy
+#datasets = datasetsData + datasetsRpcStudy
 
 InputCondorArguments = {}

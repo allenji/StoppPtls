@@ -190,3 +190,13 @@ NoCuts = cms.PSet(
     cuts = cms.VPSet(
         )
     )
+
+Rpc_study = cms.PSet(
+    name = cms.string("RpcStudy"),
+    triggers = cms.vstring(""), 
+    cuts = cms.VPSet(
+        cutCscSegNumber,
+        cutDT,
+    )
+)
+

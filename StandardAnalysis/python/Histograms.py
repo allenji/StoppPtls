@@ -813,19 +813,19 @@ RpcHitsHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("rpcHitX"),
             title = cms.string("RPC Hit X; RPC Hit X [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
             inputVariables = cms.vstring("x"),
         ),
         cms.PSet (
             name = cms.string("rpcHitY"),
             title = cms.string("RPC Hit Y; RPC Hit Y [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
             inputVariables = cms.vstring("y"),
         ),
         cms.PSet (
             name = cms.string("rpcHitZ"),
             title = cms.string("RPC Hit Z; RPC Hit Z [cm]"),
-            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsX = cms.untracked.vdouble(100, -1500, 1500),
             inputVariables = cms.vstring("z"),
         ),
         cms.PSet (
@@ -851,8 +851,22 @@ RpcHitsHistograms = cms.PSet(
             title = cms.string("RPC Hit #phi; RPC Hit #phi"),
             binsX = cms.untracked.vdouble(64, -3.2, 3.2),
             inputVariables = cms.vstring("phi"),
-            )
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitXVsY"),
+            title = cms.string("RPC Hit X vs Y; RPC Hit X[cm]; RPC Hit Y[cm]"),
+            binsX = cms.untracked.vdouble(100, -1000, 1000),
+            binsY = cms.untracked.vdouble(100, -1000, 1000),
+            inputVariables = cms.vstring("x", "y"),
+        ),
+        cms.PSet (
+            name = cms.string("rpcHitZVsR"),
+            title = cms.string("RPC Hit Z vs R; RPC Hit Z[cm]; RPC Hit R[cm]"),
+            binsX = cms.untracked.vdouble(120, -1200, 1200),
+            binsY = cms.untracked.vdouble(75, 0, 750),
+            inputVariables = cms.vstring("z", "r"),
         )
+   )
 )
 
 OtherDtHistograms = cms.PSet(
