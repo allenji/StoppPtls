@@ -264,3 +264,12 @@ cutDT = cms.PSet(
     numberRequired = cms.string("= 0"),
     alias = cms.string("no DT segments")
 )
+
+#dummy cut
+cutDummy = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy > -1"),
+    numberRequired = cms.string(">= 0"),
+    alias = cms.string("No offline cuts")
+)
+
