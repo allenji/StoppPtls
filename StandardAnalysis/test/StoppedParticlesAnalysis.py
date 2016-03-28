@@ -60,8 +60,9 @@ from StoppPtls.Collection.frmwrkCollectionMap_cfi import collectionMap_Custom
 
 weights = cms.VPSet (
     #cms.PSet (
-    #    inputCollections = cms.vstring("muons"),
-    #    inputVariable = cms.string("pt")
+        #inputCollections = cms.vstring("eventvariables"),
+        #inputVariable = cms.string("1.0/livetimeByRun")
+        #inputVariable = cms.string("1.0/livetimeByFill")
     #),
 )
 
@@ -110,6 +111,7 @@ selections.append(StoppPtlsSelection)
 #selections.append(NoiseSelection)
 #selections.append(NoiseControlSelection)
 #selections.append(AltNoiseControlSelection)
+#selections.append(Rpc_study)
 #selections.append(PrePreSelection)
 #selections.append(TriggerSelection)
 #selections.append(SecondJetSelection)
@@ -125,6 +127,8 @@ histograms = cms.VPSet()
 #histograms.append(GenJetHistograms)
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
+histograms.append(ObjectsVsTimeHistograms)
+histograms.append(RpcHitsVsTimeHistograms)
 histograms.append(NoiseHistograms)
 histograms.append(JetHistograms)
 histograms.append(LeadingJetHistograms)
@@ -137,7 +141,6 @@ histograms.append(OtherCscHistograms)
 histograms.append(OtherRpcHistograms)
 histograms.append(TowerHistograms)
 histograms.append(HpdHistograms)
-
 
 add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
 
@@ -153,6 +156,9 @@ add_channels (process, selections, histograms, weights, collectionMap_Custom, va
 # add_channels (process, [TriggerSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
+
+process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/test/condor/Livetime/StpPtls_controlSample_2015.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/test/condor/Livetime/NoBPTX_2015D.root")
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()

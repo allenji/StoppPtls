@@ -433,13 +433,13 @@ EventHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("run"),
             title = cms.string("Run Number; Run Number"),
-            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsX = cms.untracked.vdouble(30000, 235000, 265000),
             inputVariables = cms.vstring("run"),
         ),
         cms.PSet (
             name = cms.string("fill"),
             title = cms.string("Fill Number; Fill Number"),
-            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsX = cms.untracked.vdouble(2000, 3000, 5000),
             inputVariables = cms.vstring("fill"),
         ),
         cms.PSet (

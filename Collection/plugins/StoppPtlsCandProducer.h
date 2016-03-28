@@ -74,7 +74,7 @@
 #include "Geometry/RPCGeometry/interface/RPCChamber.h"
 
 //helper class
-#include "StoppedHSCP/Ntuples/interface/LhcFills.h"
+#include "StoppPtls/Livetime/interface/LhcFills.h"
 
 
 //generator
