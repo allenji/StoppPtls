@@ -157,8 +157,8 @@ add_channels (process, selections, histograms, weights, collectionMap_Custom, va
 # add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
 
-process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/test/condor/Livetime/StpPtls_controlSample_2015.root")
-#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/test/condor/Livetime/NoBPTX_2015D.root")
+process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
