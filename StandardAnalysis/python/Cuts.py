@@ -8,7 +8,7 @@ cutJetEnergy = cms.PSet(
     inputCollection = cms.vstring("jets"),
     cutString = cms.string("energy > 70"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("E_{jet} > 70 \GeV")
+    alias = cms.string("$E_{jet}$ > 70 \GeV")
 )
 
 ########################################
@@ -163,7 +163,7 @@ cutRpcPair = cms.PSet (
     inputCollection = cms.vstring("eventvariables"),
     cutString = cms.string("maxRPCDeltaPhi < 3"),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("max($\Delta\phi$(RPCHit_{i}, RPCHit_{j})) < 3)")
+    alias = cms.string("$max(\Delta\phi(RPCHit_{i}, RPCHit_{j}))$ < 3)")
 )
 
 ######################################
@@ -264,3 +264,34 @@ cutDT = cms.PSet(
     numberRequired = cms.string("= 0"),
     alias = cms.string("no DT segments")
 )
+
+cutInnerRPCBarrel = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('innerRPCbarrel >= 5'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("more than 4 inner barrel RPC hits"),
+    )
+newRPCMaxOuterRPCDeltaPhi = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('maxRPCDeltaPhi_outer < 2.3'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("maxOuterRPCDeltaPhi < 2.3"),
+    )
+newNOuterAllRPCHitsDeltaR = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nCloseOuterAllRpcPairDeltaR0p2 < 1'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("nCloseOuterAllRpcPairDeltaR0p2 < 1"),
+    )
+getBarrelRPCHits = cms.PSet(
+    inputCollection = cms.vstring('rpchits'),
+    cutString = cms.string('region = 0'),
+    numberRequired = cms.string("> 0"),
+    alias = cms.string("have more than one barrel RPC hits"),
+    )
+newTestNOuterAllRPCBarrelHitsDeltaR = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nCloseOuterAllBarrelRPCPairDeltaR0p2 > 10'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2 > 10"),
+    )
