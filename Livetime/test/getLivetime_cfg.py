@@ -11,6 +11,7 @@ process.maxEvents = cms.untracked.PSet (
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
         'file:/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_data.root',
+        #"root://cms-xrd-global.cern.ch//store/user/wji/NoBPTX/Run2015D-PromptReco-v3_SP-controlSample_v2_Mar06/160307_172200/0004/RECOWithStoppedParticleEvents_data_4188.root"
     ),
 )
 
@@ -24,9 +25,6 @@ process.getLivetimeAnalyzer = cms.EDAnalyzer("GetLivetime",
 process.p = cms.Path(process.getLivetimeAnalyzer)
 
 
-# Apply lumi mask; comment out to process all events  
+# Apply lumi mask; comment out to process all events
 #import FWCore.PythonUtilities.LumiList as LumiList
-#import FWCore.ParameterSet.Types as CfgTypes
-#myLumis = LumiList.LumiList(filename = os.environ['CMSSW_BASE']+'/src/StoppedHSCP/Ntuples/data/Cert_246908-260627_13TeV_PromptReco_Collisions15_25ns_JSON_Silver.txt').getCMSSWString().split(',')
-#process.source.lumisToProcess = CfgTypes.untracked(CfgTypes.VLuminosityBlockRange())
-#process.source.lumisToProcess.extend(myLumis)
+#process.source.lumisToProcess = LumiList.LumiList(filename = '../../Livetime/data/cosmics_json_238361_263584_HcalGood_rmk.txt').getVLuminosityBlockRange()  
