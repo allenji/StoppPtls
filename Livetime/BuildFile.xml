@@ -1,0 +1,14 @@
+<use name="root"/>
+<use name="boost"/>
+<use name="FWCore/Framework"/>
+<use name="FWCore/MessageLogger"/>
+<use name="FWCore/ParameterSet"/>
+<use name="FWCore/PluginManager"/>
+<use name="CommonTools/UtilAlgos"/>
+<use name="PhysicsTools/UtilAlgos"/>
+
+<export>
+  <use name="root"/>
+  <use name="boost"/>
+  <lib name="StoppPtlsLivetime"/>
+</export>

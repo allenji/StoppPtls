@@ -1,35 +1,43 @@
+#include <iostream>
+#include <fstream>
 #include <TVector3.h>
+#include "TFile.h"
+#include "TH1.h"
+
 #include "OSUT3Analysis/AnaTools/interface/CommonUtils.h"
 #include "StoppPtls/EventVariableProducer/plugins/StoppPtlsEventVariableProducer.h"
 #include "DataFormats/Math/interface/deltaR.h"
 
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
-  EventVariableProducer(cfg)
+  EventVariableProducer(cfg),
+  livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile"))
 {
+  file = TFile::Open(livetimeRootFile_.c_str());
+  file->cd("TriggerResults");
+  run_livetime_hist = (TH1D*)gDirectory->Get("run_livetime_hist");
+  fill_livetime_hist = (TH1D*)gDirectory->Get("fill_livetime_hist");
+
+  clog<<"Total livetime is: "<<run_livetime_hist->GetSumOfWeights()<<" seconds"<<endl;
 }
 
 StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
 {
 }
 
-void 
-StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
+void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   edm::Handle<std::vector<CandidateJet> > jets;
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
-  /*
   edm::Handle<std::vector<CandidateEvent> > events;
-  edm::Handle<std::vector<reco::GenParticle> > mcparticles;
-  */
+  //edm::Handle<std::vector<reco::GenParticle> > mcparticles;
+  
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("jets"), jets, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("dtsegs"), dtsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("cscsegs"), cscsegs, event);
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("rpchits"), rpchits, event);
-  /*
   anatools::getCollection (collections_.getParameter<edm::InputTag> ("events"), events, event);
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
-  */
+  //anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
 
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
@@ -407,14 +415,14 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
       matched = true;
       stopped_genParticle = itmcpart;
-      //std::cout<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+      //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
       break;
     }
     //sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
     else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
       matched = true;
       stopped_genParticle = itmcpart;
-      //std::cout<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+      //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
       break;
     }
   }//end of loop over mcparticles
@@ -424,7 +432,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     for(size_t j=0; j<stopped_genParticle->numberOfDaughters(); j++){
       const reco::Candidate* daughter = stopped_genParticle->daughter(j);
       int partId = daughter->pdgId();
-      //std::cout<<"  daughter pdgid is: "<<partId<<std::endl;
+      //std::clog<<"  daughter pdgid is: "<<partId<<std::endl;
       
       //look for sparticle (gluino, stop - left and right handed, stau) 
       if (fabs(partId) == 1000021 || fabs(partId) == 1000006 || fabs(partId) == 2000006 || fabs(partId) == 1000015 || fabs(partId) == 2000015){
@@ -433,12 +441,12 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	//loop over sparticle's daughters
 	for(size_t k=0; k<sparticle->numberOfDaughters(); k++){	    
 	  const reco::Candidate* daughter2 = sparticle->daughter(k);
-	  //std::cout<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
+	  //std::clog<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
 	  
 	  //look for neutralino
 	  if(fabs(daughter2->pdgId())==1000022){
 	    const reco::Candidate* neutralino = daughter2;
-	    //std::cout<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
+	    //std::clog<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
 	    neutralinoMass = neutralino->mass();
 	    neutralinoPx = neutralino->px();
 	    neutralinoPy = neutralino->py();
@@ -452,7 +460,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  //look for gluon
 	  if(fabs(daughter2->pdgId())==21){
 	    const reco::Candidate* gluon = daughter2;
-	    //std::cout<<"  gluon mass is: "<<gluon->mass()<<", px is: "<<gluon->px()<<", py: "<<gluon->py()<<", pz: "<<gluon->pz()<<std::endl;
+	    //std::clog<<"  gluon mass is: "<<gluon->mass()<<", px is: "<<gluon->px()<<", py: "<<gluon->py()<<", pz: "<<gluon->pz()<<std::endl;
 	    gluonMass = gluon->mass();
 	    gluonPx = gluon->px();
 	    gluonPy = gluon->py();
@@ -466,7 +474,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  //look for up quark
 	  if(daughter2->pdgId()==2){
 	    const reco::Candidate* u = daughter2;
-	    //std::cout<<"  u mass is: "<<u->mass()<<", px is: "<<u->px()<<", py: "<<u->py()<<", pz: "<<u->pz()<<std::endl;
+	    //std::clog<<"  u mass is: "<<u->mass()<<", px is: "<<u->px()<<", py: "<<u->py()<<", pz: "<<u->pz()<<std::endl;
 	    uMass = u->mass();
 	    uPx = u->px();
 	    uPy = u->py();
@@ -480,7 +488,7 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  //look for ubar quark
 	  if(daughter2->pdgId()==-2){
 	    const reco::Candidate* ubar = daughter2;
-	    //std::cout<<"  ubar mass is: "<<ubar->mass()<<", px is: "<<ubar->px()<<", py: "<<ubar->py()<<", pz: "<<ubar->pz()<<std::endl;
+	    //std::clog<<"  ubar mass is: "<<ubar->mass()<<", px is: "<<ubar->px()<<", py: "<<ubar->py()<<", pz: "<<ubar->pz()<<std::endl;
 	    ubarMass = ubar->mass();
 	    ubarPx = ubar->px();
 	    ubarPy = ubar->py();
@@ -496,10 +504,10 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }//end of if matched
   
   else{
-    std::cout<<"stopped particle id "<<events->begin()->stoppedParticleId()<<" is NOT MATCHED TO A GEN PARTICLE!!"<<std::endl;
-    std::cout<<"mcparticles are: "<<endl;
+    std::clog<<"stopped particle id "<<events->begin()->stoppedParticleId()<<" is NOT MATCHED TO A GEN PARTICLE!!"<<std::endl;
+    std::clog<<"mcparticles are: "<<endl;
     for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
-      std::cout<<"  "<<itmcpart->pdgId()<<std::endl;
+      std::clog<<"  "<<itmcpart->pdgId()<<std::endl;
     }
   }//end of if not matched
 
@@ -539,6 +547,32 @@ StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["ubarEta"] = ubarEta;
   (*eventvariables)["ubarPhi"] = ubarPhi;
   */  
+
+
+  int nRuns = run_livetime_hist->GetNbinsX();
+  double livetimeByRun = 9999; //default value should be large so if something is wrong, the event contributes very little to the 1/livetime weighted distribution
+  for(int i=1; i<=nRuns; i++){
+    if(events->begin()->run()==(unsigned int)run_livetime_hist->GetBinLowEdge(i)){
+      if(run_livetime_hist->GetBinContent(i)>0.){ //if livetime is 0, the livetime should be the default 9999
+	livetimeByRun = run_livetime_hist->GetBinContent(i);
+      }
+    }
+  }
+  clog<<"livetimeByRun is: "<<livetimeByRun<<endl;
+  (*eventvariables)["livetimeByRun"] = livetimeByRun;
+
+  int nFills = fill_livetime_hist->GetNbinsX();
+  double livetimeByFill = 9999;
+  for(int i=1; i<=nFills; i++){
+    if(events->begin()->fill()==(unsigned int)fill_livetime_hist->GetBinLowEdge(i)){
+      if(fill_livetime_hist->GetBinContent(i)>0.){
+	livetimeByFill = fill_livetime_hist->GetBinContent(i);
+      }
+    }
+  }
+  clog<<"livetimeByFill is: "<<livetimeByFill<<endl;
+  (*eventvariables)["livetimeByFill"] = livetimeByFill;
+
 }//end of AddVariables()
   
   // Shamelessly stolen from DataFormats/MuonDetId/src/CSCDetId.cc#100

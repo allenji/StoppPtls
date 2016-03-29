@@ -295,3 +295,11 @@ newTestNOuterAllRPCBarrelHitsDeltaR = cms.PSet(
     numberRequired = cms.string("= 1"),
     alias = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2 > 10"),
     )
+#dummy cut
+cutDummy = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy > -1"),
+    numberRequired = cms.string(">= 0"),
+    alias = cms.string("No offline cuts")
+)
+

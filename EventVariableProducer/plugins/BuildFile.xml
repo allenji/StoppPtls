@@ -1,4 +1,3 @@
-<use  name="BEAN/Collections"/>
 <use  name="FWCore/Framework"/>
 <use  name="FWCore/ParameterSet"/>
 <use  name="FWCore/ServiceRegistry"/>
@@ -14,10 +13,11 @@
 <use  name="OSUT3Analysis/AnaTools"/>
 <use  name="DisplacedSUSY/StandardAnalysis"/>
 <use  name="OSUT3Analysis/Collections"/>
+<use  name="StoppPtls/Livetime"/>
 <use  name="lhapdf"/>
 <use  name="root"/>
 <use  name="rootrflx"/>
 <flags  CXXFLAGS="-mtune=core2 -march=core2 -O3 -pipe"/>
-<library  file="StoppPtlsEventVariableProducer.cc"  name="StoppPtlsEventVariableProducerPlugins">
+<library  file="*Producer.cc"  name="StoppPtlsEventVariableProducerPlugins">
     <flags  EDM_PLUGIN="1"/>
   </library>

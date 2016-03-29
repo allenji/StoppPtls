@@ -1,3 +1,4 @@
+
 import FWCore.ParameterSet.Config as cms
 
 
@@ -432,13 +433,13 @@ EventHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("run"),
             title = cms.string("Run Number; Run Number"),
-            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsX = cms.untracked.vdouble(30000, 235000, 265000),
             inputVariables = cms.vstring("run"),
         ),
         cms.PSet (
             name = cms.string("fill"),
             title = cms.string("Fill Number; Fill Number"),
-            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsX = cms.untracked.vdouble(2000, 3000, 5000),
             inputVariables = cms.vstring("fill"),
         ),
         cms.PSet (
@@ -515,6 +516,186 @@ NumberOfObjectsHistograms = cms.PSet(
             inputVariables = cms.vstring("dtSegN","rpcHitN"),
             ),
         )
+)
+
+ObjectsVsTimeHistograms = cms.PSet(
+    inputCollection = cms.vstring("events","eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("run_nDtSeg"),
+            title = cms.string("Run Number vs Number of DT Segments; Run; Number of DT Segments"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.run","eventvariable.dtSegN"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_nDtSeg"),
+            title = cms.string("Fill Number vs Number of DT Segments; Fill; Number of DT Segments"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.fill","eventvariable.dtSegN"),
+            ),
+        cms.PSet (
+            name = cms.string("run_nCscSeg"),
+            title = cms.string("Run Number vs Number of CSC Segments; Run; Number of CSC Segments"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.run","eventvariable.cscSegN"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_nCscSeg"),
+            title = cms.string("Fill Number vs Number of CSC Segments; Fill; Number of CSC Segments"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.fill","eventvariable.cscSegN"),
+            ),
+        cms.PSet (
+            name = cms.string("run_nRpcHit"),
+            title = cms.string("Run Number vs Number of RPC Hits; Run; Number of RPC Hits"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.run","eventvariable.rpcHitN"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_nRpcHit"),
+            title = cms.string("Fill Number vs Number of RPC Hits; Fill; Number of RPC Hits"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.fill","eventvariable.rpcHitN"),
+            ),
+        cms.PSet (
+            name = cms.string("run_nJet"),
+            title = cms.string("Run Number vs Number of Jets; Run; Number of Jets"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.run","eventvariable.jetN"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_nJet"),
+            title = cms.string("Fill Number vs Number of Jets; Fill; Number of Jets"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("event.fill","eventvariable.jetN"),
+            ),
+        )
+)
+
+RpcHitsVsTimeHistograms = cms.PSet(
+    inputCollection = cms.vstring("events","rpchits"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("run_rpcHitRegion"),
+            title = cms.string("Run Number vs RPC Hit Region; Run; RPC Hit Region"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(4, -2, 2),
+            inputVariables = cms.vstring("event.run","rpchit.region"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitX"),
+            title = cms.string("Run Number vs RPC Hit X; Run; RPC Hit X [cm]"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.run","rpchit.x"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitY"),
+            title = cms.string("Run Number vs RPC Hit Y; Run; RPC Hit Y [cm]"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.run","rpchit.y"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitZ"),
+            title = cms.string("Run Number vs RPC Hit Z; Run; RPC Hit Z [cm]"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.run","rpchit.z"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitBx"),
+            title = cms.string("Run Number vs RPC Hit BX; Run; RPC Hit BX"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("event.run","rpchit.bx"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitR"),
+            title = cms.string("Run Number vs RPC Hit Radius; Run; RPC Hit Radius [cm]"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("event.run","rpchit.r"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitRho"),
+            title = cms.string("Run Number vs RPC Hit #rho; Run; RPC Hit #rho"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("event.run","rpchit.rho"),
+            ),
+        cms.PSet (
+            name = cms.string("run_rpcHitPhi"),
+            title = cms.string("Run Number vs RPC Hit #phi; Run; RPC Hit #phi"),
+            binsX = cms.untracked.vdouble(1000, 235000, 265000),
+            binsY = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("event.run","rpchit.phi"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitRegion"),
+            title = cms.string("Fill Number vs RPC Hit Region; Fill; RPC Hit Region"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(4, -2, 2),
+            inputVariables = cms.vstring("event.fill","rpchit.region"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitX"),
+            title = cms.string("Fill Number vs RPC Hit X; Fill; RPC Hit X [cm]"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.fill","rpchit.x"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitY"),
+            title = cms.string("Fill Number vs RPC Hit Y; Fill; RPC Hit Y [cm]"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.fill","rpchit.y"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitZ"),
+            title = cms.string("Fill Number vs RPC Hit Z; Fill; RPC Hit Z [cm]"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(300, -1500, 1500),
+            inputVariables = cms.vstring("event.fill","rpchit.z"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitBx"),
+            title = cms.string("Fill Number vs RPC Hit BX; Fill; RPC Hit BX"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("event.fill","rpchit.bx"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitR"),
+            title = cms.string("Fill Number vs RPC Hit Radius; Fill; RPC Hit Radius [cm]"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("event.fill","rpchit.r"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitRho"),
+            title = cms.string("Fill Number vs RPC Hit #rho; Fill; RPC Hit #rho"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("event.fill","rpchit.rho"),
+            ),
+        cms.PSet (
+            name = cms.string("fill_rpcHitPhi"),
+            title = cms.string("Fill Number vs RPC Hit #phi; Fill; RPC Hit #phi"),
+            binsX = cms.untracked.vdouble(400, 3000, 5000),
+            binsY = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("event.fill","rpchit.phi"),
+            ),
+)
 )
 
 NoiseHistograms = cms.PSet(

@@ -172,6 +172,7 @@ TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
+        cutDummy,
       )
 )
 
