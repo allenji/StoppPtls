@@ -283,6 +283,12 @@ newNOuterAllRPCHitsDeltaR = cms.PSet(
     numberRequired = cms.string("= 1"),
     alias = cms.string("nCloseOuterAllRpcPairDeltaR0p2 < 1"),
     )
+newNOuterAllBarrelRPCHitsDeltaR = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nCloseOuterAllBarrelRPCPairDeltaR0p2 < 1'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2 < 1"),
+    )
 getBarrelRPCHits = cms.PSet(
     inputCollection = cms.vstring('rpchits'),
     cutString = cms.string('region = 0'),

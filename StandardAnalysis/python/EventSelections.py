@@ -12,9 +12,9 @@ StoppPtlsSelection = cms.PSet(
       cutVertexNumber,
       cutCscSegNumber,
       cutOuterDT,
-      cutOuterRpc,
-      cutRpcPair,
-      cutCloseRpcPair,
+#      cutOuterRpc,
+#      cutRpcPair,
+#      cutCloseRpcPair,
       cutDTPair,
       cutMaxDeltaJetPhi,
       cutNoise,
@@ -27,7 +27,8 @@ StoppPtlsSelection = cms.PSet(
       cutHpdR2,
       cutHpdRPeak,
       cutHpdRPeakSample,
-      cutHpdROuter
+      cutHpdROuter,
+      newNOuterAllBarrelRPCHitsDeltaR
     )
 )
 
