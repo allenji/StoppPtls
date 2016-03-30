@@ -58,9 +58,9 @@ class CandidateEvent
     void set_stoppedParticlePhi(double stoppedParticlePhi) {stoppedParticlePhi_ = stoppedParticlePhi;}
     void set_stoppedParticleTime(double stoppedParticleTime) {stoppedParticleTime_ = stoppedParticleTime;}
 
-    ULong_t bx() {return bx_;}
-    ULong_t run() {return run_;}
-    ULong_t fill() {return fill_;}
+    ULong_t bx() const {return bx_;}
+    ULong_t run() const {return run_;}
+    ULong_t fill() const {return fill_;}
 
     int bxWrtBunch() {return bxWrtBunch_;}
 
