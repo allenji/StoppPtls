@@ -122,3 +122,9 @@
 
 #osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_300/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_300/USER
 
+#osudb --location /data/users/weifengji/condor/Cosmics_Ntuples_CosmicsPreselection_Apr1/readfile_cosmicPre create /Cosmics_Preselction_Apr1/Spring-74x/USER
+#
+
+#osudb create /Cosmics_Preselction_Apr4_16000/Spring-74x/USER -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr4_6000/readfile_cosmicPre_Apr4_6000
+
+#osudb update /Cosmics_Preselction_Apr4_16000/Spring-74x/USER -a -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr3_10000/readfile_cosmicPre_Apr3
