@@ -129,6 +129,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   unsigned nCloseOuterAllRpcPairDeltaR0p4 = 0;
   unsigned nCloseOuterAllRpcPairDeltaR0p6 = 0;
   unsigned nCloseOuterAllRpcPairDeltaR0p8 = 0;
+  unsigned nCloseOuterAllBarrelRPCPairDeltaR0p2 = 0;
 
   if (rpchits->size() > 1) {
     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
@@ -156,6 +157,8 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
           if (deltaR < 0.2) {
             nCloseAllAllRpcPairDeltaR0p2++;
             nCloseOuterAllRpcPairDeltaR0p2++;
+            if ((rpchits->at(i)).region() == 0 && (rpchits->at(j)).region() == 0)
+              nCloseOuterAllBarrelRPCPairDeltaR0p2++;
           }
           if (deltaR < 0.4) {
             nCloseAllAllRpcPairDeltaR0p4++;
@@ -181,6 +184,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p4"] = nCloseOuterAllRpcPairDeltaR0p4;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p6"] = nCloseOuterAllRpcPairDeltaR0p6;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p8"] = nCloseOuterAllRpcPairDeltaR0p8;
+  (*eventvariables)["nCloseOuterAllBarrelRPCPairDeltaR0p2"] = nCloseOuterAllBarrelRPCPairDeltaR0p2;
 
   unsigned ljetRPCPairsST1 = 0;
   unsigned ljetRPCPairsGT1 = 0;

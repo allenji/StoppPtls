@@ -35,3 +35,90 @@
 #osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_Spring15_gluino2gchi0_1200_1000_rpcstudyFrate0p8/SPntuples_readfile create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1000_rpcstudyFrate0p8/USER
 
 #osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_Spring15_gluino2gchi0_1200_1000_rpcstudyFrate0p7/SPntuples_readfile create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1000_rpcstudyFrate0p7/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_309/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_309/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_354/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_354/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_424/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_424/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_483/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_483/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_495/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_495/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_507/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_507/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_519/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_519/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_600_547/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_600_chi0_547/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1047/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1047/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1122/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1122/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1200/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1200/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1272/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1272/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1341/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1341/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1407/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1407/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1469/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1469/USER
+#
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1800_1529/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1800_chi0_1529/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_848/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_848/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_903/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_903/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_954/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_954/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_997/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_997/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1044/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1044/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1089/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1089/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1100/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1100/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1111/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1111/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1122/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1122/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPgluino_1200_1148/readfile_energyScan create /HSCPgluino_gChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1148/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_100/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_100/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_173/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_173/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_360/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_360/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_480/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_480/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_574/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_574/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_656/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_656/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_1000_728/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_1000_chi0_728/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_100/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_600_chi0_100/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_300/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_600_chi0_300/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_600_chi0_400/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_500/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_600_chi0_500/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_75/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_75/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_150/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_150/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_199/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_199/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_250/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_250/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_285/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_285/USER
+
+#osudb --location /data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_400_300/readfile_energyScan create /HSCPstop_tChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_stop_400_chi0_300/USER
+
