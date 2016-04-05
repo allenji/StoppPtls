@@ -31,17 +31,25 @@ weights = cms.VPSet (
 variableProducers = ["StoppPtlsEventVariableProducer"]
 
 from StoppPtls.BackgroundStudy.CosmicBkgCutDefinition import *
-from StoppPtls.BackgroundStudy.CosmicBkg_Histogram import *
-
+from StoppPtls.BackgroundStudy.CosmicBkgHistogram import *
+#apply to cosmic MC
 selections_untagged = []
 selections_untagged.append(untagged_cosmic_cut)
 
+#apply to cosmic MC
 selections = []
-selections.append(NoCuts)
+selections.append(full_cosmics)
+
+#apply to data
+selections_NMinusOne = []
+selections_NMinusOne.append(CosmicNMinusOneSelection)
 
 histograms = cms.VPSet()
 histograms.append(CosmicBackgroundHistograms)
 
-add_channels (process, selections_untagged, histograms. weights, collectionMap_Custom, variableProducers, False)
-add_channels (process, selections, histograms. weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, selections_untagged, histograms, weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
+#add_channels (process, selections_NMinusOne, histograms, weights, collectionMap_Custom, variableProducers, False)
 
+process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")

@@ -5,7 +5,7 @@ from StoppPtls.StandardAnalysis.Cuts import *
 
 #########################################################
 # Event selections for cosmic tagging inefficiency
-untagged_cosmics = cms.PSet(
+untagged_cosmic_cut = cms.PSet(
     name = cms.string("untaggedCosmics"),
     triggers = cms.vstring(),
     cuts = cms.VPSet()

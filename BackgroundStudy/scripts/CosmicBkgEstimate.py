@@ -35,8 +35,8 @@ def cosmic_background(hist_ineff, hist_ineff_uncert, hist_NMinusOne):
     # do smearing to N-1 histogram
     nx = hist_NMinusOne_smeared.GetNbinsX()
     ny = hist_NMinusOne_smeared.GetNbinsY()
-    for i in reversed(range(1, nx+1)):
-        for j in range(1, ny+1):
+    for x in reversed(range(1, nx+1)):
+        for y in range(1, ny+1):
             if (hist_NMinusOne_smeared.GetBinContent(x, y) == 0.):
                 if x == 1: z = hist_NMinusOne_smeared.GetBinContent(x+1, y)/2.
                 elif x == nx: z = hist_NMinusOne_smeared.GetBinContent(x-1, y)/2.
@@ -70,65 +70,46 @@ def cosmic_background(hist_ineff, hist_ineff_uncert, hist_NMinusOne):
             error, error_smeared, error_uncert]
 
 if __name__ == "__main__":
-    file_test = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/StandardAnalysis/test/condor/rpcstudy_94_CosmicControlSampleFromCtrlDatasets/NoBPTX_2015Dv4_controlSample.root", "READ")
-    h1 = file_test.Get("CosmicMuonControlSelectionPlotter/Rpchit Plots/rpcHitXVsY")
-    output_file = rt.TFile("output.root", "RECREATE")
-    result = cosmic_inefficiency(h1, h1)
-    h2 = rt.TH1D("a","a",10,0,10)
-    print "the number of bins is"
-    print h2.GetNbinsX() 
-    print h2.GetBinContent(111)
-    h3 = copy.copy(h2)
-    h2.Fill(5)
-    h2.Fill(5)
-    h2.Fill(5)
-    h3.Fill(5)
-    h3.Fill(5)
-    h2.Fill(-1)
-    h2.Fill(-2)
-    h2.Fill(10)
-    h2.Fill(11)
-    h2.SetBinContent(6,100)
-    print h2.GetBinContent(6)
-    print h2.GetBinContent(0)
-    print h2.GetBinContent(11)
-    h3.Fill(8)
-
-    print "Seems like it passed"
-    for i in range(2, 6):
-        print result[i]
-    output_file.cd()
-    result[0].Write("dummy1")
-    result[1].Write("dummy2")
-    h2.Multiply(h3)
-    h2.Write("dummy3")
-    h3.Write("dummy4")
-    output_file.Close()
     #from here starts the serious stuff
-    """inputfile_untagged = rt.TFile("","READ")
-    inputfile_all = rt.TFile("","READ")
-    inputfile_NMinusOne = rt.TFile("","READ")
+    inputfile_CosmicMC = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicMC/cosmic_preselection.root","READ")
+    inputfile_CosmicNMinusOne = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicNMinusOne/NoBPTX_2015D.root","READ")
     outputfile = rt.TFile("cosmic_background.root", "RECREATE")
 
-    histogram_untagged = inputfile_untagged.Get("")
-    histogram_all = inputfile_all.Get("")
-    histogram_NMinusOne = inputfile_NMinusOne.Get("")
+    histogram_untagged = inputfile_CosmicMC.Get("untaggedCosmicsPlotter/Eventvariable Plots/DTBarrelRPC")
+    histogram_all = inputfile_CosmicMC.Get("fullCosmicsNoCutsOrHLTAppliedPlotter/Eventvariable Plots/DTBarrelRPC")
+    histogram_NMinusOne = inputfile_CosmicNMinusOne.Get("CosmicNMinusOneSelectionPlotter/Eventvariable Plots/DTBarrelRPC")
 
     result_inefficiency = cosmic_inefficiency(histogram_untagged, histogram_all)
     result_background = cosmic_background(result_inefficiency[0], result_inefficiency[1],
                                           histogram_NMinusOne)
 
     #write output plots 
-    output_file.cd()
+    outputfile.cd()
+    histogram_untagged.SetTitle("untagged cosmic MC events")
+    histogram_untagged.Write("cosmic_untagged")
+    histogram_all.SetTitle("all cosmic MC events passing preselection")
+    histogram_all.Write("cosmic_all")
+    histogram_NMinusOne.SetTitle("cosmic N-1 events")
+    histogram_NMinusOne.Write("cosmic_NMinusOne")
+    result_inefficiency[0].SetTitle("cosmic inefficiency")
     result_inefficiency[0].Write("cosmic_inefficiency")
+    result_inefficiency[1].SetTitle("cosmic inefficiency plus syst uncertainty")
     result_inefficiency[1].Write("cosmic_inefficiency_uncert")
+    result_background[0].SetTitle("cosmic background")
     result_background[0].Write("cosmic_background")
+    result_background[1].SetTitle("cosmic background smeared")
     result_background[1].Write("cosmic_background_smeared")
+    result_background[2].SetTitle("cosmic background smeared uncert")
     result_background[2].Write("cosmic_background_smeared_uncert")
-    output_file.Close()"""
+    outputfile.Close()
 
-    output_text = open("cosmic_background.txt", "w")
-    output_text.write("cosmic crap")
-    output_text.close()
+    outputtext = open("cosmic_background.txt", "w")
+    outputtext.write("DT by barrel RPC background: ")
+    outputtext.write(str(result_background[3])+" +/- "+str(result_background[6])+"\n")
+    outputtext.write("Smeared background: ")
+    outputtext.write(str(result_background[4])+" +/- "+str(result_background[7])+"\n")
+    outputtext.write("Uncertainty background: ")
+    outputtext.write(str(result_background[5])+" +/- "+str(result_background[8]))
+    outputtext.close()
     
 
