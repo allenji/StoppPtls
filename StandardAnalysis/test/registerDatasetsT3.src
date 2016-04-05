@@ -128,3 +128,12 @@
 #osudb create /Cosmics_Preselction_Apr4_16000/Spring-74x/USER -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr4_6000/readfile_cosmicPre_Apr4_6000
 
 #osudb update /Cosmics_Preselction_Apr4_16000/Spring-74x/USER -a -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr3_10000/readfile_cosmicPre_Apr3
+#
+#
+#osudb create /Cosmics_Preselction_Apr4_16000_final/Spring-74x/USER -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_6000/readfile_cosmicPre_Apr4_6000
+
+#osudb update /Cosmics_Preselction_Apr4_16000_final/Spring-74x/USER -a -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_10000/readfile_cosmicPre_Apr3
+#
+#osudb create /Cosmics_Preselction_Apr5_16000_final/Spring-74x/USER -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_10000_final/readfile_cosmicPre_Apr3 
+
+#osudb update /Cosmics_Preselction_Apr5_16000_final/Spring-74x/USER -a -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_6000_final/readfile_cosmicPre_Apr4_6000
