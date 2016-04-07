@@ -1,5 +1,6 @@
 import ROOT as rt
 import copy
+import os
 
 def cosmic_inefficiency(hist_untagged, hist_all):
     # both input histos should be made from cosmic MC samples
@@ -71,13 +72,20 @@ def cosmic_background(hist_ineff, hist_ineff_uncert, hist_NMinusOne):
 
 if __name__ == "__main__":
     #from here starts the serious stuff
-    inputfile_CosmicMC = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicMC/cosmic_preselection.root","READ")
-    inputfile_CosmicNMinusOne = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicNMinusOne/NoBPTX_2015D.root","READ")
-    outputfile = rt.TFile("cosmic_background.root", "RECREATE")
+    #inputfile_CosmicMC = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicMC/cosmic_preselection.root","READ")
+    #inputfile_CosmicNMinusOne = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicNMinusOne/NoBPTX_2015D.root","READ")
+    inputfile_CosmicMC = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicMC_revised/cosmic_preselection.root","READ")
+    inputfile_CosmicNMinusOne = rt.TFile("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_7_4_5_ROOT5/src/StoppPtls/BackgroundStudy/test/condor/CosmicNMinusOne_revised/NoBPTX_2015D.root","READ")
+    outputdir = "cosmicBkgDTRPC_revised"
+    os.system("mkdir " + outputdir)
+    outputfile = rt.TFile(outputdir + "/cosmic_background.root", "RECREATE")
 
     histogram_untagged = inputfile_CosmicMC.Get("untaggedCosmicsPlotter/Eventvariable Plots/DTBarrelRPC")
     histogram_all = inputfile_CosmicMC.Get("fullCosmicsNoCutsOrHLTAppliedPlotter/Eventvariable Plots/DTBarrelRPC")
     histogram_NMinusOne = inputfile_CosmicNMinusOne.Get("CosmicNMinusOneSelectionPlotter/Eventvariable Plots/DTBarrelRPC")
+    #histogram_untagged = inputfile_CosmicMC.Get("untaggedCosmicsPlotter/Eventvariable Plots/leadingJetEtaPhi")
+    #histogram_all = inputfile_CosmicMC.Get("fullCosmicsNoCutsOrHLTAppliedPlotter/Eventvariable Plots/leadingJetEtaPhi")
+    #histogram_NMinusOne = inputfile_CosmicNMinusOne.Get("CosmicNMinusOneSelectionPlotter/Eventvariable Plots/leadingJetEtaPhi")
 
     result_inefficiency = cosmic_inefficiency(histogram_untagged, histogram_all)
     result_background = cosmic_background(result_inefficiency[0], result_inefficiency[1],
@@ -103,7 +111,7 @@ if __name__ == "__main__":
     result_background[2].Write("cosmic_background_smeared_uncert")
     outputfile.Close()
 
-    outputtext = open("cosmic_background.txt", "w")
+    outputtext = open(outputdir + "/cosmic_background.txt", "w")
     outputtext.write("DT by barrel RPC background: ")
     outputtext.write(str(result_background[3])+" +/- "+str(result_background[6])+"\n")
     outputtext.write("Smeared background: ")
