@@ -1,5 +1,10 @@
 import FWCore.ParameterSet.Config as cms
 import copy
+cutJetBarrel = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("abs(eta) < 1.3"),
+    numberRequired = cms.string(">= 1"),
+)
 
 ###########################################
 ##jets
@@ -199,11 +204,23 @@ cutMaxDeltaJetPhi = cms.PSet(
 #######################################
 ##select cosmics
 #######################################
-cutCosmics = cms.PSet(
+cutSelectCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || nCloseRPCPairs >= 2 || maxRPCDeltaPhi >= 3. || outerDT >= 1 || outerRPC >= 2'),
+    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
     numberRequired = cms.string('= 1'),
     alias = cms.string("Cosmics (OR of DT segments and RPC hit cuts)")
+)
+cutNumberOfDT = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('dtSegN >= 1'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("Has at least one DT seg")
+)
+cutMoreOuterDT = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('( innerDT / outerDT) < 2'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("More outer DTs than inner ones")
 )
 
 #######################################

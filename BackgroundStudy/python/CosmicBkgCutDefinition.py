@@ -25,7 +25,7 @@ full_cosmics = cms.PSet(
 )
 ###########################################
 # Event selections for cosmic control data
-CosmicNMinusOneSelection = cms.PSet(
+CosmicSelection = cms.PSet(
     name = cms.string("CosmicNMinusOneSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
@@ -45,4 +45,8 @@ CosmicNMinusOneSelection = cms.PSet(
       cutHpdROuter
     )
 )
+CosmicSelection.cuts.append(cutSelectCosmics)
+CosmicSelection.cuts.append(cutNumberOfDT)
+CosmicSelection.cuts.append(cutMoreOuterDT)
+
 
