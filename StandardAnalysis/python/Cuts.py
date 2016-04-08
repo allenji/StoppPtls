@@ -204,7 +204,7 @@ cutMaxDeltaJetPhi = cms.PSet(
 #######################################
 ##select cosmics
 #######################################
-cutSelectCosmics = cms.PSet(
+cutCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
     numberRequired = cms.string('= 1'),
