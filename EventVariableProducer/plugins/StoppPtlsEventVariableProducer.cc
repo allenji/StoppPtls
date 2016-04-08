@@ -354,11 +354,43 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["nJetsEMin100"] = nJetsEMin100; 
   (*eventvariables)["nJetsEMin200"] = nJetsEMin200; 
 
+
+  int nIncomingCscSegs = 0;
+  int nOutgoingCscSegs = 0;
+  double meanCscX = 0.;
+  double meanCscY = 0.;
+  double meanCscR = 0.;
+  double meanCscPhi = 0.;
+  double meanCscDirection = 0.;
   set<int> nLayers;
   double minDeltaPhiCscJet = 999.;
 
   //loop over csc segments
   for (auto itcsc = cscsegs->begin(); itcsc != cscsegs->end(); ++itcsc){
+    double cscSegX = itcsc->r()*cos(itcsc->phi());
+    double cscSegY = itcsc->r()*sin(itcsc->phi());
+
+    //incoming = time < -10; outgoing = time > -10
+    //find direction of each csc segment and then average direction of the "halo" in the event
+    //direction -1 means traveling in the +z direction (beam 2) and direction +1 means travel in the -z direction (beam 1)
+    double cscSegDir = 0.;
+    if (itcsc->time() < -10.){
+      nIncomingCscSegs++;
+      if(itcsc->z() < 0) cscSegDir = -1.0;  // +Z direction
+      else cscSegDir = 1.0; //-Z direction
+    }
+    else{
+      nOutgoingCscSegs++;
+      if(itcsc->z() < 0) cscSegDir = 1.0;  // -Z direction
+      else cscSegDir = -1.0; //+Z direction
+    }
+
+    meanCscX += cscSegX;
+    meanCscY += cscSegY;
+    meanCscR += itcsc->r();
+    meanCscPhi += itcsc->phi();
+    meanCscDirection += cscSegDir;
+
     int chamber = chamberType(itcsc->station(), itcsc->ring());
     int endcap = (itcsc->z() > 0) ? 1 : -1;
     int layer = chamber * endcap;
@@ -370,6 +402,22 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	minDeltaPhiCscJet = deltaphicscjet;
     }//end of if at least 1 jet
   }//end of loop over csc segments
+
+  meanCscDirection = meanCscDirection/cscsegs->size();
+  meanCscX = meanCscX/cscsegs->size();
+  meanCscY = meanCscY/cscsegs->size();
+  meanCscR = meanCscR/cscsegs->size();
+  meanCscPhi = meanCscPhi/cscsegs->size();
+
+  (*eventvariables)["meanCscDirection"] = meanCscDirection;
+  (*eventvariables)["meanCscX"] = meanCscX;
+  (*eventvariables)["meanCscY"] = meanCscY;
+  (*eventvariables)["meanCscR"] = meanCscR;
+  (*eventvariables)["meanCscPhi"] = meanCscPhi;
+
+  (*eventvariables) ["nIncomingCscSegs"] = nIncomingCscSegs;
+  (*eventvariables) ["nOutgoingCscSegs"] = nOutgoingCscSegs;
+
   (*eventvariables)["nCscLayers"] = nLayers.size();
   (*eventvariables)["minDeltaPhiCscJet"] = minDeltaPhiCscJet;
 
