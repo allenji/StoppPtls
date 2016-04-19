@@ -14,7 +14,7 @@
 // Original Author:  Weifeng Ji
 //         Created:  Tue, 19 Apr 2016 15:27:54 GMT
 //
-//
+// This filter is only supposed to be run over observed events(skim) in Data after applying Stopped Particles analysis cuts. It will generate two text files, searchEvents.txt and searchLifetimes.txt, which will be used as input for ToyMC simulation
 
 
 // system include files
@@ -102,48 +102,36 @@ PrintEventInfo::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
   unsigned long orbit       = iEvent.orbitNumber();
   unsigned long lb          = iEvent.luminosityBlock();
   unsigned long run         = iEvent.id().run();
-  unsigned long fill        = lhcFills.getFillFromRun(run);
    searchEventFile << run << "," << lb << "," << orbit << "," << bx << ","
                     << id << std::endl;
     int bxAfter = 9999;
-    int bxBefore = -9999;
     int bxLast=-1;
-    int bxNext=-1;
     unsigned long bxPerOrbit  = 3564;
     auto currentColls_ = lhcFills.getCollisionsFromRun(run);
     if (currentColls_.size() > 0) {
       // special case if event is before first collision
       if (bx <= currentColls_.at(0)) {
     bxLast   = currentColls_.at(currentColls_.size() - 1);
-    bxNext   = currentColls_.at(0);
     bxAfter  = (bx + bxPerOrbit) - bxLast;
-    bxBefore = bx - bxNext;
 
 
       }
       // special case if event is after last collision
       else if (bx > currentColls_.at(currentColls_.size() - 1)) {
     bxLast   = currentColls_.at(currentColls_.size()-1);
-    bxNext   = currentColls_.at(0);
     bxAfter  = bx - bxLast;
-    bxBefore = (bx - bxPerOrbit) - bxNext;
 
-    //LogDebug ("StoppedHSCPTreeProducer")  << bx << " : " << bxLast << " : " << bxNext << " : " << bxAfter << " : " << bxBefore;
       }
       // general case
       else {
     for (unsigned c=0; c<(currentColls_.size()-1) && currentColls_.at(c)<bx; ++c) {
       bxLast = currentColls_.at(c);
-      bxNext = currentColls_.at(c+1);
       bxAfter = bx - bxLast;
-      bxBefore = bx - bxNext;
     }
-    //LogDebug ("StoppedHSCPTreeProducer")  << bx << " : " << bxLast << " : " << bxNext << " : " << bxAfter << " : " << bxBefore;
       }
     }
    lifetimeFile << ((bxAfter - 1) * TIME_PER_BX)/TIME_WINDOW << std::endl;
    lifetimeFile << (bxAfter * TIME_PER_BX)/TIME_WINDOW << std::endl;
-   std::cout << fill<<bxBefore<< std::endl;
    
    return true;
 }
