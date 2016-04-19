@@ -1,0 +1,18 @@
+<use name="root"/>
+<use name="roofit"/>
+<use name="rootgraphics"/>
+<use name="roostats"/>
+<use name="boost"/>
+<use name="boost_program_options"/>
+<use name="StoppPtls/Statistics"/>
+<use name="StoppPtls/Livetime"/>
+<use name="OnlineDB/Oracle"/>
+
+<flags CXXFLAGS="-g"/>
+
+<export>
+  <use name="root"/>
+  <use name="roofit"/>
+  <use name="roostats"/>
+  <lib name="StoppPtlsToyMC"/>
+</export>
