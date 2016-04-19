@@ -38,14 +38,14 @@ def halo_background(IncomingOnlyBeam1_hist,
     print  " eps = -----------------------  =  ----------------------- " + "\n"
     print  "           N_both * N_all           " + str(nBothBeam1) +  " * " + str(nAllBeam1)  + "\n"
     print  "" + "\n"
-    print  " eps = " + str(epsBeam1) + " +/- " + str(eps_errBeam1) + "\n"
+    print  " eps = " + "%.3f" %epsBeam1 + " +/- " + "%.3f" %eps_errBeam1 + "\n"
     print  " N_haloEvents = " + str(HaloControlBeam1_hist.Integral()) + "\n"
     print  "" + "\n"
     errorBeam1 = rt.Double(0)
     integralBeam1 = BackgroundBeam1_hist.IntegralAndError(1,BackgroundBeam1_hist.GetNbinsX(),
                                                           1,BackgroundBeam1_hist.GetNbinsY(),
                                                           errorBeam1)
-    print " background = " + str(integralBeam1) + " +/- " + str(errorBeam1) + "\n"
+    print " background = " + "%.3f" %integralBeam1 + " +/- " + "%.3f" %errorBeam1 + "\n"
     print "----------------------------------------------------------------\n"
 
 
@@ -73,14 +73,14 @@ def halo_background(IncomingOnlyBeam1_hist,
     print  " eps = -----------------------  =  ----------------------- " + "\n"
     print  "           N_both * N_all           " + str(nBothBeam2) +  " * " + str(nAllBeam2) + "\n"
     print  "" + "\n"
-    print  " eps = " + str(epsBeam2) + " +/- " + str(eps_errBeam2) + "\n"
+    print  " eps = " + "%.3f" %epsBeam2 + " +/- " + "%.3f" %eps_errBeam2 + "\n"
     print  " N_haloEvents = " + str(HaloControlBeam2_hist.Integral()) + "\n"
     print  "" + "\n"
     errorBeam2 = rt.Double(0)
     integralBeam2 = BackgroundBeam2_hist.IntegralAndError(1,BackgroundBeam2_hist.GetNbinsX(),
                                                           1,BackgroundBeam2_hist.GetNbinsY(),
                                                           errorBeam2)
-    print " background = " + str(integralBeam2) + " +/- " + str(errorBeam2) + "\n"
+    print " background = " + "%.3f" %integralBeam2 + " +/- " + "%.3f" %errorBeam2 + "\n"
     print "----------------------------------------------------------------\n"
     print "----------------------------------------------------------------\n"
     
@@ -134,6 +134,28 @@ if __name__ == "__main__":
             AllBeam2_hist = inputfile.Get("AllBeam2Plotter/Eventvariable Plots/meanCscR_meanCscPhi")
             HaloControlBeam2_hist = inputfile.Get("HaloControlBeam2Plotter/Eventvariable Plots/meanCscR_meanCscPhi")
 
+        IncomingOnlyBeam1_hist.RebinX(10)
+        OutgoingOnlyBeam1_hist.RebinX(10)
+        BothBeam1_hist.RebinX(10)
+        AllBeam1_hist.RebinX(10)
+        HaloControlBeam1_hist.RebinX(10)
+        IncomingOnlyBeam2_hist.RebinX(10)
+        OutgoingOnlyBeam2_hist.RebinX(10)
+        BothBeam2_hist.RebinX(10)
+        AllBeam2_hist.RebinX(10)
+        HaloControlBeam2_hist.RebinX(10)
+
+        IncomingOnlyBeam1_hist.RebinY(10)
+        OutgoingOnlyBeam1_hist.RebinY(10)
+        BothBeam1_hist.RebinY(10)
+        AllBeam1_hist.RebinY(10)
+        HaloControlBeam1_hist.RebinY(10)
+        IncomingOnlyBeam2_hist.RebinY(10)
+        OutgoingOnlyBeam2_hist.RebinY(10)
+        BothBeam2_hist.RebinY(10)
+        AllBeam2_hist.RebinY(10)
+        HaloControlBeam2_hist.RebinY(10)
+
         #calculate background estimate
         result_background = halo_background(IncomingOnlyBeam1_hist,
                                             OutgoingOnlyBeam1_hist,
@@ -171,7 +193,7 @@ if __name__ == "__main__":
                 rPhiIntegralBeam1 = result_background[6]
                 rPhiIntegralBeam2 = result_background[7]
         
-    print "TOTAL background = " + str(xyIntegralBeam1+xyIntegralBeam2) + " +/- " + str(math.sqrt(xyErrorBeam1*xyErrorBeam1+xyErrorBeam2*xyErrorBeam2))+" (stat) +/- " + str(math.fabs(xyIntegralBeam1+xyIntegralBeam2-rPhiIntegralBeam1+rPhiIntegralBeam2)) +" (syst.)\n"        
+    print "TOTAL background = " + "%.3f" %(xyIntegralBeam1+xyIntegralBeam2) + " +/- " + "%.3f" %(math.sqrt(xyErrorBeam1*xyErrorBeam1+xyErrorBeam2*xyErrorBeam2))+" (stat) +/- " + "%.3f" %(math.fabs(xyIntegralBeam1+xyIntegralBeam2-rPhiIntegralBeam1+rPhiIntegralBeam2)) +" (syst.)\n"        
 
     #outputtext = open(outputdir + "/halo_background.txt", "w")
     #outputtext.write("DT by barrel RPC background: ")
