@@ -15,7 +15,7 @@ untagged_cosmic_cut.cuts.append(cutCscSegNumber)
 untagged_cosmic_cut.cuts.append(cutOuterDT)
 untagged_cosmic_cut.cuts.append(cutDTPair)
 untagged_cosmic_cut.cuts.append(cutMaxDeltaJetPhi)
-untagged_cosmic_cut.cuts.append(newNOuterAllRPCHitsDeltaR)
+untagged_cosmic_cut.cuts.append(newNOuterAllBarrelRPCHitsDeltaR)
 
 full_cosmics = cms.PSet(
     name = cms.string("fullCosmicsNoCutsOrHLTApplied"),
@@ -45,7 +45,7 @@ CosmicSelection = cms.PSet(
       cutHpdROuter
     )
 )
-CosmicSelection.cuts.append(cutSelectCosmics)
+CosmicSelection.cuts.append(cutCosmics)
 CosmicSelection.cuts.append(cutNumberOfDT)
 CosmicSelection.cuts.append(cutMoreOuterDT)
 
