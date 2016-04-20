@@ -188,7 +188,7 @@ cutDTPair = cms.PSet(
     cutString = cms.string('maxDeltaPhi < 1.57'),
     inputCollection = cms.vstring('eventvariables'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("max($\Delta\phi$(DTSegment_{i}, DTSegment_{j})) < $\pi/2$")
+    alias = cms.string("max($#Delta#phi$(DT Segment$_{i}$, DT Segment$_{j}$)) < $#pi/2$")
 )
 
 ######################################
@@ -198,7 +198,7 @@ cutMaxDeltaJetPhi = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaJetPhi < 1'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("max($\Delta\phi$(DTSegment_{i}, Leading jet)) < 1")
+    alias = cms.string("max($#Delta#phi$(DT Segment$_{i}$, Leading jet)) < 1")
 )
 
 #######################################
@@ -240,7 +240,7 @@ cutJetN90 = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('leadingJetN90 > 3'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("n90_{jet} > 3")
+    alias = cms.string("n90$_{jet}$ > 3")
 )
 
 
@@ -304,7 +304,7 @@ newNOuterAllBarrelRPCHitsDeltaR = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('nCloseOuterAllBarrelRPCPairDeltaR0p2 < 1'),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2 < 1"),
+    alias = cms.string("Number of Close Outer Barrel RPC Pairs < 1"),
     )
 getBarrelRPCHits = cms.PSet(
     inputCollection = cms.vstring('rpchits'),
