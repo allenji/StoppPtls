@@ -208,7 +208,7 @@ cutCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("Cosmics (OR of DT segments and RPC hit cuts)")
+    alias = cms.string("pass one of cosmic selections (OR of DT segments and RPC pair cuts)")
 )
 cutNumberOfDT = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
