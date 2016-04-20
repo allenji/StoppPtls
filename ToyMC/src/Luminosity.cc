@@ -8,6 +8,7 @@
 
 #include "TFile.h"
 #include "TH1D.h"
+#include "TH2D.h"
 
 #include <algorithm>
 #include <cmath>
@@ -165,11 +166,12 @@ bool Luminosity::goodData(unsigned run, unsigned ls) {
   //  std::string lsstr = boost::lexical_cast<std::string>(run);
 
   if (useHists_) {
-    std::string hstr = std::string("runs/")+runstr+std::string("/hlb")+runstr;
+//std::string hstr = std::string("runs/")+runstr+std::string("/hlb")+runstr;
+    std::string hstr = "NoCutsPlotter/Eventvariable Plots/runlb";
     //	  std::cout << histFile << " " << hstr << std::endl;
-    TH1D* hlb = (TH1D*) histFile_->Get(hstr.c_str());
+    TH2D* hlb = (TH2D*) histFile_->Get(hstr.c_str());
     if (hlb != NULL) {
-      good = (hlb->GetBinContent(ls+1) > 0);
+      good = (hlb->GetBinContent(run-254000+1, ls+1) > 0);
     }
     else {
       // do nothing - probably just means this entire run was not marked good
