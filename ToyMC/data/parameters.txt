@@ -1,0 +1,25 @@
+mass                     300
+crossSection             106
+lifetime                 1
+signalEff                0.02596
+signalEff_e              0.0
+bgRate                   0.193e-05
+bgRate_e                 0.219e-05
+scaleUncert              0.07
+optimizeTimeCut          1
+histFile                 /data/users/weifengji/condor/temp/crapee/NoBPTX_2015D.root
+lumiFile                 /home/weifengji/StoppedParticles_Run2/ProcessDataRun2/CMSSW_7_4_8/src/StoppedHSCP/ToyMC/data/lumi_254227_260627.csv
+jsonFile                 0
+lumiFirstRun             256630
+lumiLastRun              260627
+fills                    4376,4381,4384,4386,4391,4393,4397,4398,4410,4418,4420,4423,4426,4428,4432,4434,4435,4437,4440,4444,4448,4449,4452,4455,4462,4466,4467,4476,4477,4479,4485,4518,4519,4522,4525,4528,4530,4532,4555,4557,4560,4562,4565,4569 
+eventsFile               /home/weifengji/StoppedParticles_Run2/ProcessDataRun2/CMSSW_7_4_8/src/Anadir/anadir_2015D_19Jan16/searchEvents.txt 
+nTrialsSignal            100
+nTrialsBackground        100
+simulateExpt             0
+fillScheme               Single_2b_1_1_1
+beamOnTime               0.
+beamOffTime              0.
+instLumi                 0.
+runningTime              0.
+
