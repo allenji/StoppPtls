@@ -771,7 +771,7 @@ LeadingJetHistograms = cms.PSet(
             name = cms.string("leadingJetEta"),
             title = cms.string("Leading Jet Pseudorapidity; Abs(Leading Jet #eta)"),
             binsX = cms.untracked.vdouble(100, 0, 5),
-            inputVariables = cms.vstring("leadingJetEta"),
+            inputVariables = cms.vstring("leadingJetEtaPM"),
         ),
         cms.PSet (
             name = cms.string("leadingJetPhi"),
@@ -790,6 +790,13 @@ LeadingJetHistograms = cms.PSet(
             title = cms.string("Leading Jet n90; Leading Jet n90"),
             binsX = cms.untracked.vdouble(100, 0, 100),
             inputVariables = cms.vstring("leadingJetN90"),
+            ),
+        cms.PSet (
+            name = cms.string("leadingJet eta vs phi"),
+            title = cms.string("leading jet eta vs phi; Leading Jet Eta; Leading Jet Phi"),
+            binsX = cms.untracked.vdouble(20, -3, 3),
+            binsY = cms.untracked.vdouble(20, -3.5, 3.5),
+            inputVariables = cms.vstring("leadingJetEtaPM", "leadingJetPhi")
             )
         )
 )
@@ -1167,6 +1174,12 @@ OtherRpcHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("RPCendcap"),
         ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.2; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
+        ),
         )
 )
 
@@ -1222,4 +1235,17 @@ HpdHistograms = cms.PSet(
             inputVariables = cms.vstring("topHPD5ROuter"),
         )
         )
+)
+
+ToyMCRunLbHistogram = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet(
+        cms.PSet (
+            name = cms.string("runlb"),
+            title = cms.string("Run vs LS; Run number; lumi section"),
+            binsX = cms.untracked.vdouble(7000,254000, 261000),
+            binsY = cms.untracked.vdouble(3000, 0, 3000),
+            inputVariables = cms.vstring("run","lb"),
+            )
+    )
 )
