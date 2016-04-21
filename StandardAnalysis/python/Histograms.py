@@ -1176,7 +1176,7 @@ OtherRpcHistograms = cms.PSet(
         ),
         cms.PSet (
             name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
-            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.2; Number of pairs"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.2; Number of close outer barrel RPC pairs"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
         ),
