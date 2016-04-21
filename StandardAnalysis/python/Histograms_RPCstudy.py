@@ -189,5 +189,53 @@ RpcStudyHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nCloseAllAllRpcPairDeltaR0p8"),
         ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.2; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p4"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.4; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p4"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p6"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.6; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p6"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p8"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.8; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p8"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant1"),
+            title = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant1; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant1"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant2"),
+            title = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant2; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant2"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant3"),
+            title = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant3; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant3"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant4"),
+            title = cms.string("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant4; Number of pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseAllAllBarrelRpcPairDeltaR0p2Quadrant4"),
+        ),
     )
 )
