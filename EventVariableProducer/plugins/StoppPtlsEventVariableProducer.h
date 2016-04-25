@@ -29,6 +29,12 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
   TH1D* run_livetime_hist;
   TH1D* fill_livetime_hist;
 
+  edm::EDGetTokenT<vector<TYPE(jets)> > jetsToken_;
+  edm::EDGetTokenT<vector<TYPE(dtsegs)> > dtsegsToken_;
+  edm::EDGetTokenT<vector<TYPE(cscsegs)> > cscsegsToken_;
+  edm::EDGetTokenT<vector<TYPE(rpchits)> > rpchitsToken_;
+  edm::EDGetTokenT<vector<TYPE(events)> > eventsToken_;
+
 
 };
 

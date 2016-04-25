@@ -18,6 +18,12 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   fill_livetime_hist = (TH1D*)gDirectory->Get("fill_livetime_hist");
 
   clog<<"Total livetime is: "<<run_livetime_hist->GetSumOfWeights()<<" seconds"<<endl;
+
+  jetsToken_ = consumes<vector<TYPE(jets)> >(collections_.getParameter<edm::InputTag>("jets"));
+  dtsegsToken_ = consumes<vector<TYPE(dtsegs)> >(collections_.getParameter<edm::InputTag>("dtsegs"));
+  cscsegsToken_ = consumes<vector<TYPE(cscsegs)> >(collections_.getParameter<edm::InputTag>("cscsegs"));
+  rpchitsToken_ = consumes<vector<TYPE(rpchits)> >(collections_.getParameter<edm::InputTag>("rpchits"));
+  eventsToken_ = consumes<vector<TYPE(events)> >(collections_.getParameter<edm::InputTag>("events"));
 }
 
 StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
@@ -25,6 +31,7 @@ StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
 }
 
 void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
+     
   edm::Handle<std::vector<CandidateJet> > jets;
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
@@ -32,12 +39,12 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   edm::Handle<std::vector<CandidateEvent> > events;
   //edm::Handle<std::vector<reco::GenParticle> > mcparticles;
   
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("jets"), jets, event);
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("dtsegs"), dtsegs, event);
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("cscsegs"), cscsegs, event);
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("rpchits"), rpchits, event);
-  anatools::getCollection (collections_.getParameter<edm::InputTag> ("events"), events, event);
   //anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
+  event.getByToken (jetsToken_, jets);
+  event.getByToken (dtsegsToken_, dtsegs);
+  event.getByToken (cscsegsToken_, cscsegs);
+  event.getByToken (rpchitsToken_, rpchits);
+  event.getByToken (eventsToken_, events);
 
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
