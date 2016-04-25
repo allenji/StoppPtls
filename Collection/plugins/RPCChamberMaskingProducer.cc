@@ -15,6 +15,8 @@ RPCChamberMaskingProducer::RPCChamberMaskingProducer(const edm::ParameterSet &cf
 
   produces<std::vector<CandidateRpcHit> > ();
 
+  token_ = consumes<vector<CandidateRpcHit> > (candidateRpcHitsTag_);
+
   clog<<"inFile is: "<<rpcMaskingCoordinatesFile_.c_str()<<endl;
   ifstream inFile;
   inFile.open(rpcMaskingCoordinatesFile_.c_str());
@@ -65,7 +67,9 @@ bool RPCChamberMaskingProducer::isNotMaskedRpcHit(double rpcHitR, double rpcHitP
 void RPCChamberMaskingProducer::produce(edm::Event &iEvent, const edm::EventSetup &iSetup) {
   //get original collection of rpc hits
   edm::Handle<vector<CandidateRpcHit> > rpchits;
-  iEvent.getByLabel(candidateRpcHitsTag_, rpchits);
+  // edm::EDGetTokenT<vector<CandidateRpcHit> > token_ = consumes<vector<CandidateRpcHit> > (candidateRpcHitsTag_);
+//iEvent.getByLabel(candidateRpcHitsTag_, rpchits);
+  iEvent.getByToken(token_, rpchits);
 
   auto_ptr<vector<CandidateRpcHit> > candNotMaskedRpcHits(new vector<CandidateRpcHit> ());
 

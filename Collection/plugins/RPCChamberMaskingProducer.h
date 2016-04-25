@@ -29,5 +29,7 @@ class RPCChamberMaskingProducer : public edm::EDProducer{
   string rpcMaskingCoordinatesFile_;
   edm::InputTag candidateRpcHitsTag_;
   bool isNotMaskedRpcHit(double rpcHitR, double rpcHitPhi, double rpcHitZ);
+
+  edm::EDGetTokenT<vector<CandidateRpcHit> > token_;
 };
 #endif
