@@ -1,2 +1,6 @@
 *.pyc
 *.root
+*__init__*
+*~
+out*
+*condor
