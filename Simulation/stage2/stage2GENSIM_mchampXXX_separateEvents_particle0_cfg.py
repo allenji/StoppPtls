@@ -1,11 +1,10 @@
 # Modify these variables to switch masses, input stopped points files, and flavor of RHadron
-SPARTICLE_MASS=XXX
+SPARTICLE_MASS=000
 NEUTRALINO_MASS=200
 GRAVITINO_MASS=0.00001
 DELAYED_MUONS=True
 SAME_EVENT=False
 PARTICLE_NUMBER=0
-OUTPUTFILE='stage2GENSIM_mchamp' + str(SPARTICLE_MASS)+'_separateEvents_particle'+str(PARTICLE_NUMBER)+'.root'
 
 import FWCore.ParameterSet.Config as cms
 
@@ -69,7 +68,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
                                         splitLevel = cms.untracked.int32(0),
                                         eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
                                         outputCommands = process.RAWSIMEventContent.outputCommands,
-                                        fileName = cms.untracked.string(OUTPUTFILE),
+                                        fileName = cms.untracked.string("hist.root"),
                                         dataset = cms.untracked.PSet( filterName = cms.untracked.string(''),
                                                                       dataTier = cms.untracked.string('GEN-SIM')
                                                                       ),

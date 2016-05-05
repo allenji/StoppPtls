@@ -5,7 +5,6 @@ GRAVITINO_MASS=0.00001
 DELAYED_MUONS=True
 SAME_EVENT=False
 PARTICLE_NUMBER=1
-OUTPUTFILE='stage2GENSIM_gmstau' + str(SPARTICLE_MASS)+'_gravitinop0001_separateEvents_particle'+str(PARTICLE_NUMBER)+'.root'
 
 import FWCore.ParameterSet.Config as cms
 
@@ -69,7 +68,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
                                         splitLevel = cms.untracked.int32(0),
                                         eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
                                         outputCommands = process.RAWSIMEventContent.outputCommands,
-                                        fileName = cms.untracked.string(OUTPUTFILE),
+                                        fileName = cms.untracked.string("hist.root"),
                                         dataset = cms.untracked.PSet( filterName = cms.untracked.string(''),
                                                                       dataTier = cms.untracked.string('GEN-SIM')
                                                                       ),
