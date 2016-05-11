@@ -1,0 +1,8 @@
+# Use this to register datasets
+
+##############################
+# 2015
+##############################
+
+#osudb --location /store/user/weifengji/HSCPgluino_UUbarChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_200 create /HSCPgluino_UUbarChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_200/USER
+

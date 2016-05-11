@@ -28,5 +28,10 @@
   <class name="std::vector<CandidateRpcHit>"/>
   <class name="edm::Wrapper<CandidateRpcHit>"/>
   <class name="edm::Wrapper<std::vector<CandidateRpcHit> >"/>
+
+  <class name="CandidateDelayedMuonsTrack"/>
+  <class name="std::vector<CandidateDelayedMuonsTrack>"/>
+  <class name="edm::Wrapper<CandidateDelayedMuonsTrack>"/>
+  <class name="edm::Wrapper<std::vector<CandidateDelayedMuonsTrack> >"/>
 </lcgdict>
 

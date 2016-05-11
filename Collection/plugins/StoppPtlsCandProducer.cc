@@ -22,16 +22,16 @@ using namespace edm;
 
 StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   isMC_             (iConfig.getUntrackedParameter<bool>("isMC",false)),
-  cscRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("cscRecHitsTag")),
-  cscSegmentsTag_   (iConfig.getParameter<edm::InputTag> ("cscSegmentsTag")),
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
-  DTRecHitsTag_     (iConfig.getParameter<edm::InputTag> ("DTRecHitsTag")),
-  DT4DSegmentsTag_  (iConfig.getParameter<edm::InputTag> ("DT4DSegmentsTag")),
+  caloTowerToken_   (consumes<CaloTowerCollection>(caloTowerTag_)),
   hcalNoiseFilterResultTag_ (iConfig.getUntrackedParameter<edm::InputTag> ("hcalNoiseFilterResultTag",edm::InputTag("HBHENoiseFilterResultProducer","HBHENoiseFilterResult"))),
+  hcalNoiseFilterResultToken_   (consumes<bool>(hcalNoiseFilterResultTag_)),
   jetTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("jetTag",edm::InputTag("ak4CaloJets"))),
-  rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
+  jetToken_         (consumes<reco::CaloJetCollection>(jetTag_)),
   rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise"))),
+  rbxToken_         (consumes<reco::HcalNoiseRBXCollection>(rbxTag_)),
   verticesTag_      (iConfig.getUntrackedParameter<edm::InputTag> ("verticesTag", edm::InputTag("offlinePrimaryVertices"))),
+  verticesToken_    (consumes<reco::VertexCollection>(verticesTag_)),
   //genParticlesTag_  (iConfig.getUntrackedParameter<edm::InputTag> ("genParticlesTag", edm::InputTag("genParticles"))),
   mcProducerTag_    (iConfig.getUntrackedParameter<std::string>("producer", "g4SimHits")),
 
@@ -40,16 +40,8 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   towerMinEnergy_(iConfig.getUntrackedParameter<double>("towerMinEnergy", 1.)),
   towerMaxEta_(iConfig.getUntrackedParameter<double>("towerMaxEta", 1.3))
 {
-    produces<std::vector<CandidateCscHit> > ();
-    produces<std::vector<CandidateCscSeg> > ();
-    //produces<std::vector<CandidateEvent> > ();
-    produces<std::vector<CandidateDTSeg> > ();
-    produces<std::vector<CandidateJet> > ();
-    produces<std::vector<CandidateRpcHit> > ();
-    //produces<std::vector<CandidateGenParticle> > ();
-
-    produces<std::vector<CandidateEvent> > ();
-
+  produces<std::vector<CandidateJet> > ();
+  produces<std::vector<CandidateEvent> > ();
 }
 
 
@@ -66,11 +58,8 @@ StoppPtlsCandProducer::~StoppPtlsCandProducer()
 void
 StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  doCscHits(iEvent, iSetup);
-  doCscSegments(iEvent, iSetup);
   doEvents(iEvent, iSetup);
-  doMuonDTs(iEvent, iSetup);
-  doMuonRPCs(iEvent, iSetup);
+
   //if (isMC_){
   //iSetup.getData(fPDGTable);
     //doMC(iEvent, iSetup);
@@ -79,89 +68,6 @@ StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup
 }
 
 
-void StoppPtlsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSetup& iSetup)
-{
-  edm::Handle<CSCRecHit2DCollection> hits;
-  iEvent.getByLabel(cscRecHitsTag_, hits);
-  edm::ESHandle<CSCGeometry> cscGeom;
-  iSetup.get<MuonGeometryRecord>().get(cscGeom);
-   
-  auto_ptr<vector<CandidateCscHit> > candCscHits(new vector<CandidateCscHit> ());
-  int iHit = 0;
-  CSCRecHit2DCollection::const_iterator dRHIter;
-  for (dRHIter = hits->begin(); dRHIter != hits->end(); dRHIter++) {
-    iHit++;
-    CSCDetId idrec = (CSCDetId)(*dRHIter).cscDetId();
-    const CSCLayer* csclayer = cscGeom->layer( idrec );
-    LocalPoint rhitlocal = (*dRHIter).localPosition();
-    GlobalPoint rhitglobal= csclayer->toGlobal(rhitlocal);
-    CandidateCscHit h;
-    h.set_z(rhitglobal.z());
-    h.set_rho(rhitglobal.perp());
-    h.set_phi(rhitglobal.phi());
-    h.set_time(dRHIter->tpeak());
-    candCscHits->push_back(h);
-  }
-  iEvent.put (candCscHits);
-}
-
-
-void StoppPtlsCandProducer::doCscSegments(edm::Event& iEvent, const edm::EventSetup& iSetup){
-  // get the segments
-  edm::Handle<CSCSegmentCollection> segments;
-  iEvent.getByLabel(cscSegmentsTag_, segments);
-
-  // Get the geometry :
-  edm::ESHandle<CSCGeometry> cscGeom;
-  iSetup.get<MuonGeometryRecord>().get(cscGeom);
-
-    auto_ptr<vector<CandidateCscSeg> > candCscSegs(new vector<CandidateCscSeg>());
-    // write segment info to ntuple
-    if(segments.isValid()) {
-      unsigned i=0;
-      for (CSCSegmentCollection::const_iterator seg=segments->begin();
-     seg!=segments->end() && i<1000;
-     ++seg, ++i) {
-        /// code taken from RecoLocalMuon/CSCValidation/src/CSCValidation.cc
-        //  CSCDetId id  = (CSCDetId)seg->cscDetId();
-        LocalPoint localPos = seg->localPosition();
-        LocalVector segDir = seg->localDirection();
-        CSCDetId id  = seg->cscDetId();
-        GlobalPoint globalPos = cscGeom->chamber(id)->toGlobal(localPos);
-        GlobalVector globalVec = cscGeom->chamber(id)->toGlobal(segDir);
-        //float chisq    = seg->chi2();
-        //int nDOF       = 2*nhits-4;
-        //double chisqProb = ChiSquaredProbability( (double)chisq, nDOF );
-        //float segX     = localPos.x();
-        //float segY     = localPos.y();
-        //double theta   = segDir.theta();
-        CandidateCscSeg candCscSeg;
-        
-        candCscSeg.set_endcap(id.endcap());
-        candCscSeg.set_ring(id.ring());
-        candCscSeg.set_station(id.station());
-        candCscSeg.set_chamber(id.chamber());
-        candCscSeg.set_nHits(seg->nRecHits());
-        candCscSeg.set_phi(globalPos.phi());
-        candCscSeg.set_x(globalPos.x());
-        candCscSeg.set_y(globalPos.y());
-        candCscSeg.set_z(globalPos.z());
-        candCscSeg.set_r(sqrt((globalPos.x()*globalPos.x()) + (globalPos.y()*globalPos.y())));
-        candCscSeg.set_dirTheta(globalVec.theta());
-        candCscSeg.set_dirPhi(globalVec.phi());
-        candCscSeg.set_time(seg->time());
-        
-        candCscSegs->push_back(candCscSeg);
-      }
-    
-      
-    }
-    /*else {
-      if (!cscSegsMissing_) edm::LogWarning("MissingProduct") << "CSC Segments not found.  Branches will not be filled";
-      cscSegsMissing_ = true;
-    }*/
-    iEvent.put(candCscSegs);
-}
 
 void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
@@ -334,101 +240,8 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
  
 }
 
-void StoppPtlsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetup& iSetup)
-{
-  edm::ESHandle<DTGeometry> dtGeom;
-  iSetup.get<MuonGeometryRecord>().get(dtGeom);
-
-  edm::Handle<DTRecSegment4DCollection> all4DSegments;
-  iEvent.getByLabel(DT4DSegmentsTag_, all4DSegments);
-  edm::Handle<DTRecHitCollection> dtRecHits;
-  iEvent.getByLabel(DTRecHitsTag_, dtRecHits);
-
-  // create vector we are gonna save
-  auto_ptr<vector<CandidateDTSeg> > candDTs (new vector<CandidateDTSeg>());
-
-  //loop over each DT chamber
-  DTRecSegment4DCollection::id_iterator chamberId;
-  for (chamberId = all4DSegments->id_begin();
-       chamberId != all4DSegments->id_end();
-       ++chamberId){
-    const DTChamber* chamber = dtGeom->chamber(*chamberId);
-    DTRecSegment4DCollection::range range = all4DSegments->get(*chamberId);
-
-    //loop over all segments in chamber
-    for (DTRecSegment4DCollection::const_iterator segment4D = range.first;
-        segment4D!=range.second;
-        ++segment4D){
-      //skip invalid values
-      if((*chamberId).station() != 4 &&
-          (*segment4D).dimension() != 4) continue;
-      if((*chamberId).station() == 4 &&
-          (*segment4D).dimension() != 2) continue;
-
-      const GeomDet* gdet=dtGeom->idToDet(segment4D->geographicalId());
-      const BoundPlane& DTSurface = gdet->surface();
-      LocalPoint segmentLocal = (*segment4D).localPosition();
-      GlobalPoint segmentGlobal = DTSurface.toGlobal(segmentLocal);
-
-      LocalVector segmentLocalDir = (*segment4D).localDirection();
-      GlobalVector segmentGlobalDir = DTSurface.toGlobal(segmentLocalDir);
-
-      CandidateDTSeg candDTSeg;
-      
-      candDTSeg.set_wheel((chamber->id()).wheel());
-      candDTSeg.set_station((chamber->id()).station());
-      candDTSeg.set_sector((chamber->id()).sector());
-      candDTSeg.set_localX(segmentLocal.x());
-      candDTSeg.set_localY(segmentLocal.y());
-      candDTSeg.set_x(segmentGlobal.x());
-      candDTSeg.set_y(segmentGlobal.y());
-      candDTSeg.set_r(sqrt(segmentGlobal.x()*segmentGlobal.x() + segmentGlobal.y()*segmentGlobal.y()));
-      candDTSeg.set_z(segmentGlobal.z());
-      candDTSeg.set_rho(segmentGlobal.perp());
-      candDTSeg.set_phi(segmentGlobal.phi());
-      candDTSeg.set_xdir(segmentGlobalDir.x());
-      candDTSeg.set_ydir(segmentGlobalDir.y());
-      candDTSeg.set_phidir(segmentGlobalDir.phi());
-      candDTSeg.set_zdir(segmentGlobalDir.z());
-      candDTs->push_back(candDTSeg);
-    }//finish loop over all segments in chamber
-  }//finish loop over all chambers
-  // save the vector
-  iEvent.put(candDTs);
-}
-
-void StoppPtlsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup& iSetup){
-  edm::Handle<RPCRecHitCollection> hits;
-  iEvent.getByLabel(rpcRecHitsTag_, hits);
-  edm::ESHandle<RPCGeometry> rpcGeom;
-  iSetup.get<MuonGeometryRecord>().get(rpcGeom);
-  
-  //int nRecHits = hits->size();
-  int iHit = 0;
-  RPCRecHitCollection::const_iterator rpcIter;
-  //create object we are gonna put back to the event
-  auto_ptr<vector<CandidateRpcHit> > candRpcHits(new vector<CandidateRpcHit> ());
-  for (rpcIter = hits->begin(); rpcIter != hits->end(); ++rpcIter) {
-    ++iHit;
-    const RPCDetId detId = static_cast<const RPCDetId>(rpcIter->rpcId());
-    const RPCRoll* roll = dynamic_cast<const RPCRoll*>(rpcGeom->roll(detId));
-    const GlobalPoint rhitglobal = roll->toGlobal(rpcIter->localPosition());
-    CandidateRpcHit candRpcHit;
-    candRpcHit.set_x(rhitglobal.x());
-    candRpcHit.set_y(rhitglobal.y());
-    candRpcHit.set_r(sqrt(rhitglobal.x()*rhitglobal.x() + rhitglobal.y()*rhitglobal.y()));
-    candRpcHit.set_z(rhitglobal.z());
-    candRpcHit.set_rho(rhitglobal.perp());
-    candRpcHit.set_phi(rhitglobal.phi());
-    candRpcHit.set_region(detId.region());
-    candRpcHit.set_bx((*rpcIter).BunchX());
-    
-    candRpcHits->push_back(candRpcHit); 
-  }//loop on rpc hits
-  iEvent.put(candRpcHits);
-}
-
-void StoppPtlsCandProducer::pulseShapeVariables(const vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &router){
+void StoppPtlsCandProducer::pulseShapeVariables(const vector<double> &samples, unsigned &ipeak, double &total, double &r1, double &r2, double &rpeak, double &\
+						    router){
 
   ipeak = 3;
   total = 0.;
@@ -445,53 +258,36 @@ void StoppPtlsCandProducer::pulseShapeVariables(const vector<double> &samples, u
   }
 
   if (total==0.) return;
-  
-  // R1
+
+  // R1                                                                                                                                                            
   if (ipeak < HBHEDataFrame::MAXSAMPLES-1) {
-    if (samples.at(ipeak) > 0.) { 
+    if (samples.at(ipeak) > 0.) {
       r1 = samples.at(ipeak+1) / samples.at(ipeak);
     }
     else r1 = 1.;
   }
-  
-  // R2
+
+  // R2                                                                                                                                                            
   if (ipeak < HBHEDataFrame::MAXSAMPLES-2) {
     if (samples.at(ipeak+1) > 0. &&
-  samples.at(ipeak+1) > samples.at(ipeak+2)) {
+	samples.at(ipeak+1) > samples.at(ipeak+2)) {
       r2 = samples.at(ipeak+2) / samples.at(ipeak+1);
     }
     else r2 = 1.;
   }
 
-  // Rpeak - leading digi
+  // Rpeak - leading digi                                                                                                                                          
   rpeak = samples.at(ipeak) / total;
-  
-  // Router - leading digi
+
+  // Router - leading digi                                                                                                                                         
   double foursample=0.;
   for (int i=-1; i<3; ++i) {
-    if (ipeak+i > 0 && ipeak+i<(int)HBHEDataFrame::MAXSAMPLES) { //JIM:  why is this condition "> 0" and not "> = 0"??
+    if (ipeak+i > 0 && ipeak+i<(int)HBHEDataFrame::MAXSAMPLES) { //JIM:  why is this condition "> 0" and not "> = 0"??                                             
       foursample += samples.at(ipeak+i);
     }
   }
   router = 1. - (foursample / total);
-  /*
-  //  Dump diagnostic information
-  LogDebug ("StoppedHSCPTreeProducer")  <<"--------------------";
-  LogDebug ("StoppedHSCPTreeProducer")  <<"NOISE SUMMARY OUTPUT";
-  for (uint i=0;i<samples.size();++i)
-  LogDebug ("StoppedHSCPTreeProducer")  <<samples[i]<<"\t";
-  LogDebug ("StoppedHSCPTreeProducer")  <<"total = "<<total<<"  foursample = "<<foursample;
-  LogDebug ("StoppedHSCPTreeProducer")  <<"ipeak = "<<ipeak;
-  if (ipeak<(int)HBHEDataFrame::MAXSAMPLES)
-  LogDebug ("StoppedHSCPTreeProducer")  <<"Peak value = "<<samples.at(ipeak);
-  else
-  LogDebug ("StoppedHSCPTreeProducer")  <<"Peak value = N/A";
-  LogDebug ("StoppedHSCPTreeProducer")  <<"R1 = "<<r1;
-  LogDebug ("StoppedHSCPTreeProducer")  <<"R2 = "<<r2;
-  LogDebug ("StoppedHSCPTreeProducer")  <<"Router = "<<router;
-  LogDebug ("StoppedHSCPTreeProducer")  <<"Rpeak = "<<rpeak;
-  */ 
-} 
+}//end of pulseShapeVariables
 
 void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, const edm::EventSetup& iSetup){
 
@@ -540,70 +336,6 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
     }//end of loop over stopped particles
   }//end of if stopped particles are valid
 
-  /*
-  edm::Handle<reco::GenParticleCollection> genParticles;
-  iEvent.getByLabel(genParticlesTag_, genParticles);
-  if (!genParticles.isValid()) {
-    edm::LogError ("MissingProduct") << "Stage 1 Gen particle collection not found. Branch "
-				     << "will not be filled." << std::endl;
-  }
-  else {
-    std::vector<GenParticle> genParticles_;
-    genParticles_.insert(genParticles_.end(), genParticles->begin(), genParticles->end());
-    std::sort(genParticles_.begin(), genParticles_.end(), genParticle_pt());
-
-    auto_ptr<vector<CandidateGenParticle> > candGenParticles(new vector<CandidateGenParticle> ());
-    
-    for(size_t i=0; i<genParticles_.size(); i++){
-      const reco::GenParticle & p = genParticles_.at(i);
-      //std::cout<<"for reco gen part "<<i<<", pid is: "<<p.pdgId()<<", pt is: "<<p.pt()<<", eta is: "<<p.eta()<<", phi is: "<<p.phi()<<std::endl;
-
-      Double_t charge_ = 999.0;
-      const HepPDT::ParticleData* PData_ = fPDGTable->particle(HepPDT::ParticleID(p.pdgId()));
-      if(PData_==0) {
-	LogDebug ("StoppPtlsCandProducer") << "Error getting HepPDT data table for "
-						 << p.pdgId() << ". Unable to fill charge "<< std::endl;
-      } else {
-	charge_ = PData_->charge();
-      }
-
-      int motherId_ = -999;
-      if(p.mother()){
-	const reco::Candidate* mother_ = p.mother();
-	motherId_ = mother_->pdgId();
-      }
-      
-      std::vector<int> daughterId_;
-      std::vector<int> daughterStatus_;
-      for(size_t j=0; j<p.numberOfDaughters(); j++){
-	const reco::Candidate* daughter_ = p.daughter(j);
-	daughterId_.push_back(daughter_->pdgId());
-	daughterStatus_.push_back(daughter_->status());
-      }
-
-      CandidateGenParticle candGenParticle;
-      candGenParticle.set_id(p.pdgId());
-      candGenParticle.set_mass(p.mass());
-      candGenParticle.set_charge(charge_);
-      candGenParticle.set_px(p.px());
-      candGenParticle.set_py(p.py());
-      candGenParticle.set_pz(p.pz());
-      candGenParticle.set_pt(p.pt());
-      candGenParticle.set_p(p.p());
-      candGenParticle.set_eta(p.eta());
-      candGenParticle.set_phi(p.phi());
-      candGenParticle.set_status(p.status());
-      candGenParticle.set_nMothers(p.numberOfMothers());
-      candGenParticle.set_motherId(motherId_);
-      candGenParticle.set_nDaughters(p.numberOfDaughters());
-      candGenParticle.set_daughterId(daughterId_);
-      candGenParticle.set_daughterStatus(daughterStatus_);
-
-      candGenParticles->push_back(candGenParticle); 
-    }//end of loop over gen particles
-    iEvent.put(candGenParticles);
-  }//end of if gen particles collection is valid
-  */
 }//end of doMC()
 
 //define this as a plug-in
