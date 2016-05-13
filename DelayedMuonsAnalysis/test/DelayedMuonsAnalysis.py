@@ -11,14 +11,14 @@ process = cms.Process ('OSUAnalysis')
 
 # how often to print a log message
 process.load ('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 100
+process.MessageLogger.cerr.FwkReport.reportEvery = 1
+#process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 # input source when running interactively
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-                                 'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
-        #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
+        'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         ),
                              )
 
@@ -44,7 +44,8 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (1000)
+    #input = cms.untracked.int32 (1000)
+    input = cms.untracked.int32 (-1)
 )
 
 ################################################################################
@@ -52,7 +53,7 @@ process.maxEvents = cms.untracked.PSet (
 ################################################################################
 
 from OSUT3Analysis.AnaTools.osuAnalysis_cfi import collectionMap  # miniAOD
-from StoppPtls.Collection.frmwrkCollectionMap_cfi import collectionMap_Custom
+from StoppPtls.Collection.frmwrkCollectionMapDelayedMuons_cfi import collectionMap_Custom
 
 ################################################################################
 ##### Set up weights to be used in plotting and cutflows  ######################
@@ -70,7 +71,8 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
-variableProducers = ["StoppPtlsEventVariableProducer"]
+#variableProducers = ["StoppPtlsEventVariableProducer"]
+variableProducers = []
 #variableProducers.append("MyVariableProducer")
 
 ################################################################################
@@ -92,24 +94,22 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ################################################################################
 
 selections = []
-selections.append(DelayedMuonsSelection)
+#selections.append(DelayedMuonsSelection)
 #selections.append(PrePreSelection)
-#selections.append(TriggerSelection)
-#selections.append(SecondJetSelection)
-#selections.append(NoCuts)
+selections.append(TriggerSelection)
+selections.append(NoCuts)
 
 histograms = cms.VPSet()
 #histograms.append(StoppedParticleHistograms)
 #histograms.append(GenParticleHistograms)
 #histograms.append(NeutralinoHistograms)
+histograms.append(EventHistograms)
 
 scalingfactorproducers = []
 
-#add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
-add_channels (process, [DelayedMuonsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-
-process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
 # uncomment to produce a full python configuration log file

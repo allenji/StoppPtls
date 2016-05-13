@@ -48,14 +48,14 @@ DelayedMuonsCandProducer::~DelayedMuonsCandProducer()
 void
 DelayedMuonsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  std::cout<<"starting produce of DelayedMuonsCandProducer"<<std::endl;
+  //std::cout<<"starting produce of DelayedMuonsCandProducer"<<std::endl;
   doDisplacedStandAloneMuons(iEvent, iSetup);
 }
 
 
 void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  std::cout<<"starting doDisplacedStandAloneMuons"<<std::endl;  
+  //std::cout<<"starting doDisplacedStandAloneMuons"<<std::endl;  
   // loop over displaced standalone muons
   edm::Handle<TrackCollection> displacedStandAloneMuons;
   iEvent.getByLabel(displacedStandAloneMuonTag_,displacedStandAloneMuons);
@@ -77,10 +77,10 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
   edm::ESHandle<GlobalTrackingGeometry> theTrackingGeometry;
   iSetup.get<GlobalTrackingGeometryRecord>().get(theTrackingGeometry);
 
-  auto_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());                                          std::cout<<"got all collections"<<std::endl;  
-                                          
+  auto_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());                                          //std::cout<<"got all collections"<<std::endl;  
+  
   if (displacedStandAloneMuons.isValid()) {
-    std::cout<<"displacedStandAloneMuons is valid"<<std::endl;  
+    //std::cout<<"displacedStandAloneMuons is valid"<<std::endl;  
     // sort muon tracks by pt
     std::vector<Track> displacedStandAloneMuons_;
     displacedStandAloneMuons_.insert(displacedStandAloneMuons_.end(), displacedStandAloneMuons->begin(), displacedStandAloneMuons->end());
@@ -91,11 +91,10 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
     //it++) {
     for(const auto &it : *displacedStandAloneMuons){
       //for(const auto &it : displacedStandAloneMuons_){
-      std::cout<<"in displacedStandAloneMuons loop"<<std::endl;  
+      //std::cout<<"in displacedStandAloneMuons loop"<<std::endl;  
     
-      //CandidateDelayedMuonsTrack track();
       CandidateDelayedMuonsTrack track(it);
-      std::cout<<"declared CandidateDelayedMuonsTrack"<<std::endl;  
+      //std::cout<<"declared CandidateDelayedMuonsTrack"<<std::endl;  
 
       //int muonStations (int subdet, int hitType) const
       //subdet = 0(all), 1(DT), 2(CSC), 3(RPC); hitType=-1(all), 0=valid, 3=bad 
@@ -117,7 +116,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
       track.set_nValidRpcHits(it.hitPattern().numberOfValidMuonRPCHits()); //RPC hits anywhere near track
       track.set_innermostStationWithValidHits(it.hitPattern().innermostMuonStationWithValidHits());
       track.set_outermostStationWithValidHits(it.hitPattern().outermostMuonStationWithValidHits());
-      std::cout<<"set hit pattern variables"<<std::endl;  
+      //std::cout<<"set hit pattern variables"<<std::endl;  
 	    
       TrackBase::TrackQuality q = reco::TrackBase::qualityByName("highPurity");
 
@@ -138,7 +137,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
       std::vector<int> rpcHitRegion_;
 
       //Loop over the hits in the track
-      std::cout<<"number of valid hits is: "<<it.numberOfValidHits()<<std::endl;
+      //std::cout<<"number of valid hits is: "<<it.numberOfValidHits()<<std::endl;
       for(size_t i=0; i<it.recHitsSize(); i++) {
 	TrackingRecHitRef myRef = it.recHit(i);
 	const TrackingRecHit *rechit = myRef.get();
@@ -232,7 +231,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
 	track.set_rpcHitPhi(rpcHitPhi_);
 	track.set_rpcHitRegion(rpcHitRegion_);
 	track.set_rpcHitBx(rpcHitBx_);
-	std::cout<<"filled track rpc Hit variables"<<std::endl;
+	//std::cout<<"filled track rpc Hit variables"<<std::endl;
       }
       
       // Match the DSA to the SA. This is needed because DSA are not in the reco::Muon and we need

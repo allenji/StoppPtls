@@ -12,8 +12,8 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (10)
-    #input = cms.untracked.int32 (-1)
+    #input = cms.untracked.int32 (10)
+    input = cms.untracked.int32 (-1)
 )
 
 process.source = cms.Source ("PoolSource",
@@ -62,7 +62,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     dropMetaData = cms.untracked.string('ALL'),
     eventAutoFlushCompressedSize = cms.untracked.int32(15728640),
     fastCloning = cms.untracked.bool(False),
-    fileName = cms.untracked.string("RECOWithStoppedParticleEvents_data.root"),
+    fileName = cms.untracked.string("RECOWithStoppedParticleEvents.root"),
     outputCommands = process.MINIAODSIMEventContent.outputCommands,
     overrideInputFileSplitLevels = cms.untracked.bool(True),
     SelectEvents = cms.untracked.PSet(

@@ -11,9 +11,9 @@ DelayedMuonsSelection = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutCscSegNumber,
-      cutOuterDT,
-      cutDSAEnergy,
-      cutDSAEta,
+      #cutOuterDT,
+      #cutDSAEnergy,
+      #cutDSAEta,
     )
 )
 
@@ -21,7 +21,7 @@ DelayedMuonsSelection = cms.PSet(
 #For nCscSeg plot
 HaloControlSelection = cms.PSet(
     name = cms.string("BeamHaloControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -48,7 +48,7 @@ HaloControlSelection = cms.PSet(
 #For jetE, jetEta plots
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -59,7 +59,8 @@ PrePreSelection = cms.PSet(
 #For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
         cutDummy,
       )
