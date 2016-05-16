@@ -1,7 +1,8 @@
-#include "DataFormats/Math/interface/deltaR.h"
-
 #include "OSUT3Analysis/AnaTools/interface/DataFormat.h"
 #include "StoppPtls/Collection/interface/CandidateDelayedMuonsTrack.h"
+
+//#define INVALID_VALUE (numeric_limits<int>::min ())
+//#define IS_INVALID(x) (x <= INVALID_VALUE + 1)
 
 CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack () :
   nStationsWithAnyHits_(INVALID_VALUE),
