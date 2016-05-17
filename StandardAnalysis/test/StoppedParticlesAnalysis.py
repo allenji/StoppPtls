@@ -71,7 +71,7 @@ weights = cms.VPSet (
 ################################################################################
 
 variableProducers = ["StoppPtlsEventVariableProducer"]
-#variableProducers.append("MyVariableProducer")
+variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
 ################################################################################
 ##### Import the channels to be run ############################################

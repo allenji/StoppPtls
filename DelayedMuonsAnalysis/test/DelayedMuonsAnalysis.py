@@ -71,9 +71,8 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
-#variableProducers = ["StoppPtlsEventVariableProducer"]
-variableProducers = []
-#variableProducers.append("MyVariableProducer")
+variableProducers = ["StoppPtlsEventVariableProducer"]
+variableProducers.append("DelayedMuonsEventVariableProducer")
 
 ################################################################################
 ##### Import the channels to be run ############################################
@@ -94,10 +93,12 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ################################################################################
 
 selections = []
-#selections.append(DelayedMuonsSelection)
-#selections.append(PrePreSelection)
-selections.append(TriggerSelection)
 selections.append(NoCuts)
+selections.append(TriggerSelection)
+selections.append(PrePreSelection)
+selections.append(PreSelection)
+selections.append(DelayedMuonsSelection)
+
 
 histograms = cms.VPSet()
 #histograms.append(StoppedParticleHistograms)
@@ -105,13 +106,15 @@ histograms = cms.VPSet()
 #histograms.append(NeutralinoHistograms)
 histograms.append(EventHistograms)
 histograms.append(DSAHistograms)
+histograms.append(NumberOfDelayedMuonsObjectsHistograms)
+histograms.append(DelayedMuonsObjectsVsTimeHistograms)
 
 scalingfactorproducers = []
 
 add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
-#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
+process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()

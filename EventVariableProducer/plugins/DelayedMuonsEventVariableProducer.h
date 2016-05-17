@@ -1,5 +1,5 @@
-#ifndef STOPPPTLSEVENTVARIABLEPRODUCER_H
-#define STOPPPTLSEVENTVARIABLEPRODUCER_H
+#ifndef DELAYEDMUONSEVENTVARIABLEPRODUCER_H
+#define DELAYEDMUONSEVENTVARIABLEPRODUCER_H
 
 #include "TFile.h"
 #include "TH1.h"
@@ -13,22 +13,16 @@
 
 using namespace std;
 
-class StoppPtlsEventVariableProducer : public EventVariableProducer
+class DelayedMuonsEventVariableProducer : public EventVariableProducer
 {
  public:
-  StoppPtlsEventVariableProducer (const edm::ParameterSet &);
-  ~StoppPtlsEventVariableProducer ();
+  DelayedMuonsEventVariableProducer (const edm::ParameterSet &);
+  ~DelayedMuonsEventVariableProducer ();
   
  private:
   void AddVariables(const edm::Event &);
 
-  string livetimeRootFile_;
-  TFile* file;
-
-  TH1D* run_livetime_hist;
-  TH1D* fill_livetime_hist;
-
-  edm::EDGetTokenT<vector<TYPE(events)> > eventsToken_;
+  edm::EDGetTokenT<vector<TYPE(tracks)> > tracksToken_;
 
 };
 

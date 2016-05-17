@@ -2,58 +2,15 @@ import FWCore.ParameterSet.Config as cms
 import copy
 
 from StoppPtls.StandardAnalysis.Cuts import *
+from StoppPtls.DelayedMuonsAnalysis.Cuts import *
 
-#full analysis selection
-DelayedMuonsSelection = cms.PSet(
-    name = cms.string("DelayedMuonsSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+#No cuts (including no trigger) selection
+NoCuts = cms.PSet(
+    name = cms.string("NoCuts"),
+    triggers = cms.vstring(""), 
     cuts = cms.VPSet(
-      cutBx,
-      cutVertexNumber,
-      cutCscSegNumber,
-      #cutOuterDT,
-      #cutDSAEnergy,
-      #cutDSAEta,
+        )
     )
-)
-
-#Halo N-1 Selection (full selection except halo veto)
-#For nCscSeg plot
-HaloControlSelection = cms.PSet(
-    name = cms.string("BeamHaloControlSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
-    cuts = cms.VPSet(
-      cutBx,
-      cutVertexNumber,
-      cutOuterDT,
-      cutDTPair,
-      cutMaxDeltaJetPhi,
-      newNOuterAllBarrelRPCHitsDeltaR,
-      cutNoise,
-      cutJetEnergy,
-      cutJetEta,
-      cutJetN90,
-      cutTowerIPhi,
-      cutTowerFraction,
-      cutHpdR1,
-      cutHpdR2,
-      cutHpdRPeak,
-      cutHpdRPeakSample,
-      cutHpdROuter
-    )
-)
-
-
-#Pre Selection (trigger + BX veto + vertex veto)
-#For jetE, jetEta plots
-PreSelection = cms.PSet(
-    name = cms.string("PreSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
-    cuts = cms.VPSet(
-      cutBx,
-      cutVertexNumber,
-      )
-)
 
 #Signal Trigger Selection
 #For vertex number plot
@@ -66,11 +23,43 @@ TriggerSelection = cms.PSet(
       )
 )
 
-
-#No cuts (including no trigger) selection
-NoCuts = cms.PSet(
-    name = cms.string("NoCuts"),
-    triggers = cms.vstring(""), 
+#PrePre Selection (only pt>10 GeV cut)
+#For jetE, jetEta plots
+PrePreSelection = cms.PSet(
+    name = cms.string("PrePreSelection"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
-        )
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAs,
+      cutPreDSAPt,
+      )
+)
+
+#Pre Selection (trigger + BX veto + vertex veto)
+#For jetE, jetEta plots
+PreSelection = cms.PSet(
+    name = cms.string("PreSelection"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAs,
+      cutPreMaxNDSAs,
+      cutPreDSAPt,
+      cutPreDSANDtChambersWithValidHits,
+      cutPreDSANValidRpcHits,
+      cutPreDSADtTofNDof,
+      cutPreDSANValidCscHits,
+      )
     )
+
+#full analysis selection
+DelayedMuonsSelection = copy.deepcopy(PreSelection)
+DelayedMuonsSelection.name = cms.string("DelayedMuonsSelection")
+DelayedMuonsSelection.cuts.append(cutDSAPt)
+#DelayedMuonsSelection.cuts.append(cutDSAEta)
+DelayedMuonsSelection.cuts.append(cutDSANDtChambersWithValidHits)
+DelayedMuonsSelection.cuts.append(cutDSANValidRpcHits)
+DelayedMuonsSelection.cuts.append(cutDSADtTofTimeInOut)
+DelayedMuonsSelection.cuts.append(cutDSADtTofTimeInOutErr)
