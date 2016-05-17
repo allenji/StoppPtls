@@ -94,3 +94,199 @@ CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack (const reco::Track &track
 CandidateDelayedMuonsTrack::~CandidateDelayedMuonsTrack ()
 {
 }
+
+
+const int CandidateDelayedMuonsTrack::nStationsWithAnyHits() const
+{
+  return this->nStationsWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nCscChambersWithAnyHits() const
+{
+  return this->nCscChambersWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nDtChambersWithAnyHits() const
+{
+  return this->nDtChambersWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nRpcChambersWithAnyHits() const
+{
+  return this->nRpcChambersWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::innermostStationWithAnyHits() const
+{
+  return this->innermostStationWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::outermostStationWithAnyHits() const
+{
+  return this->outermostStationWithAnyHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nStationsWithValidHits() const
+{
+  return this->nStationsWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nCscChambersWithValidHits() const
+{
+  return this->nCscChambersWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nDtChambersWithValidHits() const
+{
+  return this->nDtChambersWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nRpcChambersWithValidHits() const
+{
+  return this->nRpcChambersWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nValidMuonHits() const
+{
+  return this->nValidMuonHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nValidCscHits() const
+{
+  return this->nValidCscHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nValidDtHits() const
+{
+  return this->nValidDtHits_;
+}
+
+const int CandidateDelayedMuonsTrack::nValidRpcHits() const
+{
+  return this->nValidRpcHits_;
+}
+
+const int CandidateDelayedMuonsTrack::innermostStationWithValidHits() const
+{
+  return this->innermostStationWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::outermostStationWithValidHits() const
+{
+  return this->outermostStationWithValidHits_;
+}
+
+const int CandidateDelayedMuonsTrack::quality() const
+{
+  return this->quality_;
+}
+
+const double CandidateDelayedMuonsTrack::innerPx() const
+{
+  return this->innerPx_;
+}
+
+const double CandidateDelayedMuonsTrack::innerPy() const
+{
+  return this->innerPy_;
+}
+
+const double CandidateDelayedMuonsTrack::innerPz() const
+{
+  return this->innerPz_;
+}
+
+const bool CandidateDelayedMuonsTrack::innerOk() const
+{
+  return this->innerOk_;
+}
+
+const double CandidateDelayedMuonsTrack::innerX() const
+{
+  return this->innerX_;
+}
+
+const double CandidateDelayedMuonsTrack::innerY() const
+{
+  return this->innerY_;
+}
+
+const double CandidateDelayedMuonsTrack::innerZ() const
+{
+  return this->innerZ_;
+}
+
+const vector<double> CandidateDelayedMuonsTrack::rpcHitZ() const
+{
+  return this->rpcHitZ_;
+}
+
+const vector<double> CandidateDelayedMuonsTrack::rpcHitRho() const
+{
+  return this->rpcHitRho_;
+}
+
+const vector<double> CandidateDelayedMuonsTrack::rpcHitPhi() const
+{
+  return this->rpcHitPhi_;
+}
+
+const vector<int> CandidateDelayedMuonsTrack::rpcHitRegion() const
+{
+  return this->rpcHitRegion_;
+}
+
+const vector<int> CandidateDelayedMuonsTrack::rpcHitBx() const
+{
+  return this->rpcHitBx_;
+}
+
+const int CandidateDelayedMuonsTrack::dtTofDirection() const
+{
+  return this->dtTofDirection_;
+}
+
+const int CandidateDelayedMuonsTrack::dtTofNDof() const
+{
+  return this->dtTofNDof_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofInverseBeta() const
+{
+  return this->dtTofInverseBeta_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofInverseBetaErr() const
+{
+  return this->dtTofInverseBetaErr_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofFreeInverseBeta() const
+{
+  return this->dtTofFreeInverseBeta_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofFreeInverseBetaErr() const
+{
+  return this->dtTofFreeInverseBetaErr_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofTimeAtIpInOut() const
+{
+  return this->dtTofTimeAtIpInOut_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofTimeAtIpInOutErr() const
+{
+  return this->dtTofTimeAtIpInOutErr_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofTimeAtIpOutIn() const
+{
+  return this->dtTofTimeAtIpOutIn_;
+}
+
+const double CandidateDelayedMuonsTrack::dtTofTimeAtIpOutInErr() const
+{
+  return this->dtTofTimeAtIpOutInErr_;
+}

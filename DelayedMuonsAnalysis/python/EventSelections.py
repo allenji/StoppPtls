@@ -44,10 +44,10 @@ HaloControlSelection = cms.PSet(
 )
 
 
-#Pre Pre Selection (trigger + BX veto + vertex veto)
+#Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
-PrePreSelection = cms.PSet(
-    name = cms.string("PrePreSelection"),
+PreSelection = cms.PSet(
+    name = cms.string("PreSelection"),
     triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,

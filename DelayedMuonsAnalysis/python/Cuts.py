@@ -1,12 +1,39 @@
 import FWCore.ParameterSet.Config as cms
 import copy
 
-#jets
-cutJetEnergy = cms.PSet(
-    inputCollection = cms.vstring("jets"),
-    cutString = cms.string("energy > 70"),
+cutDSAPt = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > 40"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("$E_{jet}$ > 70 \GeV")
+    alias = cms.string("$p_{T}$ > 40 \GeV")
+)
+
+cutDSANDtChambersWithValidHits = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nDtChambersWithValidHits > 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("> 1 DT chambers with valid hits")
+)
+
+cutDSANValidRpcHits = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nValidRpcHits > 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("> 1 valid RPC hits")
+)
+
+cutDSADtTofNdof = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofNdof > 7"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("> 7 TOF ndof")
+)
+
+cutDSANValidCscHits = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nValidCscHits < 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("0 valid CSC hits")
 )
 
 ########################################
@@ -47,35 +74,6 @@ cutCscSegNumberInverted = cms.PSet(
 )
 
 
-
-#######################################
-##dtPair
-######################################
-cutDTPair = cms.PSet(
-    cutString = cms.string('maxDeltaPhi < 1.57'),
-    inputCollection = cms.vstring('eventvariables'),
-    numberRequired = cms.string('= 1'),
-    alias = cms.string("max($#Delta#phi$(DT Segment$_{i}$, DT Segment$_{j}$)) < $#pi/2$")
-)
-
-cutCosmics = cms.PSet(
-    inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
-    numberRequired = cms.string('= 1'),
-    alias = cms.string("pass one of cosmic selections (OR of DT segments and RPC pair cuts)")
-)
-cutNumberOfDT = cms.PSet(
-    inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('dtSegN >= 1'),
-    numberRequired = cms.string('= 1'),
-    alias = cms.string("Has at least one DT seg")
-)
-cutMoreOuterDT = cms.PSet(
-    inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('( innerDT / outerDT) < 2'),
-    numberRequired = cms.string('= 1'),
-    alias = cms.string("More outer DTs than inner ones")
-)
 
 #######################################
 ##jeteta
