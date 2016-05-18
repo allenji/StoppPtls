@@ -52,6 +52,7 @@ process.HBHENoiseFilterResultProducer.minIsolatedNoiseSumEt = cms.double(999999.
 
 #load producer
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
+process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.candidateStoppPtls.isMC = False
 
 process.filter_step = cms.Path(process.hltHighLevel*process.hltStoppedHSCPHpdFilter)
@@ -60,7 +61,7 @@ process.noisefilter = cms.Path(
     process.HBHENoiseFilterResultProducer
 )
 process.eventproducer = cms.Path(
-    process.candidateStoppPtls
+    process.candidateStoppPtls*process.candidateStoppPtlsJets
 )
 
 process.load('Configuration.EventContent.EventContent_cff')

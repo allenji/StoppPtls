@@ -20,6 +20,7 @@
   <use name="DataFormats/TrackReco"/>
   <use name="DataFormats/Scalers"/>
   <use name="DataFormats/Luminosity"/>
+  <use name="DataFormats/PatCandidates"/>
 
   <use name="FWCore/Framework"/>
   <use name="FWCore/MessageLogger"/>

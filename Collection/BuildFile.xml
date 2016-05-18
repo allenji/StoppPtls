@@ -2,6 +2,7 @@
 <use name="DataFormats/JetReco"/>
 <use name="DataFormats/TrackReco"/>
 <use name="DataFormats/MuonReco"/>
+<use name="DataFormats/PatCandidates"/>
 <use name="root"/>
 <use name="boost"/>
 <use name="clhep"/>

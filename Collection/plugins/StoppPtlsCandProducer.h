@@ -48,6 +48,9 @@
 //jets
 #include "DataFormats/JetReco/interface/CaloJetCollection.h"
 
+//mc product
+#include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
+
 //helper class
 #include "StoppPtls/Livetime/interface/LhcFills.h"
 
@@ -108,8 +111,25 @@ private:
   edm::EDGetTokenT<reco::VertexCollection> verticesToken_;
 
   //edm::InputTag genParticlesTag_;
-  std::string mcProducerTag_;
+  //std::string mcProducerTag_;
+  //edm::EDGetTokenT<edm::HepMCProduct> mcProducerToken_;
 
+  edm::InputTag stoppedParticlesNameTag_;
+  edm::EDGetTokenT<std::vector<std::string> > stoppedParticlesNameToken_;
+  edm::InputTag stoppedParticlesXTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesXToken_;
+  edm::InputTag stoppedParticlesYTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesYToken_;
+  edm::InputTag stoppedParticlesZTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesZToken_;
+  edm::InputTag stoppedParticlesTimeTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesTimeToken_;
+  edm::InputTag stoppedParticlesPdgIdTag_;
+  edm::EDGetTokenT<std::vector<int> > stoppedParticlesPdgIdToken_;
+  edm::InputTag stoppedParticlesMassTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesMassToken_;
+  edm::InputTag stoppedParticlesChargeTag_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesChargeToken_;
 
   LhcFills lhcfills_;
   // cuts

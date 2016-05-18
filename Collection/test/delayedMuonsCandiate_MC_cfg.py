@@ -41,6 +41,7 @@ process.filter_step = cms.Path(process.hltHighLevel)
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
+process.candidateStoppPtls.isMC = True
 process.eventproducer = cms.Path(
     process.candidateStoppPtls * process.candidateDelayedMuons
     )

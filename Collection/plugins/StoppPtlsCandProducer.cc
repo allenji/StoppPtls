@@ -33,7 +33,24 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   verticesTag_      (iConfig.getUntrackedParameter<edm::InputTag> ("verticesTag", edm::InputTag("offlinePrimaryVertices"))),
   verticesToken_    (consumes<reco::VertexCollection>(verticesTag_)),
   //genParticlesTag_  (iConfig.getUntrackedParameter<edm::InputTag> ("genParticlesTag", edm::InputTag("genParticles"))),
-  mcProducerTag_    (iConfig.getUntrackedParameter<std::string>("producer", "g4SimHits")),
+  //mcProducerTag_    (iConfig.getUntrackedParameter<std::string>("producer", "g4SimHits")),
+  //mcProducerToken_  (consumes<edm::HepMCProduct>(mcProducerTag_)),
+  stoppedParticlesNameTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesName")),
+  stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
+  stoppedParticlesXTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesX")),
+  stoppedParticlesXToken_    (consumes<std::vector<float> >(stoppedParticlesXTag_)),
+  stoppedParticlesYTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesY")),
+  stoppedParticlesYToken_    (consumes<std::vector<float> >(stoppedParticlesYTag_)),
+  stoppedParticlesZTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesZ")),
+  stoppedParticlesZToken_    (consumes<std::vector<float> >(stoppedParticlesZTag_)),
+  stoppedParticlesTimeTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesTime")),
+  stoppedParticlesTimeToken_    (consumes<std::vector<float> >(stoppedParticlesTimeTag_)),
+  stoppedParticlesPdgIdTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesPdgId")),
+  stoppedParticlesPdgIdToken_    (consumes<std::vector<int> >(stoppedParticlesPdgIdTag_)),
+  stoppedParticlesMassTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesMass")),
+  stoppedParticlesMassToken_    (consumes<std::vector<float> >(stoppedParticlesMassTag_)),
+  stoppedParticlesChargeTag_ (iConfig.getParameter<edm::InputTag>("stoppedParticlesCharge")),
+  stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_)),
 
   jetMinEnergy_(iConfig.getUntrackedParameter<double>("jetMinEnergy", 1.)),
   jetMaxEta_(iConfig.getUntrackedParameter<double>("jetMaxEta", 3.)),
@@ -293,21 +310,21 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
 
   // Fill variables based on the StoppedParticles vectors made by RHStopTracer module
   edm::Handle<std::vector<std::string> > names;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesName", names);
+  iEvent.getByLabel(stoppedParticlesNameTag_,names);
   edm::Handle<std::vector<float> > xs;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesX", xs);
+  iEvent.getByLabel(stoppedParticlesXTag_, xs);
   edm::Handle<std::vector<float> > ys;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesY", ys);
+  iEvent.getByLabel(stoppedParticlesYTag_, ys);
   edm::Handle<std::vector<float> > zs;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesZ", zs);
+  iEvent.getByLabel(stoppedParticlesZTag_, zs);
   edm::Handle<std::vector<float> > times;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesTime", times);
+  iEvent.getByLabel(stoppedParticlesTimeTag_, times);
   edm::Handle<std::vector<int> > ids;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesPdgId", ids);
+  iEvent.getByLabel(stoppedParticlesPdgIdTag_, ids);
   edm::Handle<std::vector<float> > masses;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesMass", masses);
+  iEvent.getByLabel(stoppedParticlesMassTag_, masses);
   edm::Handle<std::vector<float> > charges;
-  iEvent.getByLabel (mcProducerTag_, "StoppedParticlesCharge", charges);
+  iEvent.getByLabel(stoppedParticlesChargeTag_, charges);
 
   if (!names.isValid() || !xs.isValid() || !ys.isValid() || !zs.isValid() || !times.isValid() 
       || !ids.isValid() || !masses.isValid() || !charges.isValid() ){
@@ -321,6 +338,7 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
   } 
   else {
     for (size_t i = 0; i < names->size(); ++i) {
+      //std::cout<<"stopped particle name is: "<<names->at(i)<<std::endl;      
       float phi = ((*ys)[i]==0 && (*xs)[i]==0) ? 0 : atan2((*ys)[i],(*xs)[i]);
       
       event.set_stoppedParticleName(names->at(i));
@@ -332,10 +350,10 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
       event.set_stoppedParticleZ(zs->at(i));
       event.set_stoppedParticleR(sqrt(xs->at(i)*xs->at(i) + ys->at(i)*ys->at(i)));
       event.set_stoppedParticlePhi(phi);
-      event.set_stoppedParticleTime(times->at(i));
-    }//end of loop over stopped particles
+      event.set_stoppedParticleTime(times->at(i));      
+    }//end of loop over stopped particles    
   }//end of if stopped particles are valid
-
+  
 }//end of doMC()
 
 //define this as a plug-in
