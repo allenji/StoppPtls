@@ -83,7 +83,6 @@ process.RECOSIMoutput.outputCommands.append('keep *_generator_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2')
 process.RECOSIMoutput.outputCommands.append("drop *_fixedGridRho*_*_RECO")
 process.RECOSIMoutput.outputCommands.append("keep *_*_*_STOPPPTLS")
-process.RECOSIMoutput.outputCommands.append("drop *CandidateJet*_candidateStoppPtls_*_STOPPPTLS")
 
 process.myEndPath = cms.EndPath (process.RECOSIMoutput)
 process.schedule = cms.Schedule(process.filter_step, process.eventproducer, process.myEndPath)
