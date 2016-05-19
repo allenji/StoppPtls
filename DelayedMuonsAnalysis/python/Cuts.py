@@ -210,3 +210,10 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     numberRequired = cms.string(">= 1"),
     alias = cms.string("#Delta TimeInOut > -22 ns")
 )
+
+cutLowerDSARpcBxPattern = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("rpcBxPattern_upper0 == 0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Lower DSA Track RPC BXs==0 ")
+)

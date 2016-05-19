@@ -11,6 +11,8 @@
 #include "OSUT3Analysis/AnaTools/interface/DataFormat.h"
 #include "OSUT3Analysis/AnaTools/interface/ValueLookupTree.h"
 
+#include "StoppPtls/Collection/interface/CandidateDelayedMuonsTrack.h"
+
 using namespace std;
 
 class DelayedMuonsEventVariableProducer : public EventVariableProducer
@@ -21,6 +23,8 @@ class DelayedMuonsEventVariableProducer : public EventVariableProducer
   
  private:
   void AddVariables(const edm::Event &);
+  int Rpc_Bx_Pattern(edm::Handle<std::vector<CandidateDelayedMuonsTrack> > &, long unsigned int&, long unsigned int&);
+  double Rpc_Bx_Average(edm::Handle<std::vector<CandidateDelayedMuonsTrack> > &, long unsigned int&, long unsigned int&);
 
   edm::EDGetTokenT<vector<TYPE(tracks)> > tracksToken_;
 

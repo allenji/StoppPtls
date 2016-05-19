@@ -75,3 +75,4 @@ DelayedMuonsUpperLowerSelection.name = cms.string("DelayedMuonsUpperLowerSelecti
 #DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOut)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
+DelayedMuonsUpperLowerSelection.cuts.append(cutLowerDSARpcBxPattern)
