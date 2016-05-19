@@ -293,7 +293,7 @@ DSAHistograms = cms.PSet(
             name = cms.string("dtTofTimeAtIpInOut"),
             title = cms.string("DSA Track TimeInOut; DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(400, -100, 100),
-            inputVariables = cms.vstring("dtTofTimeAtIpInOutErr"),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOutErr"),
@@ -305,7 +305,7 @@ DSAHistograms = cms.PSet(
             name = cms.string("dtTofTimeAtIpOutIn"),
             title = cms.string("DSA Track TimeOutIn; DSA Track TimeOutIn [ns]"),
             binsX = cms.untracked.vdouble(400, -100, 100),
-            inputVariables = cms.vstring("dtTofTimeAtIpOutInErr"),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpOutInErr"),
@@ -348,33 +348,612 @@ DelayedMuonsObjectsVsTimeHistograms = cms.PSet(
         )
 )
 
-
-OtherDtHistograms = cms.PSet(
+Upper0DSAHistograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (
         cms.PSet (
-            name = cms.string("maxDTDeltaPhi"),
-            title = cms.string("Maximum DT #Delta#phi; Maximum DT #Delta#phi"),
-            binsX = cms.untracked.vdouble(32, 0, 3.2),
-            inputVariables = cms.vstring("maxDeltaPhi"),
+            name = cms.string("p_upper0"),
+            title = cms.string("Upper DSA Track Momentum; Upper DSA Track p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("p_upper0"),
         ),
         cms.PSet (
-            name = cms.string("maxDTDeltaJetPhi"),
-            title = cms.string("Maximum DT Segment-Jet #Delta#phi; Maximum DT Segment-Jet #Delta#phi"),
-            binsX = cms.untracked.vdouble(32, 0, 3.2),
-            inputVariables = cms.vstring("maxDeltaJetPhi"),
+            name = cms.string("pt_upper0"),
+            title = cms.string("Upper DSA Track p_{T}; Upper DSA Track p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pt_upper0"),
         ),
         cms.PSet (
-            name = cms.string("nOuterDT"),
-            title = cms.string("Number of DT Segments with r>560 cm; Number of Outer DT Segments"),
-            binsX = cms.untracked.vdouble(20, 0, 20),
-            inputVariables = cms.vstring("outerDT"),
+            name = cms.string("eta_upper0"),
+            title = cms.string("Upper DSA Track Pseudorapidity; Upper DSA Track #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta_upper0"),
         ),
         cms.PSet (
-            name = cms.string("nInnerDT"),
-            title = cms.string("Number of DT Segments with r<560 cm; Number of Inner DT Segments"),
-            binsX = cms.untracked.vdouble(20, 0, 20),
-            inputVariables = cms.vstring("innerDT"),
-            )
+            name = cms.string("phi_upper0"),
+            title = cms.string("Upper DSA Track #phi; Upper DSA Track #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("ndof_upper0"),
+            title = cms.string("Upper DSA Track Number of DOF; Upper DSA Track Number of DOF"),
+            binsX = cms.untracked.vdouble(50, 0, 50),
+            inputVariables = cms.vstring("ndof_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("normalizedChi2_upper0"),
+            title = cms.string("Upper DSA Track #chi^{2}/dof; Upper DSA Track #chi^{2}/dof"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("normalizedChi2_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("charge_upper0"),
+            title = cms.string("Upper DSA Track Charge; Upper DSA Track Charge"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("charge_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dxy_upper0"),
+            title = cms.string("Upper DSA Track d_{xy}; Upper DSA Track d_{xy} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("dxy_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dz_upper0"),
+            title = cms.string("Upper DSA Track d_{z}; Upper DSA Track d_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("dz_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("vx_upper0"),
+            title = cms.string("Upper DSA Track v_{x}; Upper DSA Track v_{x} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vx_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("vy_upper0"),
+            title = cms.string("Upper DSA Track v_{y}; Upper DSA Track v_{y} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vy_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("vz_upper0"),
+            title = cms.string("Upper DSA Track v_{z}; Upper DSA Track v_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vz_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nStationsWithAnyHits_upper0"),
+            title = cms.string("Number of Muon Stations with Any Hits in Upper DSA Track; Number of Muon Stations with Any Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nStationsWithAnyHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscChambersWithAnyHits_upper0"),
+            title = cms.string("Number of CSC Chambers with Any Hits in Upper DSA Track; Number of CSC Chambers with Any Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nCscChambersWithAnyHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nDtChambersWithAnyHits_upper0"),
+            title = cms.string("Number of DT Chambers with Any Hits in Upper DSA Track; Number of DT Chambers with Any Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nDtChambersWithAnyHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nRpcChambersWithAnyHits_upper0"),
+            title = cms.string("Number of RPC Chambers with Any Hits in Upper DSA Track; Number of RPC Chambers with Any Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcChambersWithAnyHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nStationsWithValidHits_upper0"),
+            title = cms.string("Number of Muon Stations with Valid Hits in Upper DSA Track; Number of Muon Stations with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nStationsWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscChambersWithValidHits_upper0"),
+            title = cms.string("Number of CSC Chambers with Valid Hits in Upper DSA Track; Number of CSC Chambers with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nCscChambersWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nDtChambersWithValidHits_upper0"),
+            title = cms.string("Number of DT Chambers with Valid Hits in Upper DSA Track; Number of DT Chambers with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nDtChambersWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nRpcChambersWithValidHits_upper0"),
+            title = cms.string("Number of RPC Chambers with Valid Hits in Upper DSA Track; Number of RPC Chambers with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcChambersWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidMuonHits_upper0"),
+            title = cms.string("Number of Valid Muon Hits in Upper DSA Track; Number of Valid Muon Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidMuonHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidCscHits_upper0"),
+            title = cms.string("Number of Valid CSC Valid Hits in Upper DSA Track; Number of Valid CSC Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidCscHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidDtHits_upper0"),
+            title = cms.string("Number of Valid DT Hits in Upper DSA Track; Number of Valid DT  Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidDtHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidRpcHits_upper0"),
+            title = cms.string("Number of Valid RPC Hits in Upper DSA Track; Number of Valid RPC Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nValidRpcHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innermostStationWithValidHits_upper0"),
+            title = cms.string("Innermost Station with Valid Hits in Upper DSA Track; Innermost Station with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("innermostStationWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("outermostStationWithValidHits_upper0"),
+            title = cms.string("Outermost Station with Valid Hits in Upper DSA Track; Outermost Station with Valid Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("outermostStationWithValidHits_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("quality_upper0"),
+            title = cms.string("Upper DSA Track Quality; Upper DSA Track Quality"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("quality_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPx_upper0"),
+            title = cms.string("Upper DSA Track Inner p_{x}; Upper DSA Track Inner p_{x} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPx_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPy_upper0"),
+            title = cms.string("Upper DSA Track Inner p_{y}; Upper DSA Track Inner p_{y} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPy_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPz_upper0"),
+            title = cms.string("Upper DSA Track Inner p_{z}; Upper DSA Track Inner p_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPz_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerX_upper0"),
+            title = cms.string("Upper DSA Track Inner x; Upper DSA Track Inner x [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerX_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerY_upper0"),
+            title = cms.string("Upper DSA Track Inner y; Upper DSA Track Inner y [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerY_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerZ_upper0"),
+            title = cms.string("Upper DSA Track Inner z; Upper DSA Track Inner z [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerZ_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofDirection_upper0"),
+            title = cms.string("Upper DSA Track TOF Direction; Upper DSA Track TOF Direction"),
+            binsX = cms.untracked.vdouble(3, -1, 2),
+            inputVariables = cms.vstring("dtTofDirection_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofNDof_upper0"),
+            title = cms.string("Upper DSA Track TOF nDOF; Upper DSA Track TOF nDOF"),
+            binsX = cms.untracked.vdouble(40, 0, 40),
+            inputVariables = cms.vstring("dtTofNDof_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofFreeInverseBeta_upper0"),
+            title = cms.string("Upper DSA Track #beta^{-1}_{Free}; Upper DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofFreeInverseBeta_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofFreeInverseBetaErr_upper0"),
+            title = cms.string("Upper DSA Track #beta^{-1}_{Free} Error; Upper DSA Track #beta^{-1}_{Free} Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofFreeInverseBetaErr_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_upper0"),
+            title = cms.string("Upper DSA Track TimeInOut; Upper DSA Track TimeInOut [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOutErr_upper0"),
+            title = cms.string("Upper DSA Track TimeInOut Error; Upper DSA Track TimeInOut Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOutErr_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpOutIn_upper0"),
+            title = cms.string("Upper DSA Track TimeOutIn; Upper DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutIn_upper0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpOutInErr_upper0"),
+            title = cms.string("Upper DSA Track TimeOutIn Error; Upper DSA Track TimeOutIn Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutInErr_upper0"),
+            ),
         )
 )
+
+Lower0DSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("p_lower0"),
+            title = cms.string("Lower DSA Track Momentum; Lower DSA Track p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("p_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("pt_lower0"),
+            title = cms.string("Lower DSA Track p_{T}; Lower DSA Track p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pt_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("eta_lower0"),
+            title = cms.string("Lower DSA Track Pseudorapidity; Lower DSA Track #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("phi_lower0"),
+            title = cms.string("Lower DSA Track #phi; Lower DSA Track #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("ndof_lower0"),
+            title = cms.string("Lower DSA Track Number of DOF; Lower DSA Track Number of DOF"),
+            binsX = cms.untracked.vdouble(50, 0, 50),
+            inputVariables = cms.vstring("ndof_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("normalizedChi2_lower0"),
+            title = cms.string("Lower DSA Track #chi^{2}/dof; Lower DSA Track #chi^{2}/dof"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("normalizedChi2_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("charge_lower0"),
+            title = cms.string("Lower DSA Track Charge; Lower DSA Track Charge"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("charge_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dxy_lower0"),
+            title = cms.string("Lower DSA Track d_{xy}; Lower DSA Track d_{xy} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("dxy_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dz_lower0"),
+            title = cms.string("Lower DSA Track d_{z}; Lower DSA Track d_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("dz_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("vx_lower0"),
+            title = cms.string("Lower DSA Track v_{x}; Lower DSA Track v_{x} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vx_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("vy_lower0"),
+            title = cms.string("Lower DSA Track v_{y}; Lower DSA Track v_{y} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vy_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("vz_lower0"),
+            title = cms.string("Lower DSA Track v_{z}; Lower DSA Track v_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("vz_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nStationsWithAnyHits_lower0"),
+            title = cms.string("Number of Muon Stations with Any Hits in Lower DSA Track; Number of Muon Stations with Any Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nStationsWithAnyHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscChambersWithAnyHits_lower0"),
+            title = cms.string("Number of CSC Chambers with Any Hits in Lower DSA Track; Number of CSC Chambers with Any Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nCscChambersWithAnyHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nDtChambersWithAnyHits_lower0"),
+            title = cms.string("Number of DT Chambers with Any Hits in Lower DSA Track; Number of DT Chambers with Any Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nDtChambersWithAnyHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nRpcChambersWithAnyHits_lower0"),
+            title = cms.string("Number of RPC Chambers with Any Hits in Lower DSA Track; Number of RPC Chambers with Any Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcChambersWithAnyHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nStationsWithValidHits_lower0"),
+            title = cms.string("Number of Muon Stations with Valid Hits in Lower DSA Track; Number of Muon Stations with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nStationsWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscChambersWithValidHits_lower0"),
+            title = cms.string("Number of CSC Chambers with Valid Hits in Lower DSA Track; Number of CSC Chambers with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nCscChambersWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nDtChambersWithValidHits_lower0"),
+            title = cms.string("Number of DT Chambers with Valid Hits in Lower DSA Track; Number of DT Chambers with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nDtChambersWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nRpcChambersWithValidHits_lower0"),
+            title = cms.string("Number of RPC Chambers with Valid Hits in Lower DSA Track; Number of RPC Chambers with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcChambersWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidMuonHits_lower0"),
+            title = cms.string("Number of Valid Muon Hits in Lower DSA Track; Number of Valid Muon Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidMuonHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidCscHits_lower0"),
+            title = cms.string("Number of Valid CSC Valid Hits in Lower DSA Track; Number of Valid CSC Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidCscHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidDtHits_lower0"),
+            title = cms.string("Number of Valid DT Hits in Lower DSA Track; Number of Valid DT  Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("nValidDtHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("nValidRpcHits_lower0"),
+            title = cms.string("Number of Valid RPC Hits in Lower DSA Track; Number of Valid RPC Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nValidRpcHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innermostStationWithValidHits_lower0"),
+            title = cms.string("Innermost Station with Valid Hits in Lower DSA Track; Innermost Station with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("innermostStationWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("outermostStationWithValidHits_lower0"),
+            title = cms.string("Outermost Station with Valid Hits in Lower DSA Track; Outermost Station with Valid Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("outermostStationWithValidHits_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("quality_lower0"),
+            title = cms.string("Lower DSA Track Quality; Lower DSA Track Quality"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("quality_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPx_lower0"),
+            title = cms.string("Lower DSA Track Inner p_{x}; Lower DSA Track Inner p_{x} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPx_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPy_lower0"),
+            title = cms.string("Lower DSA Track Inner p_{y}; Lower DSA Track Inner p_{y} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPy_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerPz_lower0"),
+            title = cms.string("Lower DSA Track Inner p_{z}; Lower DSA Track Inner p_{z} [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerPz_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerX_lower0"),
+            title = cms.string("Lower DSA Track Inner x; Lower DSA Track Inner x [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerX_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerY_lower0"),
+            title = cms.string("Lower DSA Track Inner y; Lower DSA Track Inner y [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerY_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("innerZ_lower0"),
+            title = cms.string("Lower DSA Track Inner z; Lower DSA Track Inner z [cm]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("innerZ_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofDirection_lower0"),
+            title = cms.string("Lower DSA Track TOF Direction; Lower DSA Track TOF Direction"),
+            binsX = cms.untracked.vdouble(3, -1, 2),
+            inputVariables = cms.vstring("dtTofDirection_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofNDof_lower0"),
+            title = cms.string("Lower DSA Track TOF nDOF; Lower DSA Track TOF nDOF"),
+            binsX = cms.untracked.vdouble(40, 0, 40),
+            inputVariables = cms.vstring("dtTofNDof_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofFreeInverseBeta_lower0"),
+            title = cms.string("Lower DSA Track #beta^{-1}_{Free}; Lower DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofFreeInverseBeta_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofFreeInverseBetaErr_lower0"),
+            title = cms.string("Lower DSA Track #beta^{-1}_{Free} Error; Lower DSA Track #beta^{-1}_{Free} Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofFreeInverseBetaErr_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_lower0"),
+            title = cms.string("Lower DSA Track TimeInOut; Lower DSA Track TimeInOut [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOutErr_lower0"),
+            title = cms.string("Lower DSA Track TimeInOut Error; Lower DSA Track TimeInOut Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOutErr_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpOutIn_lower0"),
+            title = cms.string("Lower DSA Track TimeOutIn; Lower DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutIn_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpOutInErr_lower0"),
+            title = cms.string("Lower DSA Track TimeOutIn Error; Lower DSA Track TimeOutIn Error"),
+            binsX = cms.untracked.vdouble(120, 0, 30),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutInErr_lower0"),
+            ),
+        )
+    )
+
+DeltaDSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpInOut"),
+            title = cms.string("#Delta DSA Track TimeInOut; #Delta DSA Track TimeInOut [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_upper0 - dtTofTimeAtIpInOut_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpOutIn"),
+            title = cms.string("#Delta DSA Track TimeOutIn; #Delta DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutIn_upper0 - dtTofTimeAtIpOutIn_lower0"),
+            ),
+        cms.PSet (
+            name = cms.string("delta_dtTofFreeInverseBeta"),
+            title = cms.string("#Delta DSA Track #beta^{-1}_{Free}; #Delta DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofFreeInverseBeta_upper0 - dtTofFreeInverseBeta_lower0"),
+            ),
+        )
+    )
+
+Upper0vsLower0DSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("p_upper0_lower0"),
+            title = cms.string("Upper vs Lower DSA Track Momentum; Upper DSA Track p [GeV]; Lower DSA Track p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("p_upper0","p_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("pt_upper0_lower0"),
+            title = cms.string("Upper vs Lower DSA Track Transverse Momentum; Upper DSA Track p_{T} [GeV]; Lower DSA Track p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pt_upper0","pt_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_upper0_lower0"),
+            title = cms.string("Upper vs Lower DSA Track TimeInOut; Upper DSA Track TimeInOut [ns]; Lower DSA Track TimeInOut [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            binsY = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_upper0","dtTofTimeAtIpInOut_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpOutIn_upper0_lower0"),
+            title = cms.string("Upper vs Lower DSA Track TimeOutIn; Upper DSA Track TimeOutIn [ns]; Lower DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            binsY = cms.untracked.vdouble(400, -100, 100),
+            inputVariables = cms.vstring("dtTofTimeAtIpOutIn_upper0","dtTofTimeAtIpOutIn_lower0"),
+        ),
+        cms.PSet (
+            name = cms.string("dtTofFreeInverseBeta_upper0_lower0"),
+            title = cms.string("Upper vs Lower DSA Track #beta^{-1}_{Free}; Upper DSA Track #beta^{-1}_{Free}; Lower DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(120, -6, 6),
+            binsY = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofFreeInverseBeta_upper0","dtTofFreeInverseBeta_lower0"),
+        ),
+        )
+    )
+
+Upper0vsUpper0DSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta_upper0"),
+            title = cms.string("Upper DSA Track TimeInOut vs #beta^{-1}_{Free}; Upper DSA Track TimeInOut [ns]; Upper DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            binsY = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_upper0","dtTofFreeInverseBeta_upper0"),
+        ),
+#p vs RPC BX pattern
+        )
+    )
+
+Lower0vsLower0DSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta_lower0"),
+            title = cms.string("Lower DSA Track TimeInOut vs #beta^{-1}_{Free}; Lower DSA Track TimeInOut [ns]; Lower DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            binsY = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_lower0","dtTofFreeInverseBeta_lower0"),
+        ),
+#p vs RPC BX pattern
+        )
+    )
+
+VsDeltaDSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpInOut_delta_dtTofFreeInverseBeta"),
+            title = cms.string("#Delta DSA Track TimeInOut vs #Delta DSA Track #beta^{-1}_{Free}; #Delta DSA Track TimeInOut [ns]; #Delta DSA Track #beta^{-1}_{Free}"),
+            binsX = cms.untracked.vdouble(400, -100, 100),
+            binsY = cms.untracked.vdouble(120, -6, 6),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut_upper0 - dtTofTimeAtIpInOut_lower0","dtTofFreeInverseBeta_upper0 - dtTofFreeInverseBeta_lower0"),
+            ),
+        )
+    )

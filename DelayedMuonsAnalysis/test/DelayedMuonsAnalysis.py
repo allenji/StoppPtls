@@ -11,8 +11,8 @@ process = cms.Process ('OSUAnalysis')
 
 # how often to print a log message
 process.load ('FWCore.MessageService.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
-#process.MessageLogger.cerr.FwkReport.reportEvery = 100
+#process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 # input source when running interactively
 # ---------------------------------------
@@ -44,8 +44,8 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (100)
-    #input = cms.untracked.int32 (-1)
+    #input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (-1)
 )
 
 ################################################################################
@@ -98,20 +98,27 @@ selections.append(TriggerSelection)
 selections.append(PrePreSelection)
 selections.append(PreSelection)
 selections.append(DelayedMuonsSelection)
-
+selections.append(DelayedMuonsUpperLowerSelection)
 
 histograms = cms.VPSet()
-#histograms.append(StoppedParticleHistograms)
+histograms.append(StoppedParticleHistograms)
 #histograms.append(GenParticleHistograms)
 #histograms.append(NeutralinoHistograms)
 histograms.append(EventHistograms)
 histograms.append(DSAHistograms)
 histograms.append(NumberOfDelayedMuonsObjectsHistograms)
 histograms.append(DelayedMuonsObjectsVsTimeHistograms)
+histograms.append(Upper0DSAHistograms)
+histograms.append(Lower0DSAHistograms)
+histograms.append(DeltaDSAHistograms)
+histograms.append(Upper0vsLower0DSAHistograms)
+histograms.append(Upper0vsUpper0DSAHistograms)
+histograms.append(Lower0vsLower0DSAHistograms)
+histograms.append(VsDeltaDSAHistograms)
 
 scalingfactorproducers = []
 
-add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+add_channels(process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")

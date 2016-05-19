@@ -40,7 +40,8 @@ PrePreSelection = cms.PSet(
 #For jetE, jetEta plots
 PreSelection = cms.PSet(
     name = cms.string("PreSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -61,5 +62,16 @@ DelayedMuonsSelection.cuts.append(cutDSAPt)
 #DelayedMuonsSelection.cuts.append(cutDSAEta)
 DelayedMuonsSelection.cuts.append(cutDSANDtChambersWithValidHits)
 DelayedMuonsSelection.cuts.append(cutDSANValidRpcHits)
-DelayedMuonsSelection.cuts.append(cutDSADtTofTimeInOut)
+#DelayedMuonsSelection.cuts.append(cutDSADtTofTimeInOut)
 DelayedMuonsSelection.cuts.append(cutDSADtTofTimeInOutErr)
+
+#full analysis upper and lower selection
+DelayedMuonsUpperLowerSelection = copy.deepcopy(PreSelection)
+DelayedMuonsUpperLowerSelection.name = cms.string("DelayedMuonsUpperLowerSelection")
+##DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSAPt)
+#DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSAEta)
+#DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
+##DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
+#DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOut)
+DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
+DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
