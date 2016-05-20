@@ -32,10 +32,9 @@ process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
     fileNames = cms.untracked.vstring(
         #'file:/home/weifengji/StoppedParticlesV3/CMSSW_7_1_15_patch1/src/StoppedHSCP/Simulation/stage2/stage2_GEN_SIM_Winter15_1000_894.root'
-        'file:/home/jalimena/DelayedMuons2015/CMSSW_7_1_22/src/StoppedHSCPMuon/Simulation/test/stage2_GEN-HLT_mchamp600.root'
+        'file:/data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp600/hist_0.root'
         ),
     inputCommands = cms.untracked.vstring('keep *', 
-                                          'drop *_genParticles_*_*', 
                                           'drop *_genParticlesForJets_*_*', 
                                           'drop *_kt4GenJets_*_*', 
                                           'drop *_kt6GenJets_*_*', 
@@ -82,6 +81,7 @@ process.RAWSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM')
 process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM')
 process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2')
+process.RAWSIMoutput.outputCommands.append("keep *_genParticles_*_SIM2")
 
 # Additional output definition
 

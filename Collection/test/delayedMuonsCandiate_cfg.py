@@ -75,6 +75,7 @@ process.RECOSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_generator_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2')
+process.RECOSIMoutput.outputCommands.append("keep *_genParticles_*_SIM2")
 process.RECOSIMoutput.outputCommands.append("drop *_fixedGridRho*_*_RECO")
 process.RECOSIMoutput.outputCommands.append("keep *_*_*_STOPPPTLS")
 

@@ -28,7 +28,7 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:stage2DIGIHLT.root'),
+    fileNames = cms.untracked.vstring('file:../digiHlt/stage2DIGIHLT.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -60,6 +60,7 @@ process.RECOSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_generator_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2')
+process.RECOSIMoutput.outputCommands.append("keep *_genParticles_*_SIM2")
 
 # Additional output definition
 
