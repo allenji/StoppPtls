@@ -1,5 +1,8 @@
 #ifndef CANDIDATEEVENT_H
 #define CANDIDATEEVENT_H
+
+#include "FWCore/Framework/interface/ESHandle.h"
+
 class CandidateEvent
 {
  public:
@@ -20,14 +23,14 @@ class CandidateEvent
     topHPD5ROuter_(-999.),
     stoppedParticleName_(""),
     stoppedParticleId_(-999),
-    stoppedParticleMass_(-999.),
-    stoppedParticleCharge_(-999.),
-    stoppedParticleX_(-999.),
-    stoppedParticleY_(-999.),
-    stoppedParticleZ_(-999.),
-    stoppedParticleR_(-999.),
-    stoppedParticlePhi_(-999.),
-    stoppedParticleTime_(-999.)
+    stoppedParticleMass_(-999),
+    stoppedParticleCharge_(-999),
+    stoppedParticleX_(-999),
+    stoppedParticleY_(-999),
+    stoppedParticleZ_(-999),
+    stoppedParticleR_(-999),
+    stoppedParticlePhi_(-999),
+    stoppedParticleTime_(-999)
   {}
   public:
     void set_bx(ULong_t bx) {bx_ = bx;}
@@ -49,14 +52,14 @@ class CandidateEvent
 
     void set_stoppedParticleName(std::string stoppedParticleName) {stoppedParticleName_ = stoppedParticleName;}
     void set_stoppedParticleId(int stoppedParticleId) {stoppedParticleId_ = stoppedParticleId;}
-    void set_stoppedParticleMass(double stoppedParticleMass) {stoppedParticleMass_ = stoppedParticleMass;}
-    void set_stoppedParticleCharge(double stoppedParticleCharge) {stoppedParticleCharge_ = stoppedParticleCharge;}
-    void set_stoppedParticleX(double stoppedParticleX) {stoppedParticleX_ = stoppedParticleX;}
-    void set_stoppedParticleY(double stoppedParticleY) {stoppedParticleY_ = stoppedParticleY;}
-    void set_stoppedParticleZ(double stoppedParticleZ) {stoppedParticleZ_ = stoppedParticleZ;}
-    void set_stoppedParticleR(double stoppedParticleR) {stoppedParticleR_ = stoppedParticleR;}
-    void set_stoppedParticlePhi(double stoppedParticlePhi) {stoppedParticlePhi_ = stoppedParticlePhi;}
-    void set_stoppedParticleTime(double stoppedParticleTime) {stoppedParticleTime_ = stoppedParticleTime;}
+    void set_stoppedParticleMass(float stoppedParticleMass) {stoppedParticleMass_ = stoppedParticleMass;}
+    void set_stoppedParticleCharge(float stoppedParticleCharge) {stoppedParticleCharge_ = stoppedParticleCharge;}
+    void set_stoppedParticleX(float stoppedParticleX) {stoppedParticleX_ = stoppedParticleX;}
+    void set_stoppedParticleY(float stoppedParticleY) {stoppedParticleY_ = stoppedParticleY;}
+    void set_stoppedParticleZ(float stoppedParticleZ) {stoppedParticleZ_ = stoppedParticleZ;}
+    void set_stoppedParticleR(float stoppedParticleR) {stoppedParticleR_ = stoppedParticleR;}
+    void set_stoppedParticlePhi(float stoppedParticlePhi) {stoppedParticlePhi_ = stoppedParticlePhi;}
+    void set_stoppedParticleTime(float stoppedParticleTime) {stoppedParticleTime_ = stoppedParticleTime;}
 
     ULong_t bx() const {return bx_;}
     ULong_t run() const {return run_;}
@@ -80,14 +83,14 @@ class CandidateEvent
     
     std::string stoppedParticleName() const {return stoppedParticleName_;}
     int stoppedParticleId() const {return stoppedParticleId_;}
-    double stoppedParticleMass() const {return stoppedParticleMass_;}
-    double stoppedParticleCharge() const {return stoppedParticleCharge_;}
-    double stoppedParticleX() const {return 1.0*stoppedParticleX_/10;} //convert mm to cm
-    double stoppedParticleY() const {return 1.0*stoppedParticleY_/10;}
-    double stoppedParticleZ() const {return 1.0*stoppedParticleZ_/10;}
-    double stoppedParticleR() const {return 1.0*stoppedParticleR_/10;}
-    double stoppedParticlePhi() const {return stoppedParticlePhi_;}
-    double stoppedParticleTime() const {return stoppedParticleTime_;}
+    float stoppedParticleMass() const {return stoppedParticleMass_;}
+    float stoppedParticleCharge() const {return stoppedParticleCharge_;}
+    float stoppedParticleX() const {return stoppedParticleX_/10.;} //convert mm to cm
+    float stoppedParticleY() const {return stoppedParticleY_/10.;}
+    float stoppedParticleZ() const {return stoppedParticleZ_/10.;}
+    float stoppedParticleR() const {return stoppedParticleR_/10.;}
+    float stoppedParticlePhi() const {return stoppedParticlePhi_;}
+    float stoppedParticleTime() const {return stoppedParticleTime_;}
 
 
   private:
@@ -124,14 +127,14 @@ class CandidateEvent
 
     std::string stoppedParticleName_;
     int stoppedParticleId_;
-    double stoppedParticleMass_;
-    double stoppedParticleCharge_;
-    double stoppedParticleX_;
-    double stoppedParticleY_;
-    double stoppedParticleZ_;
-    double stoppedParticleR_;
-    double stoppedParticlePhi_;
-    double stoppedParticleTime_;
+    float stoppedParticleMass_;
+    float stoppedParticleCharge_;
+    float stoppedParticleX_;
+    float stoppedParticleY_;
+    float stoppedParticleZ_;
+    float stoppedParticleR_;
+    float stoppedParticlePhi_;
+    float stoppedParticleTime_;
 
 };
 

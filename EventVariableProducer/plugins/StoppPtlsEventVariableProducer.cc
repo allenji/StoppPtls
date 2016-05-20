@@ -10,7 +10,23 @@
 
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg),
-  livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile"))
+  livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile")),
+  stoppedParticlesNameTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesName")),
+  stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
+  stoppedParticlesXTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesX")),
+  stoppedParticlesXToken_    (consumes<std::vector<float> >(stoppedParticlesXTag_)),
+  stoppedParticlesYTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesY")),
+  stoppedParticlesYToken_    (consumes<std::vector<float> >(stoppedParticlesYTag_)),
+  stoppedParticlesZTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesZ")),
+  stoppedParticlesZToken_    (consumes<std::vector<float> >(stoppedParticlesZTag_)),
+  stoppedParticlesTimeTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesTime")),
+  stoppedParticlesTimeToken_    (consumes<std::vector<float> >(stoppedParticlesTimeTag_)),
+  stoppedParticlesPdgIdTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesPdgId")),
+  stoppedParticlesPdgIdToken_    (consumes<std::vector<int> >(stoppedParticlesPdgIdTag_)),
+  stoppedParticlesMassTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesMass")),
+  stoppedParticlesMassToken_    (consumes<std::vector<float> >(stoppedParticlesMassTag_)),
+  stoppedParticlesChargeTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesCharge")),
+  stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_))
 {
   file = TFile::Open(livetimeRootFile_.c_str());
   file->cd("TriggerResults");
@@ -74,25 +90,60 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   */
   bool matched = false;
   auto stopped_genParticle = mcparticles->begin();
+
+  // Fill variables based on the StoppedParticles vectors made by RHStopTracer module                                                                              
+  edm::Handle<std::vector<std::string> > names;
+  event.getByToken(stoppedParticlesNameToken_,names);
+  edm::Handle<std::vector<float> > xs;
+  event.getByToken(stoppedParticlesXToken_, xs);
+  edm::Handle<std::vector<float> > ys;
+  event.getByToken(stoppedParticlesYToken_, ys);
+  edm::Handle<std::vector<float> > zs;
+  event.getByToken(stoppedParticlesZToken_, zs);
+  edm::Handle<std::vector<float> > times;
+  event.getByToken(stoppedParticlesTimeToken_, times);
+  edm::Handle<std::vector<int> > ids;
+  event.getByToken(stoppedParticlesPdgIdToken_, ids);
+  edm::Handle<std::vector<float> > masses;
+  event.getByToken(stoppedParticlesMassToken_, masses);
+  edm::Handle<std::vector<float> > charges;
+  event.getByToken(stoppedParticlesChargeToken_, charges);
+
+  if (!names.isValid() || !xs.isValid() || !ys.isValid() || !zs.isValid() || !times.isValid()
+      || !ids.isValid() || !masses.isValid() || !charges.isValid() ){
+    edm::LogError ("MissingProduct") << "StoppedParticles* vectors not available. Branch "
+                                     << "will not be filled." << std::endl;
+  }
+  else if (names->size() != xs->size() || xs->size() != ys->size() || ys->size() != zs->size() || ids->size()!= names->size()) {
+    edm::LogError ("StoppPtsCandProducer") << "mismatch array sizes name/x/y/z:"
+                                           << names->size() << '/' << xs->size() << '/'
+                                           << ys->size() << '/' << zs->size() << '/' << ids->size() << std::endl;
+  }
+  else {
+    for (size_t i = 0; i < names->size(); ++i) {
+      //float phi = ((*ys)[i]==0 && (*xs)[i]==0) ? 0 : atan2((*ys)[i],(*xs)[i]);
+      //float r = sqrt((*xs)[i]*(*xs)[i] + (*ys)[i]*(*ys)[i]);
+      
+      std::cout<<"stopped particles name is: "<<names->at(i)<<std::endl;
   
-  for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
-    for (int i=0; i<events->stoppedParticleId().size(); i++){
-      //if mcparticle matched to correct stopped particle ID
-      if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
-	matched = true;
-	stopped_genParticle = itmcpart;
-	std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
-      break;
-      }
-      //sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
-      else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
-	matched = true;
-	stopped_genParticle = itmcpart;
-	std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
-	break;
-      }
+      for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
+	//if mcparticle matched to correct stopped particle ID
+	if(itmcpart->pdgId()==ids->at(i)){
+	  matched = true;
+	  stopped_genParticle = itmcpart;
+	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+	  break;
+	}
+	//sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
+	else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
+	  matched = true;
+	  stopped_genParticle = itmcpart;
+	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+	  break;
+	}
+      }//end of loop over mcparticles
     }//end of loop over stopped particles
-  }//end of loop over mcparticles
+  }//end of if stopped particles is valid
 
   if(matched){
     std::cout<<"matched!"<<std::endl;

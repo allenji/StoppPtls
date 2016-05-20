@@ -340,7 +340,7 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
     for (size_t i = 0; i < names->size(); ++i) {
       //std::cout<<"stopped particle name is: "<<names->at(i)<<std::endl;      
       float phi = ((*ys)[i]==0 && (*xs)[i]==0) ? 0 : atan2((*ys)[i],(*xs)[i]);
-      
+
       event.set_stoppedParticleName(names->at(i));
       event.set_stoppedParticleId(ids->at(i));
       event.set_stoppedParticleMass(masses->at(i));
