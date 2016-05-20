@@ -20,6 +20,7 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   clog<<"Total livetime is: "<<run_livetime_hist->GetSumOfWeights()<<" seconds"<<endl;
 
   eventsToken_ = consumes<vector<TYPE(events)> >(collections_.getParameter<edm::InputTag>("events"));
+  mcparticlesToken_ = consumes<vector<TYPE(mcparticles)> >(collections_.getParameter<edm::InputTag>("mcparticles"));
 }
 
 StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
@@ -29,11 +30,10 @@ StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
 void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
      
   edm::Handle<std::vector<CandidateEvent> > events;
-  //edm::Handle<std::vector<reco::GenParticle> > mcparticles;
+  edm::Handle<std::vector<reco::GenParticle> > mcparticles;
   
-  //anatools::getCollection (collections_.getParameter<edm::InputTag> ("mcparticles"), mcparticles, event);
   event.getByToken (eventsToken_, events);
-
+  event.getByToken (mcparticlesToken_, mcparticles);
   /*
   //gen particles
   double neutralinoMass = -999;
@@ -71,28 +71,32 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double ubarP = -999;
   double ubarEta = -999;
   double ubarPhi = -999;
-
+  */
   bool matched = false;
   auto stopped_genParticle = mcparticles->begin();
   
   for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
-    //if mcparticle matched to correct stopped particle ID
-    if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
-      matched = true;
-      stopped_genParticle = itmcpart;
-      //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+    for (int i=0; i<events->stoppedParticleId().size(); i++){
+      //if mcparticle matched to correct stopped particle ID
+      if(itmcpart->pdgId()==events->begin()->stoppedParticleId()){
+	matched = true;
+	stopped_genParticle = itmcpart;
+	std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
       break;
-    }
-    //sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
-    else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
-      matched = true;
-      stopped_genParticle = itmcpart;
-      //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
-      break;
-    }
+      }
+      //sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
+      else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
+	matched = true;
+	stopped_genParticle = itmcpart;
+	std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+	break;
+      }
+    }//end of loop over stopped particles
   }//end of loop over mcparticles
 
   if(matched){
+    std::cout<<"matched!"<<std::endl;
+  /*
     //loop over rhadron daughters
     for(size_t j=0; j<stopped_genParticle->numberOfDaughters(); j++){
       const reco::Candidate* daughter = stopped_genParticle->daughter(j);
@@ -166,6 +170,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	}//end of loop over sparticle's daughters
       }//end of if gluino, stop - left and right handed, stau
     }//end of loop over daughters of stopped particle
+  */
   }//end of if matched
   
   else{
@@ -175,7 +180,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       std::clog<<"  "<<itmcpart->pdgId()<<std::endl;
     }
   }//end of if not matched
-
+  /*
   (*eventvariables)["neutralinoMass"] = neutralinoMass;
   (*eventvariables)["neutralinoPx"] = neutralinoPx;
   (*eventvariables)["neutralinoPy"] = neutralinoPy;

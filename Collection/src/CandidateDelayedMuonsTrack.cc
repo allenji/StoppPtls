@@ -34,16 +34,16 @@ CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack () :
   rpcHitPhi_(0),
   rpcHitRegion_(0),
   rpcHitBx_(0),
-  dtTofDirection_(INVALID_VALUE),
-  dtTofNDof_(INVALID_VALUE),
-  dtTofInverseBeta_(INVALID_VALUE),
-  dtTofInverseBetaErr_(INVALID_VALUE),
-  dtTofFreeInverseBeta_(INVALID_VALUE),
-  dtTofFreeInverseBetaErr_(INVALID_VALUE),
-  dtTofTimeAtIpInOut_(INVALID_VALUE),
-  dtTofTimeAtIpInOutErr_(INVALID_VALUE),
-  dtTofTimeAtIpOutIn_(INVALID_VALUE),
-  dtTofTimeAtIpOutInErr_(INVALID_VALUE)
+  dtTofDirection_(-999),
+  dtTofNDof_(-999),
+  dtTofInverseBeta_(-999),
+  dtTofInverseBetaErr_(-999),
+  dtTofFreeInverseBeta_(-999),
+  dtTofFreeInverseBetaErr_(-999),
+  dtTofTimeAtIpInOut_(-999),
+  dtTofTimeAtIpInOutErr_(-999),
+  dtTofTimeAtIpOutIn_(-999),
+  dtTofTimeAtIpOutInErr_(-999)
 {
 }
 
@@ -78,16 +78,16 @@ CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack (const reco::Track &track
   rpcHitPhi_(0),
   rpcHitRegion_(0),
   rpcHitBx_(0),
-  dtTofDirection_(INVALID_VALUE),
-  dtTofNDof_(INVALID_VALUE),
-  dtTofInverseBeta_(INVALID_VALUE),
-  dtTofInverseBetaErr_(INVALID_VALUE),
-  dtTofFreeInverseBeta_(INVALID_VALUE),
-  dtTofFreeInverseBetaErr_(INVALID_VALUE),
-  dtTofTimeAtIpInOut_(INVALID_VALUE),
-  dtTofTimeAtIpInOutErr_(INVALID_VALUE),
-  dtTofTimeAtIpOutIn_(INVALID_VALUE),
-  dtTofTimeAtIpOutInErr_(INVALID_VALUE)
+  dtTofDirection_(-999),
+  dtTofNDof_(-999),
+  dtTofInverseBeta_(-999),
+  dtTofInverseBetaErr_(-999),
+  dtTofFreeInverseBeta_(-999),
+  dtTofFreeInverseBetaErr_(-999),
+  dtTofTimeAtIpInOut_(-999),
+  dtTofTimeAtIpInOutErr_(-999),
+  dtTofTimeAtIpOutIn_(-999),
+  dtTofTimeAtIpOutInErr_(-999)
 {
 }
 
