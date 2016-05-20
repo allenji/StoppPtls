@@ -62,7 +62,7 @@ StoppPtlsJetsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iS
 void StoppPtlsJetsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   edm::Handle<CSCRecHit2DCollection> hits;
-  iEvent.getByLabel(cscRecHitsTag_, hits);
+  iEvent.getByToken(cscRecHitsToken_, hits);
   edm::ESHandle<CSCGeometry> cscGeom;
   iSetup.get<MuonGeometryRecord>().get(cscGeom);
    
@@ -89,7 +89,7 @@ void StoppPtlsJetsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSe
 void StoppPtlsJetsCandProducer::doCscSegments(edm::Event& iEvent, const edm::EventSetup& iSetup){
   // get the segments
   edm::Handle<CSCSegmentCollection> segments;
-  iEvent.getByLabel(cscSegmentsTag_, segments);
+  iEvent.getByToken(cscSegmentsToken_, segments);
 
   // Get the geometry :
   edm::ESHandle<CSCGeometry> cscGeom;
@@ -149,9 +149,9 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
   iSetup.get<MuonGeometryRecord>().get(dtGeom);
 
   edm::Handle<DTRecSegment4DCollection> all4DSegments;
-  iEvent.getByLabel(DT4DSegmentsTag_, all4DSegments);
+  iEvent.getByToken(DT4DSegmentsToken_, all4DSegments);
   edm::Handle<DTRecHitCollection> dtRecHits;
-  iEvent.getByLabel(DTRecHitsTag_, dtRecHits);
+  iEvent.getByToken(DTRecHitsToken_, dtRecHits);
 
   // create vector we are gonna save
   auto_ptr<vector<CandidateDTSeg> > candDTs (new vector<CandidateDTSeg>());
@@ -208,7 +208,7 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
 
 void StoppPtlsJetsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup& iSetup){
   edm::Handle<RPCRecHitCollection> hits;
-  iEvent.getByLabel(rpcRecHitsTag_, hits);
+  iEvent.getByToken(rpcRecHitsToken_, hits);
   edm::ESHandle<RPCGeometry> rpcGeom;
   iSetup.get<MuonGeometryRecord>().get(rpcGeom);
   

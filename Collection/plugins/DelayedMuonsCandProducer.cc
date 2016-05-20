@@ -58,18 +58,18 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
   //std::cout<<"starting doDisplacedStandAloneMuons"<<std::endl;  
   // loop over displaced standalone muons
   edm::Handle<TrackCollection> displacedStandAloneMuons;
-  iEvent.getByLabel(displacedStandAloneMuonTag_,displacedStandAloneMuons);
+  iEvent.getByToken(displacedStandAloneMuonToken_,displacedStandAloneMuons);
 
   edm::Handle<MuonCollection> muons;
-  iEvent.getByLabel(muonTag_,muons);
+  iEvent.getByToken(muonToken_,muons);
 
   edm::Handle<MuonTimeExtraMap> timeMap2;
   //iEvent.getByLabel(timeTag_.label(),"dt",timeMap2);
-  iEvent.getByLabel(timeTag_,timeMap2);
+  iEvent.getByToken(timeToken_,timeMap2);
   const MuonTimeExtraMap & timeMapDT = *timeMap2;
 
   edm::Handle<RPCRecHitCollection> rpcHits;
-  iEvent.getByLabel(rpcRecHitsTag_, rpcHits);
+  iEvent.getByToken(rpcRecHitsToken_, rpcHits);
 
   edm::ESHandle<RPCGeometry> rpcGeom;
   iSetup.get<MuonGeometryRecord>().get(rpcGeom);

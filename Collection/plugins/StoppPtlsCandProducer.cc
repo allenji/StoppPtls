@@ -100,7 +100,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   event.set_bxWrtBunch(static_cast<int>(abs(lhcfills_.getBxWrtBunch(event.fill(), event.bx()))));
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
-  iEvent.getByLabel(caloTowerTag_,caloTowers);
+  iEvent.getByToken(caloTowerToken_,caloTowers);
 
   if (caloTowers.isValid()) {
     
@@ -135,7 +135,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     edm::LogWarning("MissingProduct") << "CaloTowers not found.  Branches will not be filled";
   }
   edm::Handle<CaloJetCollection> calojets;
-  iEvent.getByLabel(jetTag_, calojets);
+  iEvent.getByToken(jetToken_, calojets);
   if (calojets.isValid()) {
     vector<CaloJet> jets;
     jets.insert(jets.end(), calojets->begin(), calojets->end());
@@ -183,7 +183,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   }
   /***************************end doGlobalCalo*********************************/
   edm::Handle<reco::VertexCollection> recoVertices;
-  iEvent.getByLabel(verticesTag_, recoVertices);
+  iEvent.getByToken(verticesToken_, recoVertices);
 
   unsigned nvtx = 0;
   if (recoVertices.isValid()) {
@@ -198,7 +198,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   }
 
   edm::Handle<bool> flag;
-  iEvent.getByLabel(hcalNoiseFilterResultTag_, flag);
+  iEvent.getByToken(hcalNoiseFilterResultToken_, flag);
 
   event.set_noiseFilterResult(1);
   if (flag.isValid()){
@@ -210,7 +210,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
 
   /**************************begin adding pulse shape**************************/
   edm::Handle<HcalNoiseRBXCollection> rbxs;
-  iEvent.getByLabel(rbxTag_, rbxs);
+  iEvent.getByToken(rbxToken_, rbxs);
   if (rbxs.isValid())
   {
     double maxCharge = 0;
@@ -310,21 +310,21 @@ void StoppPtlsCandProducer::doMC(CandidateEvent& event, edm::Event& iEvent, cons
 
   // Fill variables based on the StoppedParticles vectors made by RHStopTracer module
   edm::Handle<std::vector<std::string> > names;
-  iEvent.getByLabel(stoppedParticlesNameTag_,names);
+  iEvent.getByToken(stoppedParticlesNameToken_,names);
   edm::Handle<std::vector<float> > xs;
-  iEvent.getByLabel(stoppedParticlesXTag_, xs);
+  iEvent.getByToken(stoppedParticlesXToken_, xs);
   edm::Handle<std::vector<float> > ys;
-  iEvent.getByLabel(stoppedParticlesYTag_, ys);
+  iEvent.getByToken(stoppedParticlesYToken_, ys);
   edm::Handle<std::vector<float> > zs;
-  iEvent.getByLabel(stoppedParticlesZTag_, zs);
+  iEvent.getByToken(stoppedParticlesZToken_, zs);
   edm::Handle<std::vector<float> > times;
-  iEvent.getByLabel(stoppedParticlesTimeTag_, times);
+  iEvent.getByToken(stoppedParticlesTimeToken_, times);
   edm::Handle<std::vector<int> > ids;
-  iEvent.getByLabel(stoppedParticlesPdgIdTag_, ids);
+  iEvent.getByToken(stoppedParticlesPdgIdToken_, ids);
   edm::Handle<std::vector<float> > masses;
-  iEvent.getByLabel(stoppedParticlesMassTag_, masses);
+  iEvent.getByToken(stoppedParticlesMassToken_, masses);
   edm::Handle<std::vector<float> > charges;
-  iEvent.getByLabel(stoppedParticlesChargeTag_, charges);
+  iEvent.getByToken(stoppedParticlesChargeToken_, charges);
 
   if (!names.isValid() || !xs.isValid() || !ys.isValid() || !zs.isValid() || !times.isValid() 
       || !ids.isValid() || !masses.isValid() || !charges.isValid() ){
