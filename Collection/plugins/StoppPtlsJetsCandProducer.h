@@ -88,9 +88,18 @@ public:
 private:
   // ----------member data ---------------------------
   edm::InputTag cscRecHitsTag_;
+  edm::EDGetTokenT<CSCRecHit2DCollection> cscRecHitsToken_;
+
   edm::InputTag cscSegmentsTag_;
+  edm::EDGetTokenT<CSCSegmentCollection> cscSegmentsToken_;
+
   edm::InputTag DTRecHitsTag_;
+  edm::EDGetTokenT<DTRecHitCollection> DTRecHitsToken_;
+
   edm::InputTag DT4DSegmentsTag_;
+  edm::EDGetTokenT<DTRecSegment4DCollection> DT4DSegmentsToken_;
+
   edm::InputTag rpcRecHitsTag_;
+  edm::EDGetTokenT<RPCRecHitCollection> rpcRecHitsToken_;
   
 };

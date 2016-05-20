@@ -22,10 +22,15 @@ using namespace edm;
 
 StoppPtlsJetsCandProducer::StoppPtlsJetsCandProducer(const edm::ParameterSet& iConfig) :
   cscRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("cscRecHitsTag")),
+  cscRecHitsToken_  (consumes<CSCRecHit2DCollection>(cscRecHitsTag_)),
   cscSegmentsTag_   (iConfig.getParameter<edm::InputTag> ("cscSegmentsTag")),
+  cscSegmentsToken_ (consumes<CSCSegmentCollection>(cscSegmentsTag_)),
   DTRecHitsTag_     (iConfig.getParameter<edm::InputTag> ("DTRecHitsTag")),
+  DTRecHitsToken_   (consumes<DTRecHitCollection>(DTRecHitsTag_)),
   DT4DSegmentsTag_  (iConfig.getParameter<edm::InputTag> ("DT4DSegmentsTag")),
-  rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag"))
+  DT4DSegmentsToken_(consumes<DTRecSegment4DCollection>(DT4DSegmentsTag_)),
+  rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
+  rpcRecHitsToken_  (consumes<RPCRecHitCollection>(rpcRecHitsTag_))
 {
     produces<std::vector<CandidateCscHit> > ();
     produces<std::vector<CandidateCscSeg> > ();

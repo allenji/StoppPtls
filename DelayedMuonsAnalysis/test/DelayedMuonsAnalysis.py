@@ -52,7 +52,6 @@ process.maxEvents = cms.untracked.PSet (
 ##### Set up the 'collections' map #############################################
 ################################################################################
 
-from OSUT3Analysis.AnaTools.osuAnalysis_cfi import collectionMap  # miniAOD
 from StoppPtls.Collection.frmwrkCollectionMapDelayedMuons_cfi import collectionMap_Custom
 
 ################################################################################
@@ -72,6 +71,7 @@ weights = cms.VPSet (
 ################################################################################
 
 variableProducers = ["StoppPtlsEventVariableProducer"]
+variableProducers.append("StoppPtlsJetsEventVariableProducer")
 variableProducers.append("DelayedMuonsEventVariableProducer")
 
 ################################################################################
@@ -106,6 +106,7 @@ histograms.append(StoppedParticleHistograms)
 #histograms.append(NeutralinoHistograms)
 histograms.append(EventHistograms)
 histograms.append(DSAHistograms)
+histograms.append(NumberOfObjectsHistograms)
 histograms.append(NumberOfDelayedMuonsObjectsHistograms)
 histograms.append(DelayedMuonsObjectsVsTimeHistograms)
 histograms.append(Upper0DSAHistograms)

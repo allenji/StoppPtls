@@ -40,9 +40,10 @@ process.filter_step = cms.Path(process.hltHighLevel)
 
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
+process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
 process.eventproducer = cms.Path(
-    process.candidateStoppPtls * process.candidateDelayedMuons
+    process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
     )
 
 # Apply lumi mask; comment out to process all events  
@@ -69,12 +70,6 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
       SelectEvents = cms.vstring('filter_step')
     )
 )
-
-#process.RECOSIMoutput.outputCommands.append ("drop *")
-#process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
-#process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
-#process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
-#
 
 process.RECOSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RECOSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM')
