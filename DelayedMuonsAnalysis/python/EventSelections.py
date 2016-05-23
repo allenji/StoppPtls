@@ -27,9 +27,11 @@ TriggerSelection = cms.PSet(
 #For jetE, jetEta plots
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutBx,
+      cutNotCavernWalls,
       cutVertexNumber,
       cutPreMinNDSAs,
       cutPreDSAPt,
@@ -44,6 +46,7 @@ PreSelection = cms.PSet(
     triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v"),
     cuts = cms.VPSet(
       cutBx,
+      cutNotCavernWalls,
       cutVertexNumber,
       cutPreMinNDSAs,
       cutPreMaxNDSAs,

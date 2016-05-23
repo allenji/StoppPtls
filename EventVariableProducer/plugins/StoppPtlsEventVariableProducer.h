@@ -3,6 +3,7 @@
 
 #include "TFile.h"
 #include "TH1.h"
+#include "TLorentzVector.h"
 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
@@ -21,6 +22,7 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
   
  private:
   void AddVariables(const edm::Event &);
+  double Eta(double, double, double, double);
 
   string livetimeRootFile_;
   TFile* file;

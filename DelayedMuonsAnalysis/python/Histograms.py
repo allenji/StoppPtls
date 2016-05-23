@@ -1,64 +1,148 @@
-
 import FWCore.ParameterSet.Config as cms
-
+from StoppPtls.StandardAnalysis.Histograms import *
+import copy
 
 ###############################################
 ##### Set up the histograms to be plotted #####
 ###############################################
 
-#StoppedParticle, Gen Particle, Event histograms defined in StoppPtls/StandardAnalysis/python/Histograms.py
+#Event histograms defined in StoppPtls/StandardAnalysis/python/Histograms.py
 
-#define gen particle mchamps and muons here, like GluonHistograms:
-MchampHistograms = cms.PSet(
+DelayedMuonsStoppedParticleHistograms = copy.deepcopy(StoppedParticleHistograms)
+DelayedMuonsStoppedParticleHistograms.inputCollection = cms.vstring("eventvariables")
+DelayedMuonsStoppedParticleHistograms.histograms.append(
+    cms.PSet (
+        name = cms.string("stoppedParticleEta"),
+        title = cms.string("Stopped Particle #eta; Stopped Particle #eta"),
+        binsX = cms.untracked.vdouble(100, -5, 5),
+        inputVariables = cms.vstring("stoppedParticleEta"),
+        ),
+    )
+DelayedMuonsStoppedParticleHistograms.histograms.append(
+    cms.PSet (
+        name = cms.string("nStoppedParticles"),
+        title = cms.string("Number of Stopped Particles; Number of Stopped Particles"),
+        binsX = cms.untracked.vdouble(4, 0, 4),
+        inputVariables = cms.vstring("nStoppedParticles"),
+        ),
+    )
+
+Muon0Histograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (
         cms.PSet (
-            name = cms.string("mchampMass"),
-            title = cms.string("g Mass; g Mass [GeV]"),
+            name = cms.string("muon0Mass"),
+            title = cms.string("Generator Muon Mass; Generator Muon Mass [GeV]"),
             binsX = cms.untracked.vdouble(100, 0, 5000),
-            inputVariables = cms.vstring("mchampMass"),
+            inputVariables = cms.vstring("muon0Mass"),
         ),
         cms.PSet (
-            name = cms.string("mchampP"),
-            title = cms.string("g Momentum; g p [GeV]"),
+            name = cms.string("muon0Charge"),
+            title = cms.string("Generator Muon Charge; Generator Muon Charge"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("muon0Charge"),
+        ),
+        cms.PSet (
+            name = cms.string("muon0P"),
+            title = cms.string("Generator Muon Momentum; Generator Muon p [GeV]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            inputVariables = cms.vstring("mchampP"),
+            inputVariables = cms.vstring("muon0P"),
         ),
         cms.PSet (
-            name = cms.string("mchampPt"),
-            title = cms.string("g Transverse Momentum; g p_{T} [GeV]"),
+            name = cms.string("muon0Pt"),
+            title = cms.string("Generator Muon Transverse Momentum; Generator Muon p_{T} [GeV]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            inputVariables = cms.vstring("mchampPt"),
+            inputVariables = cms.vstring("muon0Pt"),
         ),
         cms.PSet (
-            name = cms.string("mchampPx"),
-            title = cms.string("g x Component of Momentum; g p_{x} [GeV]"),
+            name = cms.string("muon0Px"),
+            title = cms.string("Generator Muon x Component of Momentum; Generator Muon p_{x} [GeV]"),
             binsX = cms.untracked.vdouble(200, -1000, 1000),
-            inputVariables = cms.vstring("mchampPx"),
+            inputVariables = cms.vstring("muon0Px"),
         ),
         cms.PSet (
-            name = cms.string("mchampPy"),
-            title = cms.string("g y Component of Momentum; g p_{y} [GeV]"),
+            name = cms.string("muon0Py"),
+            title = cms.string("Generator Muon y Component of Momentum; Generator Muon p_{y} [GeV]"),
             binsX = cms.untracked.vdouble(200, -1000, 1000),
-            inputVariables = cms.vstring("mchampPy"),
+            inputVariables = cms.vstring("muon0Py"),
         ),
         cms.PSet (
-            name = cms.string("mchampPz"),
-            title = cms.string("g z Component of Momentum; g p_{z} [GeV]"),
+            name = cms.string("muon0Pz"),
+            title = cms.string("Generator Muon z Component of Momentum; Generator Muon p_{z} [GeV]"),
             binsX = cms.untracked.vdouble(200, -1000, 1000),
-            inputVariables = cms.vstring("mchampPz"),
+            inputVariables = cms.vstring("muon0Pz"),
         ),
         cms.PSet (
-            name = cms.string("mchampEta"),
-            title = cms.string("g Pseudorapidity; g #eta"),
+            name = cms.string("muon0Eta"),
+            title = cms.string("Generator Muon Pseudorapidity; Generator Muon #eta"),
             binsX = cms.untracked.vdouble(100, -5, 5),
-            inputVariables = cms.vstring("mchampEta"),
+            inputVariables = cms.vstring("muon0Eta"),
         ),
         cms.PSet (
-            name = cms.string("mchampPhi"),
-            title = cms.string("g #phi; g #phi"),
+            name = cms.string("muon0Phi"),
+            title = cms.string("Generator Muon #phi; Generator Muon #phi"),
             binsX = cms.untracked.vdouble(64, -3.2, 3.2),
-            inputVariables = cms.vstring("mchampPhi"),
+            inputVariables = cms.vstring("muon0Phi"),
+            ),
+)
+)
+
+Muon1Histograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("muon1Mass"),
+            title = cms.string("Generator Muon Mass; Generator Muon Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("muon1Mass"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Charge"),
+            title = cms.string("Generator Muon Charge; Generator Muon Charge"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("muon1Charge"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1P"),
+            title = cms.string("Generator Muon Momentum; Generator Muon p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("muon1P"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Pt"),
+            title = cms.string("Generator Muon Transverse Momentum; Generator Muon p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("muon1Pt"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Px"),
+            title = cms.string("Generator Muon x Component of Momentum; Generator Muon p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("muon1Px"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Py"),
+            title = cms.string("Generator Muon y Component of Momentum; Generator Muon p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("muon1Py"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Pz"),
+            title = cms.string("Generator Muon z Component of Momentum; Generator Muon p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("muon1Pz"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Eta"),
+            title = cms.string("Generator Muon Pseudorapidity; Generator Muon #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("muon1Eta"),
+        ),
+        cms.PSet (
+            name = cms.string("muon1Phi"),
+            title = cms.string("Generator Muon #phi; Generator Muon #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("muon1Phi"),
             ),
 )
 )

@@ -44,13 +44,28 @@ StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
 }
 
 void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
-     
+
+  //stopped particles and gen particles
   edm::Handle<std::vector<CandidateEvent> > events;
   edm::Handle<std::vector<reco::GenParticle> > mcparticles;
   
   event.getByToken (eventsToken_, events);
   event.getByToken (mcparticlesToken_, mcparticles);
-  /*
+
+  int nStoppedParticles = -1;
+  int stoppedParticle_index = -999;
+  //string stoppedParticleName  = "";
+  int stoppedParticleId       = -999;
+  float stoppedParticleMass   = -999;
+  float stoppedParticleCharge = -999;
+  float stoppedParticleX      = -999;
+  float stoppedParticleY      = -999;
+  float stoppedParticleZ      = -999;
+  float stoppedParticleR      = -999;
+  float stoppedParticleEta    = -999;
+  float stoppedParticlePhi    = -999;
+  float stoppedParticleTime   = -999;
+
   //gen particles
   double neutralinoMass = -999;
   double neutralinoPx = -999;
@@ -87,7 +102,27 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   double ubarP = -999;
   double ubarEta = -999;
   double ubarPhi = -999;
-  */
+
+  double muon0Mass = -999;
+  double muon0Charge = -999;
+  double muon0Px = -999;
+  double muon0Py = -999;
+  double muon0Pz = -999;
+  double muon0Pt = -999;
+  double muon0P = -999;
+  double muon0Eta = -999;
+  double muon0Phi = -999;
+
+  double muon1Mass = -999;
+  double muon1Charge = -999;
+  double muon1Px = -999;
+  double muon1Py = -999;
+  double muon1Pz = -999;
+  double muon1Pt = -999;
+  double muon1P = -999;
+  double muon1Eta = -999;
+  double muon1Phi = -999;
+
   bool matched = false;
   auto stopped_genParticle = mcparticles->begin();
 
@@ -120,17 +155,16 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
                                            << ys->size() << '/' << zs->size() << '/' << ids->size() << std::endl;
   }
   else {
-    for (size_t i = 0; i < names->size(); ++i) {
-      //float phi = ((*ys)[i]==0 && (*xs)[i]==0) ? 0 : atan2((*ys)[i],(*xs)[i]);
-      //float r = sqrt((*xs)[i]*(*xs)[i] + (*ys)[i]*(*ys)[i]);
+    nStoppedParticles = names->size();
+    for (int i = 0; i < nStoppedParticles; ++i) {
+      //std::cout<<"stopped particles name is: "<<names->at(i)<<std::endl;
       
-      std::cout<<"stopped particles name is: "<<names->at(i)<<std::endl;
-  
       for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
 	//if mcparticle matched to correct stopped particle ID
 	if(itmcpart->pdgId()==ids->at(i)){
 	  matched = true;
 	  stopped_genParticle = itmcpart;
+	  stoppedParticle_index = i;
 	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
 	  break;
 	}
@@ -138,6 +172,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
 	  matched = true;
 	  stopped_genParticle = itmcpart;
+	  stoppedParticle_index = i;
 	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
 	  break;
 	}
@@ -146,8 +181,24 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }//end of if stopped particles is valid
 
   if(matched){
-    std::cout<<"matched!"<<std::endl;
-  /*
+    //std::cout<<"matched!"<<std::endl;
+    float r = sqrt(xs->at(stoppedParticle_index)*xs->at(stoppedParticle_index) + ys->at(stoppedParticle_index)*ys->at(stoppedParticle_index));
+    float eta = Eta(xs->at(stoppedParticle_index),ys->at(stoppedParticle_index),
+		    zs->at(stoppedParticle_index),times->at(stoppedParticle_index));
+    float phi = ((*ys)[stoppedParticle_index]==0 && (*xs)[stoppedParticle_index]==0) ? 0 : atan2((*ys)[stoppedParticle_index],(*xs)[stoppedParticle_index]);
+    
+    //stoppedParticleName = names->at(stoppedParticle_index);
+    stoppedParticleId = ids->at(stoppedParticle_index);	   
+    stoppedParticleMass = masses->at(stoppedParticle_index);
+    stoppedParticleCharge = charges->at(stoppedParticle_index);
+    stoppedParticleX = 1.0*xs->at(stoppedParticle_index)/10; //divide by 10 to convert to cm
+    stoppedParticleY = 1.0*ys->at(stoppedParticle_index)/10;   
+    stoppedParticleZ = 1.0*zs->at(stoppedParticle_index)/10;
+    stoppedParticleR = 1.0*r/10;
+    stoppedParticleEta = eta;				   
+    stoppedParticlePhi = phi;
+    stoppedParticleTime = times->at(stoppedParticle_index);
+
     //loop over rhadron daughters
     for(size_t j=0; j<stopped_genParticle->numberOfDaughters(); j++){
       const reco::Candidate* daughter = stopped_genParticle->daughter(j);
@@ -220,8 +271,36 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  }//end of if ubar
 	}//end of loop over sparticle's daughters
       }//end of if gluino, stop - left and right handed, stau
+
+      //look for sparticle (gluino, stop - left and right handed, stau) 
+      if (fabs(stopped_genParticle->pdgId()) == 17 && fabs(partId) == 13) {
+	const reco::Candidate* muon = daughter;
+
+	if(j==0){
+	  muon0Mass = muon->mass();
+	  muon0Charge = muon->charge();
+	  muon0Px = muon->px();
+	  muon0Py = muon->py();
+	  muon0Pz = muon->pz();
+	  muon0Pt = muon->pt();
+	  muon0P = muon->p();
+	  muon0Eta = muon->eta();
+	  muon0Phi = muon->phi();
+	}
+	else if(j==1){
+	  muon1Mass = muon->mass();
+	  muon1Charge = muon->charge();
+	  muon1Px = muon->px();
+	  muon1Py = muon->py();
+	  muon1Pz = muon->pz();
+	  muon1Pt = muon->pt();
+	  muon1P = muon->p();
+	  muon1Eta = muon->eta();
+	  muon1Phi = muon->phi();
+	}
+	else std::cout<<"daughter number "<<j<<" !!!!!!"<<std::endl;
+      }//end of if daughter is muon
     }//end of loop over daughters of stopped particle
-  */
   }//end of if matched
   
   else{
@@ -231,7 +310,20 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       std::clog<<"  "<<itmcpart->pdgId()<<std::endl;
     }
   }//end of if not matched
-  /*
+
+  (*eventvariables)["nStoppedParticles"] = nStoppedParticles;
+  //(*eventvariables)["stoppedParticleName"]   = stoppedParticleName;
+  (*eventvariables)["stoppedParticleId"]     = stoppedParticleId;
+  (*eventvariables)["stoppedParticleMass"]   = stoppedParticleMass;
+  (*eventvariables)["stoppedParticleCharge"] = stoppedParticleCharge;
+  (*eventvariables)["stoppedParticleX"]      = stoppedParticleX;
+  (*eventvariables)["stoppedParticleY"]      = stoppedParticleY;
+  (*eventvariables)["stoppedParticleZ"]      = stoppedParticleZ;
+  (*eventvariables)["stoppedParticleR"]      = stoppedParticleR;
+  (*eventvariables)["stoppedParticleEta"]    = stoppedParticleEta;
+  (*eventvariables)["stoppedParticlePhi"]    = stoppedParticlePhi;
+  (*eventvariables)["stoppedParticleTime"]   = stoppedParticleTime;
+
   (*eventvariables)["neutralinoMass"] = neutralinoMass;
   (*eventvariables)["neutralinoPx"] = neutralinoPx;
   (*eventvariables)["neutralinoPy"] = neutralinoPy;
@@ -267,9 +359,29 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["ubarP"] = ubarP;
   (*eventvariables)["ubarEta"] = ubarEta;
   (*eventvariables)["ubarPhi"] = ubarPhi;
-  */  
 
+  (*eventvariables)["muon0Mass"] = muon0Mass;
+  (*eventvariables)["muon0Charge"] = muon0Charge;
+  (*eventvariables)["muon0Px"] = muon0Px;
+  (*eventvariables)["muon0Py"] = muon0Py;
+  (*eventvariables)["muon0Pz"] = muon0Pz;
+  (*eventvariables)["muon0Pt"] = muon0Pt;
+  (*eventvariables)["muon0P"] = muon0P;
+  (*eventvariables)["muon0Eta"] = muon0Eta;
+  (*eventvariables)["muon0Phi"] = muon0Phi;
 
+  (*eventvariables)["muon1Mass"] = muon1Mass;
+  (*eventvariables)["muon1Charge"] = muon1Charge;
+  (*eventvariables)["muon1Px"] = muon1Px;
+  (*eventvariables)["muon1Py"] = muon1Py;
+  (*eventvariables)["muon1Pz"] = muon1Pz;
+  (*eventvariables)["muon1Pt"] = muon1Pt;
+  (*eventvariables)["muon1P"] = muon1P;
+  (*eventvariables)["muon1Eta"] = muon1Eta;
+  (*eventvariables)["muon1Phi"] = muon1Phi;
+
+  
+  //livetime
   int nRuns = run_livetime_hist->GetNbinsX();
   double livetimeByRun = 9999; //default value should be large so if something is wrong, the event contributes very little to the 1/livetime weighted distribution
   for(int i=1; i<=nRuns; i++){
@@ -295,6 +407,11 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["livetimeByFill"] = livetimeByFill;
 
 }//end of AddVariables()
+
+double StoppPtlsEventVariableProducer::Eta(double x, double y, double z, double time) {
+  TLorentzVector v = TLorentzVector(x, y, z, time);
+  return v.PseudoRapidity();
+}
   
 #include "FWCore/Framework/interface/MakerMacros.h"
 DEFINE_FWK_MODULE(StoppPtlsEventVariableProducer);

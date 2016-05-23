@@ -24,7 +24,7 @@ void DelayedMuonsEventVariableProducer::AddVariables(const edm::Event & event) {
   event.getByToken(tracksToken_, tracks);
   
   (*eventvariables)["nTracks"] = tracks->size();
-  std::cout<<"nTracks is: "<<tracks->size()<<std::endl;
+  //std::cout<<"nTracks is: "<<tracks->size()<<std::endl;
 
   long unsigned int upper0_index = 999;
   long unsigned int upper1_index = 999;
@@ -34,8 +34,8 @@ void DelayedMuonsEventVariableProducer::AddVariables(const edm::Event & event) {
   long unsigned int lower2_index = 999;
 
   for(decltype(tracks->size()) i = 0; i != tracks->size(); ++i) {
-    std::cout<<"track phi is: "<<tracks->at(i).phi()<<std::endl;
-    std::cout<<"track pt is: "<<tracks->at(i).pt()<<std::endl;
+    //std::cout<<"track phi is: "<<tracks->at(i).phi()<<std::endl;
+    //std::cout<<"track pt is: "<<tracks->at(i).pt()<<std::endl;
 
     if(tracks->at(i).phi()>0.){
       if(i==0) upper0_index = i;
@@ -48,13 +48,13 @@ void DelayedMuonsEventVariableProducer::AddVariables(const edm::Event & event) {
       if(i==2) lower2_index = i;
     }//end of if lower
 
-    long unsigned int nRpcHits = tracks->at(i).rpcHitBx().size();
-    std::cout<<"number of rpc hits in track is: "<<nRpcHits<<std::endl;
-    std::cout<<"Rpc_Bx_Pattern is: "<<Rpc_Bx_Pattern(tracks,i,nRpcHits)<<std::endl;
-    std::cout<<"rpc_bx_average is: "<<Rpc_Bx_Average(tracks,i,nRpcHits)<<std::endl;
+    //long unsigned int nRpcHits = tracks->at(i).rpcHitBx().size();
+    //std::cout<<"number of rpc hits in track is: "<<nRpcHits<<std::endl;
+    //std::cout<<"Rpc_Bx_Pattern is: "<<Rpc_Bx_Pattern(tracks,i,nRpcHits)<<std::endl;
+    //std::cout<<"rpc_bx_average is: "<<Rpc_Bx_Average(tracks,i,nRpcHits)<<std::endl;
 
   }//end of loop over DSA tracks
-  std::cout<<std::endl;
+  //std::cout<<std::endl;
 
   if(upper0_index!=999){
     (*eventvariables)["p_upper0"] =                         (tracks->at(upper0_index)).p();
@@ -655,7 +655,7 @@ int DelayedMuonsEventVariableProducer::Rpc_Bx_Pattern(edm::Handle<std::vector<Ca
 
   //loop over Rpc hits
   for(unsigned int j = 0; j != nRpcHits; ++j) {
-    std::cout<<"  for rpc hit "<<j<<", BX is: "<<tracks->at(i).rpcHitBx().at(j)<<", Z is: "<<tracks->at(i).rpcHitZ().at(j)<<", Rho is: "<<tracks->at(i).rpcHitRho().at(j)<<", phi is: "<<tracks->at(i).rpcHitPhi().at(j)<<", region is: "<<tracks->at(i).rpcHitRegion().at(j)<<std::endl;
+    //std::cout<<"  for rpc hit "<<j<<", BX is: "<<tracks->at(i).rpcHitBx().at(j)<<", Z is: "<<tracks->at(i).rpcHitZ().at(j)<<", Rho is: "<<tracks->at(i).rpcHitRho().at(j)<<", phi is: "<<tracks->at(i).rpcHitPhi().at(j)<<", region is: "<<tracks->at(i).rpcHitRegion().at(j)<<std::endl;
     if(tracks->at(i).rpcHitBx().at(j) != 0) all_bx_0 = false;
     if(tracks->at(i).rpcHitBx().at(j) <= 0) all_bx_positive = false;
     if(tracks->at(i).rpcHitBx().at(j) >= 0) all_bx_negative = false;

@@ -12,6 +12,16 @@ cutDummy = cms.PSet(
 )
 
 ########################################
+#not in cavern walls
+#######################################
+cutNotCavernWalls = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("stoppedParticleR < 728.5 && fabs(stoppedParticleZ) < 1080"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Not in Cavern Walls")
+)
+
+########################################
 #bx
 #######################################
 cutBx = cms.PSet(
