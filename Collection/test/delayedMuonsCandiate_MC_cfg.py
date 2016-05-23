@@ -19,7 +19,7 @@ process.maxEvents = cms.untracked.PSet (
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
       #"file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
-        "file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Simulation/reco/stage2RECO.root"
+        "file:/home/jalimena/StoppedParticles2015/cleanAreaForStage2Production/CMSSW_7_6_5/src/StoppPtls/Simulation/reco/stage2RECO.root"
     ),
 )
 
@@ -27,17 +27,17 @@ from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '76X_mcRun2_asymptotic_RunIIFall15DR76_v1', '')
 
 #HLT bit filter
-process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
-process.hltHighLevel.TriggerResultsTag = cms.InputTag("TriggerResults","","HLT")
-process.hltHighLevel.throw = cms.bool(False)
-process.hltHighLevel.HLTPaths = cms.vstring(
-    "HLT_L2Mu10_NoVertex_NoBPTX_*",
-    "HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_*",
-    "HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
-    "HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
-)
+#process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
+#process.hltHighLevel.TriggerResultsTag = cms.InputTag("TriggerResults","","HLT")
+#process.hltHighLevel.throw = cms.bool(False)
+#process.hltHighLevel.HLTPaths = cms.vstring(
+    #"HLT_L2Mu10_NoVertex_NoBPTX_*",
+    #"HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_*",
+    #"HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
+    #"HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
+#)
 
-process.filter_step = cms.Path(process.hltHighLevel)
+#process.filter_step = cms.Path(process.hltHighLevel)
 
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
@@ -68,9 +68,9 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string("RECOWithStoppedParticleEvents.root"),
     outputCommands = process.MINIAODSIMEventContent.outputCommands,
     overrideInputFileSplitLevels = cms.untracked.bool(True),
-    SelectEvents = cms.untracked.PSet(
-      SelectEvents = cms.vstring('filter_step')
-    )
+    #SelectEvents = cms.untracked.PSet(
+      #SelectEvents = cms.vstring('filter_step')
+    #)
 )
 
 process.RECOSIMoutput.outputCommands.append('drop *_*_*_SIM')
@@ -82,4 +82,5 @@ process.RECOSIMoutput.outputCommands.append("drop *_fixedGridRho*_*_RECO")
 process.RECOSIMoutput.outputCommands.append("keep *_*_*_STOPPPTLS")
 
 process.myEndPath = cms.EndPath (process.RECOSIMoutput)
-process.schedule = cms.Schedule(process.filter_step, process.eventproducer, process.myEndPath)
+#process.schedule = cms.Schedule(process.filter_step, process.eventproducer, process.myEndPath)
+process.schedule = cms.Schedule(process.eventproducer, process.myEndPath)

@@ -165,7 +165,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  matched = true;
 	  stopped_genParticle = itmcpart;
 	  stoppedParticle_index = i;
-	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+	  //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
 	  break;
 	}
 	//sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
@@ -173,7 +173,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  matched = true;
 	  stopped_genParticle = itmcpart;
 	  stoppedParticle_index = i;
-	  std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
+	  //std::clog<<"stopped particle id (Rhadron) is: "<<itmcpart->pdgId()<<std::endl;
 	  break;
 	}
       }//end of loop over mcparticles
