@@ -3,15 +3,14 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2460
 
-#config_file = "SecondJetAnalysis.py"
-config_file = "StoppedParticlesAnalysis.py"
+config_file = "DelayedMuonsAnalysis.py"
 
 datasetsSig = [
-    'mchamp600',
+    'mchamp600_NtupleSeparateEventsParticle0',
 ]
 
 datasetsData = [
-  'NoBPTX_2015D',
+  'NoBPTX_16Dec2015',
 ]
 
 #data control sample

@@ -95,6 +95,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 selections = []
 selections.append(NoCuts)
 selections.append(TriggerSelection)
+selections.append(GenPlotsSelection)
 selections.append(PrePreSelection)
 selections.append(PreSelection)
 selections.append(DelayedMuonsSelection)
