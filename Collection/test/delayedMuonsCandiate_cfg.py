@@ -9,7 +9,7 @@ process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 process.load('Configuration.EventContent.EventContent_cff')
 
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (10)
@@ -18,12 +18,14 @@ process.maxEvents = cms.untracked.PSet (
 
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
-      "file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
-    ),
-)
+        #"file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
+        #'/store/data/Run2015D/NoBPTX/AOD/16Dec2015-v1/50000/0A09722C-FDAF-E511-A96E-001E67E6F616.root'
+        ' /store/data/Run2015D/NoBPTX/RECO/16Dec2015-v1/50000/00B75408-50AF-E511-8E34-00266CFCC68C.root'
+        ),
+                             )
 
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '76X_mcRun2_asymptotic_RunIIFall15DR76_v1', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '76X_dataRun2_16Dec2015_v0', '')
 
 #HLT bit filter
 process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
