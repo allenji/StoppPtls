@@ -34,8 +34,8 @@ void DelayedMuonsEventVariableProducer::AddVariables(const edm::Event & event) {
   long unsigned int lower2_index = 999;
 
   for(decltype(tracks->size()) i = 0; i != tracks->size(); ++i) {
-    //std::cout<<"track phi is: "<<tracks->at(i).phi()<<std::endl;
-    //std::cout<<"track pt is: "<<tracks->at(i).pt()<<std::endl;
+    //std::cout<<"track number "<<i<<": phi is: "<<tracks->at(i).phi()<<std::endl;
+    //std::cout<<"track number "<<i<<": pt is: "<<tracks->at(i).pt()<<std::endl;
 
     if(tracks->at(i).phi()>0.){
       if(i==0) upper0_index = i;

@@ -89,8 +89,8 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
     //for(reco::TrackCollection::const_iterator it =displacedStandAloneMuons_.begin();
     //it!=displacedStandAloneMuons_.end();
     //it++) {
-    for(const auto &it : *displacedStandAloneMuons){
-      //for(const auto &it : displacedStandAloneMuons_){
+    //for(const auto &it : *displacedStandAloneMuons){
+    for(const auto &it : displacedStandAloneMuons_){
       //std::cout<<"in displacedStandAloneMuons loop"<<std::endl;  
     
       CandidateDelayedMuonsTrack track(it);

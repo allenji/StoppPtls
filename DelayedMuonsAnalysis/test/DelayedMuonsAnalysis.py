@@ -11,14 +11,15 @@ process = cms.Process ('OSUAnalysis')
 
 # how often to print a log message
 process.load ('FWCore.MessageService.MessageLogger_cfi')
-#process.MessageLogger.cerr.FwkReport.reportEvery = 1
-process.MessageLogger.cerr.FwkReport.reportEvery = 100
+process.MessageLogger.cerr.FwkReport.reportEvery = 1
+#process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 # input source when running interactively
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-        'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
+        #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
+        'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         ),
                              )
 
@@ -45,7 +46,8 @@ process.TFileService = cms.Service ('TFileService',
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (100)
-    input = cms.untracked.int32 (-1)
+    #input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (10)
 )
 
 ################################################################################
@@ -136,3 +138,5 @@ process.StoppPtlsEventVariableProducer.stoppedParticlesCharge = cms.InputTag("g4
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
+
+#process.Tracer = cms.Service("Tracer")

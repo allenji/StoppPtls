@@ -29,9 +29,10 @@ GenPlotsSelection = cms.PSet(
     name = cms.string("GenPlotsSelection"),
     triggers = cms.vstring(""),
     cuts = cms.VPSet(
-      cutNotCavernWalls,
-      )
-)
+        cutDummy,
+        cutNotCavernWalls,
+        )
+    )
 
 #PrePre Selection (only pt>10 GeV cut)
 #For jetE, jetEta plots
