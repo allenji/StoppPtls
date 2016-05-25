@@ -6,7 +6,8 @@ intLumi = 2830
 config_file = "delayedMuonsCandiate_cfg.py"
 
 datasets = [
-    "NoBPTX_16Dec2015"
+    #"NoBPTX_16Dec2015"
+    "NoBPTX_2015BCDE_PromptReco"
 ]
     
 InputCondorArguments = {}
