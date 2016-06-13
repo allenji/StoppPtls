@@ -17,6 +17,16 @@ cutJetEnergy = cms.PSet(
 )
 
 ########################################
+##Stopped Particle in EB or HB
+#######################################
+cutStoppedParticleEBHB = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("(stoppedParticleR>=184 && stoppedParticleR<=295 && fabs(stoppedParticleZ<5000)) || (stoppedParticleR>=131 && stoppedParticleR<=184 && fabs(stoppedParticleZ<3760))"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Stopped Particle in EB or HB")
+)
+
+########################################
 ##bx
 #######################################
 cutBx = cms.PSet(

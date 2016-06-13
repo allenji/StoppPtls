@@ -196,11 +196,21 @@ SecondJetSelection = cms.PSet(
      )
 )
 
+#Only stopped particle in EB or HB cut
+StoppedParticleEBHBSelection = cms.PSet(
+    name = cms.string("StoppedParticleEBHBSelection"),
+    triggers = cms.vstring(""), 
+    cuts = cms.VPSet(
+        cutStoppedParticleEBHB
+        )
+    )
+
 #No cuts (including no trigger) selection
 NoCuts = cms.PSet(
     name = cms.string("NoCuts"),
     triggers = cms.vstring(""), 
     cuts = cms.VPSet(
+        cutDummy
         )
     )
 
