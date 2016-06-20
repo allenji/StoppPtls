@@ -1,12 +1,20 @@
+import FWCore.ParameterSet.Config as cms
+import OSUT3Analysis.DBTools.osusub_cfg as osusub
+from OSUT3Analysis.Configuration.configurationOptions import *
+from OSUT3Analysis.Configuration.processingUtilities import *    
+
 # Modify these variables to switch masses, input stopped points files, and flavor of RHadron
-SPARTICLE_MASS=XXX
-NEUTRALINO_MASS=YYY
+if osusub.batchMode:
+    SPARTICLE_MASS=float((osusub.datasetLabel)[6:])
+else:
+    SPARTICLE_MASS=2000
+print "mass is: " + str(SPARTICLE_MASS)
+
+NEUTRALINO_MASS=SPARTICLE_MASS/4.0
 GRAVITINO_MASS=0.00001
-DELAYED_MUONS=False
+DELAYED_MUONS=True
 SAME_EVENT=False
 PARTICLE_NUMBER=0
-
-import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('SIM2')
 
@@ -47,7 +55,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(20)
     #input = cms.untracked.int32(-1)
     )
 
@@ -59,7 +67,10 @@ process.options = cms.untracked.PSet(
 process.source = cms.Source ("PoolSource",
                              fileNames=cms.untracked.vstring(
         #'file:../stage1/step1_mchamp500.root'
-        'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        #'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        #'/store/mc/RunIIWinter15GS/HSCPgluino_M-100_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/18D0DCDC-9301-E511-B022-002590D600B6.root'
+        #' /store/mc/RunIIWinter15GS/HSCPgluino_M-200_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/1EA7F398-0B02-E511-A978-8F2B71CB40F1.root'
+        '/store/mc/RunIIWinter15GS/HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/0E4DC19D-6201-E511-833F-0022194FEC31.root'
         )
                              )
 
