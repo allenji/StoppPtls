@@ -10,28 +10,26 @@ datasetsSig = [
 ]
 
 datasetsData = [
-  'NoBPTX_16Dec2015',
+   'NoBPTX_16Dec2015_Ntuple',
 ]
 
-#data control sample
-datasetsControl = [
-    'StpPtls_controlSample_2015',
+datasetsCosmicData = [
+    'NoBPTX_2015BCDE_PromptReco_Cosmic_Ntuple',
 ]
 
-#cosmic MC with MET with pt>15GeV, a barrel jet, and 0 cscSegments
-datasetsCosmic = [
-    'cosmic_preselection',
+datasetsCosmicMC = [
+    #'cosmic_preselection',
 ]
 
     
-#datasets = datasetsSig + datasetsData + datasetsControl
+#datasets = datasetsSig + datasetsData + datasetsCosmicData
 #datasets = datasetsSig + datasetsData
-datasets = datasetsSig
+#datasets = datasetsSig
 #datasets = datasetsData
-#datasets = datasetsControl
-#datasets = datasetsCosmic + datasetsSig_2BodyDecay
-#datasets = datasetsControl + datasetsCosmic + datasetsSig_2BodyDecay
-#datasets = datasetsCosmic + datasetsSig_2BodyDecay
+datasets = datasetsCosmicData
+#datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
+#datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
+#datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsDummy
 #datasets = datasetsData + datasetsRpcStudy
 
