@@ -10,7 +10,8 @@
 
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg),
-  livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile")),
+  livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile"))//,
+  /*
   stoppedParticlesNameTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesName")),
   stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
   stoppedParticlesXTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesX")),
@@ -27,16 +28,18 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   stoppedParticlesMassToken_    (consumes<std::vector<float> >(stoppedParticlesMassTag_)),
   stoppedParticlesChargeTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesCharge")),
   stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_))
+  */
 {
+  /*
   file = TFile::Open(livetimeRootFile_.c_str());
   file->cd("TriggerResults");
   run_livetime_hist = (TH1D*)gDirectory->Get("run_livetime_hist");
   fill_livetime_hist = (TH1D*)gDirectory->Get("fill_livetime_hist");
 
   clog<<"Total livetime is: "<<run_livetime_hist->GetSumOfWeights()<<" seconds"<<endl;
-
+  */
   eventsToken_ = consumes<vector<TYPE(events)> >(collections_.getParameter<edm::InputTag>("events"));
-  mcparticlesToken_ = consumes<vector<TYPE(mcparticles)> >(collections_.getParameter<edm::InputTag>("mcparticles"));
+  //mcparticlesToken_ = consumes<vector<TYPE(mcparticles)> >(collections_.getParameter<edm::InputTag>("mcparticles"));
 }
 
 StoppPtlsEventVariableProducer::~StoppPtlsEventVariableProducer()
@@ -47,6 +50,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 
   //stopped particles and gen particles
   edm::Handle<std::vector<CandidateEvent> > events;
+  /*
   edm::Handle<std::vector<reco::GenParticle> > mcparticles;
   
   event.getByToken (eventsToken_, events);
@@ -379,8 +383,8 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["muon1P"] = muon1P;
   (*eventvariables)["muon1Eta"] = muon1Eta;
   (*eventvariables)["muon1Phi"] = muon1Phi;
-
-  
+  */
+  /*  
   //livetime
   int nRuns = run_livetime_hist->GetNbinsX();
   double livetimeByRun = 9999; //default value should be large so if something is wrong, the event contributes very little to the 1/livetime weighted distribution
@@ -405,7 +409,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }
   clog<<"livetimeByFill is: "<<livetimeByFill<<endl;
   (*eventvariables)["livetimeByFill"] = livetimeByFill;
-
+  */
 }//end of AddVariables()
 
 double StoppPtlsEventVariableProducer::Eta(double x, double y, double z, double time) {
