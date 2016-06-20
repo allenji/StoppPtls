@@ -40,8 +40,8 @@ namespace {
     std::vector<CandidateRpcHit>               candidateRpcHit1;
     edm::Wrapper<CandidateRpcHit>         candidateRpcHit2;
     edm::Wrapper<std::vector<CandidateRpcHit> > candidateRpcHit3;
-  };
-  struct StoppPtls_CandidateDelayedMuonsTrackProducer {
+    //  };
+    //struct StoppPtls_CandidateDelayedMuonsTrackProducer {
     CandidateDelayedMuonsTrack                         candidateTrack0;
     vector<CandidateDelayedMuonsTrack>                 candidateTrack1;
     edm::Wrapper<CandidateDelayedMuonsTrack>           candidateTrack2;
