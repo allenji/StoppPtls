@@ -34,6 +34,9 @@ CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack () :
   rpcHitPhi_(0),
   rpcHitRegion_(0),
   rpcHitBx_(0),
+  rpcHitBxPattern_(-999),
+  rpcHitBxAverage_(-999.),
+  nRpcTimingHits_(-999),
   dtTofDirection_(-999),
   dtTofNDof_(-999),
   dtTofInverseBeta_(-999),
@@ -78,6 +81,9 @@ CandidateDelayedMuonsTrack::CandidateDelayedMuonsTrack (const reco::Track &track
   rpcHitPhi_(0),
   rpcHitRegion_(0),
   rpcHitBx_(0),
+  rpcHitBxPattern_(-999),
+  rpcHitBxAverage_(-999.),
+  nRpcTimingHits_(-999),
   dtTofDirection_(-999),
   dtTofNDof_(-999),
   dtTofInverseBeta_(-999),
@@ -239,6 +245,21 @@ const vector<int> CandidateDelayedMuonsTrack::rpcHitRegion() const
 const vector<int> CandidateDelayedMuonsTrack::rpcHitBx() const
 {
   return this->rpcHitBx_;
+}
+
+const int CandidateDelayedMuonsTrack::rpcHitBxPattern() const
+{
+  return this->rpcHitBxPattern_;
+}
+
+const double CandidateDelayedMuonsTrack::rpcHitBxAverage() const
+{
+  return this->rpcHitBxAverage_;
+}
+
+const int CandidateDelayedMuonsTrack::nRpcTimingHits() const
+{
+  return this->nRpcTimingHits_;
 }
 
 const int CandidateDelayedMuonsTrack::dtTofDirection() const

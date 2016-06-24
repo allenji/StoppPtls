@@ -120,4 +120,7 @@ private:
 
   edm::InputTag rpcRecHitsTag_;
   edm::EDGetTokenT<RPCRecHitCollection> rpcRecHitsToken_;  
+
+  int Rpc_Bx_Pattern(std::vector<int> &);
+  double Rpc_Bx_Average(std::vector<int> &);
 };

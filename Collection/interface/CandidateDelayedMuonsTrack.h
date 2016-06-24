@@ -44,6 +44,9 @@ class CandidateDelayedMuonsTrack : public reco::Track{
   const vector<double> rpcHitPhi() const;
   const vector<int> rpcHitRegion() const;
   const vector<int> rpcHitBx() const;
+  const int rpcHitBxPattern() const;
+  const double rpcHitBxAverage() const;
+  const int nRpcTimingHits() const;
   const int dtTofDirection() const;
   const int dtTofNDof() const;
   const double dtTofInverseBeta() const;
@@ -84,6 +87,9 @@ class CandidateDelayedMuonsTrack : public reco::Track{
   void set_rpcHitPhi(vector<double> value) {rpcHitPhi_ = value;}
   void set_rpcHitRegion(vector<int> value) {rpcHitRegion_ = value;}
   void set_rpcHitBx(vector<int> value) {rpcHitBx_ = value;}
+  void set_rpcHitBxPattern(int value) {rpcHitBxPattern_ = value;}
+  void set_rpcHitBxAverage(double value) {rpcHitBxAverage_ = value;}
+  void set_nRpcTimingHits(int value) {nRpcTimingHits_ = value;}
   void set_dtTofDirection(int value) {dtTofDirection_ = value;}
   void set_dtTofNDof(int value) {dtTofNDof_ = value;}
   void set_dtTofInverseBeta(double value) {dtTofInverseBeta_ = value;}
@@ -125,6 +131,9 @@ class CandidateDelayedMuonsTrack : public reco::Track{
   vector<double> rpcHitPhi_;
   vector<int> rpcHitRegion_;
   vector<int> rpcHitBx_;
+  int rpcHitBxPattern_;
+  double rpcHitBxAverage_;
+  int nRpcTimingHits_;
   int dtTofDirection_;
   int dtTofNDof_;
   double dtTofInverseBeta_;
