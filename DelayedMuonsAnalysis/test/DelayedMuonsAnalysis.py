@@ -19,8 +19,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
-        #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
+        'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         ),
                              )
 
@@ -46,9 +46,9 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    #input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (100)
     #input = cms.untracked.int32 (-1)
-    input = cms.untracked.int32 (10)
+    #input = cms.untracked.int32 (10)
 )
 
 ################################################################################
@@ -100,8 +100,9 @@ selections.append(NoCuts)
 selections.append(TriggerSelection)
 selections.append(GenPlotsSelection)
 selections.append(PrePreSelection)
-selections.append(PreSelection)
-selections.append(DelayedMuonsSelection)
+selections.append(PreSelectionUpperOnly)
+selections.append(PreSelectionUpperLower)
+selections.append(DelayedMuonsUpperOnlySelection)
 selections.append(DelayedMuonsUpperLowerSelection)
 
 histograms = cms.VPSet()
@@ -109,16 +110,15 @@ histograms.append(DelayedMuonsStoppedParticleHistograms)
 histograms.append(Muon0Histograms)
 histograms.append(Muon1Histograms)
 histograms.append(EventHistograms)
-histograms.append(DSAHistograms)
+histograms.append(UpperDSAHistograms)
+histograms.append(LowerDSAHistograms)
 histograms.append(NumberOfObjectsHistograms)
 histograms.append(NumberOfDelayedMuonsObjectsHistograms)
 histograms.append(DelayedMuonsObjectsVsTimeHistograms)
-histograms.append(Upper0DSAHistograms)
-histograms.append(Lower0DSAHistograms)
 histograms.append(DeltaDSAHistograms)
-histograms.append(Upper0vsLower0DSAHistograms)
-histograms.append(Upper0vsUpper0DSAHistograms)
-histograms.append(Lower0vsLower0DSAHistograms)
+histograms.append(UppervsLowerDSAHistograms)
+histograms.append(UppervsUpperDSAHistograms)
+histograms.append(LowervsLowerDSAHistograms)
 histograms.append(VsDeltaDSAHistograms)
 
 scalingfactorproducers = []

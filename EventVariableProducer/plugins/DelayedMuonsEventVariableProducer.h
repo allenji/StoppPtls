@@ -27,6 +27,7 @@ class DelayedMuonsEventVariableProducer : public EventVariableProducer
   double Rpc_Bx_Average(edm::Handle<std::vector<CandidateDelayedMuonsTrack> > &, long unsigned int&, long unsigned int&);
 
   edm::EDGetTokenT<vector<TYPE(tracks)> > tracksToken_;
+  edm::EDGetTokenT<vector<TYPE(secondaryTracks)> > secondaryTracksToken_;
 
 };
 

@@ -50,6 +50,10 @@
 #define tracks_TYPE CandidateDelayedMuonsTrack
 #undef tracks_INVALID
 
+#undef secondaryTracks_TYPE
+#define secondaryTracks_TYPE CandidateDelayedMuonsTrack
+#undef secondaryTracks_INVALID
+
 #undef prescales_TYPE
 #define prescales_TYPE pat::PackedTriggerPrescales
 #undef prescales_INVALID
