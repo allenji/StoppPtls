@@ -80,7 +80,11 @@ namespace {
 
     sprintf (buffer, "DECAY 1000021 1.e-12 \n"); 
     file << buffer; // gluino
-    sprintf (buffer, "     1.00000000E+00   2   1000022   21 \n"); 
+    if(isDelayedMuons) sprintf (buffer, "     1.00000000E+00   3   1000023   2  -2\n"); //3 body decay
+    else{
+      sprintf (buffer, "     1.00000000E+00   2   1000022   21 \n"); 
+      //sprintf (buffer, "     1.00000000E+00   3   1000022   2  -2\n"); //3 body decay
+    }
     file << buffer;
 
     sprintf (buffer, "DECAY 1000006 1.e-12 \n"); 
@@ -89,6 +93,11 @@ namespace {
     file << buffer;
 
     if(isDelayedMuons){
+      sprintf (buffer, "DECAY 1000023 1.e-12 \n"); 
+      file << buffer; // neutralino2
+      sprintf (buffer, "     1.00000000E+00   3   1000022   13  -13\n"); //3 body decay
+      file << buffer;
+
       sprintf (buffer, "DECAY 24 1.e-12 \n");
       file << buffer; //W
       sprintf (buffer, "     1.00000000E+00   2   -13 14 \n");
@@ -250,14 +259,18 @@ namespace {
 
   void setAllMasses (std::ofstream& file, double sparticleMass, double neutralinoMass, double gravitinoMass) {
   //void setAllMasses (std::ofstream& file, double sparticleMass, double neutralinoMass) {
+    LogDebug("GeneratorInterface")<<"sparticleMass is: "<<sparticleMass<<std::endl;
+    LogDebug("GeneratorInterface")<<"neutralinoMass is: "<<neutralinoMass<<std::endl;
     char buffer[1024];
     sprintf (buffer, "BLOCK_MASS\n"); file << buffer;
     sprintf (buffer, "   1000022   %6.1f\n", neutralinoMass); file << buffer;
+    sprintf (buffer, "   1000023   %6.1f\n", 2.5*neutralinoMass); file << buffer;
     sprintf (buffer, "   1000039   %6.1f\n", gravitinoMass); file << buffer;
     sprintf (buffer, "   17        %6.1f\n", sparticleMass); file << buffer;
     sprintf (buffer, "   1000021   %6.1f\n", sparticleMass); file << buffer;
     sprintf (buffer, "   1000006   %6.1f\n", sparticleMass); file << buffer;
     sprintf (buffer, "   1000015   %6.1f\n", sparticleMass); file << buffer;
+    LogDebug("GeneratorInterface")<<buffer<<std::endl;
     double hadronMass = sparticleMass + 2.;
     for (int i = 0; i < specialNumber; ++i) {
       int pid = specialPid[i];
