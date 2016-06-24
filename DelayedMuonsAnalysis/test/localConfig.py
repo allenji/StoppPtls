@@ -4,6 +4,7 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 intLumi = 2460
 
 config_file = "DelayedMuonsAnalysis.py"
+#config_file = "dumpedConfig.py"
 
 datasetsSig = [
     'mchamp600_NtupleSeparateEventsParticle0',
@@ -24,9 +25,10 @@ datasetsCosmicMC = [
     
 #datasets = datasetsSig + datasetsData + datasetsCosmicData
 #datasets = datasetsSig + datasetsData
-#datasets = datasetsSig
+#datasets = datasetsSig + datasetsCosmicData
+datasets = datasetsSig
 #datasets = datasetsData
-datasets = datasetsCosmicData
+#datasets = datasetsCosmicData
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay

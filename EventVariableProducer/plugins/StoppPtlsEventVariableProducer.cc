@@ -11,7 +11,7 @@
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg),
   livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile"))//,
-  /*
+  /*  
   stoppedParticlesNameTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesName")),
   stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
   stoppedParticlesXTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesX")),
@@ -383,7 +383,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["muon1P"] = muon1P;
   (*eventvariables)["muon1Eta"] = muon1Eta;
   (*eventvariables)["muon1Phi"] = muon1Phi;
-  */
+  */  
   /*  
   //livetime
   int nRuns = run_livetime_hist->GetNbinsX();

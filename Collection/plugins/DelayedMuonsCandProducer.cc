@@ -77,7 +77,8 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
   edm::ESHandle<GlobalTrackingGeometry> theTrackingGeometry;
   iSetup.get<GlobalTrackingGeometryRecord>().get(theTrackingGeometry);
 
-  auto_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());                                          //std::cout<<"got all collections"<<std::endl;  
+  auto_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());
+  //std::cout<<"got all collections"<<std::endl;
   
   if (displacedStandAloneMuons.isValid()) {
     //std::cout<<"displacedStandAloneMuons is valid"<<std::endl;  
@@ -95,6 +96,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
     
       CandidateDelayedMuonsTrack track(it);
       //std::cout<<"declared CandidateDelayedMuonsTrack"<<std::endl;  
+      //std::cout<<"track pt is: "<<it.pt()<<std::endl;  
 
       //int muonStations (int subdet, int hitType) const
       //subdet = 0(all), 1(DT), 2(CSC), 3(RPC); hitType=-1(all), 0=valid, 3=bad 

@@ -12,8 +12,8 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.maxEvents = cms.untracked.PSet (
-    #input = cms.untracked.int32 (10)
-    input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (10)
+    #input = cms.untracked.int32 (-1)
 )
 
 process.source = cms.Source ("PoolSource",

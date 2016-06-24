@@ -12,15 +12,16 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.maxEvents = cms.untracked.PSet (
-    #input = cms.untracked.int32 (10)
-    input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (10)
+    #input = cms.untracked.int32 (-1)
 )
 
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
         #"file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
         #'/store/data/Run2015D/NoBPTX/AOD/16Dec2015-v1/50000/0A09722C-FDAF-E511-A96E-001E67E6F616.root'
-        ' /store/data/Run2015D/NoBPTX/RECO/16Dec2015-v1/50000/00B75408-50AF-E511-8E34-00266CFCC68C.root'
+        #'/store/data/Run2015D/NoBPTX/RECO/16Dec2015-v1/50000/00B75408-50AF-E511-8E34-00266CFCC68C.root'
+        'file:./34FB5D39-8AB3-E511-B56A-008CFA14F814.root'
         ),
                              )
 
