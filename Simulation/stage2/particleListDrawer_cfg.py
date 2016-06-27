@@ -12,7 +12,7 @@ process.source = cms.Source ('PoolSource',
         #'file:./stage2_GEN-HLT_mchamp600.root'
         #'file:./hist.root'
         #'file:/data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp600/hist_0.root'
-        'file:/data/users/jalimena/condor/TestStage2Gluino/gluino2000/hist_23.root'
+        'file:/data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000/hist_25.root'
         #'file:/data/users/jalimena/condor/TestStage2Gluino/gluino2000/hist_11.root'
         )
                              )
