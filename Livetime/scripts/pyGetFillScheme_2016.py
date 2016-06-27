@@ -309,7 +309,7 @@ def Main(scheme,fillschemetext=None,overwrite=False,verbose=False):
     #  Default location of fillingSchemes file
     if fillschemetext==None:
         fillschemetext=os.path.join(os.environ["CMSSW_BASE"],
-                                    "src/StoppedHSCP/Ntuples/data/fillingSchemes.txt")
+                                    "src/StoppPtls/Livetime/data/fillingSchemes.txt")
 
     # Check to see whether scheme is already defined in file
     foundscheme=False
@@ -333,7 +333,7 @@ def Main(scheme,fillschemetext=None,overwrite=False,verbose=False):
 
     #newscheme=GetFillSchemeLocal(scheme,verbose=verbose)  # add ability to change websites
     path=os.path.join(os.environ["CMSSW_BASE"],
-                                    "src/StoppedHSCP/Ntuples/data/fillschemes_Run2_2016")
+                                    "src/StoppPtls/Livetime/data/fillschemes_Run2_2016")
     newscheme=GetFillSchemeLocal(scheme,path)  # add Run2 fill schemes
     if newscheme==None:
         print "<pyGetFillScheme::Main> ERROR!  No scheme '%s' could be found!"%scheme
@@ -386,8 +386,8 @@ if __name__=="__main__":
     parser.add_option("-o","--fillschemetext",
                       dest="fillschemetext",
                       default=os.path.join(os.environ["CMSSW_BASE"],
-                                           "src/StoppedHSCP/Ntuples/data/fillingSchemes.txt"),
-                      help="Specify filling schemes file (default is ../StoppedHSCP/Ntuples/data/fillingSchemes.txt)")
+                                           "src/StoppPtls/Livetime/data/fillingSchemes.txt"),
+                      help="Specify filling schemes file (default is ../StoppPtls/Livetime/data/fillingSchemes.txt)")
     parser.add_option("-w","--website",
                       action="append",
                       default=["http://lpc.web.cern.ch/lpc/documents/FillPatterns",
