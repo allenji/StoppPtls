@@ -274,19 +274,19 @@ UpperDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("nValidMuonHits"),
             title = cms.string("Number of Valid Muon Hits in Upper DSA Track; Number of Valid Muon Hits in Upper DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(60, 0, 60),
             inputVariables = cms.vstring("nValidMuonHits"),
             ),
         cms.PSet (
             name = cms.string("nValidCscHits"),
             title = cms.string("Number of Valid CSC Valid Hits in Upper DSA Track; Number of Valid CSC Hits in Upper DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(50, 0, 50),
             inputVariables = cms.vstring("nValidCscHits"),
             ),
         cms.PSet (
             name = cms.string("nValidDtHits"),
             title = cms.string("Number of Valid DT Hits in Upper DSA Track; Number of Valid DT  Hits in Upper DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(50, 0, 50),
             inputVariables = cms.vstring("nValidDtHits"),
             ),
         cms.PSet (
@@ -396,6 +396,24 @@ UpperDSAHistograms = cms.PSet(
             title = cms.string("Upper DSA Track TimeOutIn Error; Upper DSA Track TimeOutIn Error"),
             binsX = cms.untracked.vdouble(120, 0, 30),
             inputVariables = cms.vstring("dtTofTimeAtIpOutInErr"),
+            ),
+        cms.PSet (
+            name = cms.string("nRpcTimingHits"),
+            title = cms.string("Number of RPC Hits in Upper DSA Track; Number of RPC Hits in Upper DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcTimingHits"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitBxPattern"),
+            title = cms.string("Upper DSA Track RPC Hit BX Pattern; Upper DSA Track RPC Hit BX Pattern"),
+            binsX = cms.untracked.vdouble(9, 0, 9),
+            inputVariables = cms.vstring("rpcHitBxPattern"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitBxAverage"),
+            title = cms.string("Upper DSA Track RPC Hit BX Average; Upper DSA Track RPC Hit BX Average"),
+            binsX = cms.untracked.vdouble(200, -10, 10),
+            inputVariables = cms.vstring("rpcHitBxAverage"),
             ),
         )
     )
@@ -526,19 +544,19 @@ LowerDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("nValidMuonHits"),
             title = cms.string("Number of Valid Muon Hits in Lower DSA Track; Number of Valid Muon Hits in Lower DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(60, 0, 60),
             inputVariables = cms.vstring("nValidMuonHits"),
             ),
         cms.PSet (
             name = cms.string("nValidCscHits"),
             title = cms.string("Number of Valid CSC Valid Hits in Lower DSA Track; Number of Valid CSC Hits in Lower DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(50, 0, 50),
             inputVariables = cms.vstring("nValidCscHits"),
             ),
         cms.PSet (
             name = cms.string("nValidDtHits"),
             title = cms.string("Number of Valid DT Hits in Lower DSA Track; Number of Valid DT  Hits in Lower DSA Track"),
-            binsX = cms.untracked.vdouble(100, 0, 100),
+            binsX = cms.untracked.vdouble(50, 0, 50),
             inputVariables = cms.vstring("nValidDtHits"),
             ),
         cms.PSet (
@@ -649,6 +667,24 @@ LowerDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(120, 0, 30),
             inputVariables = cms.vstring("dtTofTimeAtIpOutInErr"),
             ),
+        cms.PSet (
+            name = cms.string("nRpcTimingHits"),
+            title = cms.string("Number of RPC Hits in Lower DSA Track; Number of RPC Hits in Lower DSA Track"),
+            binsX = cms.untracked.vdouble(10, 0, 10),
+            inputVariables = cms.vstring("nRpcTimingHits"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitBxPattern"),
+            title = cms.string("Lower DSA Track RPC Hit BX Pattern; Lower DSA Track RPC Hit BX Pattern"),
+            binsX = cms.untracked.vdouble(9, 0, 9),
+            inputVariables = cms.vstring("rpcHitBxPattern"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitBxAverage"),
+            title = cms.string("Lower DSA Track RPC Hit BX Average; Lower DSA Track RPC Hit BX Average"),
+            binsX = cms.untracked.vdouble(200, -10, 10),
+            inputVariables = cms.vstring("rpcHitBxAverage"),
+            ),
         )
     )
 
@@ -658,13 +694,13 @@ NumberOfDelayedMuonsObjectsHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("nTracks"),
             title = cms.string("Number of Upper DSA Tracks; Number of Upper DSA Tracks"),
-            binsX = cms.untracked.vdouble(30, 0, 30),
+            binsX = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("nTracks"),
             ),
         cms.PSet (
             name = cms.string("nSecondaryTracks"),
             title = cms.string("Number of Lower DSA Tracks; Number of Lower DSA Tracks"),
-            binsX = cms.untracked.vdouble(30, 0, 30),
+            binsX = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("nSecondaryTracks"),
             ),
         )
@@ -677,64 +713,32 @@ DelayedMuonsObjectsVsTimeHistograms = cms.PSet(
             name = cms.string("run_nTracks"),
             title = cms.string("Run Number vs Number of Upper DSA Tracks; Run; Number of Upper DSA Tracks"),
             binsX = cms.untracked.vdouble(1000, 235000, 265000),
-            binsY = cms.untracked.vdouble(30, 0, 30),
+            binsY = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("event.run","eventvariable.nTracks"),
             ),
         cms.PSet (
             name = cms.string("fill_nTracks"),
             title = cms.string("Fill Number vs Number of Upper DSA Tracks; Fill; Number of Upper DSA Tracks"),
             binsX = cms.untracked.vdouble(1000, 235000, 265000),
-            binsY = cms.untracked.vdouble(30, 0, 30),
+            binsY = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("event.fill","eventvariable.nTracks"),
             ),
         cms.PSet (
             name = cms.string("run_nSecondaryTracks"),
             title = cms.string("Run Number vs Number of Lower DSA racks; Run; Number of Lower DSA Tracks"),
             binsX = cms.untracked.vdouble(1000, 235000, 265000),
-            binsY = cms.untracked.vdouble(30, 0, 30),
+            binsY = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("event.run","eventvariable.nSecondaryTracks"),
             ),
         cms.PSet (
             name = cms.string("fill_nSecondaryTracks"),
             title = cms.string("Fill Number vs Number of Lower DSA Tracks; Fill; Number of Lower DSA Tracks"),
             binsX = cms.untracked.vdouble(1000, 235000, 265000),
-            binsY = cms.untracked.vdouble(30, 0, 30),
+            binsY = cms.untracked.vdouble(7, 0, 7),
             inputVariables = cms.vstring("event.fill","eventvariable.nSecondaryTracks"),
             ),
         )
 )
-
-#Upper0DSAHistograms = cms.PSet(
-    #inputCollection = cms.vstring("eventvariables"),
-    #histograms = cms.VPSet (
-        #cms.PSet (
-            #name = cms.string("p_upper0"),
-            #title = cms.string("Upper DSA Track Momentum; Upper DSA Track p [GeV]"),
-            #binsX = cms.untracked.vdouble(100, 0, 1000),
-            #inputVariables = cms.vstring("p_upper0"),
-       #),
-
-        #cms.PSet (
-            #name = cms.string("nRpcHits_upper0"),
-            #title = cms.string("Number of RPC Hits in Upper DSA Track; Number of RPC Hits in Upper DSA Track"),
-            #binsX = cms.untracked.vdouble(10, 0, 10),
-            #inputVariables = cms.vstring("nRpcHits_upper0"),
-            #),
-        #cms.PSet (
-            #name = cms.string("rpcBxPattern_upper0"),
-            #title = cms.string("Upper DSA Track RPC BX Pattern; Upper DSA Track RPC BX Pattern"),
-            #binsX = cms.untracked.vdouble(9, 0, 9),
-            #inputVariables = cms.vstring("rpcBxPattern_upper0"),
-            #),
-        #cms.PSet (
-            #name = cms.string("rpcBxAverage_upper0"),
-            #title = cms.string("Upper DSA Track RPC BX Average; Upper DSA Track RPC BX Average"),
-            #binsX = cms.untracked.vdouble(200, -10, 10),
-            #inputVariables = cms.vstring("rpcBxAverage_upper0"),
-            #),
-        #)
-    #)
-
 
 DeltaDSAHistograms = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
@@ -812,32 +816,32 @@ UppervsUpperDSAHistograms = cms.PSet(
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofFreeInverseBeta"),
         ),
         cms.PSet (
-            name = cms.string("p_rpcBxPattern"),
-            title = cms.string("Upper DSA Track p vs RPC BX Pattern; Upper DSA Track p [GeV]; Upper DSA Track RPC BX Pattern"),
+            name = cms.string("p_rpcHitBxPattern"),
+            title = cms.string("Upper DSA Track p vs RPC Hit BX Pattern; Upper DSA Track p [GeV]; Upper DSA Track RPC Hit BX Pattern"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(9, 0, 9),
-            inputVariables = cms.vstring("p","rpcBxPattern"),
+            inputVariables = cms.vstring("p","rpcHitBxPattern"),
             ),
         cms.PSet (
-            name = cms.string("p_rpcBxAverage"),
-            title = cms.string("Upper DSA Track p vs RPC BX Average; Upper DSA Track p [GeV]; Upper DSA Track RPC BX Average"),
+            name = cms.string("p_rpcHitBxAverage"),
+            title = cms.string("Upper DSA Track p vs RPC Hit BX Average; Upper DSA Track p [GeV]; Upper DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(200, -10, 10),
-            inputVariables = cms.vstring("p","rpcBxAverage"),
+            inputVariables = cms.vstring("p","rpcHitBxAverage"),
             ),
         cms.PSet (
-            name = cms.string("pt_rpcBxPattern"),
-            title = cms.string("Upper DSA Track p_{T} vs RPC BX Pattern; Upper DSA Track p_{T} [GeV]; Upper DSA Track RPC BX Pattern"),
+            name = cms.string("pt_rpcHitBxPattern"),
+            title = cms.string("Upper DSA Track p_{T} vs RPC Hit BX Pattern; Upper DSA Track p_{T} [GeV]; Upper DSA Track RPC Hit BX Pattern"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(9, 0, 9),
-            inputVariables = cms.vstring("pt","rpcBxPattern"),
+            inputVariables = cms.vstring("pt","rpcHitBxPattern"),
             ),
         cms.PSet (
-            name = cms.string("pt_rpcBxAverage"),
-            title = cms.string("Upper DSA Track p_{T} vs RPC BX Average; Upper DSA Track p_{T} [GeV]; Upper DSA Track RPC BX Average"),
+            name = cms.string("pt_rpcHitBxAverage"),
+            title = cms.string("Upper DSA Track p_{T} vs RPC Hit BX Average; Upper DSA Track p_{T} [GeV]; Upper DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(200, -10, 10),
-            inputVariables = cms.vstring("pt","rpcBxAverage"),
+            inputVariables = cms.vstring("pt","rpcHitBxAverage"),
             ),
         )
     )
@@ -853,32 +857,32 @@ LowervsLowerDSAHistograms = cms.PSet(
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofFreeInverseBeta"),
         ),
         cms.PSet (
-            name = cms.string("p_rpcBxPattern"),
-            title = cms.string("Lower DSA Track p vs RPC BX Pattern; Lower DSA Track p [GeV]; Lower DSA Track RPC BX Pattern"),
+            name = cms.string("p_rpcHitBxPattern"),
+            title = cms.string("Lower DSA Track p vs RPC Hit BX Pattern; Lower DSA Track p [GeV]; Lower DSA Track RPC Hit BX Pattern"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(9, 0, 9),
-            inputVariables = cms.vstring("p","rpcBxPattern"),
+            inputVariables = cms.vstring("p","rpcHitBxPattern"),
             ),
         cms.PSet (
-            name = cms.string("p_rpcBxAverage"),
-            title = cms.string("Lower DSA Track p vs RPC BX Average; Lower DSA Track p [GeV]; Lower DSA Track RPC BX Average"),
+            name = cms.string("p_rpcHitBxAverage"),
+            title = cms.string("Lower DSA Track p vs RPC Hit BX Average; Lower DSA Track p [GeV]; Lower DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(200, -10, 10),
-            inputVariables = cms.vstring("p","rpcBxAverage"),
+            inputVariables = cms.vstring("p","rpcHitBxAverage"),
             ),
         cms.PSet (
-            name = cms.string("pt_rpcBxPattern"),
-            title = cms.string("Lower DSA Track p_{T} vs RPC BX Pattern; Lower DSA Track p_{T} [GeV]; Lower DSA Track RPC BX Pattern"),
+            name = cms.string("pt_rpcHitBxPattern"),
+            title = cms.string("Lower DSA Track p_{T} vs RPC Hit BX Pattern; Lower DSA Track p_{T} [GeV]; Lower DSA Track RPC Hit BX Pattern"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(9, 0, 9),
-            inputVariables = cms.vstring("pt","rpcBxPattern"),
+            inputVariables = cms.vstring("pt","rpcHitBxPattern"),
             ),
         cms.PSet (
-            name = cms.string("pt_rpcBxAverage"),
-            title = cms.string("Lower DSA Track p_{T} vs RPC BX Average; Lower DSA Track p_{T} [GeV]; Lower DSA Track RPC BX Average"),
+            name = cms.string("pt_rpcHitBxAverage"),
+            title = cms.string("Lower DSA Track p_{T} vs RPC Hit BX Average; Lower DSA Track p_{T} [GeV]; Lower DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(200, -10, 10),
-            inputVariables = cms.vstring("pt","rpcBxAverage"),
+            inputVariables = cms.vstring("pt","rpcHitBxAverage"),
             ),
         )
     )

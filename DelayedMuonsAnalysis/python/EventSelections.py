@@ -47,6 +47,7 @@ PrePreSelection = cms.PSet(
       cutVertexNumber,
       cutPreMinNDSAs,
       cutPreDSAPtGeneric,
+      cutPrePreDSADtTofNDofUpperOnly,
       )
 )
 

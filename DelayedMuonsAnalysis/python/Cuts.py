@@ -42,6 +42,17 @@ cutVertexNumber = cms.PSet(
 )
 
 ########################################
+#pre-preselection cuts
+########################################
+
+cutPrePreDSADtTofNDofUpperOnly = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofNDof > 0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track > 0 TOF nDof")
+)
+
+########################################
 #preselection upper only DSA cuts
 ########################################
 cutPreMinNDSAsUpperOnly = cms.PSet(
@@ -289,7 +300,7 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
 
 cutLowerDSARpcBxPattern = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("secondaryTrack.rpcBxPattern == 0"),
+    cutString = cms.string("secondaryTrack.rpcHitBxPattern == 0"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("Lower DSA Track RPC BXs==0 ")
+    alias = cms.string("Lower DSA Track RPC Hit BXs==0 ")
 )
