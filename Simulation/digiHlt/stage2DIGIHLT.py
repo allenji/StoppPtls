@@ -24,7 +24,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
@@ -32,7 +32,8 @@ process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
     fileNames = cms.untracked.vstring(
         #'file:/home/weifengji/StoppedParticlesV3/CMSSW_7_1_15_patch1/src/StoppedHSCP/Simulation/stage2/stage2_GEN_SIM_Winter15_1000_894.root'
-        'file:/data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp600/hist_0.root'
+        #'file:/data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp600/hist_0.root'
+        'file:/data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000/hist_0.root'
         ),
     inputCommands = cms.untracked.vstring('keep *', 
                                           'drop *_genParticlesForJets_*_*', 
