@@ -23,6 +23,7 @@
 // system include files
 #include <memory>
 #include <math.h>
+#include <iostream>
 
 // user include files
 #include <vector>
@@ -32,9 +33,15 @@
 #include "FWCore/Framework/interface/Event.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
+
+#include "FWCore/ServiceRegistry/interface/Service.h"
+#include "CommonTools/UtilAlgos/interface/TFileService.h"
+
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
+#include "StoppPtls/Collection/interface/CandidateDTSeg.h"
+#include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "TFile.h"
 #include "TH1D.h"
 #include "TH3.h"
@@ -58,9 +65,15 @@ class RPCHits3DPlotter : public edm::EDProducer {
    private:
       TH3D *RPCHitHist_;
       TH1D *RPCHitNumber_;
-      TFile *ofile_;
+
+      //TFile *ofile_;
       edm::InputTag candidateRpcHitsTag_;
       edm::EDGetTokenT<vector<CandidateRpcHit> > candidateRpcHitsToken_;
+      edm::InputTag candidateDTSegsTag_;
+      edm::EDGetTokenT<vector<CandidateDTSeg> > candidateDTSegsToken_;
+      edm::InputTag candidateCscSegsTag_;
+      edm::EDGetTokenT<vector<CandidateCscSeg> > candidateCscSegsToken_;
+      bool noiseOnly = false;
       virtual void beginJob() override;
       virtual void produce(edm::Event&, const edm::EventSetup&) override;
       virtual void endJob() override;
@@ -87,7 +100,12 @@ class RPCHits3DPlotter : public edm::EDProducer {
 //
 RPCHits3DPlotter::RPCHits3DPlotter(const edm::ParameterSet& iConfig):
   candidateRpcHitsTag_ (iConfig.getParameter<edm::InputTag>("candidateRpcHitsTag")),
-  candidateRpcHitsToken_(consumes<vector<CandidateRpcHit> >(candidateRpcHitsTag_))
+  candidateRpcHitsToken_(consumes<vector<CandidateRpcHit> >(candidateRpcHitsTag_)),
+  candidateDTSegsTag_ (iConfig.getParameter<edm::InputTag>("candidateDTSegsTag")),
+  candidateDTSegsToken_(consumes<vector<CandidateDTSeg> >(candidateDTSegsTag_)),
+  candidateCscSegsTag_ (iConfig.getParameter<edm::InputTag>("candidateCscSegsTag")),
+  candidateCscSegsToken_(consumes<vector<CandidateCscSeg> >(candidateCscSegsTag_)),
+  noiseOnly(iConfig.getParameter<bool>("RPCNoiseOnly"))
 {
    //register your products
 /* Examples
@@ -100,6 +118,12 @@ RPCHits3DPlotter::RPCHits3DPlotter(const edm::ParameterSet& iConfig):
    produces<ExampleData2,InRun>();
 */
    //now do what ever other initialization is needed
+    if (noiseOnly == true) {
+      cout << "Fill only noise RPC hits" << endl;
+    }
+    else {
+      cout << "Fill all RPC hits" << endl;
+    }
   
 }
 
@@ -124,13 +148,34 @@ RPCHits3DPlotter::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    using namespace edm;
    edm::Handle<vector<CandidateRpcHit> > rpchits;
    iEvent.getByToken(candidateRpcHitsToken_, rpchits);
-   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-     double x = (rpchits->at(i)).x();
-     double y = (rpchits->at(i)).y();
-     double z = (rpchits->at(i)).z();
+   edm::Handle<vector<CandidateDTSeg> > dtsegs;
+   iEvent.getByToken(candidateDTSegsToken_, dtsegs);
+   edm::Handle<vector<CandidateCscSeg> > cscsegs;
+   iEvent.getByToken(candidateCscSegsToken_, cscsegs);
+// if noiseonly is ture, we only fill in the rpchits in events that have no dt or csc segments, so that the rpchits is just noise.
+   if (noiseOnly == true) {
+     if (dtsegs->size() == 0 && cscsegs->size() == 0) {
+       for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+         double x = (rpchits->at(i)).x();
+         double y = (rpchits->at(i)).y();
+         double z = (rpchits->at(i)).z();
 
-     if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
-        RPCHitHist_->Fill(x, y, z);
+         if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
+            RPCHitHist_->Fill(x, y, z);
+         }
+       }
+     }
+
+   }
+   else{
+     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+       double x = (rpchits->at(i)).x();
+       double y = (rpchits->at(i)).y();
+       double z = (rpchits->at(i)).z();
+
+       if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
+          RPCHitHist_->Fill(x, y, z);
+       }
      }
    }
 
@@ -158,9 +203,12 @@ RPCHits3DPlotter::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 void 
 RPCHits3DPlotter::beginJob()
 {
-   RPCHitHist_ = new TH3D("RPCHits", "RPCHits", 100, -1000, 1000, 100, -1000, 1000, 100, -1200, 1200);
-   RPCHitNumber_ = new TH1D("RPCHitNumber", "RPCHitNumber", 5000, 0, 5000);
-   ofile_ = new TFile("RPCHitHist.root", "RECREATE");
+//RPCHitHist_ = new TH3D("RPCHits", "RPCHits", 100, -1000, 1000, 100, -1000, 1000, 100, -1200, 1200);
+   //RPCHitNumber_ = new TH1D("RPCHitNumber", "RPCHitNumber", 5000, 0, 5000);
+    edm::Service<TFileService> fs;
+   //ofile_ = fs->make<TFile>("RPCHitHist.root", "RECREATE");
+   RPCHitHist_ = fs->make<TH3D>("RPCHits", "RPCHits", 100, -1000, 1000, 100, -1000, 1000, 100, -1200, 1200);
+   RPCHitNumber_ = fs->make<TH1D>("RPCHitNumber", "RPCHitNumber", 5000, 0, 5000);
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
@@ -175,9 +223,9 @@ RPCHits3DPlotter::endJob() {
       }
     }
   }
-  ofile_->cd();
-  RPCHitHist_->Write("",TObject::kOverwrite);
-  RPCHitNumber_->Write("", TObject::kOverwrite);
+  //ofile_->cd();
+  //RPCHitHist_->Write("",TObject::kOverwrite);
+  //RPCHitNumber_->Write("", TObject::kOverwrite);
   
 }
 

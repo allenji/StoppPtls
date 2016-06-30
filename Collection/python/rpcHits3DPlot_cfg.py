@@ -23,9 +23,19 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'MCRUN2_74_V9', '')
 
 process.rpchitsPlotting = cms.EDProducer ("RPCHits3DPlotter",
 
+             #candidateRpcHitsTag = cms.InputTag  ('candidateStoppPtlsJets',''),
+             #candidateDTSegsTag = cms.InputTag ('candidateStoppPtlsJets',''),
+             #candidateCscSegsTag = cms.InputTag ('candidateStoppPtlsJets',''),
              candidateRpcHitsTag = cms.InputTag  ('candidateStoppPtls',''),
+             candidateDTSegsTag = cms.InputTag ('candidateStoppPtls',''),
+             candidateCscSegsTag = cms.InputTag ('candidateStoppPtls',''),
+             RPCNoiseOnly = cms.bool(True),
 
                          )
+
+process.TFileService = cms.Service("TFileService",
+                                               fileName = cms.string('momoda.root')
+                                                                                  )
 
 process.rpcPlotting = cms.Path(process.rpchitsPlotting)
 
