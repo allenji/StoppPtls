@@ -761,6 +761,13 @@ DeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("track.dtTofFreeInverseBeta - secondaryTrack.dtTofFreeInverseBeta"),
             ),
+        cms.PSet (
+            name = cms.string("delta_rpcHitBxAverage"),
+            title = cms.string("#Delta DSA Track RPC Hit BX Average; #Delta DSA Track RPC Hit BX Average"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
+            ),
+
         )
     )
 
