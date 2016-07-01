@@ -25,9 +25,10 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'MCRUN2_74_V9', '')
 
 
 #rpc chamber masking producer
-process.rpcChamberMasking = cms.EDProducer ("RPCChamberMaskingProducer",
-                                            rpcMaskingCoordinatesFile = cms.string("rpcChambersToMask.txt"),
-                                            candidateRpcHitsTag = cms.InputTag  ('candidateStoppPtls',''),
+process.rpcChamberMasking = cms.EDProducer ("RPCChamberMaskingProducer_XYZ",
+                                            rpcMaskingCoordinatesFile = cms.string("/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_8_0_12/src/RPCMasking.txt"),
+                                            #candidateRpcHitsTag = cms.InputTag  ('candidateStoppPtls',''),
+                                            candidateRpcHitsTag = cms.InputTag  ('candidateStoppPtlsJets',''),
                                             )
 process.eventproducer = cms.Path(process.rpcChamberMasking)
 

@@ -24,6 +24,7 @@
 #include <memory>
 #include <math.h>
 #include <iostream>
+#include <TVector3.h>
 
 // user include files
 #include <vector>
@@ -42,6 +43,8 @@
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 #include "StoppPtls/Collection/interface/CandidateDTSeg.h"
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
+#include "DataFormats/Math/interface/deltaR.h"
+
 #include "TFile.h"
 #include "TH1D.h"
 #include "TH3.h"
@@ -65,6 +68,11 @@ class RPCHits3DPlotter : public edm::EDProducer {
    private:
       TH3D *RPCHitHist_;
       TH1D *RPCHitNumber_;
+
+      TH3D *RPCHitInConeHist_;    // Plot of RPC hits that have a close neigbour inside a cone
+      TH1D *RPCHitInConeNumber_;  // histo of density of RPC hits in regions of RPCHitInConeHist_
+
+      TH1D *NOuterAllBarrelRPCPairsDeltaR0P2_;
 
       //TFile *ofile_;
       edm::InputTag candidateRpcHitsTag_;
@@ -145,39 +153,61 @@ RPCHits3DPlotter::~RPCHits3DPlotter()
 void
 RPCHits3DPlotter::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-   using namespace edm;
-   edm::Handle<vector<CandidateRpcHit> > rpchits;
-   iEvent.getByToken(candidateRpcHitsToken_, rpchits);
-   edm::Handle<vector<CandidateDTSeg> > dtsegs;
-   iEvent.getByToken(candidateDTSegsToken_, dtsegs);
-   edm::Handle<vector<CandidateCscSeg> > cscsegs;
-   iEvent.getByToken(candidateCscSegsToken_, cscsegs);
+  using namespace edm;
+  edm::Handle<vector<CandidateRpcHit> > rpchits;
+  iEvent.getByToken(candidateRpcHitsToken_, rpchits);
+  edm::Handle<vector<CandidateDTSeg> > dtsegs;
+  iEvent.getByToken(candidateDTSegsToken_, dtsegs);
+  edm::Handle<vector<CandidateCscSeg> > cscsegs;
+  iEvent.getByToken(candidateCscSegsToken_, cscsegs);
 // if noiseonly is ture, we only fill in the rpchits in events that have no dt or csc segments, so that the rpchits is just noise.
-   if (noiseOnly == true) {
-     if (dtsegs->size() == 0 && cscsegs->size() == 0) {
-       for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-         double x = (rpchits->at(i)).x();
-         double y = (rpchits->at(i)).y();
-         double z = (rpchits->at(i)).z();
+  if (noiseOnly == true) {
+    if (dtsegs->size() == 0 && cscsegs->size() == 0) {
+      unsigned nRPCPairDeltaR0p2 = 0;
+      for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+        double x = (rpchits->at(i)).x();
+        double y = (rpchits->at(i)).y();
+        double z = (rpchits->at(i)).z();
 
-         if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
-            RPCHitHist_->Fill(x, y, z);
-         }
-       }
-     }
-
-   }
-   else{
-     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-       double x = (rpchits->at(i)).x();
-       double y = (rpchits->at(i)).y();
-       double z = (rpchits->at(i)).z();
-
-       if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
+        if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
           RPCHitHist_->Fill(x, y, z);
-       }
-     }
-   }
+        }
+      }
+      for (unsigned i = 0; i != rpchits->size(); ++i) {
+        if ((rpchits->at(i)).r() > 560) {
+          for (unsigned j = i; j != rpchits->size(); ++j) {
+            TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+            TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z()); 
+            double rpc_eta_i = tveci.Eta();
+            double rpc_eta_j = tvecj.Eta();
+            double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
+            if (deltaR < 0.2) {
+              double x = (rpchits->at(i)).x();
+              double y = (rpchits->at(i)).y();
+              double z = (rpchits->at(i)).z();
+              if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
+                RPCHitInConeHist_->Fill(x, y, z);
+                nRPCPairDeltaR0p2 += 1;
+              }
+            }
+          }
+          
+        }
+      }
+      NOuterAllBarrelRPCPairsDeltaR0P2_->Fill(nRPCPairDeltaR0p2);
+    }
+  }
+  else{
+    for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+      double x = (rpchits->at(i)).x();
+      double y = (rpchits->at(i)).y();
+      double z = (rpchits->at(i)).z();
+
+      if (fabs(z) < 700 && sqrt(pow(x, 2) + pow(y, 2)) > 300){
+        RPCHitHist_->Fill(x, y, z);
+      }
+    }
+  }
 
 
 /* This is an event example
@@ -209,6 +239,9 @@ RPCHits3DPlotter::beginJob()
    //ofile_ = fs->make<TFile>("RPCHitHist.root", "RECREATE");
    RPCHitHist_ = fs->make<TH3D>("RPCHits", "RPCHits", 100, -1000, 1000, 100, -1000, 1000, 100, -1200, 1200);
    RPCHitNumber_ = fs->make<TH1D>("RPCHitNumber", "RPCHitNumber", 5000, 0, 5000);
+   RPCHitInConeHist_ = fs->make<TH3D>("RPCHitsInCone", "RPCHitsInCone", 50, -1000, 1000, 50, -1000, 1000, 50, -1200, 1200);
+   RPCHitInConeNumber_ = fs->make<TH1D>("RPCHitInConeNumber", "RPCHitInConeNumber", 5000, 0, 5000);
+   NOuterAllBarrelRPCPairsDeltaR0P2_ = fs->make<TH1D>("NOuterAllBarrelRPCPairsDeltaR0P2", "NOuterAllBarrelRPCPairsDeltaR0P2", 20, 0, 20);
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
@@ -219,6 +252,15 @@ RPCHits3DPlotter::endJob() {
       for (unsigned k = 1; k < 101; k += 1) {
         if (RPCHitHist_->GetBinContent(i, j, k) != 0) {
           RPCHitNumber_->Fill(RPCHitHist_->GetBinContent(i, j, k));
+        }
+      }
+    }
+  }
+  for (unsigned i = 1; i < 51; i += 1) {
+    for (unsigned j = 1; j < 51; j += 1) {
+      for (unsigned k = 1; k < 51; k += 1) {
+        if (RPCHitInConeHist_->GetBinContent(i, j, k) != 0) {
+          RPCHitInConeNumber_->Fill(RPCHitInConeHist_->GetBinContent(i, j, k));
         }
       }
     }
