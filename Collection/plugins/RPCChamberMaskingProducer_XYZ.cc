@@ -75,7 +75,7 @@ void RPCChamberMaskingProducer_XYZ::produce(edm::Event &iEvent, const edm::Event
 
   //clog<<"beginning to loop over rpc hits for run "<<iEvent.id().run()<<" and event "<<iEvent.id().event()<<endl;
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
-    if(isNotMaskedRpcHit((rpchits->at(i)).r(), (rpchits->at(i)).phi(), (rpchits->at(i)).z())) {
+    if(isNotMaskedRpcHit((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z())) {
 
       //make new candidate rpc hit collection containing only unmasked rpc hits
       CandidateRpcHit candNotMaskedRpcHit;
