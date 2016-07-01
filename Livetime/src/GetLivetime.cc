@@ -13,14 +13,25 @@ using namespace std;
 GetLivetime::GetLivetime(const edm::ParameterSet& iConfig) :
   lhcFills_(),
   livetime_(&lhcFills_),
-  nEvents_(0)
+  nEvents_(0),
+  runMin_(iConfig.getParameter<unsigned>("RunMin")),
+  runMax_(iConfig.getParameter<unsigned>("RunMax")),
+  fillMin_(iConfig.getParameter<unsigned>("FillMin")),
+  fillMax_(iConfig.getParameter<unsigned>("FillMax"))
 {
-}
+};
 
 GetLivetime::~GetLivetime(){
 
-  run_livetime_hist = fs_->make<TH1D>("run_livetime_hist","Run vs Livetime",30000,235000,265000);
-  fill_livetime_hist = fs_->make<TH1D>("fill_livetime_hist","Fill vs Livetime",2000,3000,5000);
+  unsigned run_livetime_hist_low = runMin_;
+  unsigned  run_livetime_hist_up = runMax_ + 1;
+  unsigned run_livetime_hist_Nbins = run_livetime_hist_up - run_livetime_hist_low;
+  run_livetime_hist = fs_->make<TH1D>("run_livetime_hist","Run vs Livetime",run_livetime_hist_Nbins , run_livetime_hist_low, run_livetime_hist_up);
+
+  unsigned fill_livetime_hist_low = fillMin_;
+  unsigned fill_livetime_hist_up = fillMax_;
+  unsigned fill_livetime_hist_Nbins = fill_livetime_hist_up - fill_livetime_hist_low;
+  fill_livetime_hist = fs_->make<TH1D>("fill_livetime_hist","Fill vs Livetime",fill_livetime_hist_Nbins, fill_livetime_hist_low, fill_livetime_hist_up);
 
   vector<unsigned long> runList = livetime_.runList();
   for (unsigned i=0; i!=runList.size(); ++i) {
@@ -36,6 +47,16 @@ GetLivetime::~GetLivetime(){
   double totalLivetime = livetime_.getTotalLivetime();
   clog << "Total livetime : " << totalLivetime << endl;
   clog << "Final rate : " << nEvents_/totalLivetime << " +/- " << sqrt(nEvents_)/totalLivetime << endl;
+  clog << "Fills analyzed: " << endl;
+  for (unsigned i=0; i!=fillList.size(); ++i) {
+    clog << fillList.at(i) << ", ";
+  }
+  clog << endl;
+  
+  clog << "Runs analyzed: " << endl;
+  for (unsigned i=0; i!=runList.size(); ++i) {
+    clog << runList.at(i) << ", ";
+  }
 
 }//end of destructor
 
