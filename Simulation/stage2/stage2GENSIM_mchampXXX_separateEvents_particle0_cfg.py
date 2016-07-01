@@ -79,7 +79,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
 process.RAWSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RAWSIMoutput.outputCommands.append('drop *_generator_*_SIM2')
 
-process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1 
+process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1
 process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM') #keep generator from stage 1
 process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2') #keep VtxSmeared from stage 2
 
