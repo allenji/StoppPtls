@@ -33,7 +33,7 @@ process.hltHighLevel.throw = cms.bool(False)
 process.hltHighLevel.HLTPaths = cms.vstring(
     "HLT_JetE30_NoBPTX_*",
     "HLT_JetE30_NoBPTX3BX_*",
-    "HLT_JetE50_NoBPTX3BX__*"
+    "HLT_JetE50_NoBPTX3BX_*"
 )
 
 process.hltStoppedHSCPHpdFilter = cms.EDFilter( "HLTHPDFilter",
