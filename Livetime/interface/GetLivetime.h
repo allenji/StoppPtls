@@ -35,6 +35,10 @@ class GetLivetime : public edm::EDAnalyzer {
   LhcFills lhcFills_;
   Livetime livetime_;   
   unsigned nEvents_;
+  unsigned runMin_;
+  unsigned runMax_;
+  unsigned fillMin_;
+  unsigned fillMax_;
 
   edm::Service<TFileService> fs_;
   TH1D* run_livetime_hist;
