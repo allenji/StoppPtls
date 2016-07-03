@@ -137,3 +137,160 @@
 #osudb create /Cosmics_Preselction_Apr5_16000_final/Spring-74x/USER -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_10000_final/readfile_cosmicPre_Apr3 
 
 #osudb update /Cosmics_Preselction_Apr5_16000_final/Spring-74x/USER -a -l /data/users/weifengji/condor/CosmicPreselection_Ntuples_Apr5_6000_final/readfile_cosmicPre_Apr4_6000
+#
+#osudb create /HSCPstop2tchi0_400_214_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_400_214/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_600_417_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_600_417/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_800_618_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_800_618/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_1000_818_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_1000_818/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_1200_1018_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_1200_1018/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_1400_1219_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_1400_1219/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_1600_1419_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_1600_1419/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_1800_1619_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_1800_1619/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_2000_1819_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_2000_1819/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_2200_2019_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_2200_2019/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_2400_2219_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_2400_2219/readfile_trigEff -f AOD
+
+#osudb create /HSCPstop2tchi0_2600_2419_13TeV-pythia6/Spring15_74x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180/stage2RECO_HSCPstop_2600_2419/readfile_trigEff -f AOD
+#osudb create /HSCPgluino2gchi0_600_309_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_309/readin
+
+#osudb create /HSCPgluino2gchi0_600_354_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_354/readin
+
+#osudb create /HSCPgluino2gchi0_600_424_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_424/readin
+
+#osudb create /HSCPgluino2gchi0_600_483_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_483/readin
+
+#osudb create /HSCPgluino2gchi0_600_495_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_495/readin
+
+#osudb create /HSCPgluino2gchi0_600_507_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_507/readin
+
+#osudb create /HSCPgluino2gchi0_600_519_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_519/readin
+
+#osudb create /HSCPgluino2gchi0_600_547_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_600_547/readin
+
+#osudb create /HSCPgluino2gchi0_1200_848_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_848/readin
+
+#osudb create /HSCPgluino2gchi0_1200_903_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_903/readin
+
+#osudb create /HSCPgluino2gchi0_1200_954_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_954/readin
+
+#osudb create /HSCPgluino2gchi0_1200_997_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_997/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1044_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1044/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1089_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1089/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1100_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1100/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1111_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1111/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1122_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1122/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1148_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1200_1148/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1047_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1047/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1122_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1122/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1200_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1200/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1272_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1272/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1341_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1341/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1407_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1407/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1469_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1469/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1529_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_gluino_2016Run2_1800_1529/readin
+
+#osudb create /HSCPstop2tchi0_400_75_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_75/readin
+
+#osudb create /HSCPstop2tchi0_400_150_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_150/readin
+
+#osudb create /HSCPstop2tchi0_400_199_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_199/readin
+
+#osudb create /HSCPstop2tchi0_400_250_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_250/readin
+
+#osudb create /HSCPstop2tchi0_400_285_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_285/readin
+
+#osudb create /HSCPstop2tchi0_400_300_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_400_300/readin
+
+#osudb create /HSCPstop2tchi0_600_100_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_600_100/readin
+
+#osudb create /HSCPstop2tchi0_600_300_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_600_300/readin
+
+#osudb create /HSCPstop2tchi0_600_400_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_600_400/readin
+
+#osudb create /HSCPstop2tchi0_600_500_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_600_500/readin
+
+#osudb create /HSCPstop2tchi0_1000_100_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_100/readin
+
+#osudb create /HSCPstop2tchi0_1000_173_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_173/readin
+
+#osudb create /HSCPstop2tchi0_1000_360_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_360/readin
+
+#osudb create /HSCPstop2tchi0_1000_480_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_480/readin
+
+#osudb create /HSCPstop2tchi0_1000_574_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_574/readin
+
+#osudb create /HSCPstop2tchi0_1000_656_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_656/readin
+
+#osudb create /HSCPstop2tchi0_1000_728_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stage2Ntuples_stop_2016Run2_1000_728/readin
+
+#osudb create /HSCPgluino2gchi0_400_282_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_400_282/readin
+
+#osudb create /HSCPgluino2gchi0_600_489_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_600_489/readin
+
+#osudb create /HSCPgluino2gchi0_800_692_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_800_692/readin
+
+#osudb create /HSCPgluino2gchi0_1000_894_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_1000_894/readin
+
+#osudb create /HSCPgluino2gchi0_1200_1095_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_1200_1095/readin
+
+#osudb create /HSCPgluino2gchi0_1400_1296_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_1400_1296/readin
+
+#osudb create /HSCPgluino2gchi0_1600_1496_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_1600_1496/readin
+
+#osudb create /HSCPgluino2gchi0_1800_1697_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_1800_1697/readin
+
+#osudb create /HSCPgluino2gchi0_2000_1897_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_2000_1897/readin
+
+#osudb create /HSCPgluino2gchi0_2200_2097_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_2200_2097/readin
+
+#osudb create /HSCPgluino2gchi0_2400_2297_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_2400_2297/readin
+
+#osudb create /HSCPgluino2gchi0_2600_2497_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/gluino_gluon_100_2016Run2/stage2Ntuples_gluino_2016Run2_2600_2497/readin
+
+#osudb create /HSCPstop2tchi0_400_214_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_400_214/readin
+
+#osudb create /HSCPstop2tchi0_600_417_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_600_417/readin
+
+#osudb create /HSCPstop2tchi0_800_618_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_800_618/readin
+
+#osudb create /HSCPstop2tchi0_1000_818_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_1000_818/readin
+
+#osudb create /HSCPstop2tchi0_1200_1018_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_1200_1018/readin
+
+#osudb create /HSCPstop2tchi0_1400_1219_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_1400_1219/readin
+
+#osudb create /HSCPstop2tchi0_1600_1419_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_1600_1419/readin
+
+#osudb create /HSCPstop2tchi0_1800_1619_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_1800_1619/readin
+
+#osudb create /HSCPstop2tchi0_2000_1819_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2000_1819/readin
+
+#osudb create /HSCPstop2tchi0_2200_2019_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2200_2019/readin
+
+#osudb create /HSCPstop2tchi0_2400_2219_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2400_2219/readin
+
+#osudb create /HSCPstop2tchi0_2600_2419_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2600_2419/readin
