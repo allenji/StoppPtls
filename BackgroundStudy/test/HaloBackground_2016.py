@@ -32,7 +32,7 @@ weights = cms.VPSet (
 variableProducers = ["StoppPtlsEventVariableProducer"]
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
-from StoppPtls.BackgroundStudy.HaloBkgCutDefinition import *
+from StoppPtls.BackgroundStudy.HaloBkgCutDefinition_2016 import *
 from StoppPtls.BackgroundStudy.HaloBkgHistogram import *
 
 selections = []
