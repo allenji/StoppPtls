@@ -284,6 +284,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetEnergy"] = jets->begin()->energy();
     (*eventvariables)["leadingJetEt"] = jets->begin()->et();
     (*eventvariables)["leadingJetEta"] = fabs(jets->begin()->eta());
+    (*eventvariables)["leadingJetEtaPM"] = jets->begin()->eta();
     (*eventvariables)["leadingJetPhi"] = jets->begin()->phi();
     (*eventvariables)["leadingJetN60"] = jets->begin()->n60();
     (*eventvariables)["leadingJetN90"] = jets->begin()->n90();
@@ -292,6 +293,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetEnergy"] = -1;
     (*eventvariables)["leadingJetEt"] = -1;
     (*eventvariables)["leadingJetEta"] = 999.0;
+    (*eventvariables)["leadingJetEtaPM"] = 999.0;
     (*eventvariables)["leadingJetPhi"] = 999.0;
     (*eventvariables)["leadingJetN60"] = -1;
     (*eventvariables)["leadingJetN90"] = -1;
