@@ -770,7 +770,7 @@ LeadingJetHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("leadingJetEta"),
             title = cms.string("Leading Jet Pseudorapidity; Abs(Leading Jet #eta)"),
-            binsX = cms.untracked.vdouble(100, 0, 5),
+            binsX = cms.untracked.vdouble(100, -5, 5),
             inputVariables = cms.vstring("leadingJetEtaPM"),
         ),
         cms.PSet (
