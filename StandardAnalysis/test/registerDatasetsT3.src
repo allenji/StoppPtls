@@ -294,3 +294,6 @@
 #osudb create /HSCPstop2tchi0_2400_2219_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2400_2219/readin
 
 #osudb create /HSCPstop2tchi0_2600_2419_13TeV-pythia6/Run2016_80x/USER -l /data/users/weifengji/condor/stage2SPntuplesSample/stop_top_180_2016Run2/stage2Ntuples_stop_2016Run2_2600_2419/readin
+
+#2016 B data
+#osudb create /NoBPTX/2016B_Prompt_RECO_RPCMasking/USER -l /data/users/weifengji/condor/070416_RPCMasking_2/Data2016_readinlocal
