@@ -29,6 +29,32 @@ StoppPtlsSelection = cms.PSet(
     )
 )
 
+#Full 2016 stopped particles analysis cuts
+StoppPtlsSelection_2016 = cms.PSet(
+    name = cms.string("StoppedParticlesSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutNoise,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter
+    )
+)
+
 #Halo Selection (invert halo veto)
 HaloSelection = cms.PSet(
     name = cms.string("BeamHaloSelection"),
@@ -183,6 +209,14 @@ PrePreSelection = cms.PSet(
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    cuts = cms.VPSet(
+        cutDummy,
+      )
+)
+
+TriggerSelection_2016 = cms.PSet(
+    name = cms.string("TriggerSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutDummy,
       )
