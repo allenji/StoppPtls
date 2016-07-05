@@ -91,7 +91,8 @@ def halo_background(IncomingOnlyBeam1_hist,
 if __name__ == "__main__":
 
     #read in input files and histograms
-    inputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/NoBPTX_2015D.root","READ")
+    #inputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/NoBPTX_2015D.root","READ")
+    inputfile = rt.TFile("/data/users/weifengji/condor/070416_HaloBkgEstimation_1/NoBPTX_2016B_v2.root", "READ")
 
     xyIntegralBeam1 = -1
     xyIntegralBeam2 = -1
@@ -104,7 +105,8 @@ if __name__ == "__main__":
     for a in range(1,3):
         if a==1:
             print "doing halo background\n"
-            outputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/halo_background.root", "RECREATE")
+            #outputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/halo_background.root", "RECREATE")
+            outputfile = rt.TFile("halo_background.root", "RECREATE")
 
             IncomingOnlyBeam1_hist = inputfile.Get("IncomingOnlyBeam1Plotter/Eventvariable Plots/meanCscX_meanCscY")
             OutgoingOnlyBeam1_hist = inputfile.Get("OutgoingOnlyBeam1Plotter/Eventvariable Plots/meanCscX_meanCscY")
@@ -120,7 +122,8 @@ if __name__ == "__main__":
 
         if a==2:
             print "doing halo background systematic\n"
-            outputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/halo_background_systematic.root", "RECREATE")
+            #outputfile = rt.TFile("/data/users/jalimena/condor/HaloBackground/halo_background_systematic.root", "RECREATE")
+            outputfile = rt.TFile("halo_background_systematic.root", "RECREATE")
 
             IncomingOnlyBeam1_hist = inputfile.Get("IncomingOnlyBeam1Plotter/Eventvariable Plots/meanCscR_meanCscPhi")
             OutgoingOnlyBeam1_hist = inputfile.Get("OutgoingOnlyBeam1Plotter/Eventvariable Plots/meanCscR_meanCscPhi")
@@ -193,7 +196,7 @@ if __name__ == "__main__":
                 rPhiIntegralBeam1 = result_background[6]
                 rPhiIntegralBeam2 = result_background[7]
         
-    print "TOTAL background = " + "%.3f" %(xyIntegralBeam1+xyIntegralBeam2) + " +/- " + "%.3f" %(math.sqrt(xyErrorBeam1*xyErrorBeam1+xyErrorBeam2*xyErrorBeam2))+" (stat) +/- " + "%.3f" %(math.fabs(xyIntegralBeam1+xyIntegralBeam2-rPhiIntegralBeam1+rPhiIntegralBeam2)) +" (syst.)\n"        
+    print "TOTAL background = " + "%.3f" %(xyIntegralBeam1+xyIntegralBeam2) + " +/- " + "%.3f" %(math.sqrt(xyErrorBeam1*xyErrorBeam1+xyErrorBeam2*xyErrorBeam2))+" (stat) +/- " + "%.3f" %(math.fabs(xyIntegralBeam1+xyIntegralBeam2-rPhiIntegralBeam1-rPhiIntegralBeam2)) +" (syst.)\n"        
 
     #outputtext = open(outputdir + "/halo_background.txt", "w")
     #outputtext.write("DT by barrel RPC background: ")
