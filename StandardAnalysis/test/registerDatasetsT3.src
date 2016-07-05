@@ -297,3 +297,7 @@
 
 #2016 B data
 #osudb create /NoBPTX/2016B_Prompt_RECO_RPCMasking/USER -l /data/users/weifengji/condor/070416_RPCMasking_2/Data2016_readinlocal
+
+#osudb create /CosmicPreselection_Jul4/Ntuples_74x/USER -l /data/users/weifengji/condor/070416_cosmicPre_10000_RPCMasking/Readin_cosmicPre_Ntuples_10000
+
+#osudb update /CosmicPreselection_Jul4/Ntuples_74x/USER -a -l /data/users/weifengji/condor/070416_cosmicPre_6000_RPCMasking/Readin_cosmicPre_Ntuples_6000
