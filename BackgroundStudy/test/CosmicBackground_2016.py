@@ -10,7 +10,7 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-                               'file:/store/user/weifengji/HSCPgluino_UUbarChi0_13TeV-pythia6/RunIISpring15-74x_mcRun2_StoppPtls_gluino_1200_chi0_1000//StoppedParticleNtuples_MC_gluino2uubarchi0_0.root',
+                                 'file:/data/users/weifengji/condor/070416_RPCMasking_2/Data2016_readinlocal/hist_0.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         ),
                              )
@@ -31,7 +31,7 @@ weights = cms.VPSet (
 variableProducers = ["StoppPtlsEventVariableProducer"]
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
-from StoppPtls.BackgroundStudy.CosmicBkgCutDefinition import *
+from StoppPtls.BackgroundStudy.CosmicBkgCutDefinition_2016 import *
 from StoppPtls.BackgroundStudy.CosmicBkgHistogram import *
 #apply to cosmic MC
 selections_untagged = []
@@ -50,9 +50,12 @@ histograms.append(CosmicBackgroundHistograms)
 
 scalingfactorproducers = []
 
-add_channels (process, selections_untagged, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-#add_channels (process, selections_data, histograms, weights, collectionMap_Custom, variableProducers, False)
+# used for cosmic MC
+#add_channels (process, selections_untagged, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+
+# used for data
+add_channels (process, selections_data, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
