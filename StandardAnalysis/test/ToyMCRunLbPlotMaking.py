@@ -118,7 +118,7 @@ selections.append(CosmicSelection)
 #selections.append(NoCuts)
 
 histograms = cms.VPSet()
-histograms.append(ToyMCRunLbHistogram)
+histograms.append(ToyMCRunLbHistogram_2016)
 #histograms.append(StoppedParticleHistograms)
 #histograms.append(GenParticleHistograms)
 #histograms.append(NeutralinoHistograms)
@@ -142,6 +142,7 @@ histograms.append(ToyMCRunLbHistogram)
 #histograms.append(OtherRpcHistograms)
 #histograms.append(TowerHistograms)
 #histograms.append(HpdHistograms)
+scalingfactorproducers = []
 
 #add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
 
@@ -157,7 +158,7 @@ histograms.append(ToyMCRunLbHistogram)
 # add_channels (process, [PrePreSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [TriggerSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, [NoCuts], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
