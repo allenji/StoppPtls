@@ -1249,3 +1249,16 @@ ToyMCRunLbHistogram = cms.PSet(
             )
     )
 )
+
+ToyMCRunLbHistogram_2016 = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet(
+        cms.PSet (
+            name = cms.string("runlb"),
+            title = cms.string("Run vs LS; Run number; lumi section"),
+            binsX = cms.untracked.vdouble(3000,273000, 276000),
+            binsY = cms.untracked.vdouble(3000, 0, 3000),
+            inputVariables = cms.vstring("run","lb"),
+            )
+    )
+)
