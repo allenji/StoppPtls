@@ -178,6 +178,25 @@ NoiseControlSelectionTight = cms.PSet(
     )
 )
 
+NoiseControlSelectionTight_2016 = cms.PSet(
+    name = cms.string("HcalNoiseControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutOuterDT,
+      #cutOuterRpc,
+      #cutRpcPair,
+      #cutCloseRpcPair,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      cutJetEnergy,
+      cutJetEta,
+    )
+)
+
 #Alternate Noise N-1 ish Selection (preselection [cutJetEnergy + cutJetEta] + vertex veto + cosmic veto(no RPC hits) + halo veto)
 AltNoiseControlSelection = cms.PSet(
     name = cms.string("AltHcalNoiseControlSelection"),
