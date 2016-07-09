@@ -1,0 +1,8 @@
+#2016 Collision data, No RPC masking applied
+#osudb create /NoBPTX/2016collision_PromptReco_Original/USER -l /data/users/weifengji/wji-crab_Run2016B-PromptReco-v2_OSUT3Ntuples_Jul1_273158_275125
+
+#osudb update /NoBPTX/2016collision_PromptReco_Original/USER -a -l /data/users/weifengji/wji-crab_Run2016B-PromptReco-v2_OSUT3Ntuples_Jul8_274241_275345
+
+#osudb update /NoBPTX/2016collision_PromptReco_Original/USER -a -l /data/users/weifengji/wji-crab_Run2016B-PromptReco-v2_OSUT3Ntuples_Jul8_275370_276097
+
+#osudb update /NoBPTX/2016collision_PromptReco_Original/USER -a -l /data/users/weifengji/wji-crab_Run2016C-PromptReco-v2_OSUT3Ntuples_Jul8_275370_275782
