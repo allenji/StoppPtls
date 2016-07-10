@@ -175,7 +175,7 @@ RPCHits3DPlotter::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       }
       for (unsigned i = 0; i != rpchits->size(); ++i) {
         if ((rpchits->at(i)).r() > 560) {
-          for (unsigned j = i; j != rpchits->size(); ++j) {
+          for (unsigned j = 0; j != i; ++j) {
             TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
             TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z()); 
             double rpc_eta_i = tveci.Eta();
