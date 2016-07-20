@@ -7,8 +7,8 @@ config_file = "DelayedMuonsAnalysis.py"
 #config_file = "dumpedConfig.py"
 
 datasetsSig = [
-    #'mchamp600_NtupleSeparateEventsParticle0',
-    'gluino2000_NtupleSeparateEventsParticle0',
+    'mchamp600_NtupleSeparateEvents',
+    'gluino2000_NtupleSeparateEvents',
 ]
 
 datasetsData = [
