@@ -3,7 +3,8 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2830
 
-config_file = "delayedMuonsCandiate_cfg.py"
+config_file = "delayedMuonsCandiate2016_cfg.py"
+#config_file = "delayedMuonsCandiate_cfg.py"
 
 datasets = [
     "NoBPTX_2016BCDE_PromptReco",
