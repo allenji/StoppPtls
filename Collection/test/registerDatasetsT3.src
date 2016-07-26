@@ -6,25 +6,30 @@
 
 #osudb --location /data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0 update /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle0/USER -f RECOSIM
 
-osudb --location /data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle1/mchamp600_RecoSeparateEventsParticle1 create /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle1/mchamp600_RecoSeparateEventsParticle1 create /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
 
-osudb --location /data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino2000_RecoSeparateEventsParticle0 update /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle0/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino2000_RecoSeparateEventsParticle0 update /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle0/USER -f RECOSIM
 
-osudb --location /data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle1/gluino2000_RecoSeparateEventsParticle1 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle1/gluino2000_RecoSeparateEventsParticle1 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_765_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
 
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-16Dec2015-v1/USER -f RECOSIM
-
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-16Dec2015-v1/USER -f RECOSIM
 
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015B_PromptReco create /NoBPTX/Run2015B_Cosmic-PromptReco-v1/USER -f RECOSIM
-
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015C_PromptReco create /NoBPTX/Run2015C_Cosmic-PromptReco-v1/USER -f RECOSIM
-
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015Dv3_PromptReco create /NoBPTX/Run2015D_Cosmic-PromptReco-v3/USER -f RECOSIM
-
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015Dv4_PromptReco create /NoBPTX/Run2015D_Cosmic-PromptReco-v4/USER -f RECOSIM
-
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015E_PromptReco create /NoBPTX/Run2015E_Cosmic-PromptReco-v1/USER -f RECOSIM
+
+osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016C_PromptReco create /NoBPTX/Run2016C-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E-PromptReco-v2/USER -f RECOSIM
+
+osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples/NoBPTX_2016C_PromptReco create /NoBPTX/Run2016C_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
+osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
 

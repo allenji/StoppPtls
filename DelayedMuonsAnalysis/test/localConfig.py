@@ -12,11 +12,13 @@ datasetsSig = [
 ]
 
 datasetsData = [
-   'NoBPTX_16Dec2015_Ntuple',
+   #'NoBPTX_16Dec2015_Ntuple', #2015 rereco
+   'NoBPTX_2016BCDE_PromptReco_Ntuple', #2016 prompt reco
 ]
 
 datasetsCosmicData = [
-    'NoBPTX_2015BCDE_PromptReco_Cosmic_Ntuple',
+    #'NoBPTX_2015BCDE_PromptReco_Cosmic_Ntuple', #2015 bottom only cosmics
+    'NoBPTX_2016BCDE_PromptReco_Cosmic_TopAndBottom_Ntuple', #2016 top and bottom cosmics
 ]
 
 datasetsCosmicMC = [
@@ -27,9 +29,9 @@ datasetsCosmicMC = [
 #datasets = datasetsSig + datasetsData + datasetsCosmicData
 #datasets = datasetsSig + datasetsData
 #datasets = datasetsSig + datasetsCosmicData
-datasets = datasetsSig
+#datasets = datasetsSig
 #datasets = datasetsData
-#datasets = datasetsCosmicData
+datasets = datasetsCosmicData
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
