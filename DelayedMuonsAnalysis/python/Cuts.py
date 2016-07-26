@@ -5,8 +5,8 @@ import copy
 #dummy cut
 ########################################
 cutDummy = cms.PSet(
-    inputCollection = cms.vstring("jets"),
-    cutString = cms.string("energy > -1"),
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > -1"),
     numberRequired = cms.string(">= 0"),
     alias = cms.string("No offline cuts")
 )

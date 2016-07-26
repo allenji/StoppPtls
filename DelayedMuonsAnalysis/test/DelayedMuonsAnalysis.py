@@ -19,8 +19,9 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
-        'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
+        #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         ),
                              )
 
@@ -97,13 +98,21 @@ from StoppPtls.StandardAnalysis.Histograms import *
 
 selections = []
 selections.append(NoCuts)
-selections.append(TriggerSelection)
 selections.append(GenPlotsSelection)
-selections.append(PrePreSelection)
-selections.append(PreSelectionUpperOnly)
-selections.append(PreSelectionUpperLower)
-selections.append(DelayedMuonsUpperOnlySelection)
-selections.append(DelayedMuonsUpperLowerSelection)
+#2015 selection
+#selections.append(TriggerSelection2015)
+#selections.append(PrePreSelection2015)
+#selections.append(PreSelectionUpperOnly2015)
+#selections.append(PreSelectionUpperLower2015)
+#selections.append(DelayedMuonsUpperOnlySelection2015)
+#selections.append(DelayedMuonsUpperLowerSelection2015)
+#2016 selection
+selections.append(TriggerSelection2016)
+selections.append(PrePreSelection2016)
+selections.append(PreSelectionUpperOnly2016)
+selections.append(PreSelectionUpperLower2016)
+selections.append(DelayedMuonsUpperOnlySelection2016)
+selections.append(DelayedMuonsUpperLowerSelection2016)
 
 histograms = cms.VPSet()
 histograms.append(DelayedMuonsStoppedParticleHistograms)
