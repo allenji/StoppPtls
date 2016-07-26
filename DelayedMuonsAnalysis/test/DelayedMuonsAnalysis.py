@@ -99,20 +99,12 @@ from StoppPtls.StandardAnalysis.Histograms import *
 selections = []
 selections.append(NoCuts)
 selections.append(GenPlotsSelection)
-#2015 selection
-#selections.append(TriggerSelection2015)
-#selections.append(PrePreSelection2015)
-#selections.append(PreSelectionUpperOnly2015)
-#selections.append(PreSelectionUpperLower2015)
-#selections.append(DelayedMuonsUpperOnlySelection2015)
-#selections.append(DelayedMuonsUpperLowerSelection2015)
-#2016 selection
-selections.append(TriggerSelection2016)
-selections.append(PrePreSelection2016)
-selections.append(PreSelectionUpperOnly2016)
-selections.append(PreSelectionUpperLower2016)
-selections.append(DelayedMuonsUpperOnlySelection2016)
-selections.append(DelayedMuonsUpperLowerSelection2016)
+selections.append(TriggerSelection)
+selections.append(PrePreSelection)
+selections.append(PreSelectionUpperOnly)
+selections.append(PreSelectionUpperLower)
+selections.append(DelayedMuonsUpperOnlySelection)
+selections.append(DelayedMuonsUpperLowerSelection)
 
 histograms = cms.VPSet()
 histograms.append(DelayedMuonsStoppedParticleHistograms)
