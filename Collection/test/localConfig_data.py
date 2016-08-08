@@ -7,7 +7,7 @@ config_file = "delayedMuonsCandiate2016_cfg.py"
 #config_file = "delayedMuonsCandiate_cfg.py"
 
 datasets = [
-    "NoBPTX_2016BCDE_PromptReco",
+    "NoBPTX_2016BCDEF_PromptReco",
     #"NoBPTX_16Dec2015",
     #"NoBPTX_2015BCDE_PromptReco",
 ]

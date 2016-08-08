@@ -8,6 +8,7 @@ process.load('Configuration.Geometry.GeometryExtended2015Reco_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 process.load('Configuration.EventContent.EventContent_cff')
+process.load("Configuration.StandardSequences.Reconstruction_cff")
 
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
@@ -21,7 +22,8 @@ process.source = cms.Source ("PoolSource",
         #'/store/data/Run2015D/NoBPTX/AOD/16Dec2015-v1/50000/0A09722C-FDAF-E511-A96E-001E67E6F616.root'
         #'/store/data/Run2016C/NoBPTX/RECO/PromptReco-v2/000/275/419/00000/1E52F317-F439-E611-81F8-02163E0143A1.root'
         #'/store/data/Run2016C/NoBPTX/AOD/PromptReco-v2/000/275/419/00000/C8A87E13-F439-E611-BDD1-02163E011DC3.root'
-        'file:./C8A87E13-F439-E611-BDD1-02163E011DC3.root'
+        #'file:./C8A87E13-F439-E611-BDD1-02163E011DC3.root' #AOD
+        "file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_15/src/RecoMuon/MuonIdentification/test/5EB8577E-2C45-E611-A6A4-02163E0133A4.root" #RECO
         ),
                              )
 
@@ -41,12 +43,15 @@ process.hltHighLevel.HLTPaths = cms.vstring(
 
 process.filter_step = cms.Path(process.hltHighLevel)
 
+#rerun muon timing with pruning off
+process.muontiming.TimingFillerParameters.DTTimingParameters.PruneCut = cms.double(10000.)
+
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
 process.eventproducer = cms.Path(
-    process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
+    process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
     )
 
 # Apply lumi mask; comment out to process all events  
