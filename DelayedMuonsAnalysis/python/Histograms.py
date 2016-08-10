@@ -147,6 +147,59 @@ Muon1Histograms = cms.PSet(
 )
 )
 
+NeutralinoNLSPHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("neutralinoNLSPMass"),
+            title = cms.string("#tilde{#chi^{0}_{2}} Mass; #tilde{#chi^{0}_{2}} Mass [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 5000),
+            inputVariables = cms.vstring("neutralinoNLSPMass"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPP"),
+            title = cms.string("#tilde{#chi^{0}_{2}} Momentum; #tilde{#chi^{0}_{2}} p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("neutralinoNLSPP"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPPt"),
+            title = cms.string("#tilde{#chi^{0}_{2}} Transverse Momentum; #tilde{#chi^{0}_{2}} p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("neutralinoNLSPPt"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPPx"),
+            title = cms.string("#tilde{#chi^{0}_{2}} x Component of Momentum; #tilde{#chi^{0}_{2}} p_{x} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoNLSPPx"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPPy"),
+            title = cms.string("#tilde{#chi^{0}_{2}} y Component of Momentum; #tilde{#chi^{0}_{2}} p_{y} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoNLSPPy"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPPz"),
+            title = cms.string("#tilde{#chi^{0}_{2}} z Component of Momentum; #tilde{#chi^{0}_{2}} p_{z} [GeV]"),
+            binsX = cms.untracked.vdouble(200, -1000, 1000),
+            inputVariables = cms.vstring("neutralinoNLSPPz"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPEta"),
+                title = cms.string("#tilde{#chi^{0}_{2}} Pseudorapidity; #tilde{#chi^{0}_{2}} #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("neutralinoNLSPEta"),
+        ),
+        cms.PSet (
+            name = cms.string("neutralinoNLSPPhi"),
+            title = cms.string("#tilde{#chi^{0}_{2}} #phi; #tilde{#chi^{0}_{2}} #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("neutralinoNLSPPhi"),
+            ),
+)
+)
 
 UpperDSAHistograms = cms.PSet(
     inputCollection = cms.vstring("tracks"),
