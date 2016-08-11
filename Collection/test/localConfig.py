@@ -1,9 +1,11 @@
 from OSUT3Analysis.Configuration.configurationOptions import *
 from OSUT3Analysis.Configuration.RECOSamples import *
+from OSUT3Analysis.Configuration.GENSIMSamples import *
 
 intLumi = 2460
 
-config_file = "delayedMuonsCandiate_MC_cfg.py"
+#config_file = "delayedMuonsCandiate_MC_cfg.py"
+config_file = "candiate_Stage1MC_cfg.py"
 
 datasets = [
     #'mchamp100_RecoSeparateEventsParticle0',
@@ -53,10 +55,26 @@ datasets = [
     #'gluino1400_RecoSeparateEventsParticle1', 
     #'gluino1600_RecoSeparateEventsParticle1', 
     #'gluino1800_RecoSeparateEventsParticle1', 
-    'gluino2000_RecoSeparateEventsParticle1', 
+    #'gluino2000_RecoSeparateEventsParticle1', 
     #'gluino2200_RecoSeparateEventsParticle1',  
     #'gluino2400_RecoSeparateEventsParticle1',  
     #'gluino2600_RecoSeparateEventsParticle1', 
+
+    #'gluino100',
+    'gluino200',
+    #'gluino400',
+    #'gluino600',
+    #'gluino800',
+    'gluino1000',
+    #'gluino1200',
+    #'gluino1400',
+    #'gluino1600',
+    #'gluino1800',
+    'gluino2000',
+    #'gluino2200',
+    #'gluino2400',
+    #'gluino2600',
+
 ]
     
 InputCondorArguments = {}
