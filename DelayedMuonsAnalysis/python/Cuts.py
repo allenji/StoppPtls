@@ -11,6 +11,13 @@ cutDummy = cms.PSet(
     alias = cms.string("No offline cuts")
 )
 
+cutDummyStage1 = cms.PSet(
+    inputCollection = cms.vstring("mcparticles"),
+    cutString = cms.string("pt > -1"),
+    numberRequired = cms.string(">= 0"),
+    alias = cms.string("No offline cuts")
+)
+
 ########################################
 #not in cavern walls
 #######################################

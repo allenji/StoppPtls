@@ -12,6 +12,14 @@ NoCuts = cms.PSet(
         )
     )
 
+NoCutsStage1 = cms.PSet(
+    name = cms.string("NoCutsStage1"),
+    #triggers = cms.vstring(""), 
+    cuts = cms.VPSet(
+        cutDummyStage1
+        )
+    )
+
 #Signal Trigger Selection
 #For vertex number plot
 TriggerSelection = cms.PSet(
