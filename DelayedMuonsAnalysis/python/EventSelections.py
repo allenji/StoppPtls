@@ -24,7 +24,16 @@ NoCutsStage1 = cms.PSet(
 #For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
-    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+        cutDummy,
+      )
+)
+
+#for skim for trigger turn on 
+ControlTriggerSelection = cms.PSet(
+    name = cms.string("ControlTriggerSelection"),
     triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutDummy,
@@ -49,8 +58,8 @@ cutPreDSAPtGeneric.alias = cms.string("DSA Track $p_{T}$ > 10 \GeV")
 
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v",HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
-    triggers = cms.vstring(""),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -64,8 +73,8 @@ PrePreSelection = cms.PSet(
 #For jetE, jetEta plots
 PreSelectionUpperOnly = cms.PSet(
     name = cms.string("PreSelectionUpperOnly"),
-    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
-    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -84,8 +93,8 @@ PreSelectionUpperOnly = cms.PSet(
 #For jetE, jetEta plots
 PreSelectionUpperLower = cms.PSet(
     name = cms.string("PreSelectionUpperLower"),
-    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
-    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -99,6 +108,17 @@ PreSelectionUpperLower = cms.PSet(
       cutPreDSANValidCscHits,
       )
     )
+
+#For HLT turn-on curve
+PreSelectionUpperLowerTurnOnDen = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnDen.name = cms.string("PreSelectionUpperLowerTurnOnDen")
+PreSelectionUpperLowerTurnOnDen.triggers = cms.vstring("")
+
+#For HLT turn-on curve
+PreSelectionUpperLowerTurnOnNum = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnNum.name = cms.string("PreSelectionUpperLowerTurnOnNum")
+PreSelectionUpperLowerTurnOnNum.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v")
+
 
 #full analysis selection
 DelayedMuonsUpperOnlySelection = copy.deepcopy(PreSelectionUpperOnly)

@@ -21,7 +21,9 @@ process.source = cms.Source ("PoolSource",
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016B_PromptReco/hist_0.root'
+        #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
 
@@ -100,9 +102,12 @@ selections = []
 selections.append(NoCuts)
 selections.append(GenPlotsSelection)
 selections.append(TriggerSelection)
+selections.append(ControlTriggerSelection)
 selections.append(PrePreSelection)
 selections.append(PreSelectionUpperOnly)
 selections.append(PreSelectionUpperLower)
+selections.append(PreSelectionUpperLowerTurnOnDen)
+selections.append(PreSelectionUpperLowerTurnOnNum)
 selections.append(DelayedMuonsUpperOnlySelection)
 selections.append(DelayedMuonsUpperLowerSelection)
 
@@ -111,7 +116,7 @@ histograms.append(DelayedMuonsStoppedParticleHistograms)
 histograms.append(Muon0Histograms)
 histograms.append(Muon1Histograms)
 histograms.append(NeutralinoHistograms)
-histograms.append(NeutralinoNLSPHistograms)
+#histograms.append(NeutralinoNLSPHistograms)
 histograms.append(EventHistograms)
 histograms.append(UpperDSAHistograms)
 histograms.append(LowerDSAHistograms)
@@ -126,7 +131,7 @@ histograms.append(VsDeltaDSAHistograms)
 
 scalingfactorproducers = []
 
-add_channels(process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+add_channels(process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, True)
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
