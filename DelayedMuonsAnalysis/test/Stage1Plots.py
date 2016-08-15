@@ -45,8 +45,8 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (100)
-    #input = cms.untracked.int32 (-1)
+    #input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (-1)
     #input = cms.untracked.int32 (10)
 )
 
@@ -89,7 +89,8 @@ from StoppPtls.DelayedMuonsAnalysis.EventSelections import *
 ################################################################################
 
 from StoppPtls.DelayedMuonsAnalysis.Histograms import *
-from StoppPtls.StandardAnalysis.Histograms import *
+from StoppPtls.DelayedMuonsAnalysis.Histograms_Stage1 import *
+#from StoppPtls.StandardAnalysis.Histograms import *
 
 ################################################################################
 ##### Attach the channels and histograms to the process ########################
@@ -99,11 +100,19 @@ selections = []
 selections.append(NoCutsStage1)
 
 histograms = cms.VPSet()
+histograms.append(Gluino0Histograms)
+histograms.append(Gluino1Histograms)
+histograms.append(Stop0Histograms)
+histograms.append(Stop1Histograms)
+histograms.append(Mchamp0Histograms)
+histograms.append(Mchamp1Histograms)
+histograms.append(StoppedGluino0Histograms)
+histograms.append(StoppedGluino1Histograms)
+histograms.append(StoppedStop0Histograms)
+histograms.append(StoppedStop1Histograms)
+histograms.append(StoppedMchamp0Histograms)
+histograms.append(StoppedMchamp1Histograms)
 histograms.append(DelayedMuonsStoppedParticleHistograms)
-histograms.append(Muon0Histograms)
-histograms.append(Muon1Histograms)
-histograms.append(NeutralinoHistograms)
-histograms.append(NeutralinoNLSPHistograms)
 
 scalingfactorproducers = []
 

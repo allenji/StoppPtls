@@ -23,7 +23,8 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
  private:
   void AddVariables(const edm::Event &);
   double Eta(double, double, double, double);
-
+  double Beta(const reco::GenParticle&);
+  double dRmatchedToStoppedParticle(const reco::GenParticle&, int,edm::Handle< std::vector<float> >, edm::Handle< std::vector<float> >, edm::Handle< std::vector<float> >, edm::Handle< std::vector<float> >);
   string livetimeRootFile_;
   TFile* file;
 
@@ -31,7 +32,6 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
   TH1D* fill_livetime_hist;
 
   edm::EDGetTokenT<vector<TYPE(events)> > eventsToken_;
-  /*  
   edm::EDGetTokenT<vector<TYPE(mcparticles)> > mcparticlesToken_;
 
   edm::InputTag stoppedParticlesNameTag_;
@@ -50,7 +50,7 @@ class StoppPtlsEventVariableProducer : public EventVariableProducer
   edm::EDGetTokenT<std::vector<float> > stoppedParticlesMassToken_;
   edm::InputTag stoppedParticlesChargeTag_;
   edm::EDGetTokenT<std::vector<float> > stoppedParticlesChargeToken_;
-  */
+
 };
 
 
