@@ -18,8 +18,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-        #'file:/data/users/jalimena/condor/Stage1NtupleGluinos/gluino200/hist_0.root'
-        'file:/mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/007576F4-5A01-E511-A27F-009C02AAB4C0.root'
+        #'file:/mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/007576F4-5A01-E511-A27F-009C02AAB4C0.root'
+        'file:/mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/14CB35EE-2202-E511-BFD1-FA163E64B49E.root'
         ),
                              )
 
