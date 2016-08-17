@@ -311,3 +311,10 @@ cutLowerDSARpcBxPattern = cms.PSet(
     numberRequired = cms.string(">= 1"),
     alias = cms.string("Lower DSA Track RPC Hit BXs==0 ")
 )
+
+cutUpperLowerDSADeltaRpcHitBxAverage = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.0 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta RPC Hit BX Average > -1.0")
+)
