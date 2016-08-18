@@ -31,7 +31,7 @@ cutStoppedParticleEBHB = cms.PSet(
 #######################################
 cutBx = cms.PSet(
     inputCollection = cms.vstring("events"),
-    cutString = cms.string("bxWrtBunch > 1"),
+    cutString = cms.string("abs(bxWrtBunch) > 1"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("BX veto")
 )

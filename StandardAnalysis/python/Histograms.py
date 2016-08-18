@@ -421,7 +421,8 @@ EventHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("bxWrtBunch"),
             title = cms.string("BX With Respect To Bunch; bxWrtBunch"),
-            binsX = cms.untracked.vdouble(200, 0, 200),
+            #binsX = cms.untracked.vdouble(200, 0, 200),
+            binsX = cms.untracked.vdouble(400, -200, 200),
             inputVariables = cms.vstring("bxWrtBunch"),
         ),
         cms.PSet (

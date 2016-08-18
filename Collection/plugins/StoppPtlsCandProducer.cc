@@ -97,8 +97,8 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   event.set_bx(iEvent.bunchCrossing());
   event.set_run(iEvent.id().run());
   event.set_fill(lhcfills_.getFillFromRun(event.run()));
-  event.set_bxWrtBunch(static_cast<int>(abs(lhcfills_.getBxWrtBunch(event.fill(), event.bx()))));
-  event.set_bxWrtBunchPM(static_cast<int>(lhcfills_.getBxWrtBunch(event.fill(), event.bx())));
+  event.set_bxWrtBunch(static_cast<int>(lhcfills_.getBxWrtBunch(event.fill(), event.bx())));
+
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
   iEvent.getByToken(caloTowerToken_,caloTowers);
