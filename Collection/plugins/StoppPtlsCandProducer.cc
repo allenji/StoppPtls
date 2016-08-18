@@ -98,6 +98,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   event.set_run(iEvent.id().run());
   event.set_fill(lhcfills_.getFillFromRun(event.run()));
   event.set_bxWrtBunch(static_cast<int>(abs(lhcfills_.getBxWrtBunch(event.fill(), event.bx()))));
+  event.set_bxWrtBunchPM(static_cast<int>(lhcfills_.getBxWrtBunch(event.fill(), event.bx())));
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
   iEvent.getByToken(caloTowerToken_,caloTowers);
@@ -106,9 +107,12 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     
     std::vector<CaloTower> caloTowersTmp;
     caloTowersTmp.insert(caloTowersTmp.end(), caloTowers->begin(), caloTowers->end());
-    sort(caloTowersTmp.begin(), caloTowersTmp.end(), calotower_gt());
+    sort(caloTowersTmp.begin(), caloTowersTmp.end(), calotower_hadEtGt());
     if(caloTowersTmp.begin() != caloTowersTmp.end()){
       int iphiFirst=caloTowersTmp.begin()->iphi();
+      int irbxFirst = (caloTowersTmp.begin()->iphi() + 5) / 4;
+      if (irbxFirst == 19) irbxFirst = 1;
+      (caloTowersTmp.begin()->ieta() > 0) ? : irbxFirst = -irbxFirst;
       bool keepgoing=true;
       for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
       twr!=caloTowersTmp.end() && keepgoing;
@@ -128,6 +132,19 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
           }
         }  
       } // loop on caloTowers
+      for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
+      twr!=caloTowersTmp.end();
+    ++twr) {
+        int current_irbx = (twr->iphi() + 5) / 4;
+        if (current_irbx == 19) current_irbx = 1;
+        (twr->ieta() > 0) ? : current_irbx = - current_irbx;
+        cout << "The RBX index of current tower is: " << current_irbx << endl;
+        if (current_irbx == irbxFirst && abs(twr->ieta()) <= 16 && twr->hadEt() > 0.2) {
+          event.increment_nTowerSameiRbx();
+        }
+
+      }  
+
     }
     //event_->leadingIPhiFractionValue=event_->leadingIPhiFraction();
   }

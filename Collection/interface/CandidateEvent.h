@@ -11,9 +11,11 @@ class CandidateEvent
     run_(0),
     fill_(0),
     bxWrtBunch_(0),
+    bxWrtBunchPM_(0),
     nVtx_(0),
     noiseFilterResult_(0),
     nTowerSameiPhi_(0),
+    nTowerSameiRbx_(0),
     leadingIPhiFractionValue_(0.),
     topHPD5PeakSample_(0),
     topHPD5Total_(-999.),
@@ -37,11 +39,14 @@ class CandidateEvent
     void set_run(ULong_t run) {run_ = run;}
     void set_fill(ULong_t fill) {fill_ = fill;}
     void set_bxWrtBunch(int bxWrtBunch) {bxWrtBunch_ = bxWrtBunch;}
+    void set_bxWrtBunchPM(int bxWrtBunchPM) {bxWrtBunchPM_ = bxWrtBunchPM;}
     void set_nVtx(unsigned nVtx) {nVtx_ = nVtx;}
     void set_noiseFilterResult(bool noiseFilterResult){noiseFilterResult_ = noiseFilterResult;}
     void set_nTowerSameiPhi(unsigned nTowerSameiPhi) {nTowerSameiPhi_ = nTowerSameiPhi;}
+    void set_nTowerSameiRbx(unsigned nTowerSameiRbx) {nTowerSameiRbx_ = nTowerSameiRbx;}
     void set_leadingIPhiFractionValue(double leadingIPhiFractionValue) {leadingIPhiFractionValue_ = leadingIPhiFractionValue;}
     void increment_nTowerSameiPhi() {++nTowerSameiPhi_;}
+    void increment_nTowerSameiRbx() {++nTowerSameiRbx_;}
     
     void set_topHPD5PeakSample(unsigned topHPD5PeakSample) {topHPD5PeakSample_ = topHPD5PeakSample;}
     void set_topHPD5Total(double topHPD5Total) {topHPD5Total_ = topHPD5Total;}
@@ -66,12 +71,14 @@ class CandidateEvent
     ULong_t fill() const {return fill_;}
 
     int bxWrtBunch() {return bxWrtBunch_;}
+    int bxWrtBunchPM() {return bxWrtBunchPM_;}
 
     unsigned nVtx() {return nVtx_;}
 
     bool noiseFilterResult() {return noiseFilterResult_;}
 
     unsigned nTowerSameiPhi() {return nTowerSameiPhi_;}
+    unsigned nTowerSameiRbx() {return nTowerSameiRbx_;}
     double leadingIPhiFractionValue() {return leadingIPhiFractionValue_;}
 
     unsigned topHPD5PeakSample() {return topHPD5PeakSample_;}
@@ -104,6 +111,7 @@ class CandidateEvent
     ULong_t run_;
     ULong_t fill_;
     int bxWrtBunch_;
+    int bxWrtBunchPM_;
 
     //number of vertex
     unsigned nVtx_;
@@ -112,6 +120,7 @@ class CandidateEvent
     bool noiseFilterResult_;
     //gobal calo
     unsigned nTowerSameiPhi_;
+    unsigned nTowerSameiRbx_;
     double leadingIPhiFractionValue_;
 
 

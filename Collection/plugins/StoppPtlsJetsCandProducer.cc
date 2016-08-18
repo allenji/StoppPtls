@@ -32,7 +32,7 @@ StoppPtlsJetsCandProducer::StoppPtlsJetsCandProducer(const edm::ParameterSet& iC
   rpcRecHitsTag_    (iConfig.getParameter<edm::InputTag> ("rpcRecHitsTag")),
   rpcRecHitsToken_  (consumes<RPCRecHitCollection>(rpcRecHitsTag_))
 {
-    produces<std::vector<CandidateCscHit> > ();
+    //produces<std::vector<CandidateCscHit> > ();
     produces<std::vector<CandidateCscSeg> > ();
     produces<std::vector<CandidateDTSeg> > ();
     produces<std::vector<CandidateRpcHit> > ();
@@ -52,7 +52,7 @@ StoppPtlsJetsCandProducer::~StoppPtlsJetsCandProducer()
 void
 StoppPtlsJetsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  doCscHits(iEvent, iSetup);
+  //doCscHits(iEvent, iSetup);
   doCscSegments(iEvent, iSetup);
   doMuonDTs(iEvent, iSetup);
   doMuonRPCs(iEvent, iSetup);

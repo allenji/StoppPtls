@@ -78,6 +78,11 @@ public:
       return ( x.hadEnergy() > y.hadEnergy() );
     }
   };
+  struct calotower_hadEtGt : public std::binary_function<CaloTower, CaloTower, bool> {
+    bool operator()(const CaloTower& x, const CaloTower& y) {
+      return ( x.hadEt() > y.hadEt() );
+    }
+  };
   
   struct jete_gt : public std::binary_function<reco::CaloJet, reco::CaloJet, bool> {
     bool operator()(const reco::CaloJet& x, const reco::CaloJet& y) {
