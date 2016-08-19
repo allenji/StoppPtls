@@ -1,5 +1,5 @@
 # Modify these variables to switch masses, input stopped points files, and flavor of RHadron
-SPARTICLE_MASS=000
+SPARTICLE_MASS=XXX
 NEUTRALINO_MASS=200
 GRAVITINO_MASS=0.00001
 DELAYED_MUONS=True

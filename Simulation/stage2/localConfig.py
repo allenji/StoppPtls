@@ -23,7 +23,7 @@ datasets = [
     #'mchamp2200',
     #'mchamp2600',
 
-    #'gluino100',
+    'gluino100',
     #'gluino200',
     #'gluino400',
     #'gluino600',
@@ -33,7 +33,7 @@ datasets = [
     #'gluino1400',
     #'gluino1600',
     #'gluino1800',
-    'gluino2000',
+    ##'gluino2000',
     #'gluino2200',
     #'gluino2400',
     #'gluino2600',

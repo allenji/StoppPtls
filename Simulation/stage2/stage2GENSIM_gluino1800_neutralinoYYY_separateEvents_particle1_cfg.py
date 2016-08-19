@@ -1,10 +1,10 @@
 # Modify these variables to switch masses, input stopped points files, and flavor of RHadron
-SPARTICLE_MASS=XXX
+SPARTICLE_MASS=1800
 NEUTRALINO_MASS=SPARTICLE_MASS/4.0
 GRAVITINO_MASS=0.00001
 DELAYED_MUONS=True
 SAME_EVENT=False
-PARTICLE_NUMBER=0
+PARTICLE_NUMBER=1
 
 import FWCore.ParameterSet.Config as cms
 

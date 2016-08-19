@@ -1,20 +1,12 @@
-import FWCore.ParameterSet.Config as cms
-import OSUT3Analysis.DBTools.osusub_cfg as osusub
-from OSUT3Analysis.Configuration.configurationOptions import *
-from OSUT3Analysis.Configuration.processingUtilities import *
-
 # Modify these variables to switch masses, input stopped points files, and flavor of RHadron
-if osusub.batchMode:
-    SPARTICLE_MASS=float((osusub.datasetLabel)[6:])
-else:
-    SPARTICLE_MASS=2000
-print "mass is: " + str(SPARTICLE_MASS)
-
+SPARTICLE_MASS=XXX
 NEUTRALINO_MASS=SPARTICLE_MASS/4.0
 GRAVITINO_MASS=0.00001
 DELAYED_MUONS=True
 SAME_EVENT=True
 PARTICLE_NUMBER=0
+
+import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('SIM2')
 
