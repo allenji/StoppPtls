@@ -305,6 +305,10 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     alias = cms.string("#Delta TimeInOut > -22 ns")
 )
 
+########################################
+#upper and lower DSA ABCD cuts
+########################################
+
 cutLowerDSARpcBxPattern = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("secondaryTrack.rpcHitBxPattern == 0"),
@@ -317,4 +321,137 @@ cutUpperLowerDSADeltaRpcHitBxAverage = cms.PSet(
     cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.0 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("#Delta RPC Hit BX Average > -1.0")
+)
+
+cutUpperLowerDSADeltaRpcHitBxAverageInverted = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -1.0 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta RPC Hit BX Average <= -1.0")
+)
+
+cutUpperLowerDSAUpperP50 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 50."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 50 \GeV")
+)
+
+cutUpperLowerDSAUpperP50Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 50."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 50 \GeV")
+)
+
+cutUpperLowerDSAUpperP60 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 60."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 60 \GeV")
+)
+
+cutUpperLowerDSAUpperP60Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 60."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 60 \GeV")
+)
+
+cutUpperLowerDSAUpperP110 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 110."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 110 \GeV")
+)
+
+cutUpperLowerDSAUpperP110Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 110."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 110 \GeV")
+)
+
+cutUpperLowerDSAUpperP150 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 150."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 150 \GeV")
+)
+
+cutUpperLowerDSAUpperP150Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 150."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 150 \GeV")
+)
+
+cutUpperLowerDSAUpperP170 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 170."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 170 \GeV")
+)
+
+cutUpperLowerDSAUpperP170Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 170."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 170 \GeV")
+)
+
+cutUpperLowerDSAUpperP200 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 200."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 200 \GeV")
+)
+
+cutUpperLowerDSAUpperP200Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 200."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 200 \GeV")
+)
+
+cutUpperLowerDSAUpperP250 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 250."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 250 \GeV")
+)
+
+cutUpperLowerDSAUpperP250Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 250."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 250 \GeV")
+)
+
+cutUpperLowerDSAUpperP300 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 300."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 300 \GeV")
+)
+
+cutUpperLowerDSAUpperP300Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 300."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 300 \GeV")
+)
+
+cutUpperLowerDSAUpperP400 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 400."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p > 400 \GeV")
+)
+
+cutUpperLowerDSAUpperP400Inverted = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p <= 400."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track p < 400 \GeV")
 )
