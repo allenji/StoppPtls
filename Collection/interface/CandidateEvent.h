@@ -15,6 +15,10 @@ class CandidateEvent
     noiseFilterResult_(0),
     nTowerSameiPhi_(0),
     nTowerSameiRbx_(0),
+    nAllTowerSameiPhi_(0),
+    maxiEtaDiffSameiRbx_(0),
+    nTowerDiffiEtaSameiRbx_(0),
+    leadingRbxIndex_(0),
     leadingIPhiFractionValue_(0.),
     topHPD5PeakSample_(0),
     topHPD5Total_(-999.),
@@ -42,9 +46,14 @@ class CandidateEvent
     void set_noiseFilterResult(bool noiseFilterResult){noiseFilterResult_ = noiseFilterResult;}
     void set_nTowerSameiPhi(unsigned nTowerSameiPhi) {nTowerSameiPhi_ = nTowerSameiPhi;}
     void set_nTowerSameiRbx(unsigned nTowerSameiRbx) {nTowerSameiRbx_ = nTowerSameiRbx;}
+    void set_nAllTowerSameiPhi(unsigned nAllTowerSameiPhi) {nAllTowerSameiPhi_ = nAllTowerSameiPhi;}
+    void set_maxiEtaDiffSameiRbx(int maxiEtaDiffSameiRbx) {maxiEtaDiffSameiRbx_ = maxiEtaDiffSameiRbx;}
+    void set_nTowerDiffiEtaSameiRbx(unsigned nTowerDiffiEtaSameiRbx) {nTowerDiffiEtaSameiRbx_ = nTowerDiffiEtaSameiRbx;}
+    void set_leadingRbxIndex(int leadingRbxIndex) {leadingRbxIndex_ = leadingRbxIndex;}
     void set_leadingIPhiFractionValue(double leadingIPhiFractionValue) {leadingIPhiFractionValue_ = leadingIPhiFractionValue;}
     void increment_nTowerSameiPhi() {++nTowerSameiPhi_;}
     void increment_nTowerSameiRbx() {++nTowerSameiRbx_;}
+    void increment_nAllTowerSameiPhi() {++nAllTowerSameiPhi_;}
     
     void set_topHPD5PeakSample(unsigned topHPD5PeakSample) {topHPD5PeakSample_ = topHPD5PeakSample;}
     void set_topHPD5Total(double topHPD5Total) {topHPD5Total_ = topHPD5Total;}
@@ -76,6 +85,10 @@ class CandidateEvent
 
     unsigned nTowerSameiPhi() {return nTowerSameiPhi_;}
     unsigned nTowerSameiRbx() {return nTowerSameiRbx_;}
+    unsigned nAllTowerSameiPhi() {return nAllTowerSameiPhi_;}
+    int maxiEtaDiffSameiRbx() {return maxiEtaDiffSameiRbx_;}
+    unsigned nTowerDiffiEtaSameiRbx() {return nTowerDiffiEtaSameiRbx_;}
+    int leadingRbxIndex() {return leadingRbxIndex_;}
     double leadingIPhiFractionValue() {return leadingIPhiFractionValue_;}
 
     unsigned topHPD5PeakSample() {return topHPD5PeakSample_;}
@@ -117,6 +130,10 @@ class CandidateEvent
     //gobal calo
     unsigned nTowerSameiPhi_;
     unsigned nTowerSameiRbx_;
+    unsigned nAllTowerSameiPhi_;
+    int maxiEtaDiffSameiRbx_;
+    unsigned nTowerDiffiEtaSameiRbx_;
+    int leadingRbxIndex_;
     double leadingIPhiFractionValue_;
 
 
