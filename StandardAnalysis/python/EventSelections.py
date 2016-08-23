@@ -6,7 +6,7 @@ from StoppPtls.StandardAnalysis.Cuts import *
 #full analysis selection
 StoppPtlsSelection = cms.PSet(
     name = cms.string("StoppedParticlesSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -58,7 +58,7 @@ StoppPtlsSelection_2016 = cms.PSet(
 #Halo Selection (invert halo veto)
 HaloSelection = cms.PSet(
     name = cms.string("BeamHaloSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutCscSegNumberInverted
       )
@@ -68,7 +68,7 @@ HaloSelection = cms.PSet(
 #For nCscSeg plot
 HaloControlSelection = cms.PSet(
     name = cms.string("BeamHaloControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -93,7 +93,7 @@ HaloControlSelection = cms.PSet(
 #Halo tag and probe Selection
 HaloTagAndProbeSelection = cms.PSet(
     name = cms.string("BeamHaloTagAndProbeSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
         cutJetNumber,
         cutCscSegNLayers,
@@ -104,7 +104,7 @@ HaloTagAndProbeSelection = cms.PSet(
 #Cosmic Selection (invert cosmic veto and cut out halo)
 CosmicSelection = cms.PSet(
     name = cms.string("CosmicMuonSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
         #cosmics but not halo
         cutCscSegNumber 
@@ -115,7 +115,7 @@ CosmicSelection = cms.PSet(
 #For RPC hits and DT segment plots
 CosmicControlSelection = cms.PSet(
     name = cms.string("CosmicMuonControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -137,7 +137,7 @@ CosmicControlSelection = cms.PSet(
 #Noise Selection (invert noise veto)
 NoiseSelection = cms.PSet(
     name = cms.string("HcalNoiseSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutNoiseInverted
       )
@@ -147,7 +147,7 @@ NoiseSelection = cms.PSet(
 #For noise filter result, n90jet, ntowiPhi, and other noise plots
 NoiseControlSelection = cms.PSet(
     name = cms.string("HcalNoiseControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutCscSegNumber,
       cutOuterDT,
@@ -160,8 +160,8 @@ NoiseControlSelection = cms.PSet(
 )
 
 NoiseControlSelectionTight = cms.PSet(
-    name = cms.string("HcalNoiseControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    name = cms.string("HcalNoiseControlTightSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -175,6 +175,11 @@ NoiseControlSelectionTight = cms.PSet(
       cutMaxDeltaJetPhi,
       cutJetEnergy,
       cutJetEta,
+      cutNoise,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutNTowerSameiRbx,
     )
 )
 
@@ -200,7 +205,7 @@ NoiseControlSelectionTight_2016 = cms.PSet(
 #Alternate Noise N-1 ish Selection (preselection [cutJetEnergy + cutJetEta] + vertex veto + cosmic veto(no RPC hits) + halo veto)
 AltNoiseControlSelection = cms.PSet(
     name = cms.string("AltHcalNoiseControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutVertexNumber,
       cutCscSegNumber,
@@ -216,7 +221,7 @@ AltNoiseControlSelection = cms.PSet(
 #For jetE, jetEta plots
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
@@ -227,7 +232,7 @@ PrePreSelection = cms.PSet(
 #For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_NoHalo_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
         cutDummy,
       )
@@ -276,3 +281,50 @@ Rpc_study = cms.PSet(
     )
 )
 
+cosmicCoarse = cms.PSet(
+    name = cms.string("cosmicCoarse"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutCosmicCoarse,
+        cutJetEnergy,
+        cutJetEta,
+    )
+)
+
+haloCoarse = cms.PSet(
+    name = cms.string("haloCoarse"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutHaloCoarse,
+        cutJetEnergy,
+        cutJetEta,
+    )
+)
+
+cosmicStrict = cms.PSet(
+    name = cms.string("cosmicStrict"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutCosmicStrict,
+        cutJetEnergy,
+        cutJetEta,
+    )
+)
+
+haloStrict = cms.PSet(
+    name = cms.string("haloStrict"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutHaloStrict,
+        cutJetEnergy,
+        cutJetEta,
+    )
+)
