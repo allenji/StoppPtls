@@ -336,3 +336,33 @@ cutDummy = cms.PSet(
     alias = cms.string("No offline cuts")
 )
 
+cutNTowerSameiRbx = cms.PSet(
+    inputCollection = cms.vstring('events'),
+    cutString = cms.string('nTowerSameiRbx < 30'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("nTowerSameiRbx < 30")
+)
+
+cutHaloCoarse = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("cscSegN > 2"),
+    numberRequired = cms.string("> 0"),
+)
+
+cutHaloStrict = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("cscSegN > 10"),
+    numberRequired = cms.string("> 0"),
+)
+
+cutCosmicCoarse = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("dtSegN > 2"),
+    numberRequired = cms.string("> 0"),
+)
+
+cutCosmicStrict = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("dtSegN > 10"),
+    numberRequired = cms.string("> 0"),
+)
