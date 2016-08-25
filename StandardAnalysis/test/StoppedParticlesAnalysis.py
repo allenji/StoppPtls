@@ -17,8 +17,10 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-                                 'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
+        #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
+        #'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco/hist_332.root'
         ),
                              )
 
@@ -70,8 +72,9 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
-variableProducers = ["StoppPtlsEventVariableProducer"]
-variableProducers.append("StoppPtlsJetsEventVariableProducer")
+variableProducers = []
+#variableProducers = ["StoppPtlsEventVariableProducer"]
+#variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
 ################################################################################
 ##### Import the channels to be run ############################################
@@ -114,6 +117,8 @@ selections.append(NoiseControlSelection)
 #selections.append(Rpc_study)
 #selections.append(PrePreSelection)
 #selections.append(TriggerSelection)
+#selections.append(TriggerSelection_2016)
+#selections.append(ControlTriggerSelection_2016)
 #selections.append(SecondJetSelection)
 #selections.append(NoCuts)
 
@@ -144,23 +149,23 @@ histograms = cms.VPSet()
 #histograms.append(HpdHistograms)
 scalingfactorproducers = []
 
-#add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
-add_channels (process, [StoppPtlsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [StoppPtlsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [HaloControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [HaloTagAndProbeSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [CosmicControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [NoiseControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [NoiseControlSelectionTight], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [CosmicControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoiseControlSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+# add_channels (process, [NoiseControlSelectionTight], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [PrePreSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [TriggerSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 # add_channels (process, [SecondJetSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [NoCuts], histograms, weights, collectionMap_Custom, variableProducers, False)
 
-process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
 # uncomment to produce a full python configuration log file

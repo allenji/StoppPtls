@@ -32,8 +32,16 @@ TriggerSelection = cms.PSet(
 )
 
 #for skim for trigger turn on 
-ControlTriggerSelection = cms.PSet(
-    name = cms.string("ControlTriggerSelection"),
+NoBPTXControlTriggerSelection = cms.PSet(
+    name = cms.string("NoBPTXControlTriggerSelection"),
+    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX_v"),
+    cuts = cms.VPSet(
+        cutDummy,
+      )
+)
+
+NoBPTX3BXControlTriggerSelection = cms.PSet(
+    name = cms.string("NoBPTX3BXControlTriggerSelection"),
     triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutDummy,

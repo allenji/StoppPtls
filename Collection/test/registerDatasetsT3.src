@@ -23,12 +23,16 @@
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015Dv4_PromptReco create /NoBPTX/Run2015D_Cosmic-PromptReco-v4/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015E_PromptReco create /NoBPTX/Run2015E_Cosmic-PromptReco-v1/USER -f RECOSIM
 
-#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B-PromptReco-v2/USER -f RECOSIM
-#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016C_PromptReco create /NoBPTX/Run2016C-PromptReco-v2/USER -f RECOSIM
-#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D-PromptReco-v2/USER -f RECOSIM
-#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E-PromptReco-v2/USER -f RECOSIM
-#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016F_PromptReco create /NoBPTX/Run2016F-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016C_PromptReco create /NoBPTX/Run2016C-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016F_PromptReco create /NoBPTX/Run2016F-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016G_PromptReco create /NoBPTX/Run2016G-PromptReco-v2/USER -f RECOSIM
 
-osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
-osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B-PromptReco-v2_Jets_BxStudy/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D-PromptReco-v2_Jets_BxStudy/USER -f RECOSIM
+
+#osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
 

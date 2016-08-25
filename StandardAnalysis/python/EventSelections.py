@@ -242,8 +242,16 @@ TriggerSelection = cms.PSet(
 )
 
 TriggerSelection_2016 = cms.PSet(
-    name = cms.string("TriggerSelection"),
+    name = cms.string("TriggerSelection2016"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+        cutDummy,
+      )
+)
+
+ControlTriggerSelection_2016 = cms.PSet(
+    name = cms.string("ControlTriggerSelection2016"),
+    triggers = cms.vstring("HLT_JetE30_NoBPTX_v"),
     cuts = cms.VPSet(
         cutDummy,
       )
