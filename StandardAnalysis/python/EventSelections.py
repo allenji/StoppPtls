@@ -25,7 +25,8 @@ StoppPtlsSelection = cms.PSet(
       cutHpdR2,
       cutHpdRPeak,
       cutHpdRPeakSample,
-      cutHpdROuter
+      cutHpdROuter,
+      cutMaxiEtaDiffSameiRbx
     )
 )
 
@@ -176,10 +177,12 @@ NoiseControlSelectionTight = cms.PSet(
       cutJetEnergy,
       cutJetEta,
       cutNoise,
-      cutJetN90,
-      cutTowerIPhi,
-      cutTowerFraction,
-      cutNTowerSameiRbx,
+      cutNTowerDiffiEtaSameiRbx,
+#      cutMaxiEtaDiffSameiRbx,
+#      cutJetN90,
+#      cutTowerIPhi,
+#      cutTowerFraction,
+#      cutNTowerSameiRbx,
     )
 )
 
