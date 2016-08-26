@@ -136,7 +136,7 @@ cutHpdRPeak = cms.PSet(
 ######################################
 cutHpdRPeakSample = cms.PSet(
     inputCollection = cms.vstring("events"),
-    cutString = cms.string("( topHPD5PeakSample > 0 ) && ( topHPD5PeakSample < 7 ) = 1"),
+    cutString = cms.string("( topHPD5PeakSample > 2 ) && ( topHPD5PeakSample < 7 ) = 1"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("Peak sample < 7")
 )
@@ -365,4 +365,18 @@ cutCosmicStrict = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     cutString = cms.string("dtSegN > 10"),
     numberRequired = cms.string("> 0"),
+)
+
+cutMaxiEtaDiffSameiRbx = cms.PSet(
+    inputCollection = cms.vstring('events'),
+    cutString = cms.string('maxiEtaDiffSameiRbx < 11'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("maxiEtaDiffSameiRbx < 11")
+)
+
+cutNTowerDiffiEtaSameiRbx = cms.PSet(
+    inputCollection = cms.vstring('events'),
+    cutString = cms.string('nTowerDiffiEtaSameiRbx < 9'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("nTowerDiffiEtaSameiRbx < 9")
 )
