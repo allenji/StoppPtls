@@ -59,7 +59,8 @@ process.options = cms.untracked.PSet(
 process.source = cms.Source ("PoolSource",
                              fileNames=cms.untracked.vstring(
         #'file:../stage1/step1_mchamp500.root'
-        'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        'file:/mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPmchamp6_M-100_TuneZ2star_13TeV-pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/38B5899C-B1EF-E411-AEF7-782BCB161F1B.root'
+        #'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
         )
                              )
 
@@ -110,8 +111,8 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                                              MaxEta = cms.double(10),
                                                              MaxPhi = cms.double(3.14159265359),
                                                              diJetGluino = cms.bool(False),
-                                                             decayTable = cms.string('src/stage2ParticlesTable.txt') #for crab
-                                                             #decayTable = cms.string('../../../stage2ParticlesTable.txt') #for interactive:  where you do cmsenv
+                                                             #decayTable = cms.string('src/stage2ParticlesTable.txt') #for crab
+                                                             decayTable = cms.string('../../../stage2ParticlesTable_mchamp800.txt') #for interactive:  where you do cmsenv
                                                              ),
                                    #pythiaPylistVerbosity = cms.untracked.int32(2),
                                    pythiaPylistVerbosity = cms.untracked.int32(3),
@@ -130,7 +131,7 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                                                                                 ),
                                                                 parameterSets = cms.vstring('processParameters',
                                                                                             'SLHAParameters'),
-                                                                SLHAParameters = cms.vstring('SLHAFILE=stage2ParticlesTable.txt')
+                                                                SLHAParameters = cms.vstring('SLHAFILE=stage2ParticlesTable_mchamp800.txt')
                                                                 )
                                    )
 

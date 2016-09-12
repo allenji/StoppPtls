@@ -113,8 +113,8 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                                              MaxEta = cms.double(10),
                                                              MaxPhi = cms.double(3.14159265359),
                                                              diJetGluino = cms.bool(False),
-                                                             decayTable = cms.string('src/stage2ParticlesTable.txt') #for crab
-                                                             #decayTable = cms.string('../../../stage2ParticlesTable.txt') #for interactive:  where you do cmsenv
+                                                             #decayTable = cms.string('src/stage2ParticlesTable.txt') #for crab
+                                                             decayTable = cms.string('../../../stage2ParticlesTable_gluino1600.txt') #for interactive:  where you do cmsenv
                                                              ),
                                    #pythiaPylistVerbosity = cms.untracked.int32(2),
                                    pythiaPylistVerbosity = cms.untracked.int32(3),
@@ -182,7 +182,7 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                         ),
         parameterSets = cms.vstring('processParameters',
                                     'SLHAParameters'),
-        SLHAParameters = cms.vstring('SLHAFILE=stage2ParticlesTable.txt')
+        SLHAParameters = cms.vstring('SLHAFILE=stage2ParticlesTable_gluino1600.txt')
         )
                                    )
 
