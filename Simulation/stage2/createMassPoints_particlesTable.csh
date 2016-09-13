@@ -5,7 +5,8 @@ echo gluinos...
 foreach i (100 200 400 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600) #Run2
     set j=`expr $i / 4`
     set k=`echo "2.5 * $j" | bc`
-    sed "s/XXX/$i/" stage2ParticlesTable_gluinoXXX.txt |sed "s/YYY/$j/" |sed "s/ZZZ/$k/" > stage2ParticlesTable_gluino${i}.txt
+    set l=`expr $i + 2`
+    sed "s/XXX/$i/" stage2ParticlesTable_gluinoXXX.txt |sed "s/YYY/$j/" |sed "s/ZZZ/$k/" |sed "s/AAA/$l/" > stage2ParticlesTable_gluino${i}.txt
 end
 
 #echo stops...
@@ -57,10 +58,10 @@ end
 #end
 
 
-echo mchamps...
-foreach i (100 200 400 600 800 1000 1400 1800 2200 2600) #Run2
-    sed "s/XXX/$i/" stage2ParticlesTable_mchampXXX.txt > stage2ParticlesTable_mchamp${i}.txt
-end
+#echo mchamps...
+#foreach i (100 200 400 600 800 1000 1400 1800 2200 2600) #Run2
+    #sed "s/XXX/$i/" stage2ParticlesTable_mchampXXX.txt > stage2ParticlesTable_mchamp${i}.txt
+#end
 
 
 
