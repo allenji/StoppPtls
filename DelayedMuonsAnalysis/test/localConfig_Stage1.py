@@ -40,7 +40,6 @@ datasets = [
     'stop1000',
     #'stop1200',
     #'stop1400',
-    #'stop1600',
     #'stop1800',
     'stop2000',
     #'stop2200',

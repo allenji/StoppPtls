@@ -11,6 +11,7 @@
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg),
   //livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile")),
+  
   stoppedParticlesNameTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesName")),
   stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
   stoppedParticlesXTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesX")),
@@ -27,6 +28,7 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   stoppedParticlesMassToken_    (consumes<std::vector<float> >(stoppedParticlesMassTag_)),
   stoppedParticlesChargeTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesCharge")),
   stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_))
+
 {
   /*
   file = TFile::Open(livetimeRootFile_.c_str());
@@ -173,7 +175,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  break;
 	}
 	//sometimes only another R-hadron, not the exact stopped particle r-hadron, is in the mcparticles list
-	else if(fabs(itmcpart->pdgId())>1000900 && fabs(itmcpart->pdgId())<2000000){
+	else if(fabs(itmcpart->pdgId())>1000000 && fabs(itmcpart->pdgId())<2000000){
 	  matched = true;
 	  stopped_genParticle = itmcpart;
 	  stoppedParticle_index = i;
@@ -794,10 +796,10 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     stoppedMchamp1Beta = Beta(*mchamp1MatchedToStoppedParticle);
   }
 
-  std::cout<<"gluino0Beta is: "<<gluino0Beta<<std::endl;
-  std::cout<<"gluino1Beta is: "<<gluino1Beta<<std::endl;
-  std::cout<<"stoppedGluino0Beta is: "<<stoppedGluino0Beta<<std::endl;
-  std::cout<<"stoppedGluino1Beta is: "<<stoppedGluino1Beta<<std::endl;
+  std::cout<<"stop0Beta is: "<<stop0Beta<<std::endl;
+  std::cout<<"stop1Beta is: "<<stop1Beta<<std::endl;
+  std::cout<<"stoppedStop0Beta is: "<<stoppedStop0Beta<<std::endl;
+  std::cout<<"stoppedStop1Beta is: "<<stoppedStop1Beta<<std::endl;
 
   (*eventvariables)["stoppedGluino0Mass"] = stoppedGluino0Mass;
   (*eventvariables)["stoppedGluino0Charge"] = stoppedGluino0Charge;
@@ -865,6 +867,13 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["stoppedMchamp1Phi"] = stoppedMchamp1Phi;
   (*eventvariables)["stoppedMchamp1Beta"] = stoppedMchamp1Beta;
 
+
+  //for stage1 (stopped and not stopped)
+  int rhadronCharge = -999;
+  for (auto itmcpart = mcparticles->begin(); itmcpart != mcparticles->end(); ++itmcpart){
+    if(fabs(itmcpart->pdgId())>1000000 && fabs(itmcpart->pdgId())<2000000) rhadronCharge = itmcpart->charge();
+  }
+  (*eventvariables)["rhadronCharge"] = rhadronCharge;
 
   /*  
   //////////////////////////////////livetime//////////////////////////////////

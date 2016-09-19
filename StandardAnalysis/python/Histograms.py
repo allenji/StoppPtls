@@ -28,6 +28,12 @@ StoppedParticleHistograms = cms.PSet(
             inputVariables = cms.vstring("stoppedParticleCharge"),
         ),
         cms.PSet (
+            name = cms.string("stoppedParticleAbsCharge"),
+            title = cms.string("Abs Stopped Particle Charge; Abs Stopped Particle Charge"),
+            binsX = cms.untracked.vdouble(5, 0, 5),
+            inputVariables = cms.vstring("abs(stoppedParticleCharge)"),
+        ),
+        cms.PSet (
             name = cms.string("stoppedParticleX"),
             title = cms.string("Stopped Particle X; Stopped Particle X [cm]"),
             binsX = cms.untracked.vdouble(200, -1000, 1000),

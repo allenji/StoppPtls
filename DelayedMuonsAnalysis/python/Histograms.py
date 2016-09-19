@@ -26,6 +26,14 @@ DelayedMuonsStoppedParticleHistograms.histograms.append(
         inputVariables = cms.vstring("nStoppedParticles"),
         ),
     )
+DelayedMuonsStoppedParticleHistograms.histograms.append(
+    cms.PSet (
+        name = cms.string("rhadronCharge"),
+        title = cms.string("Abs R-hadron Charge; Abs R-hadron Charge"),
+        binsX = cms.untracked.vdouble(5, 0, 5),
+        inputVariables = cms.vstring("abs(rhadronCharge)"),
+        ),
+    )
 
 Muon0Histograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
