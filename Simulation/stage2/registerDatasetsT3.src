@@ -4,6 +4,9 @@
 # 2015
 ##############################
 
+#stage 1
+
+
 #osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPgluino_M-100_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPgluino_M-100_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
 
 #osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPgluino_M-200_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPgluino_M-200_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
@@ -32,10 +35,87 @@
 
 #osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPgluino_M-2600_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/ create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
 
+
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-100_TuneCUETP8M1_13TeV_pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/50000/ create /HSCPstop_M-100_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-200_TuneCUETP8M1_13TeV_pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/50000/ create /HSCPstop_M-200_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-400_TuneCUETP8M1_13TeV_pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-400_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-600_TuneCUETP8M1_13TeV_pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-600_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-800_TuneCUETP8M1_13TeV_pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-800_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-1000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-1000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-1200_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-1200_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-1400_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-1400_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-1800_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/50000/ create /HSCPstop_M-1800_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-2200_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/50000/ create /HSCPstop_M-2200_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-2400_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/ create /HSCPstop_M-2400_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+#osudb --location /mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPstop_M-2600_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/ create /HSCPstop_M-2600_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-HSCP_customise_MCRUN2_71_V1-v2/GEN-SIM -f GENSIM
+
+
+
+#stage2
+
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp100 create /HSCPmchamp6_M-100_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp200 create /HSCPmchamp6_M-200_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp400 create /HSCPmchamp6_M-400_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
 #osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp600 create /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp800 create /HSCPmchamp6_M-800_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp1000 create /HSCPmchamp6_M-1000_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp1400 create /HSCPmchamp6_M-1400_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp1800 create /HSCPmchamp6_M-1800_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp2200 create /HSCPmchamp6_M-2200_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle0/mchamp2600 create /HSCPmchamp6_M-2600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
 
-osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp600 create /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp100 create /HSCPmchamp6_M-100_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp200 create /HSCPmchamp6_M-200_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp400 create /HSCPmchamp6_M-400_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp600 create /HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp800 create /HSCPmchamp6_M-800_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp1000 create /HSCPmchamp6_M-1000_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp1400 create /HSCPmchamp6_M-1400_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp1800 create /HSCPmchamp6_M-1800_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp2200 create /HSCPmchamp6_M-2200_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimMchampsSeparateEventsParticle1/mchamp2600 create /HSCPmchamp6_M-2600_TuneZ2star_13TeV_pythia6/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
 
-#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
 
-osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino2000 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino100 create /HSCPgluino_M-100_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino200 create /HSCPgluino_M-200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino400 create /HSCPgluino_M-400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino600 create /HSCPgluino_M-600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino800 create /HSCPgluino_M-800_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino1000 create /HSCPgluino_M-1000_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino1200 create /HSCPgluino_M-1200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino1400 create /HSCPgluino_M-1400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino1600 create /HSCPgluino_M-1600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino1800 create /HSCPgluino_M-1800_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2200 create /HSCPgluino_M-2200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2400 create /HSCPgluino_M-2400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2600 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle0/USER -f GENSIM
+
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino100 create /HSCPgluino_M-100_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino200 create /HSCPgluino_M-200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino400 create /HSCPgluino_M-400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino600 create /HSCPgluino_M-600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino800 create /HSCPgluino_M-800_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino1000 create /HSCPgluino_M-1000_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino1200 create /HSCPgluino_M-1200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino1400 create /HSCPgluino_M-1400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino1600 create /HSCPgluino_M-1600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino1800 create /HSCPgluino_M-1800_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino2000 create /HSCPgluino_M-2000_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino2200 create /HSCPgluino_M-2200_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino2400 create /HSCPgluino_M-2400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
+#osudb --location /data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle1/gluino2600 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_7122_Stage2GenSimSeparateEventsParticle1/USER -f GENSIM
