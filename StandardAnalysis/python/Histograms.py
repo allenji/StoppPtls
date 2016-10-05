@@ -808,6 +808,101 @@ LeadingJetHistograms = cms.PSet(
         )
 )
 
+#trigger turn on histos: same as above except plot energy to 200 GeV and bin width is 1 GeV 
+
+JetHistogramsForTurnOn = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("jetEnergy"),
+            title = cms.string("Jet Energy; Jet E [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("energy"),
+        ),
+        cms.PSet (
+            name = cms.string("jetEt"),
+            title = cms.string("Jet E_{T}; Jet E_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("et"),
+        ),
+        cms.PSet (
+            name = cms.string("jetEta"),
+            title = cms.string("Jet Pseudorapidity; Jet #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta"),
+        ),
+        cms.PSet (
+            name = cms.string("jetPhi"),
+            title = cms.string("Jet #phi; Jet #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi"),
+            ),
+        cms.PSet (
+            name = cms.string("jetN60"),
+            title = cms.string("Jet n60; Jet n60"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("n60"),
+            ),
+        cms.PSet (
+            name = cms.string("jetN90"),
+            title = cms.string("Jet n90; Jet n90"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("n90"),
+            )
+        )
+)
+
+LeadingJetHistogramsForTurnOn = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("leadingJetEnergy"),
+            title = cms.string("Leading Jet Energy; Leading Jet E [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("leadingJetEnergy"),
+        ),
+        cms.PSet (
+            name = cms.string("leadingJetEt"),
+            title = cms.string("Leading Jet E_{T}; Leading Jet E_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("leadingJetEt"),
+        ),
+        cms.PSet (
+            name = cms.string("leadingJetEta"),
+            title = cms.string("Leading Jet Pseudorapidity; Abs(Leading Jet #eta)"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("leadingJetEtaPM"),
+        ),
+        cms.PSet (
+            name = cms.string("leadingJetPhi"),
+            title = cms.string("Leading Jet #phi; Leading Jet #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("leadingJetPhi"),
+            ),
+        cms.PSet (
+            name = cms.string("leadingJetN60"),
+            title = cms.string("Leading Jet n60; Leading Jet n60"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("leadingJetN60"),
+            ),
+        cms.PSet (
+            name = cms.string("leadingJetN90"),
+            title = cms.string("Leading Jet n90; Leading Jet n90"),
+            binsX = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("leadingJetN90"),
+            ),
+        cms.PSet (
+            name = cms.string("leadingJet eta vs phi"),
+            title = cms.string("leading jet eta vs phi; Leading Jet Eta; Leading Jet Phi"),
+            binsX = cms.untracked.vdouble(20, -3, 3),
+            binsY = cms.untracked.vdouble(20, -3.5, 3.5),
+            inputVariables = cms.vstring("leadingJetEtaPM", "leadingJetPhi")
+            )
+        )
+)
+
+
+
 SecondJetHistograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (

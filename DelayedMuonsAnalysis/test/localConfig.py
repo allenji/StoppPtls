@@ -12,8 +12,19 @@ datasetsSig = [
 ]
 
 datasetsData = [
-   'NoBPTX_16Dec2015_Ntuple', #2015 rereco
-   'NoBPTX_2016BCDEFG_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_16Dec2015_Ntuple', #2015 rereco
+    
+    'NoBPTX_2016BCDEFG_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_2016B_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_2016C_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_2016D_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_2016E_PromptReco_Ntuple', #2016 prompt reco
+    
+    #'NoBPTX_2016BCD_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+    #'NoBPTX_2016B_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+    #'NoBPTX_2016C_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+    #'NoBPTX_2016D_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+    #'NoBPTX_2016F_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
 ]
 
 datasetsCosmicData = [

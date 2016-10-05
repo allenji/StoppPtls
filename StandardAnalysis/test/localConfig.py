@@ -18,7 +18,11 @@ datasetsSig = [
 ]
 
 datasetsData = [
-  'NoBPTX_2015D',
+    'NoBPTX_2015D',
+    #'NoBPTX_Jet_2016BCD_PromptReco'
+    #'NoBPTX_2016B_PromptReco_Jets_BxStudy_Ntuple',
+    #'NoBPTX_2016D_PromptReco_Jets_BxStudy_Ntuple',
+    #'NoBPTX_2016BCDEFG_PromptReco_Jets_OnlyControlTriggers_Ntuple',
 ]
 
 #data control sample

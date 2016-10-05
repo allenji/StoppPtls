@@ -257,6 +257,26 @@ ControlTriggerSelection_2016 = cms.PSet(
       )
 )
 
+#for trigger turn on: run over ntuples where only control triggers are used in the selection 
+
+DenominatorTriggerTurnOnSelection2016 = cms.PSet(
+    name = cms.string("DenominatorTriggerTurnOnSelection2016"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,        
+        )
+    )
+
+NumeratorTriggerTurnOnSelection2016 = cms.PSet(
+    name = cms.string("NumeratorTriggerTurnOnSelection2016"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,        
+        )
+    )
+
 #Selection for Second Jet analysis
 SecondJetSelection = cms.PSet(
      name = cms.string("SecondJetSelection"),

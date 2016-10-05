@@ -22,7 +22,7 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning/NoBPTX_2016B_PromptReco/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -100,11 +100,14 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ################################################################################
 
 selections = []
-selections.append(NoCuts)
+#selections.append(NoCuts)
 #selections.append(GenPlotsSelection)
-selections.append(TriggerSelection)
-selections.append(NoBPTXControlTriggerSelection)
-selections.append(NoBPTX3BXControlTriggerSelection)
+#selections.append(TriggerSelection)
+#selections.append(NoBPTXControlTriggerSelection)
+#selections.append(NoBPTX3BXControlTriggerSelection)
+#selections.append(PreSelectionUpperLowerTurnOnDen)
+#selections.append(PreSelectionUpperLowerTurnOnNum35)
+#selections.append(PreSelectionUpperLowerTurnOnNum40)
 #selections.append(PrePreSelection)
 #selections.append(PreSelectionUpperOnly)
 #selections.append(PreSelectionUpperLower)
@@ -156,9 +159,10 @@ histograms = cms.VPSet()
 #histograms.append(Muon1Histograms)
 #histograms.append(NeutralinoHistograms)
 #histograms.append(NeutralinoNLSPHistograms)
-histograms.append(EventHistograms)
+#histograms.append(EventHistograms)
 #histograms.append(UpperDSAHistograms)
 #histograms.append(LowerDSAHistograms)
+#histograms.append(TriggerTurnOnUpperDSAHistograms)
 #histograms.append(NumberOfObjectsHistograms)
 #histograms.append(NumberOfDelayedMuonsObjectsHistograms)
 #histograms.append(DelayedMuonsObjectsVsTimeHistograms)

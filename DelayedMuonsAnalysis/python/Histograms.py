@@ -749,6 +749,37 @@ LowerDSAHistograms = cms.PSet(
         )
     )
 
+#trigger turn on histos: same as upper DSA histos except plot p/pt to 200 GeV and bin width is 1 GeV
+TriggerTurnOnUpperDSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("p"),
+            title = cms.string("; DSA Track p [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("p"),
+        ),
+        cms.PSet (
+            name = cms.string("pt"),
+            title = cms.string("; DSA Track p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(200, 0, 200),
+            inputVariables = cms.vstring("pt"),
+        ),
+        cms.PSet (
+            name = cms.string("eta"),
+            title = cms.string("; DSA Track #eta"),
+            binsX = cms.untracked.vdouble(100, -5, 5),
+            inputVariables = cms.vstring("eta"),
+        ),
+        cms.PSet (
+            name = cms.string("phi"),
+            title = cms.string("; DSA Track #phi"),
+            binsX = cms.untracked.vdouble(64, -3.2, 3.2),
+            inputVariables = cms.vstring("phi"),
+            ),
+)
+)
+
 NumberOfDelayedMuonsObjectsHistograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (

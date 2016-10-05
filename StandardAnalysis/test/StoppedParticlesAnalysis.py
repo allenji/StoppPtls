@@ -20,7 +20,10 @@ process.source = cms.Source ("PoolSource",
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         #'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco/hist_332.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco/hist_332.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_Jets_OnlyControlTriggers/NoBPTX_2016D_PromptReco/hist_599.root'
+        #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/StandardAnalysis/test/condor/StoppedParticles_NoBPTX2016_ControlTriggerSkim/NoBPTX_Jet_2016B_PromptReco_v2/BothControlTriggerSelection2016/skim_0.root'
+        #'file:./BothControlTriggerSelection2016/skim_BothControlTriggerSelection2016_2016_09_26_10h18m13s.root'
         ),
                              )
 
@@ -112,13 +115,15 @@ selections = []
 #selections.append(CosmicSelection)
 #selections.append(CosmicControlSelection)
 #selections.append(NoiseSelection)
-selections.append(NoiseControlSelection)
+#selections.append(NoiseControlSelection)
 #selections.append(AltNoiseControlSelection)
 #selections.append(Rpc_study)
 #selections.append(PrePreSelection)
 #selections.append(TriggerSelection)
 #selections.append(TriggerSelection_2016)
 #selections.append(ControlTriggerSelection_2016)
+#selections.append(DenominatorTriggerTurnOnSelection2016)
+#selections.append(NumeratorTriggerTurnOnSelection2016)
 #selections.append(SecondJetSelection)
 #selections.append(NoCuts)
 
@@ -138,6 +143,8 @@ histograms = cms.VPSet()
 #histograms.append(NoiseHistograms)
 #histograms.append(JetHistograms)
 #histograms.append(LeadingJetHistograms)
+#histograms.append(JetHistogramsForTurnOn)
+#histograms.append(LeadingJetHistogramsForTurnOn)
 #histograms.append(SecondJetHistograms)
 #histograms.append(DtSegmentHistograms)
 #histograms.append(CscSegmentHistograms)

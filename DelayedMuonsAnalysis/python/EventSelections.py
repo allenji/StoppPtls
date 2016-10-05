@@ -31,14 +31,6 @@ TriggerSelection = cms.PSet(
       )
 )
 
-#for skim for trigger turn on 
-NoBPTXControlTriggerSelection = cms.PSet(
-    name = cms.string("NoBPTXControlTriggerSelection"),
-    triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX_v"),
-    cuts = cms.VPSet(
-        cutDummy,
-      )
-)
 
 NoBPTX3BXControlTriggerSelection = cms.PSet(
     name = cms.string("NoBPTX3BXControlTriggerSelection"),
@@ -117,15 +109,22 @@ PreSelectionUpperLower = cms.PSet(
       )
     )
 
-#For HLT turn-on curve
+#for trigger turn on: run over ntuples where only control triggers are used in the selection
+
+#For HLT turn-on curve: denominator is preselection with no additional trigger applied
 PreSelectionUpperLowerTurnOnDen = copy.deepcopy(PreSelectionUpperLower)
 PreSelectionUpperLowerTurnOnDen.name = cms.string("PreSelectionUpperLowerTurnOnDen")
 PreSelectionUpperLowerTurnOnDen.triggers = cms.vstring("")
 
-#For HLT turn-on curve
-PreSelectionUpperLowerTurnOnNum = copy.deepcopy(PreSelectionUpperLower)
-PreSelectionUpperLowerTurnOnNum.name = cms.string("PreSelectionUpperLowerTurnOnNum")
-PreSelectionUpperLowerTurnOnNum.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v")
+#For HLT turn-on curve: numerator is preselection plus signal trigger
+PreSelectionUpperLowerTurnOnNum35 = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnNum35.name = cms.string("PreSelectionUpperLowerTurnOnNum35")
+PreSelectionUpperLowerTurnOnNum35.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v")
+
+#For HLT turn-on curve: numerator is preselection plus signal trigger
+PreSelectionUpperLowerTurnOnNum40 = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnNum40.name = cms.string("PreSelectionUpperLowerTurnOnNum40")
+PreSelectionUpperLowerTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
 
 
 #full analysis selection
