@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 import copy
-
+from OSUT3Analysis.Configuration.cutUtilities import *
 from StoppPtls.StandardAnalysis.Cuts import *
 from StoppPtls.DelayedMuonsAnalysis.Cuts import *
 
@@ -110,21 +110,28 @@ PreSelectionUpperLower = cms.PSet(
     )
 
 #for trigger turn on: run over ntuples where only control triggers are used in the selection
+PreSelectionUpperLowerAtLeast4ValidDtChambers = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerAtLeast4ValidDtChambers.name = cms.string("PreSelectionUpperLowerAtLeast4ValidDtChambers")
+addSingleCut(PreSelectionUpperLowerAtLeast4ValidDtChambers.cuts,cutPreDSAAtLeast4DtChambersWithValidHits,cutPreDSAPt)
+removeCuts(PreSelectionUpperLowerAtLeast4ValidDtChambers.cuts,[cutPreDSANDtChambersWithValidHits])
+
 
 #For HLT turn-on curve: denominator is preselection with no additional trigger applied
-PreSelectionUpperLowerTurnOnDen = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnDen = copy.deepcopy(PreSelectionUpperLowerAtLeast4ValidDtChambers)
 PreSelectionUpperLowerTurnOnDen.name = cms.string("PreSelectionUpperLowerTurnOnDen")
 PreSelectionUpperLowerTurnOnDen.triggers = cms.vstring("")
 
 #For HLT turn-on curve: numerator is preselection plus signal trigger
-PreSelectionUpperLowerTurnOnNum35 = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnNum35 = copy.deepcopy(PreSelectionUpperLowerAtLeast4ValidDtChambers)
 PreSelectionUpperLowerTurnOnNum35.name = cms.string("PreSelectionUpperLowerTurnOnNum35")
 PreSelectionUpperLowerTurnOnNum35.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v")
 
 #For HLT turn-on curve: numerator is preselection plus signal trigger
-PreSelectionUpperLowerTurnOnNum40 = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerTurnOnNum40 = copy.deepcopy(PreSelectionUpperLowerAtLeast4ValidDtChambers)
 PreSelectionUpperLowerTurnOnNum40.name = cms.string("PreSelectionUpperLowerTurnOnNum40")
 PreSelectionUpperLowerTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
+
+
 
 
 #full analysis selection

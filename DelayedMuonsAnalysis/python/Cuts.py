@@ -156,6 +156,13 @@ cutPreDSANDtChambersWithValidHits = cms.PSet(
     alias = cms.string("Upper and Lower DSA Tracks > 1 DT chambers with valid hits")
 )
 
+cutPreDSAAtLeast4DtChambersWithValidHits = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("track.nDtChambersWithValidHits > 3 && secondaryTrack.nDtChambersWithValidHits > 3"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper and Lower DSA Tracks > 3 DT chambers with valid hits")
+)
+
 cutPreDSANValidRpcHits = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("track.nValidRpcHits > 1 && secondaryTrack.nValidRpcHits > 1"),
