@@ -808,7 +808,7 @@ LeadingJetHistograms = cms.PSet(
         )
 )
 
-#trigger turn on histos: same as above except plot energy to 200 GeV and bin width is 1 GeV 
+#trigger turn on histos: same as above except plot energy to 200 GeV and bin width is 2 GeV 
 
 JetHistogramsForTurnOn = cms.PSet(
     inputCollection = cms.vstring("jets"),
@@ -816,13 +816,13 @@ JetHistogramsForTurnOn = cms.PSet(
         cms.PSet (
             name = cms.string("jetEnergy"),
             title = cms.string("Jet Energy; Jet E [GeV]"),
-            binsX = cms.untracked.vdouble(200, 0, 200),
+            binsX = cms.untracked.vdouble(100, 0, 200),
             inputVariables = cms.vstring("energy"),
         ),
         cms.PSet (
             name = cms.string("jetEt"),
             title = cms.string("Jet E_{T}; Jet E_{T} [GeV]"),
-            binsX = cms.untracked.vdouble(200, 0, 200),
+            binsX = cms.untracked.vdouble(100, 0, 200),
             inputVariables = cms.vstring("et"),
         ),
         cms.PSet (
@@ -858,13 +858,13 @@ LeadingJetHistogramsForTurnOn = cms.PSet(
         cms.PSet (
             name = cms.string("leadingJetEnergy"),
             title = cms.string("Leading Jet Energy; Leading Jet E [GeV]"),
-            binsX = cms.untracked.vdouble(200, 0, 200),
+            binsX = cms.untracked.vdouble(100, 0, 200),
             inputVariables = cms.vstring("leadingJetEnergy"),
         ),
         cms.PSet (
             name = cms.string("leadingJetEt"),
             title = cms.string("Leading Jet E_{T}; Leading Jet E_{T} [GeV]"),
-            binsX = cms.untracked.vdouble(200, 0, 200),
+            binsX = cms.untracked.vdouble(100, 0, 200),
             inputVariables = cms.vstring("leadingJetEt"),
         ),
         cms.PSet (
