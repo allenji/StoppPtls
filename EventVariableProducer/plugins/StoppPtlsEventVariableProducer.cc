@@ -73,6 +73,15 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   float stoppedParticleTime   = -999;
 
   //gen particles
+  double neutralinoNLSPMass = -999;
+  double neutralinoNLSPPx = -999;
+  double neutralinoNLSPPy = -999;
+  double neutralinoNLSPPz = -999;
+  double neutralinoNLSPPt = -999;
+  double neutralinoNLSPP = -999;
+  double neutralinoNLSPEta = -999;
+  double neutralinoNLSPPhi = -999;
+
   double neutralinoMass = -999;
   double neutralinoPx = -999;
   double neutralinoPy = -999;
@@ -220,7 +229,88 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	  const reco::Candidate* daughter2 = sparticle->daughter(k);
 	  //std::clog<<"  daughter2 pdgid is: "<<daughter2->pdgId()<<", mass is: "<<daughter2->mass()<<", px is: "<<daughter2->px()<<", py: "<<daughter2->py()<<", pz: "<<daughter2->pz()<<std::endl;  
 	  
-	  //look for neutralino
+	  //look for NLSP neutralino
+	  if(fabs(daughter2->pdgId())==1000023){
+	    const reco::Candidate* neutralinoNLSP = daughter2;
+	    //std::clog<<"  neutralinoNLSP mass is: "<<neutralinoNLSP->mass()<<", px is: "<<neutralinoNLSP->px()<<", py: "<<neutralinoNLSP->py()<<", pz: "<<neutralinoNLSP->pz()<<std::endl;
+	    neutralinoNLSPMass = neutralinoNLSP->mass();
+	    neutralinoNLSPPx = neutralinoNLSP->px();
+	    neutralinoNLSPPy = neutralinoNLSP->py();
+	    neutralinoNLSPPz = neutralinoNLSP->pz();
+	    neutralinoNLSPPt = neutralinoNLSP->pt();
+	    neutralinoNLSPP = neutralinoNLSP->p();
+	    neutralinoNLSPEta = neutralinoNLSP->eta();
+	    neutralinoNLSPPhi = neutralinoNLSP->phi();
+
+	    //loop over NLSP neutralino's daughters
+	    for(size_t l=0; l<neutralinoNLSP->numberOfDaughters(); l++){	    
+	      const reco::Candidate* daughter3 = neutralinoNLSP->daughter(l);
+	      //std::clog<<"     daughter3 pdgid is: "<<daughter3->pdgId()<<", mass is: "<<daughter3->mass()<<", px is: "<<daughter3->px()<<", py: "<<daughter3->py()<<", pz: "<<daughter3->pz()<<std::endl;  
+	      
+	      //loop over CM shower's daughters
+	      for(size_t m=0; m<daughter3->numberOfDaughters(); m++){	    
+		const reco::Candidate* daughter4 = daughter3->daughter(m);
+		//std::clog<<"     daughter4 pdgid is: "<<daughter4->pdgId()<<", mass is: "<<daughter4->mass()<<", px is: "<<daughter4->px()<<", py: "<<daughter4->py()<<", pz: "<<daughter4->pz()<<std::endl;
+
+		if(fabs(daughter4->pdgId())==1000023){
+		  const reco::Candidate* neutralinoNLSP_take2 = daughter4;
+
+		  int numberOfMuons = 0;
+		  for(size_t n=0; n<neutralinoNLSP_take2->numberOfDaughters(); n++){
+		    const reco::Candidate* daughter5 = neutralinoNLSP_take2->daughter(n);
+		    //std::clog<<"     daughter5 pdgid is: "<<daughter5->pdgId()<<", mass is: "<<daughter5->mass()<<", px is: "<<daughter5->px()<<", py: "<<daughter5->py()<<", pz: "<<daughter5->pz()<<std::endl;
+
+		    //look for LSP neutralino
+		    if(fabs(daughter5->pdgId())==1000022){
+		      const reco::Candidate* neutralino = daughter5;
+		      //std::clog<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
+		      neutralinoMass = neutralino->mass();
+		      neutralinoPx = neutralino->px();
+		      neutralinoPy = neutralino->py();
+		      neutralinoPz = neutralino->pz();
+		      neutralinoPt = neutralino->pt();
+		      neutralinoP = neutralino->p();
+		      neutralinoEta = neutralino->eta();
+		      neutralinoPhi = neutralino->phi();
+		    }//end of if LSP neutralino
+
+		    if (fabs(daughter5->pdgId()) == 13) {
+		      const reco::Candidate* muon = daughter5;
+		      numberOfMuons++;
+		      if(numberOfMuons==1){
+			muon0Mass = muon->mass();
+			muon0Charge = muon->charge();
+			muon0Px = muon->px();
+			muon0Py = muon->py();
+			muon0Pz = muon->pz();
+			muon0Pt = muon->pt();
+			muon0P = muon->p();
+			muon0Eta = muon->eta();
+			muon0Phi = muon->phi();
+		      }
+		      else if(numberOfMuons==2){
+			muon1Mass = muon->mass();
+			muon1Charge = muon->charge();
+			muon1Px = muon->px();
+			muon1Py = muon->py();
+			muon1Pz = muon->pz();
+			muon1Pt = muon->pt();
+			muon1P = muon->p();
+			muon1Eta = muon->eta();
+			muon1Phi = muon->phi();
+		      }
+		      else std::cout<<"daughter number "<<n<<" !!!!!!"<<std::endl;
+		    }//end of if daughter is muon
+
+		  }
+		}
+	      }// end of loop over CM shower's daughters
+	      
+	    }//end of loop over NLSP neutralino's daughters
+
+	  }//end of if NLSP neutralino
+
+	  //look for LSP neutralino
 	  if(fabs(daughter2->pdgId())==1000022){
 	    const reco::Candidate* neutralino = daughter2;
 	    //std::clog<<"  neutralino mass is: "<<neutralino->mass()<<", px is: "<<neutralino->px()<<", py: "<<neutralino->py()<<", pz: "<<neutralino->pz()<<std::endl;
@@ -232,7 +322,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
 	    neutralinoP = neutralino->p();
 	    neutralinoEta = neutralino->eta();
 	    neutralinoPhi = neutralino->phi();
-	  }//end of if neutralino
+	  }//end of if LSP neutralino
 	  
 	  //look for gluon
 	  if(fabs(daughter2->pdgId())==21){
@@ -331,6 +421,15 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["stoppedParticleEta"]    = stoppedParticleEta;
   (*eventvariables)["stoppedParticlePhi"]    = stoppedParticlePhi;
   (*eventvariables)["stoppedParticleTime"]   = stoppedParticleTime;
+
+  (*eventvariables)["neutralinoNLSPMass"] = neutralinoNLSPMass;
+  (*eventvariables)["neutralinoNLSPPx"] = neutralinoNLSPPx;
+  (*eventvariables)["neutralinoNLSPPy"] = neutralinoNLSPPy;
+  (*eventvariables)["neutralinoNLSPPz"] = neutralinoNLSPPz;
+  (*eventvariables)["neutralinoNLSPPt"] = neutralinoNLSPPt;
+  (*eventvariables)["neutralinoNLSPP"] = neutralinoNLSPP;
+  (*eventvariables)["neutralinoNLSPEta"] = neutralinoNLSPEta;
+  (*eventvariables)["neutralinoNLSPPhi"] = neutralinoNLSPPhi;
 
   (*eventvariables)["neutralinoMass"] = neutralinoMass;
   (*eventvariables)["neutralinoPx"] = neutralinoPx;
