@@ -53,13 +53,13 @@ Muon0Histograms = cms.PSet(
         cms.PSet (
             name = cms.string("muon0P"),
             title = cms.string("Generator Muon Momentum; Generator Muon p [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsX = cms.untracked.vdouble(150, 0, 1500),
             inputVariables = cms.vstring("muon0P"),
         ),
         cms.PSet (
             name = cms.string("muon0Pt"),
             title = cms.string("Generator Muon Transverse Momentum; Generator Muon p_{T} [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsX = cms.untracked.vdouble(150, 0, 1500),
             inputVariables = cms.vstring("muon0Pt"),
         ),
         cms.PSet (
@@ -113,13 +113,13 @@ Muon1Histograms = cms.PSet(
         cms.PSet (
             name = cms.string("muon1P"),
             title = cms.string("Generator Muon Momentum; Generator Muon p [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsX = cms.untracked.vdouble(150, 0, 1500),
             inputVariables = cms.vstring("muon1P"),
         ),
         cms.PSet (
             name = cms.string("muon1Pt"),
             title = cms.string("Generator Muon Transverse Momentum; Generator Muon p_{T} [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsX = cms.untracked.vdouble(150, 0, 1500),
             inputVariables = cms.vstring("muon1Pt"),
         ),
         cms.PSet (
