@@ -160,7 +160,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
         int current_ieta = twr->ieta();
         if (current_irbx == 19) current_irbx = 1;
         if (twr->ieta() < 0) current_irbx = - current_irbx;
-        cout << "The RBX index of current tower is: " << current_irbx << endl;
+        //cout << "The RBX index of current tower is: " << current_irbx << endl;
         if (current_irbx == irbxFirst && abs(twr->ieta()) <= 16 && twr->hadEt() > 0.2) {
           event.increment_nTowerSameiRbx();
           RbxIphi.insert(abs(current_ieta));
