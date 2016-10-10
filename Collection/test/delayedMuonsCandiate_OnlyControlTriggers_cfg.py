@@ -9,7 +9,7 @@ process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
 process.load('Configuration.EventContent.EventContent_cff')
 
-process.MessageLogger.cerr.FwkReport.reportEvery = 1
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.maxEvents = cms.untracked.PSet (
     input = cms.untracked.int32 (10)
@@ -18,32 +18,32 @@ process.maxEvents = cms.untracked.PSet (
 
 process.source = cms.Source ("PoolSource",
     fileNames = cms.untracked.vstring (
-      "file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
-        #"file:/home/jalimena/StoppedParticles2015/cleanAreaForStage2Production/CMSSW_7_6_5/src/StoppPtls/Simulation/reco/stage2RECO.root"
-    ),
-)
+        #"file:/data/users/jalimena/condor/Stage2RecoMchampsSeparateEventsParticle0/mchamp600_DigiHltSeparateEventsParticle0/hist_0.root"
+        #'/store/data/Run2015D/NoBPTX/AOD/16Dec2015-v1/50000/0A09722C-FDAF-E511-A96E-001E67E6F616.root'
+        #'/store/data/Run2015D/NoBPTX/RECO/16Dec2015-v1/50000/00B75408-50AF-E511-8E34-00266CFCC68C.root'
+        #'file:./34FB5D39-8AB3-E511-B56A-008CFA14F814.root'
+        'root://cms-xrd-global.cern.ch//store/data/Run2015C_25ns/NoBPTX/RECO/16Dec2015-v1/00000/028BD2F0-9FAF-E511-BF36-00266CFCCBF0.root'
+        ),
+                             )
 
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '76X_mcRun2_asymptotic_RunIIFall15DR76_v1', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '76X_dataRun2_16Dec2015_v0', '')
 
 #HLT bit filter
-#process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
-#process.hltHighLevel.TriggerResultsTag = cms.InputTag("TriggerResults","","HLT")
-#process.hltHighLevel.throw = cms.bool(False)
-#process.hltHighLevel.HLTPaths = cms.vstring(
-    #"HLT_L2Mu10_NoVertex_NoBPTX_*",
-    #"HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_*",
-    #"HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
-    #"HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_*",
-#)
+process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
+process.hltHighLevel.TriggerResultsTag = cms.InputTag("TriggerResults","","HLT")
+process.hltHighLevel.throw = cms.bool(False)
+process.hltHighLevel.HLTPaths = cms.vstring(
+    "HLT_L2Mu10_NoVertex_NoBPTX_*",
+    "HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_*",
+)
 
-#process.filter_step = cms.Path(process.hltHighLevel)
+process.filter_step = cms.Path(process.hltHighLevel)
 
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
-process.candidateStoppPtls.isMC = True
 process.eventproducer = cms.Path(
     process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
     )
@@ -68,9 +68,9 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string("RECOWithStoppedParticleEvents.root"),
     outputCommands = process.MINIAODSIMEventContent.outputCommands,
     overrideInputFileSplitLevels = cms.untracked.bool(True),
-    #SelectEvents = cms.untracked.PSet(
-      #SelectEvents = cms.vstring('filter_step')
-    #)
+    SelectEvents = cms.untracked.PSet(
+      SelectEvents = cms.vstring('filter_step')
+    )
 )
 
 process.RECOSIMoutput.outputCommands.append('drop *_*_*_SIM')
@@ -82,5 +82,4 @@ process.RECOSIMoutput.outputCommands.append("drop *_fixedGridRho*_*_RECO")
 process.RECOSIMoutput.outputCommands.append("keep *_*_*_STOPPPTLS")
 
 process.myEndPath = cms.EndPath (process.RECOSIMoutput)
-#process.schedule = cms.Schedule(process.filter_step, process.eventproducer, process.myEndPath)
-process.schedule = cms.Schedule(process.eventproducer, process.myEndPath)
+process.schedule = cms.Schedule(process.filter_step, process.eventproducer, process.myEndPath)

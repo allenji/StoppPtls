@@ -48,6 +48,7 @@ process.muontiming.TimingFillerParameters.DTTimingParameters.PruneCut = cms.doub
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
+process.candidateDelayedMuons.timeTag = cms.InputTag ("muontiming","dt")
 process.eventproducer = cms.Path(
     process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
     )

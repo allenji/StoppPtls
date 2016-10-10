@@ -64,6 +64,9 @@
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-16Dec2015-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-16Dec2015-v1/USER -f RECOSIM
 
+#osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples_OnlyControlTriggers/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-OnlyControlTriggers-16Dec2015-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples_OnlyControlTriggers/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-OnlyControlTriggers-16Dec2015-v1/USER -f RECOSIM
+
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015B_PromptReco create /NoBPTX/Run2015B_Cosmic-PromptReco-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015C_PromptReco create /NoBPTX/Run2015C_Cosmic-PromptReco-v1/USER -f RECOSIM
