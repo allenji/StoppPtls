@@ -23,6 +23,8 @@ using namespace edm;
 
 StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   isMC_             (iConfig.getUntrackedParameter<bool>("isMC",false)),
+  lumiscalersTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("lumiscalersTag",edm::InputTag("scalersRawToDigi"))),
+  lumiscalersToken_   (consumes<LumiScalersCollection>(lumiscalersTag_)),
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
   caloTowerToken_   (consumes<CaloTowerCollection>(caloTowerTag_)),
   hcalNoiseFilterResultTag_ (iConfig.getUntrackedParameter<edm::InputTag> ("hcalNoiseFilterResultTag",edm::InputTag("HBHENoiseFilterResultProducer","HBHENoiseFilterResult"))),
@@ -99,6 +101,19 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   event.set_run(iEvent.id().run());
   event.set_fill(lhcfills_.getFillFromRun(event.run()));
   event.set_bxWrtBunch(static_cast<int>(lhcfills_.getBxWrtBunch(event.fill(), event.bx())));
+
+
+
+  /*******************get inst lumi***************************************/
+  edm::Handle<LumiScalersCollection> lumiScalers;
+  iEvent.getByToken(lumiscalersToken_, lumiScalers);
+  if ( lumiScalers.isValid() && lumiScalers->size() ) {
+    LumiScalersCollection::const_iterator scalit = lumiScalers->begin();
+    event.set_instLumi(scalit->instantLumi());
+    //std::cout<<"for event "<<iEvent.id()<<", in run "<<iEvent.id().run()<<", in ls "<<iEvent.id().luminosityBlock()<<", inst lumi is: "<<scalit->instantLumi()<<" (while lumiScalers lumisection is: "<<scalit->sectionNumber()<<std::endl;
+  } 
+  else event.set_instLumi(-1);
+
 
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;

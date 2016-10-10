@@ -48,6 +48,9 @@
 //jets
 #include "DataFormats/JetReco/interface/CaloJetCollection.h"
 
+//lumi
+#include "DataFormats/Scalers/interface/LumiScalers.h"
+
 //mc product
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
 
@@ -99,6 +102,9 @@ public:
 private:
   // ----------member data ---------------------------
   bool isMC_;
+
+  edm::InputTag lumiscalersTag_;
+  edm::EDGetTokenT<LumiScalersCollection> lumiscalersToken_;
 
   edm::InputTag caloTowerTag_;
   edm::EDGetTokenT<CaloTowerCollection> caloTowerToken_;

@@ -425,6 +425,12 @@ EventHistograms = cms.PSet(
     inputCollection = cms.vstring("events"),
     histograms = cms.VPSet (
         cms.PSet (
+            name = cms.string("instLumi"),
+            title = cms.string("Instantaneous Luminosity; Instantaneous Luminosity [10^{30} cm^{-2} sec^{-1}]"),
+            binsX = cms.untracked.vdouble(1500, 0, 15000),
+            inputVariables = cms.vstring("instLumi"),
+        ),
+        cms.PSet (
             name = cms.string("bxWrtBunch"),
             title = cms.string("BX With Respect To Bunch; bxWrtBunch"),
             #binsX = cms.untracked.vdouble(200, 0, 200),

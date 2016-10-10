@@ -11,6 +11,7 @@ class CandidateEvent
     run_(0),
     fill_(0),
     bxWrtBunch_(0),
+    instLumi_(0),
     nVtx_(0),
     noiseFilterResult_(0),
     nTowerSameiPhi_(0),
@@ -42,6 +43,7 @@ class CandidateEvent
     void set_run(ULong_t run) {run_ = run;}
     void set_fill(ULong_t fill) {fill_ = fill;}
     void set_bxWrtBunch(int bxWrtBunch) {bxWrtBunch_ = bxWrtBunch;}
+    void set_instLumi(double instLumi) {instLumi_ = instLumi;}
     void set_nVtx(unsigned nVtx) {nVtx_ = nVtx;}
     void set_noiseFilterResult(bool noiseFilterResult){noiseFilterResult_ = noiseFilterResult;}
     void set_nTowerSameiPhi(unsigned nTowerSameiPhi) {nTowerSameiPhi_ = nTowerSameiPhi;}
@@ -78,6 +80,8 @@ class CandidateEvent
     ULong_t fill() const {return fill_;}
 
     int bxWrtBunch() {return bxWrtBunch_;}
+
+    double instLumi() {return instLumi_;}
 
     unsigned nVtx() {return nVtx_;}
 
@@ -121,6 +125,7 @@ class CandidateEvent
     ULong_t run_;
     ULong_t fill_;
     int bxWrtBunch_;
+    double instLumi_;
 
     //number of vertex
     unsigned nVtx_;
