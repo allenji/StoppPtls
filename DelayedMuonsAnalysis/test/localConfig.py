@@ -7,12 +7,22 @@ config_file = "DelayedMuonsAnalysis.py"
 #config_file = "dumpedConfig.py"
 
 datasetsSig = [
+    'mchamp100_NtupleSeparateEvents',
     'mchamp600_NtupleSeparateEvents',
+    'mchamp1000_NtupleSeparateEvents',
+    'mchamp2600_NtupleSeparateEvents',
+    
+    'gluino100_NtupleSeparateEvents',
+    'gluino600_NtupleSeparateEvents',
+    'gluino1000_NtupleSeparateEvents',
     'gluino2000_NtupleSeparateEvents',
+    'gluino2600_NtupleSeparateEvents',
 ]
 
 datasetsData = [
     #'NoBPTX_16Dec2015_Ntuple', #2015 rereco
+
+    #'NoBPTX_16Dec2015_OnlyControlTriggers_Ntuple', #2015 rereco with only control triggers
     
     'NoBPTX_2016BCDEFG_PromptReco_Ntuple', #2016 prompt reco
     #'NoBPTX_2016B_PromptReco_Ntuple', #2016 prompt reco
