@@ -161,7 +161,7 @@ NeutralinoNLSPHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("neutralinoNLSPMass"),
             title = cms.string("#tilde{#chi^{0}_{2}} Mass; #tilde{#chi^{0}_{2}} Mass [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 5000),
+            binsX = cms.untracked.vdouble(100, 0, 2000),
             inputVariables = cms.vstring("neutralinoNLSPMass"),
         ),
         cms.PSet (

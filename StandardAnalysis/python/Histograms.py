@@ -163,7 +163,7 @@ NeutralinoHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("neutralinoMass"),
             title = cms.string("#tilde{#chi^{0}} Mass; #tilde{#chi^{0}} Mass [GeV]"),
-            binsX = cms.untracked.vdouble(100, 0, 5000),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
             inputVariables = cms.vstring("neutralinoMass"),
         ),
         cms.PSet (
