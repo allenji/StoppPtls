@@ -126,6 +126,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     sort(caloTowersTmp.begin(), caloTowersTmp.end(), calotower_hadEtGt());
     if(caloTowersTmp.begin() != caloTowersTmp.end()){
       int iphiFirst=caloTowersTmp.begin()->iphi();
+      int ietaFirst = caloTowersTmp.begin()->ieta();
       int irbxFirst = (caloTowersTmp.begin()->iphi() + 5) / 4;
       if (irbxFirst == 19) irbxFirst = 1;
       if (caloTowersTmp.begin()->ieta() < 0) irbxFirst = -irbxFirst;
@@ -152,6 +153,9 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
       int miniEta = 16;
       int maxiEta = 0;
       set<int> RbxIphi;
+      int nTowerDiffRbxDeltaR0p4 = 0;
+      int nTowerDiffRbxDeltaR0p5 = 0;
+      int nTowerDiffRbxDeltaR0p6 = 0;
       for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
       twr!=caloTowersTmp.end();
     ++twr) {
@@ -174,10 +178,22 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
             maxiEta = abs(current_ieta);
           }
         }
+        if (current_irbx == - irbxFirst || abs(current_irbx - irbxFirst) == 1 || abs(current_irbx - irbxFirst) == 17 && twr-> hadEt() > 0.2) {
+          double absdelta_ieta = static_cast<double> (abs(ietaFirst - current_ieta));
+          double absdelta_iphi = static_cast<double> (abs(iphiFirst - current_iphi));
+          absdelta_iphi = absdelta_iphi < 36 ? absdelta_iphi : 72 - absdelta_iphi;
+          double deltaR = sqrt(absdelta_ieta * absdelta_ieta + absdelta_iphi * absdelta_iphi) * 0.087;
+          if (deltaR < 0.6) nTowerDiffRbxDeltaR0p6++;
+          if (deltaR < 0.5) nTowerDiffRbxDeltaR0p5++;
+          if (deltaR < 0.4) nTowerDiffRbxDeltaR0p4++;
+        }
 
       }  
       event.set_maxiEtaDiffSameiRbx(maxiEta - miniEta);
       event.set_nTowerDiffiEtaSameiRbx(RbxIphi.size());
+      event.set_nTowerDiffRbxDeltaR0p6(nTowerDiffRbxDeltaR0p6);
+      event.set_nTowerDiffRbxDeltaR0p5(nTowerDiffRbxDeltaR0p5);
+      event.set_nTowerDiffRbxDeltaR0p4(nTowerDiffRbxDeltaR0p4);
 
     }
     //event_->leadingIPhiFractionValue=event_->leadingIPhiFraction();

@@ -19,6 +19,9 @@ class CandidateEvent
     nAllTowerSameiPhi_(0),
     maxiEtaDiffSameiRbx_(0),
     nTowerDiffiEtaSameiRbx_(0),
+    nTowerDiffRbxDeltaR0p6_(0),
+    nTowerDiffRbxDeltaR0p5_(0),
+    nTowerDiffRbxDeltaR0p4_(0),
     leadingRbxIndex_(0),
     leadingIPhiFractionValue_(0.),
     topHPD5PeakSample_(0),
@@ -51,6 +54,9 @@ class CandidateEvent
     void set_nAllTowerSameiPhi(unsigned nAllTowerSameiPhi) {nAllTowerSameiPhi_ = nAllTowerSameiPhi;}
     void set_maxiEtaDiffSameiRbx(int maxiEtaDiffSameiRbx) {maxiEtaDiffSameiRbx_ = maxiEtaDiffSameiRbx;}
     void set_nTowerDiffiEtaSameiRbx(unsigned nTowerDiffiEtaSameiRbx) {nTowerDiffiEtaSameiRbx_ = nTowerDiffiEtaSameiRbx;}
+    void set_nTowerDiffRbxDeltaR0p6(int nTowerDiffRbxDeltaR0p6) {nTowerDiffRbxDeltaR0p6_ = nTowerDiffRbxDeltaR0p6;}
+    void set_nTowerDiffRbxDeltaR0p5(int nTowerDiffRbxDeltaR0p5) {nTowerDiffRbxDeltaR0p5_ = nTowerDiffRbxDeltaR0p5;}
+    void set_nTowerDiffRbxDeltaR0p4(int nTowerDiffRbxDeltaR0p4) {nTowerDiffRbxDeltaR0p4_ = nTowerDiffRbxDeltaR0p4;}
     void set_leadingRbxIndex(int leadingRbxIndex) {leadingRbxIndex_ = leadingRbxIndex;}
     void set_leadingIPhiFractionValue(double leadingIPhiFractionValue) {leadingIPhiFractionValue_ = leadingIPhiFractionValue;}
     void increment_nTowerSameiPhi() {++nTowerSameiPhi_;}
@@ -92,6 +98,9 @@ class CandidateEvent
     unsigned nAllTowerSameiPhi() {return nAllTowerSameiPhi_;}
     int maxiEtaDiffSameiRbx() {return maxiEtaDiffSameiRbx_;}
     unsigned nTowerDiffiEtaSameiRbx() {return nTowerDiffiEtaSameiRbx_;}
+    int nTowerDiffRbxDeltaR0p6() {return nTowerDiffRbxDeltaR0p6_;}
+    int nTowerDiffRbxDeltaR0p5() {return nTowerDiffRbxDeltaR0p5_;}
+    int nTowerDiffRbxDeltaR0p4() {return nTowerDiffRbxDeltaR0p4_;}
     int leadingRbxIndex() {return leadingRbxIndex_;}
     double leadingIPhiFractionValue() {return leadingIPhiFractionValue_;}
 
@@ -138,6 +147,9 @@ class CandidateEvent
     unsigned nAllTowerSameiPhi_;
     int maxiEtaDiffSameiRbx_;
     unsigned nTowerDiffiEtaSameiRbx_;
+    int nTowerDiffRbxDeltaR0p6_;
+    int nTowerDiffRbxDeltaR0p5_;
+    int nTowerDiffRbxDeltaR0p4_;
     int leadingRbxIndex_;
     double leadingIPhiFractionValue_;
 
