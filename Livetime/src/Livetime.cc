@@ -72,6 +72,22 @@ std::vector<std::pair<unsigned long, unsigned long> > Livetime::runLumiPairs() {
 }
 
 
+double Livetime::getLivetimeByLS(unsigned long run, unsigned long lumiSection) {
+  
+  double result=0.;
+  
+  std::vector<std::pair<unsigned long, unsigned long> >::const_iterator litr;
+  for (litr=runLumiPairs_.begin(); litr!=runLumiPairs_.end(); ++litr) {
+    unsigned long r = litr->first;
+    unsigned long ls = litr->second;
+    unsigned long f = lhcFills_->getFillFromRun(r);
+    if (r==run && ls==lumiSection) result += TIME_PER_LS * lhcFills_->getLiveFraction(f);
+  }
+
+  return result;
+
+}
+
 double Livetime::getLivetimeByRun(unsigned long run) {
   
   double result=0.;
@@ -86,7 +102,6 @@ double Livetime::getLivetimeByRun(unsigned long run) {
   return result;
 
 }
-
 
 double Livetime::getLivetimeByFill(unsigned long fill) {
   

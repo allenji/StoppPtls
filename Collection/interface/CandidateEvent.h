@@ -87,7 +87,7 @@ class CandidateEvent
 
     int bxWrtBunch() {return bxWrtBunch_;}
 
-    double instLumi() {return instLumi_;}
+    double instLumi() const {return instLumi_;}
 
     unsigned nVtx() {return nVtx_;}
 

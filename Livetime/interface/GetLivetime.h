@@ -18,6 +18,7 @@
 #include "StoppPtls/Livetime/interface/Livetime.h"
 #include "StoppPtls/Livetime/interface/Constants.h"
 #include "StoppPtls/Livetime/interface/LhcFills.h"
+#include "StoppPtls/Collection/interface/CandidateEvent.h"
 
 using namespace std;
 
@@ -39,9 +40,21 @@ class GetLivetime : public edm::EDAnalyzer {
   unsigned runMax_;
   unsigned fillMin_;
   unsigned fillMax_;
+  int instLumiMin_;
+  int instLumiMax_;
+  int instLumiNBins_ = instLumiMax_ - instLumiMin_;
+
+  std::vector <int> instLumis;
+  std::vector <double> livetimeForInstLumi;
 
   edm::Service<TFileService> fs_;
   TH1D* run_livetime_hist;
   TH1D* fill_livetime_hist;
+  TH1D* instLumi_livetime_hist;
+
+  edm::InputTag eventsTag_;
+  edm::EDGetTokenT<std::vector<CandidateEvent> > eventsToken_;
+
+
 };
 #endif

@@ -17,14 +17,25 @@ GetLivetime::GetLivetime(const edm::ParameterSet& iConfig) :
   runMin_(iConfig.getParameter<unsigned>("RunMin")),
   runMax_(iConfig.getParameter<unsigned>("RunMax")),
   fillMin_(iConfig.getParameter<unsigned>("FillMin")),
-  fillMax_(iConfig.getParameter<unsigned>("FillMax"))
+  fillMax_(iConfig.getParameter<unsigned>("FillMax")),
+  instLumiMin_(iConfig.getParameter<int>("InstLumiMin")),
+  instLumiMax_(iConfig.getParameter<int>("InstLumiMax")),
+  eventsTag_     (iConfig.getParameter<edm::InputTag>("events")),
+  eventsToken_   (consumes<std::vector<CandidateEvent> >(eventsTag_))
 {
+
+  instLumis.resize(instLumiNBins_);
+  for(unsigned int i=0; i<instLumis.size(); i++) instLumis.at(i) = instLumiMin_ + i;
+
+  livetimeForInstLumi.resize(instLumiNBins_);
+  for(unsigned int i=0; i<livetimeForInstLumi.size(); i++) livetimeForInstLumi.at(i) = 0.;
+
 };
 
 GetLivetime::~GetLivetime(){
 
   unsigned run_livetime_hist_low = runMin_;
-  unsigned  run_livetime_hist_up = runMax_ + 1;
+  unsigned run_livetime_hist_up = runMax_ + 1;
   unsigned run_livetime_hist_Nbins = run_livetime_hist_up - run_livetime_hist_low;
   run_livetime_hist = fs_->make<TH1D>("run_livetime_hist","Run vs Livetime",run_livetime_hist_Nbins , run_livetime_hist_low, run_livetime_hist_up);
 
@@ -32,6 +43,8 @@ GetLivetime::~GetLivetime(){
   unsigned fill_livetime_hist_up = fillMax_;
   unsigned fill_livetime_hist_Nbins = fill_livetime_hist_up - fill_livetime_hist_low;
   fill_livetime_hist = fs_->make<TH1D>("fill_livetime_hist","Fill vs Livetime",fill_livetime_hist_Nbins, fill_livetime_hist_low, fill_livetime_hist_up);
+
+  instLumi_livetime_hist = fs_->make<TH1D>("instLumi_livetime_hist","Instantaneous Luminosity vs Livetime",instLumiNBins_, instLumiMin_, instLumiMax_);
 
   vector<unsigned long> runList = livetime_.runList();
   for (unsigned i=0; i!=runList.size(); ++i) {
@@ -41,6 +54,10 @@ GetLivetime::~GetLivetime(){
   vector<unsigned long> fillList = livetime_.fillList();
   for (unsigned i=0; i!=fillList.size(); ++i) {
     fill_livetime_hist->Fill(fillList.at(i),livetime_.getLivetimeByFill(fillList.at(i)));
+  }
+
+  for(unsigned int i=0; i<instLumis.size(); i++){
+    instLumi_livetime_hist->Fill(instLumis.at(i),livetimeForInstLumi.at(i));
   }
 
   //print total livetime and rate to log file
@@ -57,6 +74,12 @@ GetLivetime::~GetLivetime(){
   for (unsigned i=0; i!=runList.size(); ++i) {
     clog << runList.at(i) << ", ";
   }
+  clog << endl;
+
+  for(unsigned int i=0; i<instLumis.size(); i++){
+    if(livetimeForInstLumi.at(i)!=0.) clog<<"For instantaneous luminosity of "<<instLumis.at(i)<<" E30 cm^-2 s^-1, livetime is: "<<livetimeForInstLumi.at(i)<<" sec"<<endl;
+  }
+
 
 }//end of destructor
 
@@ -72,6 +95,21 @@ void GetLivetime::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetu
 
   livetime_.newEvent(fill, run, lb);
   nEvents_++;
+
+
+  edm::Handle<std::vector<CandidateEvent> > events;
+  iEvent.getByToken (eventsToken_, events);
+  int instLumi = (int)events->begin()->instLumi();
+  //clog<<"instLumi is: "<<instLumi<<endl;
+
+  for(unsigned int i=0; i<instLumis.size(); i++){
+    if(instLumi==instLumis.at(i)){
+      livetimeForInstLumi.at(i) += livetime_.getLivetimeByLS(run,lb);
+      //clog<<"livetimeForInstLumi.at("<<i<<") is: "<<livetimeForInstLumi.at(i)<<endl;
+    }
+  }
+
+
 
 }//end of analyze
 

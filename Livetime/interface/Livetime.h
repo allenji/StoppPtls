@@ -16,6 +16,8 @@ class Livetime {
 
   void newEvent(unsigned long fill, unsigned long run, unsigned long lb);
 
+  double getLivetimeByLS(unsigned long run, unsigned long lumiSection);
+
   double getLivetimeByRun(unsigned long run);
 
   double getLivetimeByFill(unsigned long fill);

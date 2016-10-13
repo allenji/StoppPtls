@@ -20,11 +20,14 @@ process.TFileService = cms.Service("TFileService",
 )
 
 process.getLivetimeAnalyzer = cms.EDAnalyzer("GetLivetime",
-        RunMin = cms.untracked.uint32(235000),
-        RunMax = cms.untracked.uint32(265000),
-        FillMin = cms.untracked.uint32(3000),
-        FillMax = cms.untracked.uint32(5000),
-                                     )
+                                             events            =  cms.InputTag  ('candidateStoppPtls',               ''),
+                                             RunMin = cms.untracked.uint32(235000),
+                                             RunMax = cms.untracked.uint32(265000),
+                                             FillMin = cms.untracked.uint32(3000),
+                                             FillMax = cms.untracked.uint32(5000),
+                                             InstLumiMin = cms.int32(5000), #times E30 cm^-2 s^-1
+                                             InstLumiMax = cms.int32(15000), #times E30 cm^-2 s^-1
+                                             )
 
 process.p = cms.Path(process.getLivetimeAnalyzer)
 
