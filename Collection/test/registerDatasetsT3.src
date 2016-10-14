@@ -101,3 +101,7 @@
 #osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016D_PromptReco create /NoBPTX/Run2016D_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2016CosmicNtuples_NoDtTimingPruning/NoBPTX_2016E_PromptReco create /NoBPTX/Run2016E_Cosmic_TopAndBottom-PromptReco-v2/USER -f RECOSIM
 
+
+#osudb --location /data/users/weifengji/NoBPTX_2016SearchSP_Aug23/crab_Run2016F-PromptReco-v1_OSUT3Ntuples_Oct14 create /NoBPTX/Run2016F-PromptReco-v1_SP/USER -f MINIAOD
+#osudb --location /data/users/weifengji/NoBPTX_2016SearchSP_Aug23/crab_Run2016G-PromptReco-v1_OSUT3Ntuples_Oct14 create /NoBPTX/Run2016G-PromptReco-v1_SP/USER -f MINIAOD
+
