@@ -21,7 +21,7 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco/hist_332.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_Jets_OnlyControlTriggers/NoBPTX_2016D_PromptReco/hist_599.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_Jets_OnlyControlTriggers/NoBPTX_2016D_PromptReco/hist_599.root',
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/StandardAnalysis/test/condor/StoppedParticles_NoBPTX2016_ControlTriggerSkim/NoBPTX_Jet_2016B_PromptReco_v2/BothControlTriggerSelection2016/skim_0.root'
         #'file:./BothControlTriggerSelection2016/skim_BothControlTriggerSelection2016_2016_09_26_10h18m13s.root'
         ),
@@ -50,6 +50,7 @@ process.TFileService = cms.Service ('TFileService',
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
     input = cms.untracked.int32 (1000)
+    #input = cms.untracked.int32 (-1)
 )
 
 ################################################################################
@@ -68,6 +69,7 @@ weights = cms.VPSet (
         #inputCollections = cms.vstring("eventvariables"),
         #inputVariable = cms.string("1.0/livetimeByRun")
         #inputVariable = cms.string("1.0/livetimeByFill")
+        #inputVariable = cms.string("1.0/livetimeByInstLumi")
     #),
 )
 

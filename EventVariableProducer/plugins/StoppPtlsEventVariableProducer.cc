@@ -30,11 +30,12 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_))
 
 {
-  /*
+  /*  
   file = TFile::Open(livetimeRootFile_.c_str());
   file->cd("TriggerResults");
   run_livetime_hist = (TH1D*)gDirectory->Get("run_livetime_hist");
   fill_livetime_hist = (TH1D*)gDirectory->Get("fill_livetime_hist");
+  instLumi_livetime_hist = (TH1D*)gDirectory->Get("instLumi_livetime_hist");
 
   clog<<"Total livetime is: "<<run_livetime_hist->GetSumOfWeights()<<" seconds"<<endl;
   */
@@ -974,7 +975,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }
   (*eventvariables)["rhadronCharge"] = rhadronCharge;
 
-  /*  
+  /*
   //////////////////////////////////livetime//////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////
   int nRuns = run_livetime_hist->GetNbinsX();
@@ -1000,7 +1001,19 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }
   clog<<"livetimeByFill is: "<<livetimeByFill<<endl;
   (*eventvariables)["livetimeByFill"] = livetimeByFill;
-  */
+
+  int nInstLumis = instLumi_livetime_hist->GetNbinsX();
+  double livetimeByInstLumi = 9999;
+  for(int i=1; i<=nInstLumis; i++){
+    if(events->begin()->instLumi()==(unsigned int)instLumi_livetime_hist->GetBinLowEdge(i)){
+      if(instLumi_livetime_hist->GetBinContent(i)>0.){
+	livetimeByInstLumi = instLumi_livetime_hist->GetBinContent(i);
+      }
+    }
+  }
+  clog<<"livetimeByInstLumi is: "<<livetimeByInstLumi<<endl;
+  (*eventvariables)["livetimeByInstLumi"] = livetimeByInstLumi;
+  */  
 }//end of AddVariables()
 
 double StoppPtlsEventVariableProducer::Eta(double x, double y, double z, double time) {

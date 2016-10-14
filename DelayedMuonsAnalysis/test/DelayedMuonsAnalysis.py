@@ -18,11 +18,11 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-        #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_6_5/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
+        'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016B_PromptReco/hist_0.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -70,6 +70,7 @@ weights = cms.VPSet (
         #inputCollections = cms.vstring("eventvariables"),
         #inputVariable = cms.string("1.0/livetimeByRun")
         #inputVariable = cms.string("1.0/livetimeByFill")
+        #inputVariable = cms.string("1.0/livetimeByInstLumi")
     #),
 )
 
