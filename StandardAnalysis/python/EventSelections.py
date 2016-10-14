@@ -265,6 +265,11 @@ DenominatorTriggerTurnOnSelection2016 = cms.PSet(
     cuts = cms.VPSet(
         cutBx,
         cutVertexNumber,        
+        cutCscSegNumber,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
         )
     )
 
@@ -273,7 +278,12 @@ NumeratorTriggerTurnOnSelection2016 = cms.PSet(
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutBx,
-        cutVertexNumber,        
+        cutVertexNumber,
+        cutCscSegNumber,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
         )
     )
 
