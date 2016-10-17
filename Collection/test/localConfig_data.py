@@ -8,7 +8,7 @@ config_file = "delayedMuonsCandiate2016_cfg.py"
 #config_file = "delayedMuonsCandiate2016_OnlyControlTriggers_cfg.py"
 
 datasets = [
-    "NoBPTX_2016BCDEFG_PromptReco",
+    "NoBPTX_2016BCDEFGH_PromptReco",
     #"NoBPTX_2016B_PromptReco",
     #"NoBPTX_2016C_PromptReco",
     #"NoBPTX_2016D_PromptReco",

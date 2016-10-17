@@ -39,6 +39,7 @@ process.hltHighLevel.HLTPaths = cms.vstring(
     "HLT_L2Mu10_NoVertex_NoBPTX3BX_*",
     "HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_*",
     "HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_*",
+    "HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_*",
 )
 
 process.filter_step = cms.Path(process.hltHighLevel)
