@@ -11,7 +11,6 @@
 StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::ParameterSet &cfg) :
   EventVariableProducer(cfg),
   //livetimeRootFile_(cfg.getParameter<string>("livetimeRootFile")),
-  
   stoppedParticlesNameTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesName")),
   stoppedParticlesNameToken_    (consumes<std::vector<std::string> >(stoppedParticlesNameTag_)),
   stoppedParticlesXTag_ (cfg.getParameter<edm::InputTag>("stoppedParticlesX")),
@@ -30,7 +29,7 @@ StoppPtlsEventVariableProducer::StoppPtlsEventVariableProducer(const edm::Parame
   stoppedParticlesChargeToken_    (consumes<std::vector<float> >(stoppedParticlesChargeTag_))
 
 {
-  /*  
+  /*
   file = TFile::Open(livetimeRootFile_.c_str());
   file->cd("TriggerResults");
   run_livetime_hist = (TH1D*)gDirectory->Get("run_livetime_hist");
@@ -974,7 +973,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     if(fabs(itmcpart->pdgId())>1000000 && fabs(itmcpart->pdgId())<2000000) rhadronCharge = itmcpart->charge();
   }
   (*eventvariables)["rhadronCharge"] = rhadronCharge;
-
+  
   /*
   //////////////////////////////////livetime//////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////
@@ -987,7 +986,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       }
     }
   }
-  clog<<"livetimeByRun is: "<<livetimeByRun<<endl;
+  //clog<<"livetimeByRun is: "<<livetimeByRun<<endl;
   (*eventvariables)["livetimeByRun"] = livetimeByRun;
 
   int nFills = fill_livetime_hist->GetNbinsX();
@@ -999,13 +998,13 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
       }
     }
   }
-  clog<<"livetimeByFill is: "<<livetimeByFill<<endl;
+  //clog<<"livetimeByFill is: "<<livetimeByFill<<endl;
   (*eventvariables)["livetimeByFill"] = livetimeByFill;
 
   int nInstLumis = instLumi_livetime_hist->GetNbinsX();
   double livetimeByInstLumi = 9999;
   for(int i=1; i<=nInstLumis; i++){
-    if(events->begin()->instLumi()==(unsigned int)instLumi_livetime_hist->GetBinLowEdge(i)){
+    if((unsigned int)events->begin()->instLumi()==(unsigned int)instLumi_livetime_hist->GetBinLowEdge(i)){
       if(instLumi_livetime_hist->GetBinContent(i)>0.){
 	livetimeByInstLumi = instLumi_livetime_hist->GetBinContent(i);
       }
@@ -1013,7 +1012,7 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   }
   clog<<"livetimeByInstLumi is: "<<livetimeByInstLumi<<endl;
   (*eventvariables)["livetimeByInstLumi"] = livetimeByInstLumi;
-  */  
+  */
 }//end of AddVariables()
 
 double StoppPtlsEventVariableProducer::Eta(double x, double y, double z, double time) {
