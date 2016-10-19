@@ -6,7 +6,7 @@ intLumi = 2830
 config_file = "stoppPtlsCandidate_Data_2016_OnlyControlTriggers_cfg.py"
 
 datasets = [
-    "NoBPTX_2016BCDEFG_PromptReco"
+    "NoBPTX_2016BCDEFGH_PromptReco"
 ]
     
 InputCondorArguments = {}

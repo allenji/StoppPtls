@@ -12,6 +12,8 @@ datasetsData = [
     #'NoBPTX_2015D_v3',
     #'NoBPTX_2015D_v4'
     'NoBPTX_Jet_2016FG_PromptReco'
+    #'NoBPTX_Jet_2016F_PromptReco_v1',
+    #'NoBPTX_Jet_2016G_PromptReco_v1',
     ]
 
 #data control sample
