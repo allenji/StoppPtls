@@ -446,7 +446,7 @@ EventHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("run"),
             title = cms.string("Run Number; Run Number"),
-            binsX = cms.untracked.vdouble(45000, 235000, 280000),
+            binsX = cms.untracked.vdouble(55000, 235000, 290000),
             inputVariables = cms.vstring("run"),
         ),
         cms.PSet (

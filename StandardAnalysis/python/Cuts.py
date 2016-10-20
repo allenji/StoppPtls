@@ -136,9 +136,9 @@ cutHpdRPeak = cms.PSet(
 ######################################
 cutHpdRPeakSample = cms.PSet(
     inputCollection = cms.vstring("events"),
-    cutString = cms.string("( topHPD5PeakSample > 2 ) && ( topHPD5PeakSample < 7 ) = 1"),
+    cutString = cms.string("( topHPD5PeakSample > 2 ) && ( topHPD5PeakSample < 6 ) = 1"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("Peak sample < 7")
+    alias = cms.string("2< Peak sample < 6")
 )
 
 ######################################
