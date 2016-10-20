@@ -18,6 +18,13 @@ CosmicBackgroundHistograms = cms.PSet(
         inputVariables = cms.vstring("dtSegN", "RPCbarrel"),
       ),
       cms.PSet (
+        name = cms.string("DTOuterBarrelRPC"),
+        title = cms.string("nOuterBarrelRPC vs nDT; number of DT segments; number of outer barrel RPC hits"),
+        binsX = cms.untracked.vdouble(15, 0, 30),
+        binsY = cms.untracked.vdouble(15, 0, 15),
+        inputVariables = cms.vstring("dtSegN", "outerRPCbarrel"),
+      ),
+      cms.PSet (
         name = cms.string("leadingJetEtaPhi"),
         title = cms.string("Eta vs Phi; phi; eta"),
         binsX = cms.untracked.vdouble(10, -3.5, 3.5),

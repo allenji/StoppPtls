@@ -25,8 +25,7 @@ StoppPtlsSelection = cms.PSet(
       cutHpdR2,
       cutHpdRPeak,
       cutHpdRPeakSample,
-      cutHpdROuter,
-      cutMaxiEtaDiffSameiRbx
+      cutHpdROuter
     )
 )
 
@@ -43,6 +42,7 @@ StoppPtlsSelection_2016 = cms.PSet(
       cutMaxDeltaJetPhi,
       newNOuterAllBarrelRPCHitsDeltaR,
       cutNoise,
+      cutMaxiEtaDiffSameiRbx,
       cutJetEnergy,
       cutJetEta,
       cutJetN90,
@@ -78,6 +78,7 @@ HaloControlSelection = cms.PSet(
       cutMaxDeltaJetPhi,
       newNOuterAllBarrelRPCHitsDeltaR,
       cutNoise,
+      cutMaxiEtaDiffSameiRbx,
       cutJetEnergy,
       cutJetEta,
       cutJetN90,
@@ -367,5 +368,19 @@ haloStrict = cms.PSet(
         cutHaloStrict,
         cutJetEnergy,
         cutJetEta,
+    )
+)
+
+noiseBasic = cms.PSet(
+    name = cms.string("noiseBasic"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
     )
 )
