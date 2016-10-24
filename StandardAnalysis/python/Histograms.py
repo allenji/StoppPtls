@@ -1088,6 +1088,13 @@ CscSegmentHistograms = cms.PSet(
             inputVariables = cms.vstring("x","y"),
         ),
         cms.PSet (
+            name = cms.string("cscSegZ_cscSegR"),
+            title = cms.string("CSC Segment Z vs CSC Segment R; CSC Segment Z [cm]; CSC Segment R [cm]"),
+            binsX = cms.untracked.vdouble(300, -1500, 1500),
+            binsY = cms.untracked.vdouble(300, 0, 1500),
+            inputVariables = cms.vstring("z","r"),
+        ),
+        cms.PSet (
             name = cms.string("cscSegZ_cscSegTime"),
             title = cms.string("CSC Segment z vs CSC Segment Time; CSC Segment Z [cm]; CSC Segment Time [ns]"),
             binsX = cms.untracked.vdouble(300, -1500, 1500),
