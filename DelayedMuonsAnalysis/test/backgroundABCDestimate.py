@@ -29,7 +29,6 @@ else:
     sys.exit(0)
 
 if arguments.condorDir:
-    #condor_dir = set_condor_output_dir(arguments)
     condor_dir = arguments.condorDir
 else:
     print "No condor output directory specified, shame on you"
@@ -41,23 +40,17 @@ pt_threshold = [60, 110, 150, 170, 200, 250, 300, 400]
 
 for dataset in datasets:
     for pt in pt_threshold:
-        #outputFile = TFile(condor_dir+"/"+dataset+"_OnlyFilledRuns.root","RECREATE")
-        #(numA, errA) = getYield(dataset,condor_dir,"DelayedMuonsUpperLowerSelectionCutFlowPlotter")
         regionA = "DelayedMuonsUpperLowerSelectionRegionAUpperP%dCutFlowPlotter"%(int(pt))
         regionB = "DelayedMuonsUpperLowerSelectionRegionBUpperP%dCutFlowPlotter"%(int(pt))
         regionC = "DelayedMuonsUpperLowerSelectionRegionCUpperP%dCutFlowPlotter"%(int(pt))
         regionD = "DelayedMuonsUpperLowerSelectionRegionDUpperP%dCutFlowPlotter"%(int(pt))
-        #(numA, errA) = getYield(dataset,condor_dir,"DelayedMuonsUpperLowerSelectionRegionAUpperP50CutFlowPlotter")
         (numA, errA) = getYield(dataset,condor_dir, regionA)
-        #(numB, errB) = getYield(dataset,condor_dir,"DelayedMuonsUpperLowerSelectionRegionBUpperP50CutFlowPlotter")
         (numB, errB) = getYield(dataset,condor_dir, regionB)
-        #(numC, errC) = getYield(dataset,condor_dir,"DelayedMuonsUpperLowerSelectionRegionCUpperP50CutFlowPlotter")
         (numC, errC) = getYield(dataset,condor_dir, regionC)
-        #(numD, errD) = getYield(dataset,condor_dir,"DelayedMuonsUpperLowerSelectionRegionDUpperP50CutFlowPlotter")
         (numD, errD) = getYield(dataset,condor_dir, regionD)
 
-        print "///////////////////////////////////////////////////////////"
-        print "for " + dataset + " and pt threshold " + str(pt) + " GeV:"
+        print "////////////////////////////////////////////////////////////////////////////////////////////"
+        print "for " + dataset + " and upper DSA p threshold " + str(pt) + " GeV:"
         print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
         print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
         print "number of events in region C is: " + str(int(numC)) + " +/- " + str("%.1f" % errC)
@@ -69,8 +62,6 @@ for dataset in datasets:
             print "numA is zero!!!"
         background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
         print "background estimate (B*C/A) is: " + str("%.1f" % background_estimate) + " +/- " + str("%.1f" % background_error)
-        print "///////////////////////////////////////////////////////////"
+        print "////////////////////////////////////////////////////////////////////////////////////////////"
 
-        #plots = MakeOnlyFilledRunsHist(dataset,channel,arguments.hist)
-        #outputFile.Close()
 print "done"
