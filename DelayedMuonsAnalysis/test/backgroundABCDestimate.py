@@ -17,8 +17,8 @@ from OSUT3Analysis.Configuration.histogramUtilities import *
 
 parser = OptionParser()
 parser = set_commandline_arguments(parser)
-parser.add_option("-H", "--hist", dest="hist",default="run",
-                  help="which histogram to plot")
+parser.add_option("-B", "--blinded", dest="blinded",default=True,
+                  help="if true (default) then blind to observed number in region D")
 (arguments, args) = parser.parse_args()
 
 if arguments.localConfig:
@@ -35,7 +35,9 @@ else:
     print "No condor output directory specified, shame on you"
     sys.exit(0)
 
-pt_threshold = [50, 60, 110, 150, 170, 200, 250, 300, 400]
+blinded = arguments.blinded
+
+pt_threshold = [60, 110, 150, 170, 200, 250, 300, 400]
 
 for dataset in datasets:
     for pt in pt_threshold:
@@ -56,17 +58,17 @@ for dataset in datasets:
 
         print "///////////////////////////////////////////////////////////"
         print "for " + dataset + " and pt threshold " + str(pt) + " GeV:"
-        print "number of events in region A is: " + str(numA) + " +/- " + str(errA)
-        print "number of events in region B is: " + str(numB) + " +/- " + str(errB)
-        print "number of events in region C is: " + str(numC) + " +/- " + str(errC)
-        print "number of events in region D is: " + str(numD) + " +/- " + str(errD)
+        print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
+        print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
+        print "number of events in region C is: " + str(int(numC)) + " +/- " + str("%.1f" % errC)
+        if blinded!=True: print "number of events in region D is: " + str(int(numD)) + " +/- " + str("%.1f" % errD)
 
         if numA!=0.:
             background_estimate = 1.0*numB*numC/numA
         else:
             print "numA is zero!!!"
         background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
-        print "background estimate (B*C/A) for " + dataset + " is: " + str(background_estimate) + " +/- " + str(background_error)
+        print "background estimate (B*C/A) is: " + str("%.1f" % background_estimate) + " +/- " + str("%.1f" % background_error)
         print "///////////////////////////////////////////////////////////"
 
         #plots = MakeOnlyFilledRunsHist(dataset,channel,arguments.hist)
