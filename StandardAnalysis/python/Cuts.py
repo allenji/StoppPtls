@@ -380,3 +380,18 @@ cutNTowerDiffiEtaSameiRbx = cms.PSet(
     numberRequired = cms.string('= 1'),
     alias = cms.string("nTowerDiffiEtaSameiRbx < 9")
 )
+
+##################CSC##################
+CutCscEndcap = cms.PSet(
+    inputCollection = cms.vstring('cscsegs'),
+    cutString = cms.string('endcap = 1'),
+    numberRequired = cms.string('>= 1'),
+    alias = cms.string("having cscsegs in endcap 1")
+)
+
+CutCscStation = cms.PSet(
+    inputCollection = cms.vstring('cscsegs'),
+    cutString = cms.string('station = 1'),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("having cscsegs in station 1")
+)
