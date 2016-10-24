@@ -91,12 +91,72 @@ HaloControlSelection = cms.PSet(
       cutHpdROuter
     )
 )
+######For closure test only
+HaloControlSelectionClosure = cms.PSet(
+    name = cms.string("BeamHaloControlSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergyInverted,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      CutHavingSpecificCsc,
+      CutCscFilter
+    )
+)
+SPEventSelctionClosure = cms.PSet(
+    name = cms.string("SPSelectionClosure"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergyInverted,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      CutHavingSpecificCsc,
+      CutCscFilter,
+      cutCscSegNumber
+    )
+)
 
 #Halo tag and probe Selection
 HaloTagAndProbeSelection = cms.PSet(
     name = cms.string("BeamHaloTagAndProbeSelection"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
         cutJetNumber,
         cutCscSegNLayers,
         cutMinDeltaPhiCscJet
@@ -178,8 +238,8 @@ NoiseControlSelectionTight = cms.PSet(
       cutJetEnergy,
       cutJetEta,
       cutNoise,
-      cutNTowerDiffiEtaSameiRbx,
-#      cutMaxiEtaDiffSameiRbx,
+      #cutNTowerDiffiEtaSameiRbx,
+      cutMaxiEtaDiffSameiRbx,
 #      cutJetN90,
 #      cutTowerIPhi,
 #      cutTowerFraction,
@@ -246,6 +306,10 @@ TriggerSelection_2016 = cms.PSet(
     name = cms.string("TriggerSelection2016"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
     cuts = cms.VPSet(
+        CutHavingSpecificCsc,
+        CutCscFilter,
+       # CutCscEndcap,
+       # CutCscStation,
         cutDummy,
       )
 )

@@ -409,3 +409,10 @@ CutCscFilter = cms.PSet(
     numberRequired = cms.string('>= 1'),
     alias = cms.string("filter cscsegs"),
 )
+
+cutJetEnergyInverted = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy < 70"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("$E_{jet}$ < 70 \GeV")
+)
