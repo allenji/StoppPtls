@@ -37,7 +37,7 @@ CosmicSelection = cms.PSet(
       cutJetEta,
       cutJetN90,
       cutTowerIPhi,
-      cutMaxiEtaDiffSameiRbx
+      cutMaxiEtaDiffSameiRbx,
       cutTowerFraction,
       cutHpdR1,
       cutHpdR2,
