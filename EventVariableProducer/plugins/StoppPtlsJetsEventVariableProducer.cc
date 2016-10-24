@@ -72,7 +72,14 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   int innerRPCendcap = 0;
   int RPCendcap = 0;
 
-
+  bool havingCsc = 0;
+  for (decltype(cscsegs->size()) i = 0; i != cscsegs->size(); ++i)  {
+    if ((cscsegs->at(i)).endcap() == 1 && (cscsegs->at(i)).station() == 1) {
+      havingCsc = 1;
+      break;
+    }
+  }
+  (*eventvariables)["havingSpecificCsc"] = havingCsc;
   //loop over RPC hits
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
     for (decltype(i) j = 0; j < i; ++j){
