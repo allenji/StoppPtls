@@ -189,9 +189,9 @@ cutPreDSANValidCscHits = cms.PSet(
 ########################################
 cutDSAPt = cms.PSet(
     inputCollection = cms.vstring("tracks"),
-    cutString = cms.string("pt > 40"),
+    cutString = cms.string("pt > 50"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("Upper DSA Track $p_{T}$ > 40 \GeV")
+    alias = cms.string("Upper DSA Track $p_{T}$ > 50 \GeV")
 )
 
 cutDSAEta = cms.PSet(
@@ -251,9 +251,9 @@ cutDSADtTofFreeInverseBeta = cms.PSet(
 ########################################
 cutUpperLowerDSAPt = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("track.pt > 40 && secondaryTrack.pt > 40"),
+    cutString = cms.string("track.pt > 50 && secondaryTrack.pt > 50"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("Upper and Lower DSA Tracks $p_{T}$ > 40 \GeV")
+    alias = cms.string("Upper and Lower DSA Tracks $p_{T}$ > 50 \GeV")
 )
 
 cutUpperLowerDSAEta = cms.PSet(
