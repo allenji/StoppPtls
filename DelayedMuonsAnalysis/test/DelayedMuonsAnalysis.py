@@ -18,11 +18,11 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-        'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
+        #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
-        #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_NoDtTimingPruning_UpdatedFillSchemes/NoBPTX_2016B_PromptReco/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -78,6 +78,7 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
+#variableProducers = []
 variableProducers = ["StoppPtlsEventVariableProducer"]
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 variableProducers.append("DelayedMuonsEventVariableProducer")
@@ -117,10 +118,6 @@ selections = []
 #selections.append(PreSelectionUpperLowerTurnOnNum40)
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP50)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP50)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP50)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionDUpperP50)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP60)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP60)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP60)
