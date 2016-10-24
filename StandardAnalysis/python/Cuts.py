@@ -395,3 +395,17 @@ CutCscStation = cms.PSet(
     numberRequired = cms.string(">= 1"),
     alias = cms.string("having cscsegs in station 1")
 )
+
+CutHavingSpecificCsc = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('havingSpecificCsc'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("having cscsegs in endcap 1 station 1"),
+)
+
+CutCscFilter = cms.PSet(
+    inputCollection = cms.vstring('cscsegs'),
+    cutString = cms.string('endcap != 1 || station != 1'),
+    numberRequired = cms.string('>= 1'),
+    alias = cms.string("filter cscsegs"),
+)
