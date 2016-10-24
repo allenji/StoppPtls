@@ -24,7 +24,7 @@ NoCutsStage1 = cms.PSet(
 #For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutDummy,
@@ -58,7 +58,7 @@ cutPreDSAPtGeneric.alias = cms.string("DSA Track $p_{T}$ > 10 \GeV")
 
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutBx,
@@ -73,7 +73,7 @@ PrePreSelection = cms.PSet(
 #For jetE, jetEta plots
 PreSelectionUpperOnly = cms.PSet(
     name = cms.string("PreSelectionUpperOnly"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -93,7 +93,7 @@ PreSelectionUpperOnly = cms.PSet(
 #For jetE, jetEta plots
 PreSelectionUpperLower = cms.PSet(
     name = cms.string("PreSelectionUpperLower"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
