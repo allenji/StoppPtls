@@ -1,0 +1,83 @@
+INJECTION SCHEME : Single_4b_4_0_0_1bpi_4inj
+
+idx,inj Nbr,	Ring,RF Bucket,Bu Spac (ns),bu per PS batch,SPS Batch spac,PSbatch nbr
+1,	1,	ring_1,	101,		0,		1,		0,	1
+2,	1,	ring_2,	101,		0,		1,		0,	1
+3,	2,	ring_1,	7131,		0,		1,		0,	1
+4,	2,	ring_2,	7131,		0,		1,		0,	1
+5,	3,	ring_1,	12461,		0,		1,		0,	1
+6,	3,	ring_2,	12461,		0,		1,		0,	1
+7,	4,	ring_1,	20861,		0,		1,		0,	1
+8,	4,	ring_2,	20861,		0,		1,		0,	1
+Bu Spac : space in ns between bunches in the same PS train
+SPS Batch Spac : space in ns between 2 first bunches of consecutive PS trains in the SPS
+
+Tot number of B1 bunches(probe/Nominal) : 0/4
+Tot number of B2 bunches(probe/Nominal) : 0/4
+
+Tot number of B1 injections : 4
+Tot number of B2 injections : 4
+
+Collisions at IP1&5: 4
+B1-empty at IP1&5: 0
+B2-empty at IP1&5: 0
+Empty-empty at IP1&5: 3560
+
+Collisions at IP2: 0
+B1-empty at IP2: 4
+B2-empty at IP2: 4
+Empty-empty at IP2: 3556
+
+Collisions at IP8: 0
+B1-empty at IP8: 4
+B2-empty at IP8: 4
+Empty-empty at IP8: 3556
+
+LONG RANGE COLL IN IR1
+RFbucketbeam1,RFbucketbeam2,z-pos/m
+101,101,0
+7131,7131,0
+12461,12461,0
+20861,20861,0
+
+LONG RANGE COLL IN IR2
+RFbucketbeam1,RFbucketbeam2,z-pos/m
+
+LONG RANGE COLL IN IR5
+RFbucketbeam1,RFbucketbeam2,z-pos/m
+101,101,0
+7131,7131,0
+12461,12461,0
+20861,20861,0
+
+LONG RANGE COLL IN IR8
+RFbucketbeam1,RFbucketbeam2,z-pos/m
+
+
+LONG RANGE FOR BEAM 1
+RFbucket,Slot,Head-On IP1,Head-On IP2,Head-On IP5,Head-On IP8,Head-On Tot,LR IP1,LR IP2,LR IP5,LR IP8,LR Tot
+101,10,1,0,1,0,2,0,0,0,0,0
+7131,713,1,0,1,0,2,0,0,0,0,0
+12461,1246,1,0,1,0,2,0,0,0,0,0
+20861,2086,1,0,1,0,2,0,0,0,0,0
+
+LONG RANGE FOR BEAM 2
+RFbucket,Slot,Head-On IP1,Head-On IP2,Head-On IP5,Head-On IP8,Head-On Tot,LR IP1,LR IP2,LR IP5,LR IP8,LR Tot
+101,10,1,0,1,0,2,0,0,0,0,0
+7131,713,1,0,1,0,2,0,0,0,0,0
+12461,1246,1,0,1,0,2,0,0,0,0,0
+20861,2086,1,0,1,0,2,0,0,0,0,0
+
+HEAD ON COLLISIONS FOR B1
+B1 bucket number,IP1,IP2,IP5,IP8
+101,101,-,101,-
+7131,7131,-,7131,-
+12461,12461,-,12461,-
+20861,20861,-,20861,-
+
+HEAD ON COLLISIONS FOR B2
+B2 bucket number,IP1,IP2,IP5,IP8
+101,101,-,101,-
+7131,7131,-,7131,-
+12461,12461,-,12461,-
+20861,20861,-,20861,-
