@@ -118,6 +118,8 @@ selections = []
 #selections.append(PreSelectionUpperLowerTurnOnNum40)
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
+#selections.append(DelayedMuonsUpperLowerDTchambers2Selection)
+#selections.append(DelayedMuonsUpperLowerDTchambers3Selection)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP60)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP60)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP60)

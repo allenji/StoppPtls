@@ -270,6 +270,13 @@ cutUpperLowerDSANDtChambersWithValidHits = cms.PSet(
     alias = cms.string("Upper and Lower DSA Tracks > 2 DT chambers with valid hits")
 )
 
+cutUpperLowerDSANDtChambersWithValidHitsTight = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("track.nDtChambersWithValidHits > 3 && secondaryTrack.nDtChambersWithValidHits > 3"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper and Lower DSA Tracks > 3 DT chambers with valid hits")
+)
+
 cutUpperLowerDSANValidRpcHits = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("track.nValidRpcHits > 2 && secondaryTrack.nValidRpcHits > 2"),
@@ -295,7 +302,7 @@ cutUpperLowerDSADtTofDirection = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("track.dtTofDirection > 0 && secondaryTrack.dtTofDirection > 0"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("Upper and Lower DSA Tracks TOF Direction =>= 1")
+    alias = cms.string("Upper and Lower DSA Tracks TOF Direction >= 1")
 )
 
 cutUpperLowerDSADtTofFreeInverseBeta = cms.PSet(
@@ -307,11 +314,11 @@ cutUpperLowerDSADtTofFreeInverseBeta = cms.PSet(
 
 cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -22 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
-    #cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -35 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    #cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -22 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -35 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta TimeInOut > -22 ns")
-    #alias = cms.string("#Delta TimeInOut > -35 ns")
+    #alias = cms.string("#Delta TimeInOut > -22 ns")
+    alias = cms.string("#Delta TimeInOut > -35 ns")
 )
 
 ########################################
