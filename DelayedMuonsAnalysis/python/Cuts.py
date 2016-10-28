@@ -314,11 +314,11 @@ cutUpperLowerDSADtTofFreeInverseBeta = cms.PSet(
 
 cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    #cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -22 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
-    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -35 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -22 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    #cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -35 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     numberRequired = cms.string(">= 1"),
-    #alias = cms.string("#Delta TimeInOut > -22 ns")
-    alias = cms.string("#Delta TimeInOut > -35 ns")
+    alias = cms.string("#Delta TimeInOut > -22 ns")
+    #alias = cms.string("#Delta TimeInOut > -35 ns")
 )
 
 ########################################
