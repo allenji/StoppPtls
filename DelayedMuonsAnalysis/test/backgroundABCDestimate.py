@@ -37,6 +37,7 @@ else:
 blinded = arguments.blinded
 
 pt_threshold = [60, 110, 150, 170, 200, 250, 300, 400]
+#pt_threshold = [60, 300]
 
 for dataset in datasets:
     for pt in pt_threshold:
@@ -49,8 +50,10 @@ for dataset in datasets:
         (numC, errC) = getYield(dataset,condor_dir, regionC)
         (numD, errD) = getYield(dataset,condor_dir, regionD)
 
-        print "////////////////////////////////////////////////////////////////////////////////////////////"
-        print "for " + dataset + " and upper DSA p threshold " + str(pt) + " GeV:"
+        print "/////////////////////////////////////////////////////////////////////"
+        print "for " + dataset + ", "
+        print "  \Delta RPC Hit BX Average cut at -1.0, "
+        print "   and upper DSA p threshold " + str(pt) + " GeV:"
         print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
         print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
         print "number of events in region C is: " + str(int(numC)) + " +/- " + str("%.1f" % errC)
@@ -62,6 +65,5 @@ for dataset in datasets:
             print "numA is zero!!!"
         background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
         print "background estimate (B*C/A) is: " + str("%.1f" % background_estimate) + " +/- " + str("%.1f" % background_error)
-        print "////////////////////////////////////////////////////////////////////////////////////////////"
-
+        print "/////////////////////////////////////////////////////////////////////"
 print "done"
