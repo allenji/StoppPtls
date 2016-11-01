@@ -11,6 +11,11 @@
 #include "OSUT3Analysis/AnaTools/interface/DataFormat.h"
 #include "OSUT3Analysis/AnaTools/interface/ValueLookupTree.h"
 
+#include "StoppPtls/Collection/interface/CandidateJet.h"
+#include "StoppPtls/Collection/interface/CandidateDTSeg.h"
+#include "StoppPtls/Collection/interface/CandidateCscSeg.h"
+#include "StoppPtls/Collection/interface/CandidateRpcHit.h"
+
 using namespace std;
 
 class StoppPtlsJetsEventVariableProducer : public EventVariableProducer

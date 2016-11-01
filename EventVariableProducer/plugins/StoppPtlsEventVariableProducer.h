@@ -12,6 +12,8 @@
 #include "OSUT3Analysis/AnaTools/interface/DataFormat.h"
 #include "OSUT3Analysis/AnaTools/interface/ValueLookupTree.h"
 
+#include "StoppPtls/Collection/interface/CandidateEvent.h"
+
 using namespace std;
 
 class StoppPtlsEventVariableProducer : public EventVariableProducer
