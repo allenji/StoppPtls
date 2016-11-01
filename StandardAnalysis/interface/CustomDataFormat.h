@@ -62,6 +62,10 @@
 #define  mcparticles_TYPE reco::GenParticle
 #undef  mcparticles_INVALID
 
+#undef mets_TYPE
+#define mets_TYPE INVALID_TYPE
+#define mets_INVALID
+
 //#undef  genjets_TYPE
 //#define  genjets_TYPE reco::GenJet
 //#undef  genjets_INVALID
