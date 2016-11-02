@@ -3,7 +3,7 @@ from OSUT3Analysis.Configuration.RAWSIMSamples import *
 
 intLumi = 2460
 
-config_file = "stage2RECO.py"
+config_file = "stage2RECO_2015.py"
 
 datasets = [
     #'mchamp100_DigiHltSeparateEventsParticle0',
