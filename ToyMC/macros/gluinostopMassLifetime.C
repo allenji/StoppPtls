@@ -80,25 +80,25 @@ void gluinostopMassLifetime(double lumi=4560., double maxInstLumi=5000.) {
   // stop: "nllfast st mstw <mass>"
   // the xsec of gluino and stop are updated for 13TeV analysis, the xsecs are extracted from:
   // https://twiki.cern.ch/twiki/bin/view/LHCPhysics/SUSYCrossSections#Cross_sections_for_various_S_AN2
-  double g_mass [21] = {  
-    200 ,     250 ,     300 ,     350 ,     400 ,   
-    450 ,     500 ,     550 ,     600 ,     650 ,   
-    700 ,     750 ,     800 ,     850 ,     900 ,   
-    950 ,    1000 ,    1050 ,    1100 ,    1150 ,   
-    1200 };
-  double g_xsec [21] = {  
+  double g_mass [27] = {
+    200 ,     250 ,     300 ,     350 ,     400 ,
+    450 ,     500 ,     550 ,     600 ,     650 ,
+    700 ,     750 ,     800 ,     850 ,     900 ,
+    950 ,    1000 ,    1050 ,    1100 ,    1150 ,
+    1200 , 1250, 1300, 1350, 1400, 1450, 1500};
+  double g_xsec [27] = {
     3574,      1190,     462,     202,     98.0,
     50.4,      27.4,    15.6,     9.20,    5.60,
     3.53,      2.27,     1.49,   0.996,   0.677,
     0.466,     0.325,  0.229,   0.163,  0.118,
-    0.0856
+    0.0856, 0.0627, 0.046, 0.035, 0.025, 0.019, 0.0142
   };
-  double g_xsecdcpl [21] = {  
+  double g_xsecdcpl [27] = {
     3574,      1190,     462,     202,     98.0,
     50.4,      27.4,    15.6,     9.20,    5.60,
     3.53,      2.27,     1.49,   0.996,   0.677,
     0.466,     0.325,  0.229,   0.163,  0.118,
-    0.0856
+    0.0856, 0.0627, 0.046, 0.035, 0.025, 0.019, 0.0142
   };
   double s_mass [21] = {  
     100 ,     150 ,     200 ,     250 ,     300 ,   
@@ -116,7 +116,7 @@ void gluinostopMassLifetime(double lumi=4560., double maxInstLumi=5000.) {
 
   //gluino xsec
   vector<double> masses;
-  for (int i = 0; i < 21; ++i)  {
+  for (int i = 0; i < 27; ++i)  {
     masses.push_back(g_mass[i]);
     g_xsec [i] = log10 (g_xsec [i]*1e3) * 20.;
     g_xsecdcpl [i] = log10 (g_xsecdcpl [i]*1e3) * 20.;
