@@ -45,6 +45,8 @@
 #include "DataFormats/METReco/interface/HcalNoiseRBX.h"
 #include "DataFormats/METReco/interface/HcalNoiseSummary.h"
 
+//halofilter
+#include "DataFormats/METReco/interface/BeamHaloSummary.h"
 //jets
 #include "DataFormats/JetReco/interface/CaloJetCollection.h"
 
@@ -111,6 +113,8 @@ private:
 
   edm::InputTag hcalNoiseFilterResultTag_;
   edm::EDGetTokenT<bool> hcalNoiseFilterResultToken_;
+
+  edm::EDGetTokenT<reco::BeamHaloSummary> beamHaloSummaryToken_;
 
   edm::InputTag jetTag_;
   edm::EDGetTokenT<reco::CaloJetCollection> jetToken_;

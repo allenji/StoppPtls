@@ -29,6 +29,7 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   caloTowerToken_   (consumes<CaloTowerCollection>(caloTowerTag_)),
   hcalNoiseFilterResultTag_ (iConfig.getUntrackedParameter<edm::InputTag> ("hcalNoiseFilterResultTag",edm::InputTag("HBHENoiseFilterResultProducer","HBHENoiseFilterResult"))),
   hcalNoiseFilterResultToken_   (consumes<bool>(hcalNoiseFilterResultTag_)),
+  beamHaloSummaryToken_(consumes<reco::BeamHaloSummary>(edm::InputTag("BeamHaloSummary"))),
   jetTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("jetTag",edm::InputTag("ak4CaloJets"))),
   jetToken_         (consumes<reco::CaloJetCollection>(jetTag_)),
   rbxTag_           (iConfig.getUntrackedParameter<edm::InputTag> ("rbxTag", edm::InputTag("hcalnoise"))),
@@ -178,7 +179,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
             maxiEta = abs(current_ieta);
           }
         }
-        if (current_irbx == - irbxFirst || abs(current_irbx - irbxFirst) == 1 || abs(current_irbx - irbxFirst) == 17 && twr-> hadEt() > 0.2) {
+        if ((current_irbx == - irbxFirst || abs(current_irbx - irbxFirst) == 1 || abs(current_irbx - irbxFirst) == 17) && twr-> hadEt() > 0.2) {
           double absdelta_ieta = static_cast<double> (abs(ietaFirst - current_ieta));
           double absdelta_iphi = static_cast<double> (abs(iphiFirst - current_iphi));
           absdelta_iphi = absdelta_iphi < 36 ? absdelta_iphi : 72 - absdelta_iphi;
@@ -274,6 +275,21 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else {
     edm::LogWarning("MissingProduct") << "No noise result filter flag in the event";
   }
+  /**************************begin halo filter result *************************/
+  edm::Handle<reco::BeamHaloSummary> beamHaloSummary;
+  iEvent.getByToken(beamHaloSummaryToken_ , beamHaloSummary);
+  event.set_cscTightHaloId2015(1);
+  event.set_globalTightHaloId2016(1);
+  event.set_globalSuperTightHaloId2016(1);
+  if (beamHaloSummary.isValid()){
+    event.set_cscTightHaloId2015(!beamHaloSummary->CSCTightHaloId2015());
+    event.set_globalTightHaloId2016(!beamHaloSummary->GlobalTightHaloId2016());
+    event.set_globalSuperTightHaloId2016(!beamHaloSummary->GlobalSuperTightHaloId2016()); 
+  }
+  else {
+    edm::LogWarning("MissingProduct") << "No beam halo filter result in the event";
+  }
+
 
   /**************************begin adding pulse shape**************************/
   edm::Handle<HcalNoiseRBXCollection> rbxs;
