@@ -4,7 +4,16 @@
 # 2015/2016 cosmic MC GEN-SIM
 ##############################
 
-osudb --location /mnt/hadoop/se/store/user/jalimena/MinBias/CosmicMC_GENSIM_7122_adjustedTiming/161110_102456/0000/ create /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb --location /mnt/hadoop/se/store/user/jalimena/MinBias/CosmicMC_GENSIM_7122_adjustedTiming/161110_102456/0000/ create /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5/161111_123024/0000/ /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5/161111_123024/0001/ /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5/161111_123024/0002/ /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+
+
 
 
 
