@@ -281,10 +281,34 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   event.set_cscTightHaloId2015(1);
   event.set_globalTightHaloId2016(1);
   event.set_globalSuperTightHaloId2016(1);
+
   if (beamHaloSummary.isValid()){
-    event.set_cscTightHaloId2015(!beamHaloSummary->CSCTightHaloId2015());
-    event.set_globalTightHaloId2016(!beamHaloSummary->GlobalTightHaloId2016());
-    event.set_globalSuperTightHaloId2016(!beamHaloSummary->GlobalSuperTightHaloId2016()); 
+    if (has_CSCTightHaloId2015<reco::BeamHaloSummary>::value) {
+      event.set_cscTightHaloId2015(!beamHaloSummary->CSCTightHaloId2015());
+      //cout << "CSCTightHaloId2015" << endl;
+      //cout << beamHaloSummary->CSCTightHaloId2015() << endl;
+    }
+    else {
+      //placeholder
+      //cout << "No member CSCTightHaloId2015" << endl;
+    }
+
+    if (has_GlobalTightHaloId2016<reco::BeamHaloSummary>::value) {
+      event.set_globalTightHaloId2016(!beamHaloSummary->GlobalTightHaloId2016()); 
+      //cout << "globalTightHaloId2016 filled" << endl;
+      //cout << beamHaloSummary->GlobalTightHaloId2016() << endl;
+    }
+    else {
+      //cout << "No member globalTightHaloId2016" << endl;
+    }
+
+    if (has_GlobalSuperTightHaloId2016<reco::BeamHaloSummary>::value) {
+      event.set_globalSuperTightHaloId2016(!beamHaloSummary->GlobalSuperTightHaloId2016());  
+      //cout << "globalSuperTightHaloId2016" << endl;
+    }
+    else {
+      //cout << "No member globalSuperTightHaloId2016" << endl;
+    }
   }
   else {
     edm::LogWarning("MissingProduct") << "No beam halo filter result in the event";

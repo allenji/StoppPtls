@@ -156,3 +156,39 @@ private:
   //edm::ESHandle<HepPDT::ParticleDataTable> fPDGTable;  
   
 };
+
+template <typename T>
+class has_CSCTightHaloId2015
+{ 
+  typedef char one;
+  typedef long two;
+
+  template <typename C> static one test( decltype(&C::CSCTightHaloId2015) ) ;
+  template <typename C> static two test(...);
+public:
+  enum { value = sizeof(test<T>(0)) == sizeof(char) };
+};
+
+template <typename T>
+class has_GlobalTightHaloId2016
+{
+  typedef char one;
+  typedef long two;
+
+  template <typename C> static one test( decltype(&C::GlobalTightHaloId2016) ) ;
+  template <typename C> static two test(...);
+public:
+  enum { value = sizeof(test<T>(0)) == sizeof(char) };
+};
+
+template <typename T>
+class has_GlobalSuperTightHaloId2016
+{
+  typedef char one;
+  typedef long two;
+
+  template <typename C> static one test( decltype(&C::GlobalSuperTightHaloId2016) ) ;
+  template <typename C> static two test(...);
+public:
+  enum { value = sizeof(test<T>(0)) == sizeof(char) };
+};
