@@ -7,7 +7,7 @@ intLumi = 2460
 config_file = "delayedMuonsCandiate_cosmicMC_2015_cfg.py"
 
 datasets = [
-    'cosmicMC_adjustedTiming_Reco'
+    'cosmicMC_0To25Timing_Reco'
 ]
     
 InputCondorArguments = {}

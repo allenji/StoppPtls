@@ -6,7 +6,7 @@ intLumi = 2460
 config_file = "cosmicRECO_2015.py"
 
 datasets = [
-    'cosmicMC_adjustedTiming_DigiHlt'
+    'cosmicMC_0To25Timing_DigiHlt'
 ]
     
 InputCondorArguments = {}

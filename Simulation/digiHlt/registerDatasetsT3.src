@@ -66,7 +66,7 @@
 #osudb --location /data/users/jalimena/condor/Stage2DigiHltGluinosSeparateEventsParticle1/gluino2600_Stage2SeparateEventsParticle1 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_766_Stage2DigiHltSeparateEventsParticle1/USER -f RAWSIM
 
 
-osudb --location /data/users/jalimena/condor/cosmicMCDigiHlt_adjustedTiming_2015/cosmicMC_adjustedTiming_GenSim create /Cosmic/Cosmic_fullDetector_adjustedTiming_MCRUN2_766_DigiHlt/USER -f RAWSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCDigiHlt_0To25Timing_2015/cosmicMC_0To25Timing_GenSim create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_766_DigiHlt/USER -f RAWSIM
 
 ##############################
 # 2016
@@ -126,5 +126,6 @@ osudb --location /data/users/jalimena/condor/cosmicMCDigiHlt_adjustedTiming_2015
 #osudb --location /data/users/jalimena/condor/Stage2DigiHltSeparateEvents_2016/gluino2400_Stage2SeparateEventsParticle1 create /HSCPgluino_M-2400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2DigiHltSeparateEventsParticle1/USER -f RAWSIM
 #osudb --location /data/users/jalimena/condor/Stage2DigiHltSeparateEvents_2016/gluino2600_Stage2SeparateEventsParticle1 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2DigiHltSeparateEventsParticle1/USER -f RAWSIM
 
+#osudb --location /data/users/jalimena/condor/cosmicMCDigiHlt_0To25Timing_2016/cosmicMC_0To25Timing_GenSim create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_DigiHlt/USER -f RAWSIM
 
 

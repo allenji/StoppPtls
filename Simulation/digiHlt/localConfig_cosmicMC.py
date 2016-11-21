@@ -7,7 +7,7 @@ config_file = "cosmicDIGIHLT_2015.py"
 #config_file = "cosmicDIGIHLT_2016.py"
 
 datasets = [
-    'cosmicMC_adjustedTiming_GenSim'
+    'cosmicMC_0To25Timing_GenSim'
 ]
     
 InputCondorArguments = {}
