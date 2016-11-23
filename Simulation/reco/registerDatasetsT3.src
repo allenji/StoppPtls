@@ -126,5 +126,6 @@
 #osudb --location /data/users/jalimena/condor/Stage2RecoSeparateEvents_2016/gluino2400_DigiHltSeparateEventsParticle1_2016 create /HSCPgluino_M-2400_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2RecoSeparateEventsParticle1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/Stage2RecoSeparateEvents_2016/gluino2600_DigiHltSeparateEventsParticle1_2016 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2RecoSeparateEventsParticle1/USER -f RECOSIM
 
-#osudb --location /data/users/jalimena/condor/cosmicMCReco_0To25Timing_2016/cosmicMC_0To25Timing_DigiHlt create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_Reco/USER -f RAWSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCReco_0To25Timing_2016/cosmicMC_0To25Timing_DigiHlt_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_Reco/USER -f RAWSIM
+
 
