@@ -61,6 +61,7 @@
 
 
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2015/cosmicMC_0To25Timing_Reco create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_766_Ntuple/USER -f RAWSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2015/cosmicMC_0To25Timing_Reco create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_766_Ntuple/USER -f RAWSIM
 
 
 
@@ -137,6 +138,7 @@
 #osudb --location /data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/gluino2600_RecoSeparateEventsParticle1_2016 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_Ntuple/USER -f RAWSIM
+osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_8022_Ntuple/USER -f RAWSIM
 
 
 
