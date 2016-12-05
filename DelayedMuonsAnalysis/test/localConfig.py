@@ -33,17 +33,17 @@ datasetsSig = [
 ]
 
 datasetsData = [
-    'NoBPTX_16Dec2015_Ntuple', #2015 rereco
+    #'NoBPTX_16Dec2015_Ntuple', #2015 rereco
 
     #'NoBPTX_16Dec2015_OnlyControlTriggers_Ntuple', #2015 rereco with only control triggers
     
-    'NoBPTX_2016BCDEFGH_PromptReco_Ntuple', #2016 prompt reco
+    #'NoBPTX_2016BCDEFGH_PromptReco_Ntuple', #2016 prompt reco
     #'NoBPTX_2016B_PromptReco_Ntuple', #2016 prompt reco
     #'NoBPTX_2016C_PromptReco_Ntuple', #2016 prompt reco
     #'NoBPTX_2016D_PromptReco_Ntuple', #2016 prompt reco
     #'NoBPTX_2016E_PromptReco_Ntuple', #2016 prompt reco
     
-    #'NoBPTX_2016BCDEFGH_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+    'NoBPTX_2016BCDEFGH_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016B_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016C_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016D_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
@@ -55,8 +55,11 @@ datasetsCosmicData = [
 ]
 
 datasetsCosmicMC = [
-    'cosmicMC_0To25Timing_Ntuple',
-    'cosmicMC_0To25Timing_Ntuple_2016'
+    #'cosmicMC_0To25Timing_Ntuple',
+    #'cosmicMC_0To25Timing_Ntuple_2016',
+
+    #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple',
+    'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple_2016',
 ]
 
     
@@ -67,6 +70,7 @@ datasets = datasetsSig + datasetsData + datasetsCosmicData + datasetsCosmicMC
 #datasets = datasetsData
 #datasets = datasetsCosmicData
 #datasets = datasetsCosmicMC
+#datasets = datasetsCosmicMC + datasetsData
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
