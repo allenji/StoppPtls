@@ -28,7 +28,7 @@ process.source = cms.Source ("PoolSource",
                              )
 
 from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_Prompt_v9', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '80X_dataRun2_2016SeptRepro_v4', '')
 
 #HLT bit filter
 process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
