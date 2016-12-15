@@ -138,10 +138,20 @@
 #osudb --location /data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/gluino2600_RecoSeparateEventsParticle1_2016 create /HSCPgluino_M-2600_TuneCUETP8M1_13TeV_pythia8/RunIIWinter15GS-MCRUN2_8022_Stage2NtupleSeparateEventsParticle1/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_Ntuple/USER -f RAWSIM
-osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_8022_Ntuple/USER -f RAWSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_8022_Ntuple/USER -f RAWSIM
 
 
 
+
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016B_23Sep2016_v2 create /NoBPTX/Run2016B-23Sep2016-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016B_23Sep2016_v3 create /NoBPTX/Run2016B-23Sep2016-v3/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016 create /NoBPTX/Run2016C-23Sep2016-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016D_23Sep2016 create /NoBPTX/Run2016D-23Sep2016-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016 create /NoBPTX/Run2016E-23Sep2016-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016F_23Sep2016 create /NoBPTX/Run2016F-23Sep2016-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016G_23Sep2016 create /NoBPTX/Run2016G-23Sep2016-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016H_PromptReco_v2 create /NoBPTX/Run2016H-23Sep2016-v2/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016H_PromptReco_v3 create /NoBPTX/Run2016H-23Sep2016-v3/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco create /NoBPTX/Run2016B-PromptReco-v2/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016C_PromptReco create /NoBPTX/Run2016C-PromptReco-v2/USER -f RECOSIM
