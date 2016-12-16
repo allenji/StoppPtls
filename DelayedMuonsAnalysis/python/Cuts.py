@@ -322,6 +322,17 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
 )
 
 ########################################
+#lower DSA cut
+########################################
+
+cutLowerDSADtTofFreeInverseBeta = cms.PSet(
+    inputCollection = cms.vstring("secondaryTracks"),
+    cutString = cms.string("dtTofFreeInverseBeta > 0.0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Lower DSA Track #beta_{Free}^{-1} > 0.0")
+)
+
+########################################
 #upper and lower DSA ABCD cuts
 ########################################
 

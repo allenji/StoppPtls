@@ -51,11 +51,11 @@ datasetsCosmicData = [
 ]
 
 datasetsCosmicMC = [
-    #'cosmicMC_0To25Timing_Ntuple',
+    'cosmicMC_0To25Timing_Ntuple',
     #'cosmicMC_0To25Timing_Ntuple_2016',
 
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple',
-    'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple_2016',
+    #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple_2016',
 ]
 
     

@@ -175,6 +175,10 @@ DelayedMuonsUpperLowerDTchambers3Selection.cuts.append(cutUpperLowerDSANValidRpc
 DelayedMuonsUpperLowerDTchambers3Selection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 DelayedMuonsUpperLowerDTchambers3Selection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
 
+DelayedMuonsUpperLowerDTchambers2FreeInvBetaLowerSelection = copy.deepcopy(DelayedMuonsUpperLowerDTchambers2Selection)
+DelayedMuonsUpperLowerDTchambers2FreeInvBetaLowerSelection.name = cms.string("DelayedMuonsUpperLowerDTchambers2FreeInvBetaLowerSelection")
+DelayedMuonsUpperLowerDTchambers2FreeInvBetaLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
+
 #ABCD regions
 #first split into 2 regions (AB and CD) by applying RPC timing cut
 DelayedMuonsUpperLowerSelectionRegionAB = copy.deepcopy(DelayedMuonsUpperLowerSelection)

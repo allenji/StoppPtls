@@ -22,7 +22,8 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -50,8 +51,8 @@ process.TFileService = cms.Service ('TFileService',
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (1000)
-    #input = cms.untracked.int32 (100)
-    input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (100)
+    #input = cms.untracked.int32 (-1)
     #input = cms.untracked.int32 (10)
 )
 
@@ -78,9 +79,9 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
-#variableProducers = []
-variableProducers = ["StoppPtlsEventVariableProducer"]
-variableProducers.append("StoppPtlsJetsEventVariableProducer")
+variableProducers = []
+#variableProducers = ["StoppPtlsEventVariableProducer"]
+#variableProducers.append("StoppPtlsJetsEventVariableProducer")
 variableProducers.append("DelayedMuonsEventVariableProducer")
 
 ################################################################################
@@ -119,6 +120,7 @@ selections = []
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
 #selections.append(DelayedMuonsUpperLowerDTchambers2Selection)
+#selections.append(DelayedMuonsUpperLowerDTchambers2FreeInvBetaLowerSelection)
 #selections.append(DelayedMuonsUpperLowerDTchambers3Selection)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP60)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP60)
@@ -180,16 +182,16 @@ scalingfactorproducers = []
 add_channels(process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
-process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
+#process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
-process.StoppPtlsEventVariableProducer.stoppedParticlesName = cms.InputTag("g4SimHits", "StoppedParticlesName")
-process.StoppPtlsEventVariableProducer.stoppedParticlesX = cms.InputTag("g4SimHits", "StoppedParticlesX")
-process.StoppPtlsEventVariableProducer.stoppedParticlesY = cms.InputTag("g4SimHits", "StoppedParticlesY")
-process.StoppPtlsEventVariableProducer.stoppedParticlesZ = cms.InputTag("g4SimHits", "StoppedParticlesZ")
-process.StoppPtlsEventVariableProducer.stoppedParticlesTime = cms.InputTag("g4SimHits", "StoppedParticlesTime")
-process.StoppPtlsEventVariableProducer.stoppedParticlesPdgId = cms.InputTag("g4SimHits", "StoppedParticlesPdgId")
-process.StoppPtlsEventVariableProducer.stoppedParticlesMass = cms.InputTag("g4SimHits", "StoppedParticlesMass")
-process.StoppPtlsEventVariableProducer.stoppedParticlesCharge = cms.InputTag("g4SimHits", "StoppedParticlesCharge")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesName = cms.InputTag("g4SimHits", "StoppedParticlesName")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesX = cms.InputTag("g4SimHits", "StoppedParticlesX")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesY = cms.InputTag("g4SimHits", "StoppedParticlesY")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesZ = cms.InputTag("g4SimHits", "StoppedParticlesZ")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesTime = cms.InputTag("g4SimHits", "StoppedParticlesTime")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesPdgId = cms.InputTag("g4SimHits", "StoppedParticlesPdgId")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesMass = cms.InputTag("g4SimHits", "StoppedParticlesMass")
+#process.StoppPtlsEventVariableProducer.stoppedParticlesCharge = cms.InputTag("g4SimHits", "StoppedParticlesCharge")
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
