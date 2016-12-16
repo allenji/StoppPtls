@@ -321,6 +321,13 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     #alias = cms.string("#Delta TimeInOut > -35 ns")
 )
 
+cutUpperLowerDSADeltaTimeInOutTight = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -20 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeInOut > -20 ns")
+)
+
 ########################################
 #lower DSA cut
 ########################################
