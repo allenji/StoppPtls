@@ -36,8 +36,8 @@ else:
 
 blinded = arguments.blinded
 
-pt_threshold = [60, 110, 150, 170, 200, 250, 300, 400]
-#pt_threshold = [60, 300]
+#pt_threshold = [65, 110, 150, 170, 200, 250, 300, 400]
+pt_threshold = [65, 300]
 
 for dataset in datasets:
     for pt in pt_threshold:
@@ -67,3 +67,4 @@ for dataset in datasets:
         print "background estimate (B*C/A) is: " + str("%.1f" % background_estimate) + " +/- " + str("%.1f" % background_error)
         print "/////////////////////////////////////////////////////////////////////"
 print "done"
+

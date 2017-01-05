@@ -996,6 +996,13 @@ VsDeltaDSAHistograms = cms.PSet(
             binsY = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofFreeInverseBeta - secondaryTrack.dtTofFreeInverseBeta"),
             ),
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpInOut_delta_dtTofTimeAtIpOutIn"),
+            title = cms.string("#Delta DSA Track TimeInOut vs #Delta DSA Track TimeOutIn; #Delta DSA Track TimeInOut [ns]; #Delta DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
+            inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
+            ),
         )
     )
 
