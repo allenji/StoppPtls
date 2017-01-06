@@ -319,16 +319,16 @@ cutUpperLowerDSADtTofFreeInverseBeta = cms.PSet(
     alias = cms.string("Upper and Lower DSA Tracks #beta_{Free}^{-1} > 0.5")
 )
 
-cutUpperLowerDSADeltaTimeInOut = cms.PSet(
+cutUpperLowerDSADeltaTimeInOut2015 = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -22 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -27 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     #cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -35 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta TimeInOut > -22 ns")
+    alias = cms.string("#Delta TimeInOut > -27 ns")
     #alias = cms.string("#Delta TimeInOut > -35 ns")
 )
 
-cutUpperLowerDSADeltaTimeInOutTight = cms.PSet(
+cutUpperLowerDSADeltaTimeInOut2016 = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -20 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     numberRequired = cms.string(">= 1"),
@@ -342,12 +342,6 @@ cutUpperLowerDSADeltaTimeOutIn = cms.PSet(
     alias = cms.string("#Delta TimeOutIn > -30 ns")
 )
 
-cutUpperLowerDSADeltaTimeOutInTight = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -20 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
-    numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta TimeOutIn > -20 ns")
-)
 
 ########################################
 #lower DSA cut
