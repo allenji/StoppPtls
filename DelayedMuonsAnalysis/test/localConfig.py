@@ -36,14 +36,29 @@ datasetsSig = [
 
     #2016 MC
     #'mchamp100_NtupleSeparateEvents_2016',
+    #'mchamp200_NtupleSeparateEvents_2016',
+    #'mchamp400_NtupleSeparateEvents_2016',
     #'mchamp600_NtupleSeparateEvents_2016',
+    #'mchamp800_NtupleSeparateEvents_2016',
     #'mchamp1000_NtupleSeparateEvents_2016',
+    #'mchamp1400_NtupleSeparateEvents_2016',
+    #'mchamp1800_NtupleSeparateEvents_2016',
+    #'mchamp2200_NtupleSeparateEvents_2016',
     #'mchamp2600_NtupleSeparateEvents_2016',
     
     #'gluino100_NtupleSeparateEvents_2016',
+    #'gluino200_NtupleSeparateEvents_2016',
+    #'gluino400_NtupleSeparateEvents_2016',
     #'gluino600_NtupleSeparateEvents_2016',
+    #'gluino800_NtupleSeparateEvents_2016',
     #'gluino1000_NtupleSeparateEvents_2016',
+    #'gluino1200_NtupleSeparateEvents_2016',
+    #'gluino1400_NtupleSeparateEvents_2016',
+    #'gluino1600_NtupleSeparateEvents_2016',
+    #'gluino1800_NtupleSeparateEvents_2016',
     #'gluino2000_NtupleSeparateEvents_2016',
+    #'gluino2200_NtupleSeparateEvents_2016',
+    #'gluino2400_NtupleSeparateEvents_2016',
     #'gluino2600_NtupleSeparateEvents_2016',
 ]
 
