@@ -9,14 +9,29 @@ config_file = "DelayedMuonsAnalysis.py"
 datasetsSig = [
     #2015 MC
     #'mchamp100_NtupleSeparateEvents',
+    #'mchamp200_NtupleSeparateEvents',
+    #'mchamp400_NtupleSeparateEvents',
     'mchamp600_NtupleSeparateEvents',
+    #'mchamp800_NtupleSeparateEvents',
     #'mchamp1000_NtupleSeparateEvents',
+    #'mchamp1400_NtupleSeparateEvents',
+    #'mchamp1800_NtupleSeparateEvents',
+    #'mchamp2200_NtupleSeparateEvents',
     #'mchamp2600_NtupleSeparateEvents',
     
     #'gluino100_NtupleSeparateEvents',
+    #'gluino200_NtupleSeparateEvents',
+    #'gluino400_NtupleSeparateEvents',
     #'gluino600_NtupleSeparateEvents',
-    #'gluino1000_NtupleSeparateEvents',
-    'gluino2000_NtupleSeparateEvents',
+    #'gluino800_NtupleSeparateEvents',
+    'gluino1000_NtupleSeparateEvents',
+    #'gluino1200_NtupleSeparateEvents',
+    #'gluino1400_NtupleSeparateEvents',
+    #'gluino1600_NtupleSeparateEvents',
+    #'gluino1800_NtupleSeparateEvents',
+    #'gluino2000_NtupleSeparateEvents',
+    #'gluino2200_NtupleSeparateEvents',
+    #'gluino2400_NtupleSeparateEvents',
     #'gluino2600_NtupleSeparateEvents',
 
     #2016 MC
