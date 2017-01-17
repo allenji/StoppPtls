@@ -81,7 +81,7 @@ weights = cms.VPSet (
 
 variableProducers = []
 #variableProducers = ["StoppPtlsEventVariableProducer"]
-#variableProducers.append("StoppPtlsJetsEventVariableProducer")
+variableProducers.append("StoppPtlsJetsEventVariableProducer")
 variableProducers.append("DelayedMuonsEventVariableProducer")
 
 ################################################################################
@@ -147,9 +147,9 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP130)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP130)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionDUpperP130)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP150)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP150)
-#selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP150)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP150) #include for background syst uncert
+#selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP150) #include for background syst uncert
+#selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP150) #include for background syst uncert
 #selections.append(DelayedMuonsUpperLowerSelectionRegionDUpperP150)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP160)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP160)
@@ -183,6 +183,16 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP290)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP290)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionDUpperP290)
+
+#for ABCD syst uncert
+#selections.append(DelayedMuonsUpperLowerSelectionRegionA1UpperP90)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionA2UpperP90)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionC1UpperP90)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionC2UpperP90)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionA1UpperP150)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionA2UpperP150)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionB1UpperP150)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionB2UpperP150)
 
 
 histograms = cms.VPSet()

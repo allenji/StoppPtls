@@ -614,3 +614,30 @@ cutUpperLowerDSAUpperP290Inverted = cms.PSet(
     numberRequired = cms.string(">= 1"),
     alias = cms.string("Upper DSA Track p < 290 \GeV")
 )
+
+
+########################################
+#upper and lower DSA ABCD cuts for syst
+########################################
+
+
+cutUpperLowerDSAUpperPGreater90Less150 = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("track.p > 90. && track.p < 150."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track 90 < p < 150 \GeV")
+)
+
+cutUpperLowerDSADeltaRpcHitBxAverageGreaterNeg1p5LessNeg1 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -1.0 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.5"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("-1.5 < #Delta RPC Hit BX Average <= -1.0")
+)
+
+cutUpperLowerDSADeltaRpcHitBxAverageLessNeg1p5 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -1.5 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("-1.5 < #Delta RPC Hit BX Average <= -1.0")
+)
