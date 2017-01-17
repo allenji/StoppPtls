@@ -3,6 +3,7 @@
 
 #include "TFile.h"
 #include "TH1.h"
+#include <math.h>
 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
@@ -27,6 +28,7 @@ class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
  private:
   void AddVariables(const edm::Event &);
   int chamberType(int, int);
+
 
   edm::EDGetTokenT<vector<TYPE(jets)> > jetsToken_;
   edm::EDGetTokenT<vector<TYPE(dtsegs)> > dtsegsToken_;

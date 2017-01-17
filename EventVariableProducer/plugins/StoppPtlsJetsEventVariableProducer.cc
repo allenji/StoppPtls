@@ -41,7 +41,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
 
   double maxDeltaPhi = -1.;
   double outerDT = 0.00000001; // avoid divide by zero
-  int innerDT = 0;
+  double  innerDT = 0;
 
   //loop over DT segments
   for (decltype(dtsegs->size()) i = 0; i != dtsegs->size(); ++i) {
@@ -72,14 +72,37 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   int innerRPCendcap = 0;
   int RPCendcap = 0;
 
+  int NOuterCsc = 0;
+  int NInnerCsc = 0;
   bool havingCsc = 0;
+  bool havingCscSegNHit56 = 0;
   for (decltype(cscsegs->size()) i = 0; i != cscsegs->size(); ++i)  {
     if ((cscsegs->at(i)).endcap() == 1 && (cscsegs->at(i)).station() == 1) {
       havingCsc = 1;
       break;
     }
   }
+
+  for (decltype(cscsegs->size()) i = 0; i != cscsegs->size(); ++i)  {
+    if ((cscsegs->at(i)).r() > 340) {
+      havingCscSegNHit56 = 1;
+    }
+    if ((cscsegs->at(i)).r() <= 340 && (cscsegs->at(i)).nHits() > 4) {
+      havingCscSegNHit56 = 1;
+    }
+    if ((cscsegs->at(i)).r() > 340) {
+      NOuterCsc++;
+    }
+    else {
+      NInnerCsc++;
+    }
+}
+  (*eventvariables)["NOuterCsc"] = NOuterCsc;
+  (*eventvariables)["NInnerCsc"] = NInnerCsc;
+
+
   (*eventvariables)["havingSpecificCsc"] = havingCsc;
+  (*eventvariables)["havingCscSegNHit56"] = havingCscSegNHit56;
   //loop over RPC hits
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
     for (decltype(i) j = 0; j < i; ++j){
@@ -295,6 +318,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetPhi"] = jets->begin()->phi();
     (*eventvariables)["leadingJetN60"] = jets->begin()->n60();
     (*eventvariables)["leadingJetN90"] = jets->begin()->n90();
+    (*eventvariables)["leadingJetEMFraction"] = jets->begin()->emJetEnergyFraction();
   }
   else {
     (*eventvariables)["leadingJetEnergy"] = -1;
@@ -304,6 +328,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetPhi"] = 999.0;
     (*eventvariables)["leadingJetN60"] = -1;
     (*eventvariables)["leadingJetN90"] = -1;
+    (*eventvariables)["leadingJetEMFraction"] = -1;
   }
 
   if (jets->size() > 1){
@@ -356,8 +381,69 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["nJetsEMin50"]  = nJetsEMin50; 
   (*eventvariables)["nJetsEMin100"] = nJetsEMin100; 
   (*eventvariables)["nJetsEMin200"] = nJetsEMin200; 
+  //CSC DT angles
+  double maxDeltaPhiCscPair = -1;
+  double maxDeltaPhiCscDT = -1;
+  double minDeltaPhiCscPair = 999;
+  double minDeltaPhiCscDT = 999;
+  if (cscsegs->size() >= 2) {
+    int csc_size = cscsegs->size();
+    double deltaPhiCscPair = 999;
+    for (int i = 0; i != csc_size; ++ i) {
+      if ((jets->size() > 0 && acos(cos((cscsegs->at(i)).phi() - (jets->at(0)).phi()))) < 0.4 && (cscsegs->at(i)).r() < 340)
+        continue;
+      for (int j = i+1; j!= csc_size; ++j) {
+        if ((jets->size() > 0 && acos(cos((cscsegs->at(j)).phi() - (jets->at(0)).phi()))) < 0.4 && (cscsegs->at(j)).r() < 340)
+          continue;
+        deltaPhiCscPair = acos(cos((cscsegs->at(i)).phi() - (cscsegs->at(j)).phi()));
+        if (deltaPhiCscPair < minDeltaPhiCscPair) {
+          minDeltaPhiCscPair = deltaPhiCscPair;
+        }
+        if (deltaPhiCscPair > maxDeltaPhiCscPair) {
+          maxDeltaPhiCscPair = deltaPhiCscPair;
+        }
+          
+      }
+    }
+  }
+
+  if (cscsegs->size() > 0 && dtsegs->size() > 0) {
+    int csc_size = cscsegs->size();
+    int dt_size = dtsegs->size();
+    double deltaPhiCscDtPair = 999;
+    for (int i = 0; i < csc_size; i++) {
+      for (int j = 0; j < dt_size; j++) {
+        deltaPhiCscDtPair = acos(cos((cscsegs->at(i)).phi() - (dtsegs->at(j)).phi()));
+        if (deltaPhiCscDtPair < minDeltaPhiCscDT) {
+          minDeltaPhiCscDT = deltaPhiCscDtPair;
+        }
+        if (deltaPhiCscDtPair > maxDeltaPhiCscDT) {
+          maxDeltaPhiCscDT = deltaPhiCscDtPair;
+        }
+      }
+    }
+  }
+
+  (*eventvariables)["minDeltaPhiCscPair"] = minDeltaPhiCscPair;
+  (*eventvariables)["maxDeltaPhiCscPair"] = maxDeltaPhiCscPair;
+  (*eventvariables)["minDeltaPhiCscDT"] = minDeltaPhiCscDT;
+  (*eventvariables)["maxDeltaPhiCscDT"] = maxDeltaPhiCscDT;
 
 
+
+  int nCscNearJetDeltaPhi0p2 = 0;
+  int nCscNearJetDeltaPhi0p2EndcapPosZ = 0; 
+  int nCscNearJetDeltaPhi0p2EndcapMinZ = 0;
+  int nIncomingCscSegsNearJetDeltaPhi0p2 = 0;
+  int nOutgoingCscSegsNearJetDeltaPhi0p2 = 0;
+  double meanCscXNearJetDeltaPhi0p2 = 0.;
+  double meanCscYNearJetDeltaPhi0p2 = 0.;
+  double meanCscRNearJetDeltaPhi0p2 = 0.;
+  double meanCscDirectionNearJetDeltaPhi0p2 = 0.;
+  double meanCscPhiNearJetDeltaPhi0p2 = 0;
+  
+  set<int>nLayersNearJetDeltaPhi0p2;
+  
   int nIncomingCscSegs = 0;
   int nOutgoingCscSegs = 0;
   double meanCscX = 0.;
@@ -368,8 +454,12 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   set<int> nLayers;
   double minDeltaPhiCscJet = 999.;
 
+  double minDeltaPhiOuterCscJet = 999;
+  double maxDeltaPhiOuterCscJet = -1;
+
   //loop over csc segments
   for (auto itcsc = cscsegs->begin(); itcsc != cscsegs->end(); ++itcsc){
+    
     double cscSegX = itcsc->r()*cos(itcsc->phi());
     double cscSegY = itcsc->r()*sin(itcsc->phi());
 
@@ -377,12 +467,18 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     //find direction of each csc segment and then average direction of the "halo" in the event
     //direction -1 means traveling in the +z direction (beam 2) and direction +1 means travel in the -z direction (beam 1)
     double cscSegDir = 0.;
-    if (itcsc->time() < -10.){
+    if (itcsc->time() < -15.){
       nIncomingCscSegs++;
+      if (jets->size() > 0 && acos(cos(itcsc->phi() - jets->begin()->phi())) < 0.4 && itcsc->r() < 340 && itcsc->nHits() > 4) {
+        nIncomingCscSegsNearJetDeltaPhi0p2++;
+      }
       if(itcsc->z() < 0) cscSegDir = -1.0;  // +Z direction
       else cscSegDir = 1.0; //-Z direction
     }
     else{
+      if (jets->size() > 0 && acos(cos(itcsc->phi() - jets->begin()->phi())) < 0.4 && itcsc->r() < 340 && itcsc->nHits() > 4) {
+        nOutgoingCscSegsNearJetDeltaPhi0p2++; 
+      }
       nOutgoingCscSegs++;
       if(itcsc->z() < 0) cscSegDir = 1.0;  // -Z direction
       else cscSegDir = -1.0; //+Z direction
@@ -398,11 +494,35 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     int endcap = (itcsc->z() > 0) ? 1 : -1;
     int layer = chamber * endcap;
     nLayers.insert(layer);
+    if (jets->size() > 0 && acos(cos(itcsc->phi() - jets->begin()->phi())) < 0.4 && itcsc->r() < 340 && itcsc->nHits() > 4) {
+      nCscNearJetDeltaPhi0p2++;
+      meanCscXNearJetDeltaPhi0p2 += cscSegX;
+      meanCscYNearJetDeltaPhi0p2 += cscSegY;
+      meanCscRNearJetDeltaPhi0p2 += itcsc->r();
+      meanCscPhiNearJetDeltaPhi0p2 += itcsc->phi();
+      meanCscDirectionNearJetDeltaPhi0p2 += cscSegDir;
+      nLayersNearJetDeltaPhi0p2.insert(layer);
+      if (endcap == 1) {
+        nCscNearJetDeltaPhi0p2EndcapPosZ++;
+      }
+      else {
+        nCscNearJetDeltaPhi0p2EndcapMinZ++;
+      }
+      
+    }
 
     if (jets->size() > 0){
       double deltaphicscjet = acos(cos(itcsc->phi() - jets->begin()->phi()));
       if(deltaphicscjet < minDeltaPhiCscJet) 
 	minDeltaPhiCscJet = deltaphicscjet;
+      if (itcsc->r() > 340) {
+        if (deltaphicscjet < minDeltaPhiOuterCscJet) {
+          minDeltaPhiOuterCscJet = deltaphicscjet;
+        }
+        if (deltaphicscjet > maxDeltaPhiOuterCscJet) {
+         maxDeltaPhiOuterCscJet = deltaphicscjet; 
+        }
+      }
     }//end of if at least 1 jet
   }//end of loop over csc segments
 
@@ -411,6 +531,14 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   meanCscY = meanCscY/cscsegs->size();
   meanCscR = meanCscR/cscsegs->size();
   meanCscPhi = meanCscPhi/cscsegs->size();
+
+  if(nCscNearJetDeltaPhi0p2 > 0){
+    meanCscDirectionNearJetDeltaPhi0p2 = meanCscDirectionNearJetDeltaPhi0p2/nCscNearJetDeltaPhi0p2;
+    meanCscXNearJetDeltaPhi0p2 = meanCscXNearJetDeltaPhi0p2/nCscNearJetDeltaPhi0p2;
+    meanCscYNearJetDeltaPhi0p2 = meanCscYNearJetDeltaPhi0p2/nCscNearJetDeltaPhi0p2;
+    meanCscRNearJetDeltaPhi0p2 = meanCscRNearJetDeltaPhi0p2/nCscNearJetDeltaPhi0p2;
+    meanCscPhiNearJetDeltaPhi0p2 = meanCscPhiNearJetDeltaPhi0p2/nCscNearJetDeltaPhi0p2;
+  }
 
   (*eventvariables)["meanCscDirection"] = meanCscDirection;
   (*eventvariables)["meanCscX"] = meanCscX;
@@ -423,6 +551,37 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
 
   (*eventvariables)["nCscLayers"] = nLayers.size();
   (*eventvariables)["minDeltaPhiCscJet"] = minDeltaPhiCscJet;
+
+  (*eventvariables)["minDeltaPhiOuterCscJet"] = minDeltaPhiOuterCscJet;
+  (*eventvariables)["maxDeltaPhiOuterCscJet"] = maxDeltaPhiOuterCscJet;
+
+  (*eventvariables)["meanCscDirectionNearJetDeltaPhi0p2"] = meanCscDirectionNearJetDeltaPhi0p2;
+  (*eventvariables)["meanCscXNearJetDeltaPhi0p2"] = meanCscXNearJetDeltaPhi0p2;
+  (*eventvariables)["meanCscYNearJetDeltaPhi0p2"] = meanCscYNearJetDeltaPhi0p2;
+  (*eventvariables)["meanCscRNearJetDeltaPhi0p2"] = meanCscRNearJetDeltaPhi0p2;
+  (*eventvariables)["meanCscPhiNearJetDeltaPhi0p2"] = meanCscPhiNearJetDeltaPhi0p2;
+  (*eventvariables)["nCscNearJetDeltaPhi0p2"] = nCscNearJetDeltaPhi0p2;
+  (*eventvariables)["nCscNearJetDeltaPhi0p2EndcapPosZ"] = nCscNearJetDeltaPhi0p2EndcapPosZ;
+  (*eventvariables)["nCscNearJetDeltaPhi0p2EndcapMinZ"] = nCscNearJetDeltaPhi0p2EndcapMinZ;
+  (*eventvariables)["nIncomingCscSegsNearJetDeltaPhi0p2"] = nIncomingCscSegsNearJetDeltaPhi0p2;
+  (*eventvariables)["nOutgoingCscSegsNearJetDeltaPhi0p2"] = nOutgoingCscSegsNearJetDeltaPhi0p2;
+  (*eventvariables)["nLayersNearJetDeltaPhi0p2"] = nLayersNearJetDeltaPhi0p2.size();
+
+  bool havingCscDeltaJet0p4R3p4 = 0;
+  if (jets->size() > 0) {
+    double lJetPhi = jets->begin()->phi();
+    for (auto itcsc = cscsegs->begin(); itcsc != cscsegs->end(); ++itcsc) {
+      //double delta_R_pre = fabs(itcsc->phi() - lJetPhi);
+//double delta_R = delta_R_pre < M_PI ? delta_R_pre : 2*M_PI - delta_R_pre;
+      double delta_R = acos(cos(itcsc->phi()-lJetPhi));
+      if (itcsc->r() < 340 && delta_R < 0.4 && itcsc->nHits() > 4) {
+        havingCscDeltaJet0p4R3p4 = 1;
+      }
+    }
+  }
+  (*eventvariables)["havingCscDeltaJet0p4R3p4"] = havingCscDeltaJet0p4R3p4;
+
+  
 
 }//end of AddVariables()
   

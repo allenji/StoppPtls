@@ -14,6 +14,9 @@ class CandidateEvent
     instLumi_(0),
     nVtx_(0),
     noiseFilterResult_(0),
+    numIsolatedNoiseChannels_(0),
+    isolatedNoiseSumE_(0),
+    isolatedNoiseSumEt_(0),
     cscTightHaloId2015_(0),
     globalTightHaloId2016_(0),
     globalSuperTightHaloId2016_(0),
@@ -52,7 +55,12 @@ class CandidateEvent
     void set_instLumi(double instLumi) {instLumi_ = instLumi;}
     void set_nVtx(unsigned nVtx) {nVtx_ = nVtx;}
     void set_noiseFilterResult(bool noiseFilterResult){noiseFilterResult_ = noiseFilterResult;}
+    void set_numIsolatedNoiseChannels(int numIsolatedNoiseChannels){numIsolatedNoiseChannels_ = numIsolatedNoiseChannels;}
+    void set_isolatedNoiseSumE(int isolatedNoiseSumE){isolatedNoiseSumE_ = isolatedNoiseSumE;}
+    void set_isolatedNoiseSumEt(int isolatedNoiseSumEt){isolatedNoiseSumEt_ = isolatedNoiseSumEt;}
+
     void set_cscTightHaloId2015(bool cscTightHaloId2015){cscTightHaloId2015_ = cscTightHaloId2015;}
+
     void set_globalTightHaloId2016(bool globalTightHaloId2016){globalTightHaloId2016_ = globalTightHaloId2016;}
     void set_globalSuperTightHaloId2016(bool globalSuperTightHaloId2016){globalSuperTightHaloId2016_ = globalSuperTightHaloId2016;}
     void set_nTowerSameiPhi(unsigned nTowerSameiPhi) {nTowerSameiPhi_ = nTowerSameiPhi;}
@@ -98,6 +106,10 @@ class CandidateEvent
     unsigned nVtx() {return nVtx_;}
 
     bool noiseFilterResult() {return noiseFilterResult_;}
+
+    int numIsolatedNoiseChannels() {return numIsolatedNoiseChannels_;}
+    double isolatedNoiseSumE() {return isolatedNoiseSumE_;}
+    double isolatedNoiseSumEt() {return isolatedNoiseSumEt_;}
 
     bool cscTightHaloId2015() {return cscTightHaloId2015_;}
     bool globalTightHaloId2016() {return globalTightHaloId2016_;}
@@ -151,6 +163,10 @@ class CandidateEvent
 
     //noise
     bool noiseFilterResult_;
+
+    int numIsolatedNoiseChannels_;
+    double isolatedNoiseSumE_;
+    double isolatedNoiseSumEt_;
     
     bool cscTightHaloId2015_;
     bool globalTightHaloId2016_;

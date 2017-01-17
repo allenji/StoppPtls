@@ -8,6 +8,9 @@ class CandidateJet {
     void set_phi(double phi) {phi_ = phi;}
     void set_n60(double n60) {n60_ = n60;}
     void set_n90(double n90) {n90_ = n90;}
+    void set_energyFractionHadronic(double energyFractionHadronic) {energyFractionHadronic_ = energyFractionHadronic;}
+    void set_emEnergyFraction(double emEnergyFraction) {emEnergyFraction_ = emEnergyFraction;}
+    void set_emJetEnergyFraction(double emJetEnergyFraction) {emJetEnergyFraction_ = emJetEnergyFraction;}
 
     const double energy() const {return energy_;}
     const double et() const {return et_;}
@@ -15,6 +18,10 @@ class CandidateJet {
     const double phi() const {return phi_;}
     const double n60() const {return n60_;}
     const double n90() const {return n90_;}
+    const double energyFractionHadronic() const {return energyFractionHadronic_;}
+    const double emEnergyFraction() const {return emEnergyFraction_;}
+    const double emJetEnergyFraction() const {return emJetEnergyFraction_;}
+    
   private:
     double energy_;
     double et_;
@@ -22,6 +29,9 @@ class CandidateJet {
     double phi_;
     double n60_;
     double n90_;
+    double energyFractionHadronic_;
+    double emEnergyFraction_;
+    double emJetEnergyFraction_;
 };
 
 
