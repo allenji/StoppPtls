@@ -1,0 +1,25 @@
+mass                     300
+crossSection             106
+lifetime                 1
+signalEff                0.02469
+signalEff_e              0.0
+bgRate                   0.254e-05
+bgRate_e                 0.217e-05
+scaleUncert              0.098
+optimizeTimeCut          1
+histFile                 /data/users/weifengji/condor/011617_2016BCDEFGHReReco_ToyMCLumiHist/NoBPTX_Jet_2016BCDEFG_PromptReco.root
+lumiFile                 /home/weifengji/StoppedParticles_Run2/SPAnalysis_2016_Oct10/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC/data/lumi_273158_284044.csv
+jsonFile                 0
+lumiFirstRun             273150
+lumiLastRun              284044
+fills                    4915,4919,4924,4925,4926,4930,4935,4942,4947,4953,4956,4958,4960,4961,4964,4965,4976,4979,4980,4984,4985,4988,4990,5005,5013,5017,5020,5021,5024,5026,5027,5028,5029,5030,5038,5043,5045,5048,5052,5056,5059,5060,5069,5071,5072,5073,5076,5078,5080,5083,5085,5091,5093,5095,5096,5097,5101,5102,5105,5106,5107,5108,5109,5110,5111,5116,5117,5151,5154,5161,5162,5163,5169,5170,5173,5179,5181,5183,5187,5197,5198,5199,5205,5206,5209,5210,5211,5213,5219,5222,5223,5229,5247,5251,5253,5254,5256,5257,5258,5261,5264,5265,5266,5267,5270,5274,5275,5276,5277,5279,5282,5287,5288,5331,5338,5339,5340,5345,5351,5352,5355,5391,5393,5394,5395,5401,5405,5406,5416,5418,5421,5423,5424,5426,5427,5433,5437,5439,5441,5442,5443,5446,5448,5450,5451
+eventsFile               /home/weifengji/StoppedParticles_Run2/SPAnalysis_2016_Oct10/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC/test/searchEvents_temp1.txt
+nTrialsSignal            100
+nTrialsBackground        100
+simulateExpt             0
+fillScheme               Single_2b_1_1_1
+beamOnTime               0.
+beamOffTime              0.
+instLumi                 0.
+runningTime              0.
+
