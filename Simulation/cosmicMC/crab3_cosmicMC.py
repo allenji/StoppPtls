@@ -12,7 +12,8 @@ config.JobType.psetName = 'step1_cosmicMC_cfg.py'
 config.Data.outputPrimaryDataset = 'Cosmic'
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 500
-NJOBS = 5000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
+NJOBS = 10000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
+#max number of jobs is 10000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.outLFNDirBase = '/store/user/%s/' % (getUsernameFromSiteDB())
 config.Data.publication = True
