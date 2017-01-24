@@ -109,6 +109,11 @@ PreSelectionUpperLower = cms.PSet(
       )
     )
 
+#preselection with no trigger
+PreSelectionUpperLowerNoTrigger = copy.deepcopy(PreSelectionUpperLower)
+PreSelectionUpperLowerNoTrigger.name = cms.string("PreSelectionUpperLowerNoTrigger")
+PreSelectionUpperLowerNoTrigger.triggers = cms.vstring("")
+
 #for trigger turn on: run over ntuples where only control triggers are used in the selection
 PreSelectionUpperLowerAtLeast4ValidDtChambers = copy.deepcopy(PreSelectionUpperLower)
 PreSelectionUpperLowerAtLeast4ValidDtChambers.name = cms.string("PreSelectionUpperLowerAtLeast4ValidDtChambers")

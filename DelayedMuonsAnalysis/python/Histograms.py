@@ -20,6 +20,14 @@ DelayedMuonsStoppedParticleHistograms.histograms.append(
     )
 DelayedMuonsStoppedParticleHistograms.histograms.append(
     cms.PSet (
+        name = cms.string("stoppedParticleRegion"),
+        title = cms.string("Stopped Particle Region; Stopped Particle Region"),
+        binsX = cms.untracked.vdouble(8, 0, 8),
+        inputVariables = cms.vstring("stoppedParticleRegion"),
+        ),
+    )
+DelayedMuonsStoppedParticleHistograms.histograms.append(
+    cms.PSet (
         name = cms.string("nStoppedParticles"),
         title = cms.string("Number of Stopped Particles; Number of Stopped Particles"),
         binsX = cms.untracked.vdouble(4, 0, 4),

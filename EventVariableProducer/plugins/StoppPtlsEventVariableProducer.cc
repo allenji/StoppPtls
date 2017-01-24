@@ -71,6 +71,8 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   float stoppedParticleEta    = -999;
   float stoppedParticlePhi    = -999;
   float stoppedParticleTime   = -999;
+  int stoppedParticleRegion = -1;
+  bool stoppedInCavern = true;
 
   //gen particles
   double neutralinoNLSPMass = -999;
@@ -213,6 +215,20 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
     stoppedParticleEta = eta;				   
     stoppedParticlePhi = phi;
     stoppedParticleTime = times->at(stoppedParticle_index);
+
+    if (stoppedParticleR < 131.0 && fabs(stoppedParticleEta) <= 2.5 && fabs(stoppedParticleZ) < 300.0) stoppedParticleRegion = 0; //tracker
+    else if (stoppedParticleR>=131.0 && stoppedParticleR<184.0 && fabs(stoppedParticleZ)<376.0 && fabs(stoppedParticleEta)<1.479) stoppedParticleRegion = 1; //EB
+    else if (fabs(stoppedParticleZ)<376.0 && fabs(stoppedParticleZ) >= 300.0 && fabs(stoppedParticleEta)>=1.479 && fabs(stoppedParticleEta)<3.0) stoppedParticleRegion = 2; //EE
+    else if (stoppedParticleR>=184.0 && stoppedParticleR<295.0 && fabs(stoppedParticleEta)<1.3 && fabs(stoppedParticleZ)<500.0) stoppedParticleRegion = 3; //HB
+    else if (fabs(stoppedParticleZ)<560.0 && fabs(stoppedParticleZ)>=376.0 && fabs(stoppedParticleEta)>=1.3 && fabs(stoppedParticleEta)<3.0) stoppedParticleRegion = 4; //HE
+    else if (stoppedParticleR>=295.0 && stoppedParticleR<728.5 && fabs(stoppedParticleZ)<675.0) stoppedParticleRegion = 5; //MB
+    else if (stoppedParticleR>=517.3 && stoppedParticleR<728.5 && fabs(stoppedParticleZ)>=675.0 && fabs(stoppedParticleZ)<1080.0) stoppedParticleRegion = 6; // ME-top
+    else if (stoppedParticleR<517.3 && fabs(stoppedParticleEta)<3.0 && fabs(stoppedParticleZ)>=560.0 && fabs(stoppedParticleZ)<1080.0) stoppedParticleRegion = 6; // ME-bottom
+    else if (stoppedParticleR<728.5 && fabs(stoppedParticleZ)<1080.0) stoppedParticleRegion = 7; // other regions? 
+    
+    if (stoppedParticleR >= 728.5 || fabs(stoppedParticleZ) > 1080) stoppedInCavern = true;
+    else stoppedInCavern = false;
+
 
     //loop over rhadron daughters
     for(size_t j=0; j<stopped_genParticle->numberOfDaughters(); j++){
@@ -421,6 +437,8 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   (*eventvariables)["stoppedParticleEta"]    = stoppedParticleEta;
   (*eventvariables)["stoppedParticlePhi"]    = stoppedParticlePhi;
   (*eventvariables)["stoppedParticleTime"]   = stoppedParticleTime;
+  (*eventvariables)["stoppedParticleRegion"]   = stoppedParticleRegion;
+  (*eventvariables)["stoppedInCavern"]   = stoppedInCavern;
 
   (*eventvariables)["neutralinoNLSPMass"] = neutralinoNLSPMass;
   (*eventvariables)["neutralinoNLSPPx"] = neutralinoNLSPPx;
