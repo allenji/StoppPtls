@@ -69,6 +69,16 @@ datasetsData = [
     
     'NoBPTX_2016BCDEFGH_23Sep2016_Ntuple', #2016 rereco
     
+    #'NoBPTX_2016B_23Sep2016_Ntuple_v2',
+    #'NoBPTX_2016B_23Sep2016_Ntuple_v3',
+    #'NoBPTX_2016C_23Sep2016_Ntuple',
+    #'NoBPTX_2016D_23Sep2016_Ntuple',
+    #'NoBPTX_2016E_23Sep2016_Ntuple',
+    #'NoBPTX_2016F_23Sep2016_Ntuple',
+    #'NoBPTX_2016G_23Sep2016_Ntuple',
+    #'NoBPTX_2016H_23Sep2016_Ntuple_v2',
+    #'NoBPTX_2016H_23Sep2016_Ntuple_v3',
+
     #'NoBPTX_2016BCDEFGH_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016B_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016C_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
