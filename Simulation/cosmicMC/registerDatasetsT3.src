@@ -5,12 +5,38 @@
 ##############################
 
 
-osudb --location /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/ create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
-osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
-osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
-osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0000/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
-osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
-osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb --location /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/ create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0000/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_155500/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0000/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0003/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0004/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0005/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0006/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0007/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0008/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0009/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170118_084945/0010/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0000/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0001/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0002/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0003/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0004/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0005/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0006/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0007/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0008/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0009/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+#osudb update -a -l /mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/170119_065927/0010/ /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5_jalimena/GEN-SIM -f GENSIM
+
+
 
 
 
