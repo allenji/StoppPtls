@@ -38,8 +38,8 @@ blinded = arguments.blinded
 
 #pt_threshold = [65, 70, 90, 100, 110, 120, 130, 150]
 #pt_threshold = [160, 170, 190, 200, 230, 240, 260, 290]
-pt_threshold = [65, 70, 90, 100, 110, 120, 130, 150, 160, 170, 190, 200, 230, 240, 260, 290]
-#pt_threshold = [65, 300]
+#pt_threshold = [63, 65, 70, 90, 100, 110, 120, 130, 150, 160, 170, 190, 200, 230, 240, 260, 290]
+
 
 for dataset in datasets:
     for pt in pt_threshold:
@@ -54,7 +54,7 @@ for dataset in datasets:
 
         print "/////////////////////////////////////////////////////////////////////"
         print "for " + dataset + ", "
-        print "  \Delta RPC Hit BX Average cut at -1.0, "
+        print "  \Delta RPC Hit BX Average cut at -0.9, "
         print "   and upper DSA p threshold " + str(pt) + " GeV:"
         print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
         print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
