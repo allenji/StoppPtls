@@ -79,6 +79,8 @@ datasetsData = [
     #'NoBPTX_2016H_23Sep2016_Ntuple_v2',
     #'NoBPTX_2016H_23Sep2016_Ntuple_v3',
 
+    #'NoBPTX_2016BCDEFGH_23Sep2016_OnlyControlTriggers_Ntuple', #2016 rereco with only control triggers
+
     #'NoBPTX_2016BCDEFGH_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016B_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016C_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
