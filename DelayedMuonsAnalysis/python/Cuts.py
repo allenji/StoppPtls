@@ -642,7 +642,7 @@ cutUpperLowerDSAUpperPGreater90Less150 = cms.PSet(
     alias = cms.string("Upper DSA Track 90 < p < 150 \GeV")
 )
 
-cutUpperLowerDSADeltaRpcHitBxAverageGreaterNeg1p5LessNeg1 = cms.PSet(
+cutUpperLowerDSADeltaRpcHitBxAverageGreaterNeg1p5LessNeg0p9 = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -0.9 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.5"),
     numberRequired = cms.string(">= 1"),
