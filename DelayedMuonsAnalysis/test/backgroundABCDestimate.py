@@ -36,9 +36,10 @@ else:
 
 blinded = arguments.blinded
 
-#pt_threshold = [65, 70, 90, 100, 110, 120, 130, 150]
-#pt_threshold = [160, 170, 190, 200, 230, 240, 260, 290]
-#pt_threshold = [63, 65, 70, 90, 100, 110, 120, 130, 150, 160, 170, 190, 200, 230, 240, 260, 290]
+pt_threshold = [63, 65, 70, 90, 100]
+#pt_threshold = [110, 120, 130, 150] 
+#pt_threshold = [160, 170, 190, 200]
+#pt_threshold = [230, 240, 260, 290]
 
 
 for dataset in datasets:
