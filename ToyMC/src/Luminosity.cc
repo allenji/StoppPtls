@@ -167,7 +167,9 @@ bool Luminosity::goodData(unsigned run, unsigned ls) {
 
   if (useHists_) {
 //std::string hstr = std::string("runs/")+runstr+std::string("/hlb")+runstr;
-    std::string hstr = "NoCutsPlotter/Eventvariable Plots/runlb";
+    //std::string hstr = "NoCutsPlotter/Eventvariable Plots/runlb";
+    std::string hstr = "TriggerSelectionPlotter/Eventvariable Plots/runlb";
+
     //	  std::cout << histFile << " " << hstr << std::endl;
     TH2D* hlb = (TH2D*) histFile_->Get(hstr.c_str());
     if (hlb != NULL) {
