@@ -62,7 +62,7 @@
 
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2015/cosmicMC_0To25Timing_Reco create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_766_Ntuple/USER -f RAWSIM
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2015/cosmicMC_0To25Timing_Reco create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_766_Ntuple/USER -f RAWSIM
-
+#osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2015_v2/cosmicMC_0To25Timing_Reco_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_766_Ntuple_v2/USER -f RAWSIM
 
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-16Dec2015-v1/USER -f RECOSIM
