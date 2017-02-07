@@ -173,7 +173,8 @@ bool Luminosity::goodData(unsigned run, unsigned ls) {
     //	  std::cout << histFile << " " << hstr << std::endl;
     TH2D* hlb = (TH2D*) histFile_->Get(hstr.c_str());
     if (hlb != NULL) {
-      good = (hlb->GetBinContent(run-254000+1, ls+1) > 0);
+      good = (hlb->GetBinContent(run-254000+1, ls+1) > 0); //2015
+      //good = (hlb->GetBinContent(run-273000+1, ls+1) > 0); //2016
     }
     else {
       // do nothing - probably just means this entire run was not marked good
