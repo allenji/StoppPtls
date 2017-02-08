@@ -34,7 +34,10 @@ float relExtraDY = 1.2;
 // ratio of "CMS" and extra text size
 float extraOverCmsTextSize  = 0.76;
 
-TString lumi_13TeV = "2.8 fb^{-1}(13 TeV) + 37.2 fb^{-1}";
+//TString lumi_13TeV = "2.8 fb^{-1}"; //2015
+//TString lumi_13TeV = "37.2 fb^{-1}"; //2016
+TString lumi_13TeV = "2.8 fb^{-1} + 37.2 fb^{-1}"; //combination
+
 TString lumi_8TeV  = "19.7 fb^{-1}";
 TString lumi_7TeV  = "5.1 fb^{-1}";
 TString lumi_sqrtS = "";

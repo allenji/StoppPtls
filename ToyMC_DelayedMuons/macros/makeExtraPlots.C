@@ -33,8 +33,8 @@ void makeExtraPlots(double lumi=4560., double maxInstLumi=5000.)
 //gROOT->ProcessLine(".L allInOneLifetime.C+");
   //allInOneLifetime(lumi,maxInstLumi);
   //allInOneLifetime(lumi);
-//massLimit();
-massPlot();
+  //massLimit();
+  massPlot();
 
   //gROOT->ProcessLine(".L gluinostopMassLifetime.C+");
   //gluinostopMassLifetime(lumi,maxInstLumi);

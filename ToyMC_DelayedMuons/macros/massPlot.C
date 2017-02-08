@@ -35,7 +35,7 @@
 #include "DifferentXSLimitPlots.C"
 
 //#include "tdrstyle.C"
-//#include "CMS_lumi.C"
+//#include "CMS_lumi.h"
 
 // .L massPlot.C+
 // massPlot("limit_summary.txt", "time_profile_summary.txt");
@@ -48,7 +48,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   writeExtraText = true;
   //extraText  = "Preliminary Simulation"; 
   //lumi_8TeV = ""; 
-  int iPeriod = 2; // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
+  int iPeriod = 4; // 1=7TeV, 2=8TeV, 3=7+8TeV, 4=13TeV, 7=7+8+13TeV 
   //int iPos=0;
   int iPos=11;
   //int iPos=22;
@@ -61,9 +61,10 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
 
   //mchamp index 0 is used, corresponds to 0th mass point = 100 GeV
   plots.calculateCrossSections(0,0,0,39,9);
+  //plots.calculateCrossSections(0,0,0,39,11);
     
   // three points on counting expt curve
-  //TGraph* g_obs_gluino = plots.getMassLimitGluino();
+  TGraph* g_obs_gluino = plots.getMassLimitGluino();
   TGraph* g_gluino = plots.getExpMassLimitGluino();
 
   //TGraph* g_obs_stop = plots.getMassLimitStop();
@@ -72,8 +73,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   TGraph* g_obs_mchamp = plots.getMassLimitMchamp();
   TGraph* g_mchamp = plots.getExpMassLimitMchamp();
 
-  //TGraphAsymmErrors* g_expGluino_1sig = plots.getExpMassLimitGluino1Sig();  
-  //TGraphAsymmErrors* g_expGluino_2sig = plots.getExpMassLimitGluino2Sig();  
+  TGraphAsymmErrors* g_expGluino_1sig = plots.getExpMassLimitGluino1Sig();  
+  TGraphAsymmErrors* g_expGluino_2sig = plots.getExpMassLimitGluino2Sig();  
 
   //TGraphAsymmErrors* g_expStop_1sig = plots.getExpMassLimitStop1Sig();  
   //TGraphAsymmErrors* g_expStop_2sig = plots.getExpMassLimitStop2Sig();  
@@ -92,7 +93,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   
   TCanvas* canvas = new TCanvas("canvas","",10,10,575,500);
 
-  Double_t x[10], yMinus[10], x2[10], y[10], yPlus[10], z[10];
+  //Double_t x[10], yMinus[10], x2[10], y[10], yPlus[10], z[10];
+  Double_t x[12], yMinus[12], x2[12], y[12], yPlus[12], z[12];
   cout<<"MCHAMP LIMITS ARE: "<<endl;
   for(Int_t i=0; i<g_mchamp->GetN(); i++){
     g_mchamp->GetPoint(i, x[i], y[i]);
@@ -101,19 +103,36 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
     g_obs_mchamp->GetPoint(i, x2[i], z[i]);
     cout<<" mass is: "<<x[i]<<", expected limit is: "<<y[i]<<", expected +1 sigma is: "<<yPlus[i]<<", expected -1 sigma is: "<<yMinus[i]<<", observed limit is: "<<z[i]<<endl;
   }
+  cout<<"finished printing mchamp limits"<<endl;
 
-  //canvas->SetGrid();
+  /*
+  Double_t xG[12], yMinusG[12], x2G[12], yG[12], yPlusG[12], zG[12];
+  cout<<"GLUINO LIMITS ARE: "<<endl;
+  for(Int_t i=0; i<g_gluino->GetN(); i++){
+    g_gluino->GetPoint(i, xG[i], yG[i]);
+    yPlusG[i] = g_expGluino_1sig->GetErrorYhigh(i);
+    yMinusG[i] = g_expGluino_1sig->GetErrorYlow(i);
+    g_obs_gluino->GetPoint(i, x2G[i], zG[i]);
+    cout<<" mass is: "<<xG[i]<<", expected limit is: "<<yG[i]<<", expected +1 sigma is: "<<yPlusG[i]<<", expected -1 sigma is: "<<yMinusG[i]<<", observed limit is: "<<zG[i]<<endl;
+  }
+  cout<<"finished printing gluino limits"<<endl;
+  */
+  canvas->SetGrid();
+  cout<<"set grid"<<endl;
   canvas->SetLogy();
+  cout<<"set logy"<<endl;
   
   TH1 * h;
-  //h = canvas->DrawFrame(100., 1e-5, 1500., 1e6); //2DSA gluios and stops
-  h = canvas->DrawFrame(100., 1e-5, 1000., 1e3); //2DSA
-  //h = canvas->DrawFrame(100., 1e-5, 1000., 1e4); //1DSA
+  //h = canvas->DrawFrame(100., 3e-8, 2600., 1e3); //mchamps
+  h = canvas->DrawFrame(400., 1e-5, 2600., 1e5); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
-  h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mchamp mchamp) [pb]");
+  //h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mchamp mchamp) [pb]");
+  h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) [pb]");
   //h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]");
   //h->SetTitle("Beamgap Expt;m_{#tilde{g}} [GeV/c^{2}]; #sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BR(#tilde{g} #rightarrow g#tilde{#chi}^{0}) [pb]");
   
+  cout<<"finished drawing canvas"<<endl;
+
   // not covered region
   TBox* nc = new TBox(100., .1, 150., 5e2);
   nc->SetFillStyle(3354);
@@ -152,6 +171,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   */
   
   // legend
+  cout<<"starting legend"<<endl;
   TBox *legbg = new TBox(600., 1.e1, 900., 4e2);
   //legbg->Draw();
   //TLegend *leg = new TLegend(600., 1.e1, 900., 4e2,"95% C.L. Limits","");
@@ -163,12 +183,23 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   leg->SetTextFont(42);
   leg->SetFillColor(0);
 
-  leg->AddEntry(g_obs_mchamp, "Observed, 10 #mus - 1000 s", "lp");
+  cout<<"starting legend2"<<endl;
+  //leg->AddEntry(g_obs_mchamp, "Observed, 10 #mus - 1000 s", "lp");
   leg->AddEntry(g_mchamp, "Expected, 10 #mus - 1000 s", "l");
   leg->AddEntry(g_exp_1sig, "Expected #pm1#sigma, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_exp_2sig, "Expected #pm2#sigma, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_thMchamp, "LO Prediction", "l");
-  /*
+  cout<<"finishing legend"<<endl;
+  
+  /* 
+  //leg->AddEntry(g_obs_gluino, "Observed, 10 #mus - 1000 s", "lp");
+  leg->AddEntry(g_gluino, "Expected, 10 #mus - 1000 s", "l");
+  leg->AddEntry(g_expGluino_1sig, "Expected #pm1#sigma, 10 #mus - 1000 s", "lf");
+  leg->AddEntry(g_expGluino_2sig, "Expected #pm2#sigma, 10 #mus - 1000 s", "lf");
+  leg->AddEntry(g_thGluino, "LO Prediction", "l");
+  cout<<"finishing legend"<<endl;
+  */
+  /*  
   leg->AddEntry(g_gluino, "Expected Gluino Limit, 10 #mus - 1000 s", "l");
   leg->AddEntry(g_thGluino, "Gluino LO Prediction", "l");
   leg->AddEntry(g_stop, "Expected Stop Limit, 10 #mus - 1000 s", "l");
@@ -186,28 +217,55 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   
   
   
-  /*
+  /*  
   // gluino curves
-  g_gluino->SetLineColor(kBlue);
+  // 2 sigma band
+  g_expGluino_2sig->SetLineColor(0);
+  g_expGluino_2sig->SetLineStyle(0);
+  g_expGluino_2sig->SetLineWidth(0);
+  g_expGluino_2sig->SetFillColor(kYellow);
+  g_expGluino_2sig->SetFillStyle(1001);
+  g_expGluino_2sig->Draw("3");
+
+  // 1 sigma band 
+  // g_expGluino_1sig->SetLineColor(8);                                                                                                                                                           
+  g_expGluino_1sig->SetLineColor(0);
+  g_expGluino_1sig->SetLineStyle(0);
+  g_expGluino_1sig->SetLineWidth(0);
+  // g_expGluino_1sig->SetFillColor(8);                                                                                                                                                           
+  g_expGluino_1sig->SetFillColor(kGreen);
+  g_expGluino_1sig->SetFillStyle(1001);
+  // g_expGluino_1sig->SetFillStyle(3005);                                                                                                                                                        
+  g_expGluino_1sig->Draw("3");
+  // g_expGluino_1sig->Draw("lX");                                                                                                                                
+
+  //g_gluino->SetLineColor(kBlue);
   g_gluino->SetLineStyle(2);
   g_gluino->SetLineWidth(3);
   g_gluino->Draw("l");
 
-  g_tpg->SetLineColor(kBlue);
-  g_tpg->SetLineStyle(3);
-  g_tpg->SetLineWidth(3);
+  //g_tpg->SetLineColor(kBlue);
+  //g_tpg->SetLineStyle(3);
+  //g_tpg->SetLineWidth(3);
   //g_tpg->Draw("l");
 
+  g_obs_gluino->SetLineStyle(1);
+  g_obs_gluino->SetLineWidth(2);
+  g_obs_gluino->SetMarkerStyle(20);
+  g_obs_gluino->SetMarkerSize(1);
+  //g_obs_gluino->Draw("pl");
+
+
   // theory line
-  g_thGluino->SetLineColor(kGreen);
+  g_thGluino->SetLineColor(kRed);
   g_thGluino->SetLineStyle(1);
   g_thGluino->SetLineWidth(2);
   g_thGluino->SetFillStyle(3001);
-  g_thGluino->SetFillColor(kGreen-4);
+  g_thGluino->SetFillColor(kRed-4);
   g_thGluino->Draw("l3");
-
-
-  
+  */
+                               
+  /*
    // stop curves
   g_stop->SetLineColor(kRed);
   g_stop->SetLineStyle(2);
@@ -227,6 +285,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_thStop->Draw("l3");
   */
 
+  
   // mchamp curves
   // 2 sigma band
   g_exp_2sig->SetLineColor(0);
@@ -301,11 +360,11 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
 
   canvas->RedrawAxis();
 
-  //CMS_lumi(canvas, iPeriod, iPos);
+  CMS_lumi(canvas, iPeriod, iPos);
 
-  canvas->Print("massLimit.pdf");
-  canvas->Print("massLimit.png");
-  canvas->Print("massLimit.C");
+  //canvas->Print("MassLimit_gluino2015.pdf");
+  canvas->Print("MassLimit_gluinoCombined.pdf");
+  canvas->Print("MassLimit_gluinoCombined.C");
 
   plots.calculateIntercepts();
 

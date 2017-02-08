@@ -186,10 +186,10 @@ void DifferentXSLimitPlots::readLimitGluinoData(std::string filename) {
   unsigned n(0);
   std::string z;
   
-  while (file >> m >> mchi >> er >> xst >> el >> b >> eb >> n >> cl >> exmean >> lo1sig >> hi1sig >> lo2sig >> hi2sig) {
+  while (file >> m >> er >> xst >> el >> b >> eb >> n >> cl >> exmean >> lo1sig >> hi1sig >> lo2sig >> hi2sig) {
     
     gluinoMass.push_back(m);
-    gluinoChi0Mass.push_back(mchi);
+    //gluinoChi0Mass.push_back(mchi);
     gluinoEffReco.push_back(er);
     gluinoEffLumi.push_back(el);
     gluinoExpBG.push_back(b);

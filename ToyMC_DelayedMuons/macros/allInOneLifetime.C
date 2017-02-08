@@ -85,9 +85,10 @@ void allInOneLifetime(double lumi=4560.) {
 
   //mchamp index 0 is used, corresponds to 0th mass point = 100 GeV
   //plots.calculateCrossSections(7,4,3,0,39,9); //100 GeV
-  //plots.calculateCrossSections(7,4,3,4,39,9); //500 GeV
-  plots.calculateCrossSections(7,4,3,9,39,9); //1000 GeV
-  //plots.calculateCrossSections(7,4,3,4,39,9);
+  //plots.calculateCrossSections(7,4,3,1,39,9); //200 GeV
+  //plots.calculateCrossSections(7,4,3,3,39,9); //600 GeV
+  //plots.calculateCrossSections(7,4,3,5,39,9); //1000 GeV
+  plots.calculateCrossSections(7,4,3,9,39,9); //2600 GeV
   
   // graphs - observed
   TGraph* g_obs      = plots.getObsLimit();
@@ -102,14 +103,15 @@ void allInOneLifetime(double lumi=4560.) {
   TGraph* g_obs_stau   = plots.getLimitStau();
   double stau2ref      = g_obs_stau->GetY()[0] / g_obs->GetY()[0];
   TGraph* g_obs_mchamp   = plots.getLimitMchamp();
-  //double mchamp2ref      = 90.74;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 200GeV 2016
-  //double mchamp2ref      = 98.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 200GeV 2015
-  //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 1000GeV
-  //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 1000GeV
- // double mchamp2ref      = 80.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 2600GeV 2016
- double mchamp2ref      = 77.16;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; 2600GeV 2015
-  //double mchamp2ref      = 90.74;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0];
+  //ref = 1/(stopping_eff*reco_eff)
+  //double mchamp2ref      = 90.74;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
+  //double mchamp2ref      = 98.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2015
+  //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2016
+  //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2015
+  double mchamp2ref      = 80.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2016
+  //double mchamp2ref      = 77.16;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2015
 
+  
   cout << "scales: " << g_obs->GetY()[0] 
        << '/' <<g_obs_gluino->GetY()[0]
        << '/' <<g_obs_stop->GetY()[0]
@@ -122,6 +124,7 @@ void allInOneLifetime(double lumi=4560.) {
   //TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,700,500);
   TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,800,500);
   
+  canvas->SetGrid();
   canvas->SetLogx();
   canvas->SetLogy();
 
@@ -244,19 +247,16 @@ void allInOneLifetime(double lumi=4560.) {
   //t1top->Draw();
 
   // mchamp LIMIT
-  //TLine *lmchamp = new TLine(7.5e-8, 1.88/mchamp2ref, 1e6, 1.88/mchamp2ref); //100 GeV
-  //TLine *lmchamp = new TLine(7.5e-8, 0.002257/mchamp2ref, 1e6, 0.002257/mchamp2ref); //500 GeV
-  //TLine *lmchamp = new TLine(7.5e-8, 3.7/mchamp2ref, 1e6, 3.7/mchamp2ref); //100 GeV
+  //theory cross section/reference
   //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //200 GeV
   TLine *lmchamp = new TLine(7.5e-8, 0.0002403/mchamp2ref, 1e6, 0.0002403/mchamp2ref); //1000 GeV
-  //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //2600 GeV
+  //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //2600 GeV //won't be on plot
   lmchamp->SetLineColor(kRed);
   lmchamp->SetLineWidth(2);
   //lmchamp->Draw();
   
   TLatex *t1mchamp;
   //t1mchamp = new TLatex(0.001, 0.1/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
-  //t1mchamp = new TLatex(0.001, 0.001/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200GeV)");
   t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
@@ -336,6 +336,5 @@ void allInOneLifetime(double lumi=4560.) {
 
   CMS_lumi(canvas, iPeriod, iPos);
 
-  canvas->Print("allInOneLifetime.png");
-  canvas->Print("allInOneLifetime.pdf");
+  canvas->Print("allInOneLifetime_2016mchamp_2600GeV.pdf");
 }
