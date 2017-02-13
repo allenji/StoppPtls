@@ -16,10 +16,9 @@ process = cms.Process("HLT")
 
 process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
-    fileNames = cms.untracked.vstring(
-        #'file:/data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000/hist_0.root'
-        'file:/mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/CosmicMu_GEN_SIM_999.root'
-        ),
+    fileNames = cms.untracked.vstring(#'file:/data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000/hist_0.root'
+'file:/mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/CosmicMu_GEN_SIM_999.root'
+),
     inputCommands = cms.untracked.vstring('keep *', 
         #'drop *_genParticles_*_*', 
         'drop *_genParticlesForJets_*_*', 
@@ -1372,6 +1371,7 @@ process.FEVTDEBUGEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -1410,6 +1410,7 @@ process.FEVTDEBUGEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -1925,6 +1926,7 @@ process.FEVTDEBUGHLTEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -1963,6 +1965,7 @@ process.FEVTDEBUGHLTEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -2785,6 +2788,7 @@ process.FEVTEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -3226,6 +3230,7 @@ process.FEVTHLTALLEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -3660,6 +3665,7 @@ process.FEVTSIMEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -3698,6 +3704,7 @@ process.FEVTSIMEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -7014,6 +7021,7 @@ process.PREMIXEventContent = cms.PSet(
         'keep *_allTrackMCMatch_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep recoGenMETs_*_*_*', 
         'keep recoGenJets_*_*_*', 
@@ -7062,6 +7070,7 @@ process.PREMIXRAWEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -7476,6 +7485,7 @@ process.RAWDEBUGEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -7549,6 +7559,7 @@ process.RAWDEBUGHLTEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -8086,6 +8097,7 @@ process.RAWRECODEBUGHLTEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -8846,6 +8858,7 @@ process.RAWRECOEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -9279,6 +9292,7 @@ process.RAWRECOSIMHLTEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -10033,6 +10047,7 @@ process.RAWSIMEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -10085,6 +10100,7 @@ process.RAWSIMHLTEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -10427,6 +10443,7 @@ process.RECODEBUGEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -10889,6 +10906,7 @@ process.RECOEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -11319,6 +11337,7 @@ process.RECOSIMEventContent = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -11832,6 +11851,7 @@ process.REPACKRAWSIMEventContent = cms.PSet(
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -12350,6 +12370,7 @@ process.RecoLocalCaloFEVT = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_*Digis_*_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
         'keep HcalUnpackerReport_*_*_*', 
@@ -12368,6 +12389,7 @@ process.RecoLocalCaloRECO = cms.PSet(
         'keep HFRecHitsSorted_hfrecoMB_*_*', 
         'keep ZDCDataFramesSorted_hcalDigis_*_*', 
         'keep ZDCDataFramesSorted_castorDigis_*_*', 
+        'keep QIE10DataFrameHcalDataFrameContainer_hcalDigis_ZDC_*', 
         'keep ZDCRecHitsSorted_*_*_*', 
         'keep *_reducedHcalRecHits_*_*', 
         'keep *_castorreco_*_*', 
@@ -13372,8 +13394,9 @@ process.SiPixelSimBlock = cms.PSet(
 )
 
 process.SiStripSimBlock = cms.PSet(
-    APVSaturationFromHIP = cms.bool(True),
-    APVSaturationProb = cms.double(0.001),
+    APVProbabilityFile = cms.FileInPath('SimTracker/SiStripDigitizer/data/APVProbaList.txt'),
+    APVSaturationFromHIP = cms.bool(False),
+    APVSaturationProbScaling = cms.double(1.0),
     APVpeakmode = cms.bool(False),
     AppliedVoltage = cms.double(300.0),
     BaselineShift = cms.bool(True),
@@ -13509,6 +13532,7 @@ process.SimGeneralFEVTDEBUG = cms.PSet(
 process.SimGeneralRAW = cms.PSet(
     outputCommands = cms.untracked.vstring('keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*')
 )
 
@@ -15434,7 +15458,7 @@ process.hfTPScaleShift = cms.PSet(
 )
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(102)
 )
 
 process.options = cms.untracked.PSet(
@@ -15847,8 +15871,9 @@ process.streams = cms.PSet(
 )
 
 process.stripDigitizer = cms.PSet(
-    APVSaturationFromHIP = cms.bool(True),
-    APVSaturationProb = cms.double(0.001),
+    APVProbabilityFile = cms.FileInPath('SimTracker/SiStripDigitizer/data/APVProbaList.txt'),
+    APVSaturationFromHIP = cms.bool(False),
+    APVSaturationProbScaling = cms.double(1.0),
     APVpeakmode = cms.bool(False),
     AppliedVoltage = cms.double(300.0),
     BaselineShift = cms.bool(True),
@@ -16513,8 +16538,9 @@ process.theDigitizers = cms.PSet(
         vtxTag = cms.InputTag("generatorSmeared")
     ),
     strip = cms.PSet(
-        APVSaturationFromHIP = cms.bool(True),
-        APVSaturationProb = cms.double(0.001),
+        APVProbabilityFile = cms.FileInPath('SimTracker/SiStripDigitizer/data/APVProbaList.txt'),
+        APVSaturationFromHIP = cms.bool(False),
+        APVSaturationProbScaling = cms.double(1.0),
         APVpeakmode = cms.bool(False),
         AppliedVoltage = cms.double(300.0),
         BaselineShift = cms.bool(True),
@@ -17218,8 +17244,9 @@ process.theDigitizersValid = cms.PSet(
         vtxTag = cms.InputTag("generatorSmeared")
     ),
     strip = cms.PSet(
-        APVSaturationFromHIP = cms.bool(True),
-        APVSaturationProb = cms.double(0.001),
+        APVProbabilityFile = cms.FileInPath('SimTracker/SiStripDigitizer/data/APVProbaList.txt'),
+        APVSaturationFromHIP = cms.bool(False),
+        APVSaturationProbScaling = cms.double(1.0),
         APVpeakmode = cms.bool(False),
         AppliedVoltage = cms.double(300.0),
         BaselineShift = cms.bool(True),
@@ -48070,8 +48097,9 @@ process.mix = cms.EDProducer("MixingModule",
             vtxTag = cms.InputTag("generatorSmeared")
         ),
         strip = cms.PSet(
-            APVSaturationFromHIP = cms.bool(True),
-            APVSaturationProb = cms.double(0.001),
+            APVProbabilityFile = cms.FileInPath('SimTracker/SiStripDigitizer/data/APVProbaList.txt'),
+            APVSaturationFromHIP = cms.bool(False),
+            APVSaturationProbScaling = cms.double(1.0),
             APVpeakmode = cms.bool(False),
             AppliedVoltage = cms.double(300.0),
             BaselineShift = cms.bool(True),
@@ -88074,6 +88102,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
         'keep *_simHcalUnsuppressedDigis_*_*', 
         'keep CrossingFramePlaybackInfoNew_*_*_*', 
         'keep PileupSummaryInfos_*_*_*', 
+        'keep int6stdbitsetstdpairs_*_AffectedAPVList_*', 
         'keep int_*_bunchSpacing_*', 
         'keep LHERunInfoProduct_*_*_*', 
         'keep LHEEventProduct_*_*_*', 
@@ -88098,6 +88127,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
 )
 process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM')
 process.RAWSIMoutput.outputCommands.append("keep *_genParticles_*_SIM")
+
 
 process.HLTPFClusteringForEgammaUnseeded = cms.Sequence(process.hltParticleFlowRecHitECALUnseeded+process.hltParticleFlowRecHitPSUnseeded+process.hltParticleFlowClusterPSUnseeded+process.hltParticleFlowClusterECALUncorrectedUnseeded+process.hltParticleFlowClusterECALUnseeded+process.hltParticleFlowSuperClusterECALUnseeded)
 
@@ -92361,12 +92391,14 @@ process.caloStage2Params = cms.ESProducer("L1TCaloStage2ParamsESProducer",
     centralityLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/centralityLUT_stage1.txt'),
     centralityNodeVersion = cms.int32(1),
     centralityRegionMask = cms.int32(0),
-    egBypassEGVetos = cms.bool(False),
+    egBypassEGVetos = cms.uint32(0),
     egCalibrationLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/corrections_Trimming10_compressedieta_compressedE_compressedshape_v16.03.14.txt'),
     egCalibrationType = cms.string('compressed'),
     egCalibrationVersion = cms.uint32(0),
     egCompressShapesLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/egCompressLUT_v4.txt'),
     egEtaCut = cms.int32(0),
+    egHOverEcutBarrel = cms.int32(5),
+    egHOverEcutEndcap = cms.int32(4),
     egHcalThreshold = cms.double(0.0),
     egIsoAreaNrTowersEta = cms.uint32(2),
     egIsoAreaNrTowersPhi = cms.uint32(4),
@@ -92394,15 +92426,16 @@ process.caloStage2Params = cms.ESProducer("L1TCaloStage2ParamsESProducer",
     egShapeIdVersion = cms.uint32(0),
     egTrimmingLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/egTrimmingLUT_10_v16.01.19.txt'),
     etSumEcalSumPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
-    etSumEtThreshold = cms.vdouble(0.0, 30.0, 0.0, 30.0),
-    etSumEtaMax = cms.vint32(28, 28, 28, 28),
-    etSumEtaMin = cms.vint32(1, 1, 1, 1),
+    etSumEtThreshold = cms.vdouble(0.0, 30.0, 0.0, 30.0, 0.0),
+    etSumEtaMax = cms.vint32(28, 28, 28, 28, 28),
+    etSumEtaMin = cms.vint32(1, 1, 1, 1, 1),
     etSumEttPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
     etSumLsb = cms.double(0.5),
     etSumXPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
     etSumYPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
     isoTauEtaMax = cms.int32(17),
     isoTauEtaMin = cms.int32(0),
+    jetBypassPUS = cms.uint32(0),
     jetCalibrationLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_30to40_hfHighPt_experiment2_changeLimits_add_mult.txt'),
     jetCalibrationParams = cms.vdouble(1, 0, 1, 0, 1, 
         1, 1.36123039014, 1024, 1, 0, 
@@ -94605,7 +94638,7 @@ process.unpackLegacyGtDigis = cms.EDProducer( "L1GlobalTriggerRawToDigi",
     Verbosity = cms.untracked.int32( 0 )
 )
 
-## Convert Legacy External Conditions to Stage2
+## Convert Legacy External Conditions to Stage2 
 process.load('L1Trigger.L1TGlobal.l1GtExtCondLegacyToStage2_cfi')
 process.l1GtExtCondLegacyToStage2.LegacyGtReadoutRecord = cms.InputTag("unpackLegacyGtDigis")
 
