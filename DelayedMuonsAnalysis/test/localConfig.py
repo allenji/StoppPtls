@@ -24,12 +24,12 @@ datasetsSig = [
     #'gluino400_NtupleSeparateEvents',
     #'gluino600_NtupleSeparateEvents',
     #'gluino800_NtupleSeparateEvents',
-    'gluino1000_NtupleSeparateEvents',
+    #'gluino1000_NtupleSeparateEvents',
     #'gluino1200_NtupleSeparateEvents',
     #'gluino1400_NtupleSeparateEvents',
     #'gluino1600_NtupleSeparateEvents',
     #'gluino1800_NtupleSeparateEvents',
-    #'gluino2000_NtupleSeparateEvents',
+    'gluino2000_NtupleSeparateEvents',
     #'gluino2200_NtupleSeparateEvents',
     #'gluino2400_NtupleSeparateEvents',
     #'gluino2600_NtupleSeparateEvents',
@@ -97,6 +97,8 @@ datasetsCosmicMC = [
     #'cosmicMC_0To25Timing_Ntuple_2016',
 
     'cosmicMC_0To25Timing_Ntuple_v2',
+    #'cosmicMC_0To25Timing_Ntuple_2016_v2',
+
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple',
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple_2016',
 ]

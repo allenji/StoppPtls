@@ -139,6 +139,7 @@
 
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8022_Ntuple/USER -f RAWSIM
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_onlyControlTriggers_2016/cosmicMC_0To25Timing_Reco_2016 create /Cosmic/Cosmic_fullDetector_0To25Timing_onlyControlTriggers_MCRUN2_8022_Ntuple/USER -f RAWSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2016_v2/cosmicMC_0To25Timing_Reco_2016_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8025_Ntuple_v2/USER -f RAWSIM
 
 
 
