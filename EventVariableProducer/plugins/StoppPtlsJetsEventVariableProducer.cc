@@ -42,6 +42,10 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   double maxDeltaPhi = -1.;
   double outerDT = 0.00000001; // avoid divide by zero
   double  innerDT = 0;
+  unsigned nDTStation4 = 0;
+  unsigned nDTStation3 = 0;
+  int nDTWhl0Seg4 = 0;
+  int nDTWhl0Seg10 = 0;
 
   //loop over DT segments
   for (decltype(dtsegs->size()) i = 0; i != dtsegs->size(); ++i) {
@@ -51,11 +55,20 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     }
     if(dtsegs->at(i).r()>560) outerDT++;
     else innerDT++;
+    if(dtsegs->at(i).station() == 4) nDTStation4++;
+    if(dtsegs->at(i).station() == 3) nDTStation3++;
+    if((dtsegs->at(i)).wheel() == 0 && (dtsegs->at(i)).sector() == 4) nDTWhl0Seg4++;
+    if((dtsegs->at(i)).wheel() == 0 && (dtsegs->at(i)).sector() == 10) nDTWhl0Seg10++;
   }
 
   (*eventvariables)["maxDeltaPhi"] = maxDeltaPhi;
   (*eventvariables)["outerDT"] = outerDT;
   (*eventvariables)["innerDT"] = innerDT;
+  (*eventvariables)["nDTStation3"] = nDTStation3;
+  (*eventvariables)["nDTStation4"] = nDTStation4;
+  (*eventvariables)["nDTWhl0Seg4"] = nDTWhl0Seg4;
+  (*eventvariables)["nDTWhl0Seg10"] = nDTWhl0Seg10;
+  
 
   double maxRPCDeltaPhi = -1.;
   double maxRPCDeltaPhi_outer = -1.;
@@ -84,7 +97,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   }
 
   for (decltype(cscsegs->size()) i = 0; i != cscsegs->size(); ++i)  {
-    if ((cscsegs->at(i)).r() > 340) {
+    if ((cscsegs->at(i)).r() > 340 && (cscsegs->at(i)).nHits() > 4) {
       havingCscSegNHit56 = 1;
     }
     if ((cscsegs->at(i)).r() <= 340 && (cscsegs->at(i)).nHits() > 4) {
@@ -145,6 +158,23 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["innerRPCendcap"] = innerRPCendcap;
   (*eventvariables)["RPCendcap"] = RPCendcap;
 
+  double minDeltaROuterRPCInnerDT = 999;
+  for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) { 
+    for (decltype(dtsegs->size()) j = 0; j!= dtsegs->size(); ++j) {
+      if ((rpchits->at(i)).r() > 560 && (dtsegs->at(j)).r() < 560) {
+        TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+        TVector3 tvecj((dtsegs->at(j)).x(), (dtsegs->at(j)).y(), (dtsegs->at(j)).z());
+        double rpc_eta_i = tveci.Eta();
+        double dt_eta_j = tvecj.Eta();
+        double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), dt_eta_j, (dtsegs->at(j)).phi());
+        if (deltaR < minDeltaROuterRPCInnerDT) {
+          minDeltaROuterRPCInnerDT = deltaR;
+        }
+      }
+    }
+  }
+  (*eventvariables)["minDeltaROuterRPCInnerDT"] = minDeltaROuterRPCInnerDT;
+
   unsigned nCloseAllAllRpcPairDeltaR0p2 = 0; //rpchit-rpchit pairs, selected from all available rpc hits
   unsigned nCloseAllAllRpcPairDeltaR0p4 = 0;
   unsigned nCloseAllAllRpcPairDeltaR0p6 = 0;
@@ -154,6 +184,31 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   unsigned nCloseOuterAllRpcPairDeltaR0p6 = 0;
   unsigned nCloseOuterAllRpcPairDeltaR0p8 = 0;
   unsigned nCloseOuterAllBarrelRPCPairDeltaR0p2 = 0;
+
+  unsigned nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar = 0;
+  
+  if (rpchits->size() > 1) {
+    for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
+      for (decltype(rpchits->size()) j = i+1; j!= rpchits->size(); ++j) {
+        if ((rpchits->at(i)).r() > 560 || (rpchits->at(j)).r() > 560) {
+          TVector3 tveci((rpchits->at(i)).x(), (rpchits->at(i)).y(), (rpchits->at(i)).z());
+          TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
+          double rpc_eta_i = tveci.Eta();
+          double rpc_eta_j = tvecj.Eta();
+          double deltaR = reco::deltaR(rpc_eta_i, (rpchits->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi());
+          if ((rpchits->at(i)).region() == 0 && (rpchits->at(j)).region() == 0){
+            if (deltaR < 0.2) {
+              nCloseOuterAllBarrelRPCPairDeltaR0p2++;
+              if (fabs((rpchits->at(i)).r() - (rpchits->at(j)).r()) > 50) {
+                nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar++;
+              }
+            }
+          }
+        
+        }
+      }
+    }
+  }
 
   if (rpchits->size() > 1) {
     for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
@@ -181,8 +236,6 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
           if (deltaR < 0.2) {
             nCloseAllAllRpcPairDeltaR0p2++;
             nCloseOuterAllRpcPairDeltaR0p2++;
-            if ((rpchits->at(i)).region() == 0 && (rpchits->at(j)).region() == 0)
-              nCloseOuterAllBarrelRPCPairDeltaR0p2++;
           }
           if (deltaR < 0.4) {
             nCloseAllAllRpcPairDeltaR0p4++;
@@ -209,6 +262,40 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p6"] = nCloseOuterAllRpcPairDeltaR0p6;
   (*eventvariables)["nCloseOuterAllRpcPairDeltaR0p8"] = nCloseOuterAllRpcPairDeltaR0p8;
   (*eventvariables)["nCloseOuterAllBarrelRPCPairDeltaR0p2"] = nCloseOuterAllBarrelRPCPairDeltaR0p2;
+  (*eventvariables)["nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar"] = nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar;
+
+  double minDeltaRDTST4RPCInner3Layers = 999;
+  for (unsigned i = 0; i != dtsegs->size(); ++i) {
+    for (unsigned j = 0; j != rpchits->size(); ++j) {
+      if ((dtsegs->at(i)).station() == 4 && (rpchits->at(j)).region() == 0 && (rpchits->at(j)).r() < 680) {
+          TVector3 tveci((dtsegs->at(i)).x(), (dtsegs->at(i)).y(), (dtsegs->at(i)).z());
+          TVector3 tvecj((rpchits->at(j)).x(), (rpchits->at(j)).y(), (rpchits->at(j)).z());
+          double dt_eta_i = tveci.Eta();
+          double rpc_eta_j = tvecj.Eta();
+          double deltaR = reco::deltaR(dt_eta_i, (dtsegs->at(i)).phi(), rpc_eta_j, (rpchits->at(j)).phi()); 
+          if (deltaR < minDeltaRDTST4RPCInner3Layers) {
+            minDeltaRDTST4RPCInner3Layers = deltaR;
+          }
+      }
+    }
+  }
+  (*eventvariables)["minDeltaRDTST4RPCInner3Layers"] = minDeltaRDTST4RPCInner3Layers;
+
+  double minDeltaRDTST4LeadingJet = 999;
+  if (jets->size() > 0) {
+    for (unsigned i = 0; i != dtsegs->size(); ++i) {
+      if ((dtsegs->at(i)).station() == 4) {
+        TVector3 tveci((dtsegs->at(i)).x(), (dtsegs->at(i)).y(), (dtsegs->at(i)).z());
+        double dt_eta_i = tveci.Eta();
+        double deltaR = reco::deltaR(dt_eta_i, (dtsegs->at(i)).phi(), (jets->at(0)).eta(), (jets->at(0)).phi());
+        if (deltaR < minDeltaRDTST4LeadingJet) {
+          minDeltaRDTST4LeadingJet = deltaR;
+        }
+      }
+    }
+  }
+  (*eventvariables)["minDeltaRDTST4LeadingJet"] = minDeltaRDTST4LeadingJet;
+  
 
   unsigned ljetRPCPairsST1 = 0;
   unsigned ljetRPCPairsGT1 = 0;
@@ -359,6 +446,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   }
   else {
     double maxDeltaJetPhi = -1.;
+    double maxDeltaJetPhiNoDTST4 = -1.;
     for ( auto itjet = jets->begin(); itjet != jets->end(); ++itjet){
 
       if (itjet->energy() > 10)  nJetsEMin10++; 
@@ -371,9 +459,13 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
         double deltajetphi = acos(cos(itdt->phi() - itjet->phi()));
         if (deltajetphi > maxDeltaJetPhi)
           maxDeltaJetPhi = deltajetphi;
+        if (!(dtsegs->size() ==1 && dtsegs->begin()->station() ==4) && deltajetphi > maxDeltaJetPhiNoDTST4) {
+            maxDeltaJetPhiNoDTST4 = deltajetphi;
+        }
       }
     }
     (*eventvariables)["maxDeltaJetPhi"] = maxDeltaJetPhi;
+    (*eventvariables)["maxDeltaJetPhiNoDTST4"] = maxDeltaJetPhiNoDTST4;
   }
 
   (*eventvariables)["nJetsEMin10"]  = nJetsEMin10; // Should be identical to NJets.  
@@ -428,6 +520,19 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["maxDeltaPhiCscPair"] = maxDeltaPhiCscPair;
   (*eventvariables)["minDeltaPhiCscDT"] = minDeltaPhiCscDT;
   (*eventvariables)["maxDeltaPhiCscDT"] = maxDeltaPhiCscDT;
+
+  unsigned closeOuterAllDTPairDeltaPhi0p5 = 0;
+  for (unsigned i = 0; i < dtsegs->size(); ++i) {
+    for (unsigned j = i + 1; j < dtsegs->size(); ++j) {
+      if ((dtsegs->at(i)).r() > 560 || (dtsegs->at(j)).r() > 560) {
+        double OuterAllDTPairDeltaPhi = acos(cos((dtsegs->at(i)).phi() - (dtsegs->at(j)).phi()));
+        if (OuterAllDTPairDeltaPhi < 0.5) {
+          closeOuterAllDTPairDeltaPhi0p5++;
+        }
+      }
+    }
+  }
+  (*eventvariables)["closeOuterAllDTPairDeltaPhi0p5"] = closeOuterAllDTPairDeltaPhi0p5;
 
 
 

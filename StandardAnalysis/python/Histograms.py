@@ -460,8 +460,14 @@ EventHistograms = cms.PSet(
             title = cms.string("Number of Vertices; Number of Vertices"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nVtx"),
-            )
-        )
+        ),
+        cms.PSet (
+            name = cms.string("maxiEtaDiffSameiRBX"),
+            title = cms.string("maxiEtaDiffSameiRBX; maxiEtaDiffSameiRBX"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("maxiEtaDiffSameiRbx"),
+        ),
+    ),
 )
 
 NumberOfObjectsHistograms = cms.PSet(
@@ -723,6 +729,31 @@ NoiseHistograms = cms.PSet(
         )
 )
 
+HaloBeamFilterHistograms = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("cscTightHaloId2015"),
+            title = cms.string("2015 beam halo filter"),
+            binsX = cms.untracked.vdouble(2, 0, 2),
+            inputVariables = cms.vstring("cscTightHaloId2015"),
+        ),
+        cms.PSet (
+            name = cms.string("globalTightHaloId2016"),
+            title = cms.string("2016 tight beam halo filter"),
+            binsX = cms.untracked.vdouble(2, 0, 2),
+            inputVariables = cms.vstring("globalTightHaloId2016"),
+        ),
+        cms.PSet (
+            name = cms.string("globalSuperTightHaloId2016"),
+            title = cms.string("2016 super tight beam halo filter"),
+            binsX = cms.untracked.vdouble(2, 0, 2),
+            inputVariables = cms.vstring("globalSuperTightHaloId2016"),
+        )
+    )
+)
+
+
 JetHistograms = cms.PSet(
     inputCollection = cms.vstring("jets"),
     histograms = cms.VPSet (
@@ -805,6 +836,12 @@ LeadingJetHistograms = cms.PSet(
             inputVariables = cms.vstring("leadingJetN90"),
             ),
         cms.PSet (
+            name = cms.string("leadingJetEMFraction"),
+            title = cms.string("Leading Jet EM fraction; Leading Jet EM fraction"),
+            binsX = cms.untracked.vdouble(20, 0, 1),
+            inputVariables = cms.vstring("leadingJetEMFraction"),
+            ),
+        cms.PSet (
             name = cms.string("leadingJet eta vs phi"),
             title = cms.string("leading jet eta vs phi; Leading Jet Eta; Leading Jet Phi"),
             binsX = cms.untracked.vdouble(20, -3, 3),
@@ -812,6 +849,19 @@ LeadingJetHistograms = cms.PSet(
             inputVariables = cms.vstring("leadingJetEtaPM", "leadingJetPhi")
             )
         )
+)
+
+numIsolatedNoiseChannelsHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables", "events"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("leadingJetEVSNIsolated"),
+            title = cms.string("leadingJetEVSNIsolated; Leading Jet Energy; Number of isolated clusters"),
+            binsX = cms.untracked.vdouble(500, 0, 500),
+            binsY = cms.untracked.vdouble(100, 0, 100),
+            inputVariables = cms.vstring("eventvariable.leadingJetEnergy", "event.numIsolatedNoiseChannels")
+        )
+    )
 )
 
 #trigger turn on histos: same as above except plot energy to 200 GeV and bin width is 2 GeV 
@@ -1007,8 +1057,22 @@ DtSegmentHistograms = cms.PSet(
             title = cms.string("DT Segment #phi; DT Segment #phi"),
             binsX = cms.untracked.vdouble(64, -3.2, 3.2),
             inputVariables = cms.vstring("phi"),
-            )
-        )
+            ),
+        cms.PSet (
+            name = cms.string("dtSegXY"),
+            title = cms.string("DT Segment X vs Y; DT Segment X [cm]; DT Segment Y [cm]"),
+            binsX = cms.untracked.vdouble(100, -1500, 1500),
+            binsY = cms.untracked.vdouble(100, -1500, 1500),
+            inputVariables = cms.vstring("x", "y"),
+        ),
+        cms.PSet (
+            name = cms.string("dtSegZR"),
+            title = cms.string("DT Segment ZR; DT Segment Z [cm]; DT Segment R [cm]"),
+            binsX = cms.untracked.vdouble(100, -1500, 1500),
+            binsY = cms.untracked.vdouble(100, 0, 1500),
+            inputVariables = cms.vstring("z", "r"),
+        ),
+    )
 )
 
 CscSegmentHistograms = cms.PSet(
@@ -1188,6 +1252,36 @@ OtherDtHistograms = cms.PSet(
             inputVariables = cms.vstring("maxDeltaJetPhi"),
         ),
         cms.PSet (
+            name = cms.string("nDTStation3"),
+            title = cms.string("Number of DT Segments with in station 3; Number of Outer DT Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nDTStation3"),
+        ),
+        cms.PSet (
+            name = cms.string("nDTStation4"),
+            title = cms.string("Number of DT Segments with in station 4; Number of Outer DT Segments"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nDTStation4"),
+        ),
+        cms.PSet (
+            name = cms.string("closeOuterAllDTPairDeltaPhi0p5"),
+            title = cms.string("Number of close DT outer all pairs; Number of close DT outer all pairs with deltaR < 0.5"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("closeOuterAllDTPairDeltaPhi0p5"),
+        ),
+        cms.PSet (
+            name = cms.string("maxDeltaJetPhiNoDTST4"),
+            title = cms.string("max($#Delta#phi$(DT Segment$_{i}$(no st 4), Leading jet)); max($#Delta#phi$(DT Segment$_{i}$(no st 4), Leading jet))"),
+            binsX = cms.untracked.vdouble(32, 0, 32),
+            inputVariables = cms.vstring("maxDeltaJetPhiNoDTST4"),
+        ),
+        cms.PSet (
+            name = cms.string("minDeltaROuterRPCInnerDT"),
+            title = cms.string("minDeltaROuterRPCInnerDT; minDeltaROuterRPCInnerDT"),
+            binsX = cms.untracked.vdouble(32, 0, 32),
+            inputVariables = cms.vstring("minDeltaROuterRPCInnerDT"),
+        ),
+        cms.PSet (
             name = cms.string("nOuterDT"),
             title = cms.string("Number of DT Segments with r>560 cm; Number of Outer DT Segments"),
             binsX = cms.untracked.vdouble(20, 0, 20),
@@ -1198,13 +1292,37 @@ OtherDtHistograms = cms.PSet(
             title = cms.string("Number of DT Segments with r<560 cm; Number of Inner DT Segments"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("innerDT"),
-        )
+        ),
+        cms.PSet(
+            name = cms.string("minDeltaRDTST4RPCInner3Layers"),
+            title = cms.string("minDeltaRDTST4RPCInner3Layers; minDeltaRDTST4RPCInner3Layers"),
+            binsX = cms.untracked.vdouble(40, 0, 10),
+            inputVariables = cms.vstring("minDeltaRDTST4RPCInner3Layers"),
+        ),
+        cms.PSet(
+            name = cms.string("minDeltaRDTST4LeadingJet"),
+            title = cms.string("minDeltaRDTST4LeadingJet; minDeltaRDTST4LeadingJet"),
+            binsX = cms.untracked.vdouble(40, 0, 10),
+            inputVariables = cms.vstring("minDeltaRDTST4LeadingJet"),
+        ),
+        cms.PSet(
+            name = cms.string("minDeltaROuterRPCInnerDT"),
+            title = cms.string("minDeltaROuterRPCInnerDT; minDeltaROuterRPCInnerDT"),
+            binsX = cms.untracked.vdouble(40, 0, 10),
+            inputVariables = cms.vstring("minDeltaROuterRPCInnerDT"),
+        ),
         )
 )
 
 OtherCscHistograms = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
     histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("havingCscDeltaJet0p4R3p4"),
+            title = cms.string("havingCscDeltaJet0p4R3p4; havingCscDeltaJet0p4R3p4"),
+            binsX = cms.untracked.vdouble(2, 0, 2),
+            inputVariables = cms.vstring("havingCscDeltaJet0p4R3p4"),
+        ),
         cms.PSet (
             name = cms.string("minDeltaPhiCscJet"),
             title = cms.string("Minimum CSC Segment-Jet #Delta#phi; Minimum CSC Segment-Jet #Delta#phi"),
@@ -1217,7 +1335,87 @@ OtherCscHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(10, 0, 10),
             inputVariables = cms.vstring("nCscLayers"),
             ),
-        )
+        cms.PSet (
+            name = cms.string("nCscNearJetDeltaPhi0p2"),
+            title = cms.string("Number of CSC Segments within deltaPhi 0.2of leading jet; Number of Layers in CSC Segments"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("nCscNearJetDeltaPhi0p2"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscNearJetDeltaPhi0p2EndcapPosZ"),
+            title = cms.string("Number of CSC Segments within deltaPhi 0.2of leading jet in pos endcap; Number of Layers in CSC Segments"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("nCscNearJetDeltaPhi0p2EndcapPosZ"),
+            ),
+        cms.PSet (
+            name = cms.string("nCscNearJetDeltaPhi0p2EndcapMinZ"),
+            title = cms.string("Number of CSC Segments within deltaPhi 0.2of leading jet in neg endcap; Number of Layers in CSC Segments"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("nCscNearJetDeltaPhi0p2EndcapMinZ"),
+            ),
+        cms.PSet(
+            name = cms.string("NCscPosVsNCscNeg"),
+            title = cms.string("NCscPosVsNCscNeg"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            binsY = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("nCscNearJetDeltaPhi0p2EndcapPosZ","nCscNearJetDeltaPhi0p2EndcapMinZ"),
+            ),
+        cms.PSet(
+            name = cms.string("minDeltaPhiCscPair"),
+            title = cms.string("min deltaPhi between csc pairs; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("minDeltaPhiCscPair"),
+        ),
+        cms.PSet(
+            name = cms.string("maxDeltaPhiCscPair"),
+            title = cms.string("max deltaPhi between csc pairs; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("maxDeltaPhiCscPair"),
+        ),
+        cms.PSet(
+            name = cms.string("minDeltaPhiCscDT"),
+            title = cms.string("min deltaPhi between csc and dt; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("minDeltaPhiCscDT"),
+        ),
+        cms.PSet(
+            name = cms.string("maxDeltaPhiCscDT"),
+            title = cms.string("max deltaPhi between csc and dt; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("maxDeltaPhiCscDT"),
+        ),
+        cms.PSet(
+            name = cms.string("NOuterCsc"),
+            title = cms.string("number of outer CSC segs"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("NOuterCsc"),
+        ),
+        cms.PSet(
+            name = cms.string("NInnerCsc"),
+            title = cms.string("number of inner CSC segs"),
+            binsX = cms.untracked.vdouble(30, 0, 30),
+            inputVariables = cms.vstring("NInnerCsc"),
+        ),
+        cms.PSet(
+            name = cms.string("CSCvsDT"),
+            title = cms.string("CSCvsDT"),
+            binsX = cms.untracked.vdouble(15, 0, 30),
+            binsY = cms.untracked.vdouble(15, 0, 30),
+            inputVariables = cms.vstring("dtSegN", "cscSegN"),
+        ),
+        cms.PSet(
+            name = cms.string("maxDeltaPhiOuterCscJet"),
+            title = cms.string("max deltaPhi between outer csc and jet; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("maxDeltaPhiOuterCscJet"),
+        ),
+        cms.PSet(
+            name = cms.string("minDeltaPhiOuterCscJet"),
+            title = cms.string("min deltaPhi between outer csc and jet; DeltaPhi"),
+            binsX = cms.untracked.vdouble(50, 0, 3.5),
+            inputVariables = cms.vstring("minDeltaPhiOuterCscJet"),
+        ),
+    ),
 )
 
 OtherRpcHistograms = cms.PSet(
@@ -1294,6 +1492,12 @@ OtherRpcHistograms = cms.PSet(
             title = cms.string("nCloseOuterAllBarrelRPCPairDeltaR < 0.2; Number of close outer barrel RPC pairs"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2"),
+        ),
+        cms.PSet (
+            name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaRDeltar < 0.2; Number of close outer barrel RPC pairs"),
+            binsX = cms.untracked.vdouble(20, 0, 20),
+            inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar"),
         ),
         )
 )
@@ -1372,10 +1576,36 @@ ToyMCRunLbHistogram_2016 = cms.PSet(
         cms.PSet (
             name = cms.string("runlb"),
             title = cms.string("Run vs LS; Run number; lumi section"),
-            binsX = cms.untracked.vdouble(3000,273000, 276000),
+            binsX = cms.untracked.vdouble(12000,273000, 285000),
             #binsX = cms.untracked.vdouble(45000, 235000, 280000),
-            binsY = cms.untracked.vdouble(3000, 0, 3000),
+            binsY = cms.untracked.vdouble(4000, 0, 4000),
             inputVariables = cms.vstring("run","lb"),
             )
+    )
+)
+
+JetCscHistogram = cms.PSet(
+    inputCollection = cms.vstring("cscsegs", "jets"),
+    histograms = cms.VPSet(
+        cms.PSet (
+            name = cms.string("cscJetDeltaPhi"),
+            title = cms.string("cscJetDeltaPhi"),
+            binsX = cms.untracked.vdouble(100, 0, 4),
+            inputVariables = cms.vstring("abs ( deltaPhi (cscseg , jet) )"),
+
+        )
+    )
+)
+
+CscCscHistogram = cms.PSet(
+    inputCollection = cms.vstring("cscsegs", "cscsegs"),
+    histograms = cms.VPSet(
+        cms.PSet (
+            name = cms.string("cscCscDeltaPhi"),
+            title = cms.string("cscCscDeltaPhi"),
+            binsX = cms.untracked.vdouble(100, 0, 4),
+            inputVariables = cms.vstring("abs ( deltaPhi (cscseg , cscseg) )"),
+
+        )
     )
 )

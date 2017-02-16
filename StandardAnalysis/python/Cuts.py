@@ -63,6 +63,13 @@ cutCscSegNumberInverted = cms.PSet(
     alias = cms.string("Number of CSC Segments > 0")
 )
 
+cutCscSegNumberInverted_newVeto = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("havingCscDeltaJet0p4R3p4 = 1"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of Csc Segment near leading jet > 0")
+)
+
 
 #######################################
 ##hcalnoise
@@ -76,9 +83,16 @@ cutNoise = cms.PSet(
 
 cutNoiseInverted = cms.PSet(
     inputCollection = cms.vstring("events"),
-    cutString = cms.string("noiseFilterResult = 1"),
+    cutString = cms.string("noiseFilterResult = 0"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("HCAL noise")
+)
+
+cutBeamHaloFilter2016Tight = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("globalTightHaloId2016 = 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("beam halo filter veto 2016 tight")
 )
 
 #######################################
@@ -217,6 +231,8 @@ cutMaxDeltaJetPhi = cms.PSet(
 cutCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
     cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
+    #cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1 || minDeltaPhiCscDT <= 0.6 || (minDeltaPhiCscDT > 1.7 && minDeltaPhiCscDT < 3.2) || minDeltaPhiCscPair <= 0.3'),
+    #cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1 || NOuterCsc > 0'),
     numberRequired = cms.string('= 1'),
     alias = cms.string("pass one of cosmic selections (OR of DT segments and RPC pair cuts)")
 )
@@ -228,7 +244,7 @@ cutNumberOfDT = cms.PSet(
 )
 cutMoreOuterDT = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('( innerDT / outerDT) < 2'),
+    cutString = cms.string('innerDT /  outerDT < 2'),
     numberRequired = cms.string('= 1'),
     alias = cms.string("More outer DTs than inner ones")
 )
@@ -241,6 +257,12 @@ cutJetEta = cms.PSet(
     cutString = cms.string('leadingJetEta < 1'),
     numberRequired = cms.string('= 1'),
     alias = cms.string("$\eta_{jet}$ < 1.0")
+)
+cutJetEta1p3 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('leadingJetEta < 1.3'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("$\eta_{jet}$ < 1.3")
 )
 
 #######################################
@@ -269,17 +291,20 @@ cutJetNumber = cms.PSet(
 #csc segments in at least 3 layers
 cutCscSegNLayers = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
-    cutString = cms.string("nCscLayers >= 3"),
+    #cutString = cms.string("nCscLayers >= 3"),
+    cutString = cms.string("nLayersNearJetDeltaPhi0p2 >= 2"),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("nCscLayers >= 3")
+    alias = cms.string("nCscLayers >= 2")
 )
 
 #min delta phi between csc seg and jet
 cutMinDeltaPhiCscJet = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('minDeltaPhiCscJet < 0.4'),
+    cutString = cms.string('minDeltaPhiCscJet > 0.4'),
+    #cutString = cms.string('minDeltaPhiCscJet < 0.4'),
     numberRequired = cms.string('= 1'),
-    alias = cms.string("$\Delta\phi$(CSCSegment_{i}, Leading jet) < 0.4")
+    #alias = cms.string("$\Delta\phi$(CSCSegment_{i}, Leading jet) < 0.4")
+    alias = cms.string("$\Delta\phi$(CSCSegment_{i}, Leading jet) > 0.4")
 )
 
 ########################################
@@ -357,7 +382,7 @@ cutHaloStrict = cms.PSet(
 
 cutCosmicCoarse = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
-    cutString = cms.string("dtSegN > 2"),
+    cutString = cms.string("dtSegN > 4"),
     numberRequired = cms.string("> 0"),
 )
 
@@ -372,6 +397,13 @@ cutMaxiEtaDiffSameiRbx = cms.PSet(
     cutString = cms.string('maxiEtaDiffSameiRbx < 11'),
     numberRequired = cms.string('= 1'),
     alias = cms.string("maxiEtaDiffSameiRbx < 11")
+)
+
+cutMaxiEtaDiffSameiRbxGeq11 = cms.PSet(
+    inputCollection = cms.vstring('events'),
+    cutString = cms.string('maxiEtaDiffSameiRbx >= 11'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("maxiEtaDiffSameiRbx >= 11")
 )
 
 cutNTowerDiffiEtaSameiRbx = cms.PSet(
@@ -415,4 +447,353 @@ cutJetEnergyInverted = cms.PSet(
     cutString = cms.string("energy < 70"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("$E_{jet}$ < 70 \GeV")
+)
+
+cutTowerIPhiNoise = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("nTowerSameiPhi > 10"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("nTowiPhi > 10")
+)
+
+cutHpdR2Noise = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("topHPD5R2 < 0.075"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("$R_{2}$ < 0.075")
+)
+
+cutCscSegNumberOne = cms.PSet(
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits > -1"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of CSC Segments = 1")
+)
+
+cutDeltaMinCscJet = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("minDeltaPhiCscJet < 0.2"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("minDeltaPhiCscJet < 0.2")
+)
+
+cutCscSegNumberGT1 = cms.PSet(
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits > -1"),
+    numberRequired = cms.string(">= 2"),
+    alias = cms.string("Number of CSC Segments > 1")
+)
+
+cutCscSegNumberGT1JET = cms.PSet(
+    inputCollection = cms.vstring("cscsegs","eventvariables"),
+    cutString = cms.string("abs(cscsegs.phi - eventvariables.leadingJetPhi) < 0.2"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("angle csc jet")
+)
+
+cutNCscSegJetDelta0p2 = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nCscNearJetDeltaPhi0p2 > 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("at least one csc segment within delptaphi 0.2 of leading jet")
+)
+
+cutNoCscSegJetDeltaPhi0p2PosZ = cms.PSet(
+     inputCollection = cms.vstring("eventvariables"),
+     cutString = cms.string("nCscNearJetDeltaPhi0p2EndcapPosZ = 0"),
+     numberRequired = cms.string("= 1"),
+     alias = cms.string("no csc segment within deltaphi 0.2 of leading jet in pos endcap")
+)
+
+cutNoCscSegJetDeltaPhi0p2MinZ = cms.PSet(
+     inputCollection = cms.vstring("eventvariables"),
+     cutString = cms.string("nCscNearJetDeltaPhi0p2EndcapMinZ = 0"),
+     numberRequired = cms.string("= 1"),
+     alias = cms.string("no csc segment within deltaphi 0.2 of leading jet in neg endcap")
+)
+
+cutCscSegNLayersNearJets = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nLayersNearJetDeltaPhi0p2 >= 3"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("nCscLayersNearJetDeltaPhi0p2 >= 3")
+)
+
+cutBeam1 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("meanCscDirectionNearJetDeltaPhi0p2 >= 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Beam 1")
+)
+
+cutBeam2 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("meanCscDirectionNearJetDeltaPhi0p2 < 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Beam 2")
+)
+
+cutCscRDT400 = cms.PSet (
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("r > 340"),
+    numberRequired = cms.string("= 0"),
+    alias = cms.string("csc R > 160")
+)
+
+cutCscNHit3 = cms.PSet (
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits = 3"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("nHits = 3")
+)
+
+cutCscNHit6 = cms.PSet (
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits = 6"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("nHits = 6")
+)
+
+cutJetNumber1 = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy > 0."),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("nJets = 1")
+)
+cutDeltaPhiCscJet = cms.PSet(
+    inputCollection = cms.vstring("cscsegs","jets"),
+    cutString = cms.string("abs ( deltaPhi (cscseg , jets) ) < 0.4"),
+    numberRequired = cms.string("> 0"),
+    alias = cms.string("deltaCscJet < 0.4")
+)
+
+cutBeamHaloCscNearJet = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("havingCscDeltaJet0p4R3p4 = 1"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutNoBeamHaloCscNearJet = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("havingCscDeltaJet0p4R3p4 = 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutPass2016TightHaloFilter = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("globalTightHaloId2016 = 1"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutKillBy2016TightHaloFilter = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("globalTightHaloId2016 = 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutNoCscPos = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nCscNearJetDeltaPhi0p2EndcapPosZ = 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutNoCscNeg = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nCscNearJetDeltaPhi0p2EndcapMinZ = 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+
+cutOneCscSeg = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("cscSegN = 1"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutNIsolatedNoiseChannel = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("numIsolatedNoiseChannels = 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("numIsolatedNoiseChannels = 0")
+)
+
+cutIsolatedNoiseSumE = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("isolatedNoiseSumE <= 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutIsolatedNoiseSumEt = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("isolatedNoiseSumEt <= 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutJetEnergyGt30 = cms.PSet(
+    inputCollection = cms.vstring("jets"),
+    cutString = cms.string("energy >= 50"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("$E_{jet}$ > 50 \GeV")
+)
+
+cutMinDeltaPhiCscDt = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("(minDeltaPhiCscDT > 0.6 && minDeltaPhiCscDT < 1.7) || minDeltaPhiCscDT = 999" ),
+    numberRequired = cms.string("= 1"),
+)
+
+cutMinDeltaPhiCscPair = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("minDeltaPhiCscPair > 0.3"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutCscSeg = cms.PSet(
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("r <= 340"),
+    numberRequired = cms.string(">= 1"),
+)
+
+cutNOuterCsc = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("NOuterCsc = 0"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutMaxDeltaPhiCscDt = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("maxDeltaPhiCscDT < 1" ),
+    numberRequired = cms.string("= 1"),
+)
+
+cutMaxDeltaPhiCscPair = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("maxDeltaPhiCscPair < 1.5"),
+    numberRequired = cms.string("= 1"),
+)
+
+cutNoDT = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("dtSegN = 0"),
+    numberRequired = cms.string("= 1"),
+    )
+
+cutNoOuterBarrelRPC = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("outerRPCbarrel = 0"),
+   numberRequired = cms.string("= 1"),
+   )
+
+cutMinDeltaPhiOuterCscJet = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("minDeltaPhiOuterCscJet > 1.3" ),
+    numberRequired = cms.string("= 1"),
+)
+
+cutHavingNoCscSegNHit56 = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("havingCscSegNHit56 = 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("new halo veto")
+)
+
+cutNCaloTowerDiffRBX = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("nTowerDiffRbxDeltaR0p5 < 2"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("nTowerDiffRbxDeltaR0p5 < 2")
+)
+
+cutLeadingJetEMFractionGTp1 = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("leadingJetEMFraction > 0.9" ),
+    numberRequired = cms.string("= 1"),
+)
+
+cutJetN90LT2 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('leadingJetN90 < 2'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("n90$_{jet}$ < 2")
+)
+
+cutDTSegN1 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("dtSegN = 1"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of DT Segments = 1")
+)
+
+newNOuterAllBarrelRPCHitsDeltaREq1 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nCloseOuterAllBarrelRPCPairDeltaR0p2 = 1'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of Close Outer Barrel RPC Pairs = 1"),
+    )
+
+newNOuterAllBarrelRPCHitsDeltaRDeltar = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar = 0'),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of Close Outer Barrel RPC Pairs with Deltar constraint = 0"),
+    )
+
+cutNDTStation3 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nDTStation3 = 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of DT Segments in station 3 = 0")
+)
+
+cutNDTStation4 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("nDTStation4 < 2"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of DT Segments in station 4 < 2")
+)
+
+cutCloseOuterAllDTPairDeltaPhi0p5 = cms.PSet (
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("closeOuterAllDTPairDeltaPhi0p5 = 0"),
+    numberRequired = cms.string("= 1"),
+    alias = cms.string("Number of close DT outer all pairs = 0")
+)
+
+cutMaxDeltaJetPhiNoDTST4 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('maxDeltaJetPhiNoDTST4 < 1'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("max($#Delta#phi$(DT Segment$_{i}$(no st 4), Leading jet)) < 1")
+)
+
+cutMinDeltaRDTST4RPCInner3Layers = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('minDeltaRDTST4RPCInner3Layers > 0.5'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("minDeltaRDTST4RPCInner3Layers > 0.5")
+)
+cutMinDeltaRDTST4LeadingJet = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('minDeltaRDTST4LeadingJet > 1.5'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("minDeltaRDTST4LeadingJet")
+)
+
+cutMinDeltaROuterRpcInnerDT = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('minDeltaROuterRPCInnerDT > 0.5'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("minDeltaROuterRpcInnerDT > 0.5")
+)
+
+cutNDTWhl0Seg4 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nDTWhl0Seg4 > 0'),
+    numberRequired = cms.string('= 1'),
+)
+
+cutNDTWhl0Seg10 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('nDTWhl0Seg10 > 0'),
+    numberRequired = cms.string('= 1'),
 )
