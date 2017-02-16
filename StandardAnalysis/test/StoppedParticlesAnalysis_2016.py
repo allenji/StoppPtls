@@ -17,7 +17,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 # ---------------------------------------
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
-                                 'file:/data/users/weifengji/2016SearchStudy_Aug23/crab_Run2016B-PromptReco-v2_OSUT3Ntuples_Aug23/NoBPTX_2016collisions_OSUT3Ntuples_22.root',
+                                 #'file:/home/weifengji/StoppedParticles_Run2/SPAnalysis_2016_Oct10/CMSSW_8_0_19_patch1/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root',
+                                 'file:/home/weifengji/StoppedParticles_Run2/SPAnalysis_2016_Oct10/CMSSW_8_0_19_patch1/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples_Feb9_2.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         ),
                              )
@@ -59,11 +60,11 @@ from StoppPtls.Collection.frmwrkCollectionMap_cfi import collectionMap_Custom
 ################################################################################
 
 weights = cms.VPSet (
-    cms.PSet (
-        inputCollections = cms.vstring("eventvariables"),
-        inputVariable = cms.string("1.0/livetimeByRun")
+    #cms.PSet (
+    #    inputCollections = cms.vstring("eventvariables"),
+    #    inputVariable = cms.string("1.0/livetimeByRun")
         #inputVariable = cms.string("1.0/livetimeByFill")
-    ),
+    #),
 )
 
 ################################################################################
@@ -126,6 +127,8 @@ histograms = cms.VPSet()
 #histograms.append(UHistograms)
 #histograms.append(UbarHistograms)
 #histograms.append(GenJetHistograms)
+#histograms.append(LeadingJetHistograms)
+
 histograms.append(EventHistograms)
 histograms.append(NumberOfObjectsHistograms)
 #histograms.append(ObjectsVsTimeHistograms)
@@ -142,21 +145,52 @@ histograms.append(OtherCscHistograms)
 histograms.append(OtherRpcHistograms)
 histograms.append(TowerHistograms)
 histograms.append(HpdHistograms)
+histograms.append(HaloBeamFilterHistograms)
+histograms.append(JetCscHistogram)
+histograms.append(numIsolatedNoiseChannelsHistograms)
+'''
+histograms.append(CscCscHistogram)
+histograms.append(DtSegmentHistograms)
+'''
+
 scalingfactorproducers = []
 
 #add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
 
+#add_channels (process, [StoppPtlsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [cosmicRunNum], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 add_channels (process, [StoppPtlsSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [EventSelection_PlotLeadingJetEM], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [TriggerSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-add_channels (process, [TriggerSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-# add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [TriggerSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [HaloSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [HaloControlSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-# add_channels (process, [HaloTagAndProbeSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRiched], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloCscPlot], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotBeam1], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotBeam2], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotNoPos], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotNoNeg], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmiBackgroundEventSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRiched], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [NoCuts], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [HaloTagAndProbeSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [CosmicSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [CosmicControlSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [cosmicPassSpecificRegion], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [NoiseSelection], histograms, weights, collectionMap_Custom, variableProducers, False)
-#add_channels (process, [NoiseControlSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [NoiseControlSelectionTight], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [NoiseControlSelectionTight_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [TriggerSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelection1], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelection2], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelection3], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelection4], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelectionMC1], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelectionMC2], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelectionMC3], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelectionMC4], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CosmicControlSelectionMC5], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [CosmicSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [NoiseControlSelectionTight], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [PrePreSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
@@ -172,10 +206,29 @@ add_channels (process, [TriggerSelection_2016], histograms, weights, scalingfact
 #add_channels (process, [cosmicCoarse2], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [cosmicFilter], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [cosmicStrict], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CscRGt400], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [NoCuts], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CscNHit3], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CscNHit6], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [CscAllStudy], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [selectedHaloNCscNearJet], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [selectedHaloByBeamHaloFilter], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [HaloControlTaggedByVetoSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotBeam1], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRiched], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [makeHaloNCscPlotBeam2], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [HaloControlTaggedByFilterSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [haloCoarse], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [haloStrict], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [cosmicOuterDTNoCsc], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-add_channels (process, [noiseBasic], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseBasic], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRiched], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRichedGT1CSC], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRichedGT1DT], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [testHaloBeamFilter], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [testHaloBeamFilterWithCosmicVeto], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [testHaloBeamFilterOnNoiseEvent], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [noiseRBXRichedGT1CSC1DT], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [noiseStrict], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [noiseAfterRBXCleaning], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [noiseNoDtCsc], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)

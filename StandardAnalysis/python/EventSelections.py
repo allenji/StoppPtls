@@ -10,7 +10,9 @@ StoppPtlsSelection = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
+      #cutCscSegNumber,
       cutOuterDT,
       cutDTPair,
       cutMaxDeltaJetPhi,
@@ -32,15 +34,27 @@ StoppPtlsSelection = cms.PSet(
 #Full 2016 stopped particles analysis cuts
 StoppPtlsSelection_2016 = cms.PSet(
     name = cms.string("StoppedParticlesSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    #triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
-      cutOuterDT,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
+      #cutNoBeamHaloCscNearJet,
+      #cutMinDeltaPhiCscDt,
+      #cutMinDeltaPhiCscPair,
+      #cutOuterDT,
+      cutNDTStation3,
+      cutNDTStation4,
       cutDTPair,
-      cutMaxDeltaJetPhi,
-      newNOuterAllBarrelRPCHitsDeltaR,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      cutMinDeltaROuterRpcInnerDT,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
       cutNoise,
       cutMaxiEtaDiffSameiRbx,
       cutJetEnergy,
@@ -52,7 +66,22 @@ StoppPtlsSelection_2016 = cms.PSet(
       cutHpdR2,
       cutHpdRPeak,
       cutHpdRPeakSample,
-      cutHpdROuter
+      cutHpdROuter,
+      #cutCscSeg,
+      #cutNOuterCsc,
+      #cutMinDeltaPhiCscDt,
+      #cutMinDeltaPhiCscPair,
+      #cutOneCscSeg,
+      #cutMaxDeltaPhiCscDt,
+      #cutMaxDeltaPhiCscPair,
+      #cutOuterDT,
+      #cutDTPair,
+      #cutMaxDeltaJetPhi,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      #cutNoDT,
+      #cutNoOuterBarrelRPC,
+      #cutMinDeltaPhiOuterCscJet
+      #cutNCaloTowerDiffRBX,
     )
 )
 
@@ -73,14 +102,25 @@ HaloControlSelection = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutOuterDT,
+      #cutOuterDT,
+      #cutDTPair,
+      #cutMaxDeltaJetPhi,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      cutNDTStation3,
+      cutNDTStation4,
       cutDTPair,
-      cutMaxDeltaJetPhi,
-      newNOuterAllBarrelRPCHitsDeltaR,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
       cutNoise,
       cutMaxiEtaDiffSameiRbx,
       cutJetEnergy,
       cutJetEta,
+      #cutBeamHaloCscNearJet,
+      #cutCscSeg,
       cutJetN90,
       cutTowerIPhi,
       cutTowerFraction,
@@ -88,7 +128,8 @@ HaloControlSelection = cms.PSet(
       cutHpdR2,
       cutHpdRPeak,
       cutHpdRPeakSample,
-      cutHpdROuter
+      cutHpdROuter,
+      #cutCscSegNumberOne,
     )
 )
 ######For closure test only
@@ -181,8 +222,11 @@ CosmicControlSelection = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
+      #cutNoBeamHaloCscNearJet,
       cutNoise,
+      cutMaxiEtaDiffSameiRbx,
       cutJetEnergy,
       cutJetEta,
       cutJetN90,
@@ -227,7 +271,8 @@ NoiseControlSelectionTight = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
       cutOuterDT,
       #cutOuterRpc,
       #cutRpcPair,
@@ -249,11 +294,12 @@ NoiseControlSelectionTight = cms.PSet(
 
 NoiseControlSelectionTight_2016 = cms.PSet(
     name = cms.string("HcalNoiseControlSelection"),
-    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
       cutOuterDT,
       #cutOuterRpc,
       #cutRpcPair,
@@ -261,8 +307,8 @@ NoiseControlSelectionTight_2016 = cms.PSet(
       newNOuterAllBarrelRPCHitsDeltaR,
       cutDTPair,
       cutMaxDeltaJetPhi,
-      cutJetEnergy,
-      cutJetEta,
+      #cutJetEnergy,
+      #cutJetEta,
     )
 )
 
@@ -374,7 +420,29 @@ NoCuts = cms.PSet(
     name = cms.string("NoCuts"),
     triggers = cms.vstring(""), 
     cuts = cms.VPSet(
-        cutDummy
+        cutNIsolatedNoiseChannel,
+        cutIsolatedNoiseSumE,
+        cutIsolatedNoiseSumEt,
+        cutJetEta,
+        cutJetEnergyGt30,
+        cutNoise,
+        #cutHpdR1,
+        #cutHpdR2,
+        #cutHpdRPeak,
+        #cutHpdRPeakSample,
+        #cutHpdROuter,
+        cutNoBeamHaloCscNearJet,
+        #cutMinDeltaPhiCscPair,
+        #cutMinDeltaPhiCscDt,
+        cutMaxDeltaPhiCscDt,
+        cutMaxDeltaPhiCscPair,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+        #cutNoDT,
+        #cutNoOuterBarrelRPC,
+        cutMinDeltaPhiOuterCscJet,
         )
     )
 
@@ -418,7 +486,8 @@ cosmicStrict = cms.PSet(
         cutBx,
         cutVertexNumber,
         cutCosmicStrict,
-        cutJetEnergy,
+        cutCscSegNumber,
+        #cutJetEnergy,
         cutJetEta,
     )
 )
@@ -430,8 +499,11 @@ haloStrict = cms.PSet(
         cutBx,
         cutVertexNumber,
         cutHaloStrict,
+        cutNoise,
+        cutDT,
         cutJetEnergy,
         cutJetEta,
+        cutDeltaMinCscJet,
     )
 )
 
@@ -448,3 +520,619 @@ noiseBasic = cms.PSet(
       newNOuterAllBarrelRPCHitsDeltaR,
     )
 )
+
+noiseRBXRiched = cms.PSet(
+    name = cms.string("noiseRBXRiched"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      #cutTowerIPhiNoise,
+      cutHpdR2Noise,
+      #cutDeltaMinCscJet,
+      #cutJetEnergy,
+      cutJetEta,
+      #cutMaxiEtaDiffSameiRbxGeq11,
+      #cutNoDT,
+      #cutBeamHaloFilter2016Tight,
+      cutJetN90LT2,
+      cutNoBeamHaloCscNearJet,
+      #cutDTSegN1,
+      #newNOuterAllBarrelRPCHitsDeltaREq1,
+      #cutOuterDT,
+      #cutDTPair,
+      #cutMaxDeltaJetPhi,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      #cutCscSegNumber,
+      #cutMinDeltaPhiCscJet,
+      #cutMaxDeltaPhiCscDt,
+      #cutMaxDeltaPhiCscPair, 
+      #cutMinDeltaPhiOuterCscJet,
+      #cutCscSegNumber,
+      #cutHavingNoCscSegNHit56,
+      #cutCscRDT400,
+      #cutOneCscSeg,
+      #cutNoDT,
+      cutNDTStation3,
+      cutNDTStation4,
+      cutDTPair,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      cutMinDeltaROuterRpcInnerDT,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
+    )
+)
+
+noiseRBXRichedGT1CSC = cms.PSet(
+    name = cms.string("noiseRBXRichedGT1CSC"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutTowerIPhiNoise,
+      cutHpdR2Noise,
+      cutDeltaMinCscJet,
+#      cutJetEnergy,
+      cutJetEta,
+      #cutCscSegNumberInverted,
+    )
+)
+
+noiseRBXRichedGT1DT = cms.PSet(
+    name = cms.string("noiseRBXRichedGT1DT"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutTowerIPhiNoise,
+      cutHpdR2Noise,
+      cutDeltaMinCscJet,
+#      cutJetEnergy,
+      cutJetEta,
+      cutNumberOfDT,
+    )
+)
+
+noiseRBXRichedGT1CSC1DT = cms.PSet(
+    name = cms.string("noiseRBXRichedGT1CSC1DT"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutTowerIPhiNoise,
+      cutHpdR2Noise,
+      cutDeltaMinCscJet,
+#      cutJetEnergy,
+      cutJetEta,
+      cutCscSegNumberInverted,
+      cutNumberOfDT,
+    )
+)
+
+testHaloBeamFilter = cms.PSet(
+    name = cms.string("testHaloBeamFilter"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+        #cutCscSegNumberInverted,
+        cutCscSegNumberGT1,
+    )
+)
+
+testHaloBeamFilterWithCosmicVeto = cms.PSet(
+    name = cms.string("testHaloBeamFilterWithCosmicVeto"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+#        cutCscSegNumberInverted,
+        cutCscSegNumberGT1,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+
+testHaloBeamFilterOnNoiseEvent = cms.PSet(
+    name = cms.string("testHaloBeamFilterOnNoiseEvent"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoiseInverted,
+        cutBeamHaloFilter2016Tight
+    )
+)
+
+makeHaloNCscPlotBeam1 = cms.PSet(
+    name = cms.string("makeHaloNCscPlotBeam1"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutBeamHaloCscNearJet,
+        cutNoise,
+        #cutNCscSegJetDelta0p2,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+        cutBeam1,
+        cutNoCscNeg,
+    )
+)
+
+makeHaloNCscPlotBeam2 = cms.PSet(
+    name = cms.string("makeHaloNCscPlotBeam2"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutBeamHaloCscNearJet,
+        cutNoise,
+        #cutNCscSegJetDelta0p2,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+        cutBeam2,
+    )
+)
+
+makeHaloCscPlot = cms.PSet(
+    name = cms.string("makeHaloCscPlot"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoiseInverted,
+        cutDeltaMinCscJet,
+        cutCscSegNumberGT1JET,
+    )
+)
+
+makeHaloNCscPlotNoPos = cms.PSet(
+    name = cms.string("makeHaloNCscPlotNoPos"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+        cutNCscSegJetDelta0p2,
+        cutNoCscSegJetDeltaPhi0p2PosZ,
+    )
+)
+
+makeHaloNCscPlotNoNeg = cms.PSet(
+    name = cms.string("makeHaloNCscPlotNoNeg"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+        cutNCscSegJetDelta0p2,
+        cutNoCscSegJetDeltaPhi0p2MinZ,
+    )
+)
+
+CosmiBackgroundEventSelection = cms.PSet(
+    name = cms.string("CosmicBackgroundSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutCscSegNumber,
+      cutNoise,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutCosmics,
+      cutNumberOfDT,
+      cutMoreOuterDT,
+    )
+)
+
+CscRGt400 = cms.PSet(
+    name = cms.string("CSCRGt400"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutCscRDT400,
+    )
+)
+
+CscNHit3 = cms.PSet(
+    name = cms.string("CscNHit3"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutJetEta,
+        cutJetNumber1,
+        cutCscNHit3,
+    )
+)
+
+CscNHit6 = cms.PSet(
+    name = cms.string("CscNHit6"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutJetEta,
+        cutJetNumber1,
+        cutCscNHit6,
+    )
+)
+
+CscAllStudy = cms.PSet(
+    name = cms.string("CscAllStudy"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutJetEta,
+        cutJetNumber1,
+        cutDeltaPhiCscJet,
+    )
+)
+
+selectedHaloNCscNearJet = cms.PSet(
+    name = cms.string("selectedHaloNCscNearJet"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutBeamHaloCscNearJet,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+        #cutNCscSegJetDelta0p2,
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+#        cutPass2016TightHaloFilter,
+    )
+)
+selectedHaloByBeamHaloFilter = cms.PSet(
+    name = cms.string("selectedHaloByBeamHaloFilter"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        #cutBeamHaloCscNearJet,
+        cutJetEnergy,
+        cutJetEta,
+        cutNoise,
+        #cutNCscSegJetDelta0p2e
+        cutOuterDT,
+        cutDTPair,
+        cutMaxDeltaJetPhi,
+        newNOuterAllBarrelRPCHitsDeltaR,
+        cutKillBy2016TightHaloFilter,
+        cutNoBeamHaloCscNearJet,
+#        cutPass2016TightHaloFilter,
+    )
+)
+
+HaloControlTaggedByVetoSelection = cms.PSet(
+    name = cms.string("HaloControlTaggedByVetoSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutBeamHaloCscNearJet,
+      cutPass2016TightHaloFilter,
+      #cutCscSegNumberOnekkkkkkk,
+    )
+)
+
+HaloControlTaggedByFilterSelection = cms.PSet(
+    name = cms.string("HaloControlTaggedByFilterSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutKillBy2016TightHaloFilter,
+      #cutCscSegNumberOne,
+    )
+)
+
+EventSelection_PlotLeadingJetEM = cms.PSet(
+    name = cms.string("EventSelectionPlotLeadingJetEM"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutJetEnergy,
+        #cutLeadingJetEMFractionGTp1,
+        cutVertexNumber,
+        #cutJetEta,
+        cutJetN90,
+        cutHavingNoCscSegNHit56,
+        #cutTowerIPhi,
+        #cutTowerFraction,
+        #cutHpdR1,
+        #cutHpdR2,
+        #cutHpdRPeak,
+        #cutHpdRPeakSample,
+        #cutHpdROuter,
+    )
+)
+
+CosmicControlSelection1 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelection1"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHavingNoCscSegNHit56,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+
+CosmicControlSelection2 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelection2"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHavingNoCscSegNHit56,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutOuterDT,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+
+CosmicControlSelection3 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelection3"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHavingNoCscSegNHit56,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutOuterDT,
+      cutDTPair,
+      newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+
+CosmicControlSelection4 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelection4"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHavingNoCscSegNHit56,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutJetEnergy,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+    )
+)
+
+CosmicControlSelectionMC1 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelectionMC1"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutNDTStation3,
+      cutNDTStation4,
+      cutDTPair,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
+      #cutMinDeltaRDTST4LeadingJet,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      cutMinDeltaROuterRpcInnerDT,
+    )
+)
+CosmicControlSelectionMC2 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelectionMC2"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutNDTStation3,
+      cutNDTStation4,
+      cutDTPair,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
+      #cutOuterDT,
+      #cutMaxDeltaJetPhi,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+CosmicControlSelectionMC3 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelectionMC3"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutOuterDT,
+      cutDTPair,
+      newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+CosmicControlSelectionMC4 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelectionMC4"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+    )
+)
+
+CosmicControlSelectionMC5 = cms.PSet(
+    name = cms.string("CosmicMuonControlSelectionMC5"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutOuterDT,
+      cutDTPair,
+      cutMaxDeltaJetPhi,
+      newNOuterAllBarrelRPCHitsDeltaR,
+    )
+)
+
+cosmicRunNum = cms.PSet(
+    name = cms.string("cosmicRunNum"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+        cutNIsolatedNoiseChannel,
+        cutIsolatedNoiseSumE,
+        cutIsolatedNoiseSumEt,
+        cutNoise,
+        cutJetEta,
+        #cutJetEnergy,
+        cutJetEnergyGt30,
+        #cutNoise,
+        #cutHpdR1,
+        #cutHpdR2,
+        #cutHpdRPeak,
+        #cutHpdRPeakSample,
+        #cutHpdROuter,
+        #cutCscSegNumber,
+        cutHavingNoCscSegNHit56,
+        #cutNoBeamHaloCscNearJet,
+        #cutMinDeltaPhiCscPair,
+        #cutMinDeltaPhiCscDt,
+        #cutOuterDT,
+        #cutOneCscSeg,
+        #cutDTPair,
+        #cutMaxDeltaJetPhi,
+        #newNOuterAllBarrelRPCHitsDeltaR,
+        cutNDTStation3,
+        cutNDTStation4,
+        cutDTPair,
+        #cutMaxDeltaJetPhi,
+        cutMaxDeltaJetPhiNoDTST4,
+        cutCloseOuterAllDTPairDeltaPhi0p5,
+        cutMinDeltaRDTST4RPCInner3Layers,
+        #newNOuterAllBarrelRPCHitsDeltaR,
+        newNOuterAllBarrelRPCHitsDeltaRDeltar,
+        #cutNOuterCsc,
+        #cutMaxDeltaPhiCscDt,
+        #cutMaxDeltaPhiCscPair,
+        #cutMinDeltaPhiOuterCscJet,
+        )
+    )
+
+cosmicPassSpecificRegion = cms.PSet(
+    name = cms.string("cosmicPassSpecificRegion"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+        cutBx,
+        cutVertexNumber,
+        cutHavingNoCscSegNHit56,
+        cutNoise,
+        cutJetEnergy,
+        cutCosmicCoarse,
+        cutNDTWhl0Seg4,
+        cutNDTWhl0Seg10,
+    )
+)
+
