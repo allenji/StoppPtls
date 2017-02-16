@@ -164,6 +164,9 @@ DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeOutIn)
 #DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeOutInClosureTest)
 DelayedMuonsUpperLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 
+DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut = copy.deepcopy(DelayedMuonsUpperLowerSelection)
+DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut.name = cms.string("DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut")
+removeCuts(DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut.cuts,[cutUpperLowerDSADeltaTimeOutIn,cutLowerDSADtTofFreeInverseBeta])
 
 #ABCD regions
 #first split into 2 regions (AB and CD) by applying RPC timing cut
