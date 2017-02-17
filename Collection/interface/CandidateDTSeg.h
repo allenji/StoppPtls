@@ -19,6 +19,9 @@ class CandidateDTSeg
     void set_ydir(double ydir) {ydir_ = ydir;}
     void set_phidir(double phidir) {phidir_ = phidir;}
     void set_zdir(double zdir) {zdir_ = zdir;}
+    void set_nPhiHits(double nPhiHits) {nPhiHits_ = nPhiHits;}
+    void set_nZHits(double nZHits) {nZHits_ = nZHits;}
+    void set_nHits(double nHits) {nHits_ = nHits;}
 
     const int wheel () const {return wheel_;}
     const int station () const {return station_;}
@@ -35,6 +38,9 @@ class CandidateDTSeg
     const double ydir () const {return ydir_;}
     const double phidir () const {return phidir_;}
     const double zdir () const {return zdir_;}
+    const int nPhiHits () const {return nPhiHits_;}
+    const int nZHits () const {return nZHits_;}
+    const int nHits() const {return nHits_;}
 
   private:
     int wheel_;
@@ -52,6 +58,9 @@ class CandidateDTSeg
     double ydir_;
     double phidir_;
     double zdir_;
+    int nPhiHits_;
+    int nZHits_;
+    int nHits_;
 
 };
 #endif//CANDIDATEDTSEG_H

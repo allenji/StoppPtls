@@ -169,10 +169,10 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
         segment4D!=range.second;
         ++segment4D){
       //skip invalid values
-      if((*chamberId).station() != 4 &&
-          (*segment4D).dimension() != 4) continue;
-      if((*chamberId).station() == 4 &&
-          (*segment4D).dimension() != 2) continue;
+      //if((*chamberId).station() != 4 &&
+          //(*segment4D).dimension() != 4) continue;
+      //if((*chamberId).station() == 4 &&
+          //(*segment4D).dimension() != 2) continue;
 
       const GeomDet* gdet=dtGeom->idToDet(segment4D->geographicalId());
       const BoundPlane& DTSurface = gdet->surface();
@@ -181,6 +181,14 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
 
       LocalVector segmentLocalDir = (*segment4D).localDirection();
       GlobalVector segmentGlobalDir = DTSurface.toGlobal(segmentLocalDir);
+
+      int nPhiHits=0;
+      if((*segment4D).hasPhi())
+        nPhiHits = (((*segment4D).phiSegment())->specificRecHits()).size();
+
+      int nZHits=0;
+      if((*segment4D).hasZed())
+        nZHits = (((*segment4D).zSegment())->specificRecHits()).size();
 
       CandidateDTSeg candDTSeg;
       
@@ -199,6 +207,9 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
       candDTSeg.set_ydir(segmentGlobalDir.y());
       candDTSeg.set_phidir(segmentGlobalDir.phi());
       candDTSeg.set_zdir(segmentGlobalDir.z());
+      candDTSeg.set_nPhiHits(nPhiHits);
+      candDTSeg.set_nZHits(nZHits);
+      candDTSeg.set_nHits(nPhiHits + nZHits);
       candDTs->push_back(candDTSeg);
     }//finish loop over all segments in chamber
   }//finish loop over all chambers
