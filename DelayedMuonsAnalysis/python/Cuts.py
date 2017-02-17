@@ -340,6 +340,20 @@ cutUpperLowerDSADeltaTimeInOutClosureTest = cms.PSet(
     alias = cms.string("#Delta TimeInOut > -40 ns")
 )
 
+cutUpperLowerDSADeltaTimeInOutGreaterThan0 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > 0 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeInOut > 0 ns")
+)
+
+cutUpperLowerDSADeltaTimeInOutLessThanNeg20 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < -20"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeInOut < -20 ns")
+)
+
 cutUpperLowerDSADeltaTimeOutIn = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -30 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
@@ -352,6 +366,20 @@ cutUpperLowerDSADeltaTimeOutInClosureTest = cms.PSet(
     cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -40 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
     numberRequired = cms.string(">= 1"),
     alias = cms.string("#Delta TimeOutIn > -40 ns")
+)
+
+cutUpperLowerDSADeltaTimeOutInLessThanNeg30 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < -30"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeOutIn < -30 ns")
+)
+
+cutUpperLowerDSADeltaTimeOutInGreaterThan0 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > 0 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeOutIn > 0 ns")
 )
 
 

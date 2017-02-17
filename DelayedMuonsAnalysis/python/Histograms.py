@@ -263,6 +263,12 @@ UpperDSAHistograms = cms.PSet(
             inputVariables = cms.vstring("charge"),
             ),
         cms.PSet (
+            name = cms.string("qOverPt"),
+            title = cms.string("Upper DSA Track q/p_{T}; Upper DSA Track q/p_{T}"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("1.0*charge/pt"),
+            ),
+        cms.PSet (
             name = cms.string("dxy"),
             title = cms.string("Upper DSA Track d_{xy}; Upper DSA Track d_{xy} [cm]"),
             binsX = cms.untracked.vdouble(200, -1000, 1000),
@@ -531,6 +537,12 @@ LowerDSAHistograms = cms.PSet(
             title = cms.string("Lower DSA Track Charge; Lower DSA Track Charge"),
             binsX = cms.untracked.vdouble(10, -5, 5),
             inputVariables = cms.vstring("charge"),
+            ),
+        cms.PSet (
+            name = cms.string("qOverPt"),
+            title = cms.string("Lower DSA Track q/p_{T}; Lower DSA Track q/p_{T}"),
+            binsX = cms.untracked.vdouble(10, -5, 5),
+            inputVariables = cms.vstring("1.0*charge/pt"),
             ),
         cms.PSet (
             name = cms.string("dxy"),
@@ -867,6 +879,12 @@ DeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
             ),
+        cms.PSet (
+            name = cms.string("resolution_qOverPt"),
+            title = cms.string("DSA Track q/p_{T} Resolution; DSA Track q/p_{T} Resolution"),
+            binsX = cms.untracked.vdouble(120, -3, 3),
+            inputVariables = cms.vstring("((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
+            ),
 
         )
     )
@@ -916,6 +934,13 @@ UppervsUpperDSAHistograms = cms.PSet(
     inputCollection = cms.vstring("tracks"),
     histograms = cms.VPSet (
         cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_dtTofTimeAtIpOutIn"),
+            title = cms.string("Upper DSA Track TimeInOut vs TimeOutIn; Upper DSA Track TimeInOut [ns]; Upper DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -50, 150),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofTimeAtIpOutIn"),
+        ),
+        cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta"),
             title = cms.string("Upper DSA Track TimeInOut vs #beta^{-1}_{Free}; Upper DSA Track TimeInOut [ns]; Upper DSA Track #beta^{-1}_{Free}"),
             binsX = cms.untracked.vdouble(200, -100, 100),
@@ -956,6 +981,13 @@ UppervsUpperDSAHistograms = cms.PSet(
 LowervsLowerDSAHistograms = cms.PSet(
     inputCollection = cms.vstring("secondaryTracks"),
     histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("dtTofTimeAtIpInOut_dtTofTimeAtIpOutIn"),
+            title = cms.string("Lower DSA Track TimeInOut vs TimeOutIn; Lower DSA Track TimeInOut [ns]; Lower DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -50, 150),
+            inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofTimeAtIpOutIn"),
+        ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta"),
             title = cms.string("Lower DSA Track TimeInOut vs #beta^{-1}_{Free}; Lower DSA Track TimeInOut [ns]; Lower DSA Track #beta^{-1}_{Free}"),
