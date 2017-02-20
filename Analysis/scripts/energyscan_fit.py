@@ -4,15 +4,15 @@ from math import *
 #Run2 signal simulation
 #Gluino counting
 x_G600 = [50.,75.,85.,95.,105.,150.,195.,220]
-count_G600 = [18, 703, 1180, 1540, 1940, 2410, 2550, 2550]
+count_G600 = [19, 705, 1187, 1539, 1941, 2402, 2532, 2538]
 total_G600 = [5390.,5390.,5390.,5390.,5390.,5390.,5390.,5390.]
 
 x_G1200 = [50.,75.,85.,95.,105.,145.,185.,220.,260.,300]
-count_G1200 = [25, 654, 1180, 1620, 1920, 2410, 2510, 2550, 2550, 2540]
+count_G1200 = [25, 654, 1181, 1624, 1924, 2404, 2492, 2532, 2548, 2523]
 total_G1200 = [5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.]
 
 x_G1800 = [250.,300.,350.,400.,450.,500.,550.,595.]
-count_G1800 = [3040, 2970, 1960, 1980, 1010, 897, 125, 951]
+count_G1800 = [3022, 2948, 1960, 1956, 1010, 886, 125, 951]
 total_G1800 = [6247., 6247., 4187., 4187., 2208., 1946., 262., 2208.]
 
 allx_Gluino = x_G600 + x_G1200 + x_G1800
@@ -61,15 +61,15 @@ graph_GluinoMinus = rt.TGraphErrors(len(allx_Gluino), convert_to_array(allx_Glui
                                     convert_to_array(len(allx_Gluino)*[0]), convert_to_array(len(allx_Gluino)*[0]))
 #Stop counting
 x_S400 = [98., 111., 141., 189., 210., 231.]
-count_S400 = [881, 1120, 1380, 1620, 1650, 1690]
-total_S400 = [4800., 4800., 4800., 4800., 4800., 4800.]
+count_S400 = [889, 1130, 1442, 1711, 1748, 1796]
+total_S400 = [4797., 4797., 4797., 4797., 4797., 4797.]
 
-x_S600 = [99., 192., 251., 299.]
-count_S600 = [837, 1490, 1610, 1580]
-total_S600 = [4450., 4450., 4450., 4450.]
+x_S600 =  [192., 251.]
+count_S600 = [1588, 1713]
+total_S600 = [4449., 4449.]
 
 x_S1000 = [250., 300., 351., 400., 450., 500., 510.]
-count_S1000 = [1520, 1530, 1490, 1110, 1040, 1430, 697]
+count_S1000 = [1619, 1639, 1594, 1191, 1118, 1526, 740]
 total_S1000 = [4210., 4210., 4210., 3130., 3130., 4210., 2030.]
 
 allx_Stop = x_S400 + x_S600 + x_S1000
@@ -117,14 +117,14 @@ graph_StopMinus = rt.TGraphErrors(len(allx_Stop), convert_to_array(allx_Stop), c
 #making plot
 #Gluino
 canvas = rt.TCanvas("reco_eff", "reco_eff", 50, 50, 800, 600)
-outputfile = rt.TFile("energyscan_fit_13TeV.root","RECREATE")
+outputfile = rt.TFile("energyscan_fit_13TeV_2015Simulation.root","RECREATE")
 canvas.cd()
 
 graph_Gluino.SetTitle(";E_{gluon}(E_{top}) [GeV];#varepsilon_{RECO}")
 graph_Gluino.SetMarkerSize(0.1)
 graph_Gluino.SetMarkerColor(rt.kWhite)
 graph_Gluino.SetMaximum(0.53)
-graph_Gluino.GetXaxis().SetLimits(40, 390)
+graph_Gluino.GetXaxis().SetLimits(40, 500)
 graph_Gluino.Draw("AP")
 graph_GluinoPlus.Draw("P same")
 graph_GluinoMinus.Draw("P same")
@@ -192,25 +192,25 @@ graph_S1000.SetMarkerStyle(34)
 graph_S1000.SetMarkerSize(1.15)
 graph_S1000.SetLineWidth(2)
 
-fit_Stop = rt.TF1("sfit", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_Stop = rt.TF1("sfit", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_Stop.SetParameters(20, 0.001, -1, -22)
 fit_Stop.SetLineColor(rt.kBlue - 9)
-fit_Stop.SetRange(50, 400)
-fit_StopPlus = rt.TF1("sfitp", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_Stop.SetRange(50, 500)
+fit_StopPlus = rt.TF1("sfitp", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_StopPlus.SetParameters(20, 0.001, -1, -22)
-fit_StopPlus.SetRange(50, 400)
+fit_StopPlus.SetRange(50, 500)
 fit_StopPlus.SetFillStyle(1001)
 fit_StopPlus.SetFillColor(rt.kBlue -10)
 fit_StopPlus.SetLineColor(rt.kBlue -10)
 fit_StopPlus.SetLineWidth(7)
 fit_StopPlus.Draw("FC same")
 
-fit_StopMinus = rt.TF1("sfitm", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_StopMinus = rt.TF1("sfitm", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_StopMinus.SetParameters(20, 0.001, -1, -22)
 fit_StopMinus.SetFillStyle(1001)
 fit_StopMinus.SetFillColor(10)
 fit_StopMinus.SetLineColor(rt.kBlue - 10)
-fit_StopMinus.SetRange(50, 400)
+fit_StopMinus.SetRange(50, 500)
 fit_StopMinus.SetLineWidth(7)
 fit_StopMinus.Draw("FC same")
 
@@ -249,7 +249,7 @@ print "Systematic error on reco eff: " + str(stop_syst/stop_max)
 
 legend = rt.TLegend(0.55,0.15,0.9,0.45,"","brNDC")
 legend.SetTextFont(42)
-legend.SetHeader("CMS Simulation,  #sqrt{s} = 13 TeV")
+legend.SetHeader("CMS Simulation 2015,  #sqrt{s} = 13 TeV")
 legend.AddEntry(graph_G600, "m_{#tilde{g}} = 600 GeV","ep")
 legend.AddEntry(graph_G1200, "m_{#tilde{g}} = 1200 GeV","ep")
 legend.AddEntry(graph_G1800, "m_{#tilde{g}} = 1800 GeV","ep")
@@ -263,5 +263,5 @@ legend.Draw()
 outputfile.cd()
 canvas.RedrawAxis()
 canvas.Write()
-canvas.Print("energyscan_fit_13TeV.pdf")
+canvas.Print("energyscan_fit_13TeV_2015Simulation.pdf")
 outputfile.Close()
