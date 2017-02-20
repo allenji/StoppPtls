@@ -122,6 +122,8 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerSelection)
 #selections.append(DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerOnlyThroughTimeOutInErr)
+#selections.append(DelayedMuonsUpperLowerRemoveDeltaTimeOutIn)
+#selections.append(DelayedMuonsUpperLowerStricterDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerMismeasuredDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerMismeasuredDeltaTimeOutIn)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP63)

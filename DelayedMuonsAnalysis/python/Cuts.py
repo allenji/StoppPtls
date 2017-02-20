@@ -340,11 +340,18 @@ cutUpperLowerDSADeltaTimeInOutClosureTest = cms.PSet(
     alias = cms.string("#Delta TimeInOut > -40 ns")
 )
 
-cutUpperLowerDSADeltaTimeInOutGreaterThan0 = cms.PSet(
+cutUpperLowerDSADeltaTimeInOutGreaterThanNeg18 = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > 0 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -18 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta TimeInOut > 0 ns")
+    alias = cms.string("#Delta TimeInOut > -18 ns")
+)
+
+cutUpperLowerDSADeltaTimeInOutGreaterThanNeg5 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -5 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta TimeInOut > -5 ns")
 )
 
 cutUpperLowerDSADeltaTimeInOutLessThanNeg20 = cms.PSet(
@@ -375,11 +382,11 @@ cutUpperLowerDSADeltaTimeOutInLessThanNeg30 = cms.PSet(
     alias = cms.string("#Delta TimeOutIn < -30 ns")
 )
 
-cutUpperLowerDSADeltaTimeOutInGreaterThan0 = cms.PSet(
+cutUpperLowerDSADeltaTimeOutInGreaterThanNeg15 = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > 0 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
+    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -15 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta TimeOutIn > 0 ns")
+    alias = cms.string("#Delta TimeOutIn > -15 ns")
 )
 
 
