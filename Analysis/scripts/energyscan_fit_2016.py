@@ -4,16 +4,16 @@ from math import *
 #Run2 signal simulation
 #Gluino counting
 x_G600 = [50.,75.,85.,95.,105.,150.,195.,220]
-count_G600 = [24, 810, 1390, 1730, 2110, 2770, 2920, 2890]
+count_G600 = [24, 814, 1390, 1735, 2098, 2756, 2918, 2863]
 total_G600 = [5390.,5390.,5390.,5390.,5390.,5390.,5390.,5390.]
 
 x_G1200 = [50.,75.,85.,95.,105.,145.,185.,220.,260.,300]
-count_G1200 = [23, 794, 1320, 1820, 2120, 2780, 2880, 2900, 2880, 2910]
+count_G1200 = [23, 791, 1323, 1826, 2123, 2757, 2871, 2898, 2861, 2869]
 total_G1200 = [5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.,5317.]
 
 x_G1800 = [250.,300.,350.,400.,450.,500.,550.,595.]
-count_G1800 = [3470, 2260, 3300, 3320, 3330, 2200, 3170, 3110]
-total_G1800 = [6250., 4190., 6250., 6250., 6250., 4190., 6250., 6250.]
+count_G1800 = [3455, 2212, 3264, 3261, 3281, 2159, 3092, 3021]
+total_G1800 = [6247., 4187., 6247., 6247., 6247., 6247., 6247., 6247.]
 
 allx_Gluino = x_G600 + x_G1200 + x_G1800
 allcount_Gluino = count_G600 + count_G1200 + count_G1800
@@ -61,16 +61,16 @@ graph_GluinoMinus = rt.TGraphErrors(len(allx_Gluino), convert_to_array(allx_Glui
                                     convert_to_array(len(allx_Gluino)*[0]), convert_to_array(len(allx_Gluino)*[0]))
 #Stop counting
 x_S400 = [98., 111., 141., 189., 210., 231.]
-count_S400 = [940, 1230, 1560, 1840, 1880, 1960]
-total_S400 = [4800., 4800., 4800., 4800., 4800., 4800.]
+count_S400 = [932, 1229, 1548, 1821, 1846, 1914]
+total_S400 = [4797., 4797., 4797., 4797., 4797., 4797.]
 
 x_S600 = [99., 192., 251., 299.]
-count_S600 = [898, 1720, 1810, 1770]
-total_S600 = [4450., 4450., 4450., 4450.]
+count_S600 = [894, 1690, 1799, 1743]
+total_S600 = [4449., 4449., 4449., 4449.]
 
 x_S1000 = [250., 300., 351., 400., 450., 500., 510.]
-count_S1000 = [1710, 1340, 1700, 1690, 1590, 1660, 1590]
-total_S1000 = [4210., 3310., 4210., 4210., 4210., 4210., 4230.]
+count_S1000 = [1686, 1321, 1670, 1654, 1572, 1631, 1570]
+total_S1000 = [4205., 3295., 4205., 4205., 4205., 4205., 4205.]
 
 allx_Stop = x_S400 + x_S600 + x_S1000
 allcount_Stop = count_S400 + count_S600 + count_S1000
@@ -117,7 +117,7 @@ graph_StopMinus = rt.TGraphErrors(len(allx_Stop), convert_to_array(allx_Stop), c
 #making plot
 #Gluino
 canvas = rt.TCanvas("reco_eff", "reco_eff", 50, 50, 800, 600)
-outputfile = rt.TFile("energyscan_fit_13TeV.root","RECREATE")
+outputfile = rt.TFile("energyscan_fit_13TeV_2016Simulation.root","RECREATE")
 canvas.cd()
 
 graph_Gluino.SetTitle(";E_{gluon}(E_{top}) [GeV];#varepsilon_{RECO}")
@@ -192,11 +192,11 @@ graph_S1000.SetMarkerStyle(34)
 graph_S1000.SetMarkerSize(1.15)
 graph_S1000.SetLineWidth(2)
 
-fit_Stop = rt.TF1("sfit", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_Stop = rt.TF1("sfit", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_Stop.SetParameters(20, 0.001, -1, -22)
 fit_Stop.SetLineColor(rt.kBlue - 9)
 fit_Stop.SetRange(50, 500)
-fit_StopPlus = rt.TF1("sfitp", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_StopPlus = rt.TF1("sfitp", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_StopPlus.SetParameters(20, 0.001, -1, -22)
 fit_StopPlus.SetRange(50, 500)
 fit_StopPlus.SetFillStyle(1001)
@@ -205,7 +205,7 @@ fit_StopPlus.SetLineColor(rt.kBlue -10)
 fit_StopPlus.SetLineWidth(7)
 fit_StopPlus.Draw("FC same")
 
-fit_StopMinus = rt.TF1("sfitm", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 400)
+fit_StopMinus = rt.TF1("sfitm", "[0]*TMath::Erf([1]*x-[2])+[3]", 0, 500)
 fit_StopMinus.SetParameters(20, 0.001, -1, -22)
 fit_StopMinus.SetFillStyle(1001)
 fit_StopMinus.SetFillColor(10)
@@ -263,5 +263,5 @@ legend.Draw()
 outputfile.cd()
 canvas.RedrawAxis()
 canvas.Write()
-canvas.Print("energyscan_fit_13TeV.pdf")
+canvas.Print("energyscan_fit_13TeV_2016Simulation.pdf")
 outputfile.Close()
