@@ -414,16 +414,17 @@ cutLowerDSARpcBxPattern = cms.PSet(
 
 cutUpperLowerDSADeltaRpcHitBxAverage = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -0.9 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
+    #cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -0.9 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -0.3 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta RPC Hit BX Average > -0.9")
+    alias = cms.string("#Delta RPC Hit BX Average > -0.3")
 )
 
 cutUpperLowerDSADeltaRpcHitBxAverageInverted = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -0.9 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -0.3 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
     numberRequired = cms.string(">= 1"),
-    alias = cms.string("#Delta RPC Hit BX Average <= -0.9")
+    alias = cms.string("#Delta RPC Hit BX Average <= -0.3")
 )
 
 cutUpperLowerDSAUpperP63 = cms.PSet(
