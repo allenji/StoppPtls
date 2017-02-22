@@ -1,0 +1,5 @@
+#commands used to pick events
+
+#data events in control region C (2015 and 2016 rereco):
+edmPickEvents.py "/NoBPTX/Run2015D-16Dec2015-v1/AOD” 258158:614:971950262
+edmPickEvents.py "/NoBPTX/Run2016B-23Sep2016-v2/RECO" 275125:202:392997997
