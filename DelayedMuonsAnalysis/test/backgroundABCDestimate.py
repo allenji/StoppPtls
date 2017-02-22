@@ -67,8 +67,16 @@ for dataset in datasets:
             background_estimate = 1.0*numB*numC/numA
         else:
             print "numA is zero!!!"
-        background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
-        print "background estimate (B*C/A) is: " + str("%.1f" % background_estimate) + " +/- " + str("%.1f" % background_error)
+
+        if numC==0.:
+            background_error = 0.0
+            print "numC is 0, so background error is 0, need to model as gamma function"
+        if numC==1.:
+            background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB) ))
+            print "numC is 1, so background error is only error on numA and numB"
+        if numC>1.:
+            background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
+        print "background estimate (B*C/A) is: " + str("%.2f" % background_estimate) + " +/- " + str("%.2f" % background_error)
         print "/////////////////////////////////////////////////////////////////////"
 print "done"
 
