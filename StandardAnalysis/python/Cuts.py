@@ -230,7 +230,7 @@ cutMaxDeltaJetPhi = cms.PSet(
 #######################################
 cutCosmics = cms.PSet(
     inputCollection = cms.vstring('eventvariables'),
-    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1'),
+    cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhiNoDTST4 >= 1. || nDTStation3 > 0 || nDTStation4 > 1 || closeOuterAllDTPairDeltaPhi0p5 > 0 || minDeltaRDTST4RPCInner3Layers < 0.5 || nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar > 0'),
     #cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1 || minDeltaPhiCscDT <= 0.6 || (minDeltaPhiCscDT > 1.7 && minDeltaPhiCscDT < 3.2) || minDeltaPhiCscPair <= 0.3'),
     #cutString = cms.string('maxDeltaPhi >= 1.57 || maxDeltaJetPhi >= 1. || outerDT >= 1 || nCloseOuterAllBarrelRPCPairDeltaR0p2 >= 1 || NOuterCsc > 0'),
     numberRequired = cms.string('= 1'),

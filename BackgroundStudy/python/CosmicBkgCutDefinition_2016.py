@@ -11,16 +11,27 @@ untagged_cosmic_cut = cms.PSet(
     cuts = cms.VPSet()
 )
 
-untagged_cosmic_cut.cuts.append(cutCscSegNumber)
-untagged_cosmic_cut.cuts.append(cutOuterDT)
+# these  are old deprecated veto
+#untagged_cosmic_cut.cuts.append(cutCscSegNumber)
+#untagged_cosmic_cut.cuts.append(cutOuterDT)
+#untagged_cosmic_cut.cuts.append(cutDTPair)
+#untagged_cosmic_cut.cuts.append(cutMaxDeltaJetPhi)
+#untagged_cosmic_cut.cuts.append(newNOuterAllBarrelRPCHitsDeltaR)
+untagged_cosmic_cut.cuts.append(cutDummy)
+untagged_cosmic_cut.cuts.append(cutJetEta)
+untagged_cosmic_cut.cuts.append(cutNDTStation3)
+untagged_cosmic_cut.cuts.append(cutNDTStation4)
 untagged_cosmic_cut.cuts.append(cutDTPair)
-untagged_cosmic_cut.cuts.append(cutMaxDeltaJetPhi)
-untagged_cosmic_cut.cuts.append(newNOuterAllBarrelRPCHitsDeltaR)
+untagged_cosmic_cut.cuts.append(cutMaxDeltaJetPhiNoDTST4)
+untagged_cosmic_cut.cuts.append(cutCloseOuterAllDTPairDeltaPhi0p5)
+untagged_cosmic_cut.cuts.append(cutMinDeltaRDTST4RPCInner3Layers)
+untagged_cosmic_cut.cuts.append(newNOuterAllBarrelRPCHitsDeltaRDeltar)
 
 full_cosmics = cms.PSet(
     name = cms.string("fullCosmicsNoCutsOrHLTApplied"),
     triggers = cms.vstring(""), 
     cuts = cms.VPSet(
+        cutJetEta,
         )
 )
 ###########################################
@@ -31,7 +42,8 @@ CosmicSelection = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutCscSegNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
       cutNoise,
       cutJetEnergy,
       cutJetEta,
@@ -48,6 +60,6 @@ CosmicSelection = cms.PSet(
 )
 CosmicSelection.cuts.append(cutCosmics)
 CosmicSelection.cuts.append(cutNumberOfDT)
-CosmicSelection.cuts.append(cutMoreOuterDT)
+#CosmicSelection.cuts.append(cutMoreOuterDT)
 
 

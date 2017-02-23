@@ -3,14 +3,7 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2460
 
-#config_file = "CosmicBackground.py"
-config_file = "dumpCosmicBackground_NMinusOne.py"
-#config_file = "dumpCosmicBackground_CosmicMC.py"
-#config_file = "dumpStoppedParticlesAnalysis_RunningOnSignal.py"
-#config_file = "dump_StoppedParticlesAnalysis_EnergyScan.py"
-#config_file = "dumpStoppedParticlesAnalysis_TestCosmicControlSelection_skim.py"
-#config_file = "dumpCosmicBackground_CosmicMC_LeadingJet.py"
-#config_file = "dumpCosmicBackground_NMinusOne_LeadingJet.py"
+config_file = "CosmicBackground_2016.py"
 
 datasetsSig = [
   'GluinoToUUbarChi0_1200_200',
@@ -80,7 +73,9 @@ datasetsEnergyScanS1000 = [
 ]
 
 datasetsData = [
-  'NoBPTX_2015D',
+  #'NoBPTX_2015D',
+  'NoBPTX_Jet_2016BCD_ReReco'
+  #'NoBPTX_Jet_2016BCDEFGH_ReReco'
 ]
 
 #data control sample
@@ -148,12 +143,12 @@ datasetsRpcStudy = [
 #datasets = datasetsControlAllDatasets + datasetsAdditionalControlDatasets
 #datasets = ['NoBPTX_2015Dv4_controlSample']
 #datasets = ['NoBPTX_2015B_controlSample']
-datasets = datasetsControl
+#datasets = datasetsControl
 #datasets = datasetsAdditionalControlDatasets
 #datasets = datasetsEnergyScanG600
 #datasets = datasetsEnergyScanS400
 #datasets = datasetsData + datasetsEnergyScanG1200
-#datasets = datasetsData
+datasets = datasetsData
 #datasets = ['NoBPTX_2015D_v4']
 
 InputCondorArguments = {}
