@@ -717,6 +717,14 @@ cutJetN90LT2 = cms.PSet(
     alias = cms.string("n90$_{jet}$ < 2")
 )
 
+cutJetN90Eq2 = cms.PSet(
+    inputCollection = cms.vstring('eventvariables'),
+    cutString = cms.string('leadingJetN90 = 2'),
+    numberRequired = cms.string('= 1'),
+    alias = cms.string("n90$_{jet}$ = 2")
+)
+
+
 cutDTSegN1 = cms.PSet (
     inputCollection = cms.vstring("eventvariables"),
     cutString = cms.string("dtSegN = 1"),
