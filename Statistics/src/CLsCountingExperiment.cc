@@ -40,8 +40,8 @@ namespace {
 }
 
 
-CLsCountingExperiment::CLsCountingExperiment (double fBackground, double fBackgroundSigma, double fScale, double fScaleSigma) 
-  :  CountingExperiment (fBackground, fBackgroundSigma, fScale, fScaleSigma)
+CLsCountingExperiment::CLsCountingExperiment (double fBackground, double fBackgroundSigma, double fBackgroundN, double fBackgroundAlpha, double fScale, double fScaleSigma) 
+  :  CountingExperiment (fBackground, fBackgroundSigma, fBackgroundN, fBackgroundAlpha, fScale, fScaleSigma)
 {}
 
 CLsCountingExperiment::~CLsCountingExperiment() {}
@@ -104,7 +104,7 @@ double CLsCountingExperiment::cl95limit (int nObserved, bool fPlot) {
   return sThis*scale();
 }
 
-CountingExperiment* CLsCountingExperiment::clone(double fBackground, double fBackgroundSigma, double fScale, double fScaleSigma) const {
-  return new CLsCountingExperiment (fBackground, fBackgroundSigma, fScale, fScaleSigma);
+CountingExperiment* CLsCountingExperiment::clone(double fBackground, double fBackgroundSigma, double fBackgroundN, double fBackgroundAlpha, double fScale, double fScaleSigma) const {
+  return new CLsCountingExperiment (fBackground, fBackgroundSigma, fBackgroundN, fBackgroundAlpha, fScale, fScaleSigma);
 }
 

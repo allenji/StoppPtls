@@ -18,6 +18,8 @@ Experiment::Experiment(std::string filename) :
   signalEff_e(0.01),
   bgRate(1E-5),
   bgRate_e(0.2E-5),
+  bgN(-1.),
+  bgAlpha(-1.),
   scaleUncert(0.),
   optimizeTimeCut(false),
 
@@ -45,6 +47,8 @@ Experiment::Experiment(std::string filename) :
   expSignal_e(0.),
   expBackground(0.),
   expBackground_e(0.),
+  expBackground_N(-1.),
+  expBackground_Alpha(-1.),
   nObserved(0),
   nDecays_MC(0),
   nObs_MC(0),
@@ -85,6 +89,10 @@ Experiment::Experiment(std::string filename) :
 	value >> bgRate;
       else if (name == "bgRate_e")
 	value >> bgRate_e;
+      else if (name == "bgN")
+	value >> bgN;
+      else if (name == "bgAlpha")
+	value >> bgAlpha;
       else if (name == "scaleUncert")
 	value >> scaleUncert;
       else if (name == "optimizeTimeCut") {
@@ -152,6 +160,8 @@ void Experiment::summary(std::ostream& o) {
   o << expSignal << "\t";
   o << expBackground << "\t";
   o << expBackground_e << "\t";
+  o << expBackground_N << "\t";
+  o << expBackground_Alpha << "\t";
   o << nObserved << "\t";
   o << limit95cl << "\t";
   o << expLimit << "\t";
@@ -172,6 +182,8 @@ std::ostream &operator<<(std::ostream &o, const Experiment &e) {
   o << "Signal eff E     : " << e.signalEff_e << std::endl;
   o << "BG rate          : " << e.bgRate << std::endl;
   o << "BG rate E        : " << e.bgRate_e << std::endl;
+  o << "BG N             : " << e.bgN << std::endl;
+  o << "BG Alpha         : " << e.bgAlpha << std::endl;
   o << "Scale Uncert     : " << e.scaleUncert << std::endl;
   o << "Optimize tcut    : " << e.optimizeTimeCut << std::endl;
 
@@ -198,6 +210,8 @@ std::ostream &operator<<(std::ostream &o, const Experiment &e) {
   o << "N signal exp E   : "<< e.expSignal_e << std::endl;
   o << "N BG exp         : "<< e.expBackground << std::endl;
   o << "N BG exp E       : "<< e.expBackground_e << std::endl;
+  o << "N BG exp N       : "<< e.expBackground_N << std::endl;
+  o << "N BG exp Alpha   : "<< e.expBackground_Alpha << std::endl;
   o << "N Observed       : "<< e.nObserved << std::endl;
   o << "N decays MC      : "<< e.nDecays_MC << std::endl;
   o << "N obs MC         : "<< e.nObs_MC << std::endl;

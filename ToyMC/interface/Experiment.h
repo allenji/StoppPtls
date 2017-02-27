@@ -24,6 +24,8 @@ public:
   double signalEff_e;
   double bgRate;
   double bgRate_e;
+  double bgN;
+  double bgAlpha;
   double scaleUncert;
   bool optimizeTimeCut;
 
@@ -54,6 +56,8 @@ public:
   double expSignal_e;
   double expBackground;           // expected background scaled by lifetime hyposthesis
   double expBackground_e;
+  double expBackground_N;
+  double expBackground_Alpha;
   unsigned nObserved;             // analysis count (15 for 2012) scaled by lifetime hypothesis
   
   // Toy results

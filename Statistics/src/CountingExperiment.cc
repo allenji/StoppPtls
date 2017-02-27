@@ -100,9 +100,11 @@ namespace {
 }
 
 
-CountingExperiment::CountingExperiment (double fBackground, double fBackgroundSigma, double fScale, double fScaleSigma) 
+CountingExperiment::CountingExperiment (double fBackground, double fBackgroundSigma, double fBackgroundN, double fBackgroundAlpha, double fScale, double fScaleSigma) 
   : mBackground (fBackground),
     mBackgroundSigma (fBackgroundSigma),
+    mBackgroundN (fBackgroundN),
+    mBackgroundAlpha (fBackgroundAlpha),
     mScale (fScale),
     mScaleSigma (fScaleSigma)
 {}
@@ -133,6 +135,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha(), background());
 	//	std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
@@ -153,6 +156,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha(), background());
 	//	std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
@@ -208,7 +212,7 @@ double CountingExperiment::coverage (double fTrueSignal, double fPrecision) {
     while (bkg < 0) bkg = rndm.Gaus(background(), backgroundSigma());
     double scl = -1;
     while (scl < 1e-2) scl = rndm.Gaus(scale(), scaleSigma());
-    CountingExperiment* instance = clone (bkg, backgroundSigma(),scl, scaleSigma());
+    CountingExperiment* instance = clone (bkg, backgroundSigma(), backgroundN(), backgroundAlpha(), scl, scaleSigma());
     int nEvents = rndm.Poisson (nEventsTrue);
     double cl95Toy = instance->cl95limit (nEvents);
     delete instance;

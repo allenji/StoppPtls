@@ -5,6 +5,8 @@ signalEff                0.02469
 signalEff_e              0.0
 bgRate                   0.254e-05
 bgRate_e                 0.217e-05
+bgN			 1
+bgAlpha			 1
 scaleUncert              0.212
 optimizeTimeCut          1
 histFile                 /home/weifengji/StoppedParticles_Run2/SPAnalysis_2017_Jan11/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC_DelayedMuons/data/DelayedMuonToyMCLumiHist_2015.root
