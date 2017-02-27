@@ -31,7 +31,7 @@ weights = cms.VPSet (
 variableProducers = ["StoppPtlsEventVariableProducer"]
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
-from StoppPtls.BackgroundStudy.CosmicBkgCutDefinition_2016_SP import *
+from StoppPtls.BackgroundStudy.CosmicBkgCutDefinition_2016 import *
 from StoppPtls.BackgroundStudy.CosmicBkgHistogram import *
 #apply to cosmic MC
 selections_untagged = []

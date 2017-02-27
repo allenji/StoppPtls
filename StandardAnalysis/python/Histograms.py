@@ -1253,26 +1253,26 @@ OtherDtHistograms = cms.PSet(
         ),
         cms.PSet (
             name = cms.string("nDTStation3"),
-            title = cms.string("Number of DT Segments with in station 3; Number of Outer DT Segments"),
-            binsX = cms.untracked.vdouble(20, 0, 20),
+            title = cms.string("Number of DT Segments in station 3; Number of DT Segments in staion 3"),
+            binsX = cms.untracked.vdouble(15, 0, 15),
             inputVariables = cms.vstring("nDTStation3"),
         ),
         cms.PSet (
             name = cms.string("nDTStation4"),
-            title = cms.string("Number of DT Segments with in station 4; Number of Outer DT Segments"),
-            binsX = cms.untracked.vdouble(20, 0, 20),
+            title = cms.string("Number of DT Segments in station 4; Number of DT Segments in station 4"),
+            binsX = cms.untracked.vdouble(15, 0, 15),
             inputVariables = cms.vstring("nDTStation4"),
         ),
         cms.PSet (
             name = cms.string("closeOuterAllDTPairDeltaPhi0p5"),
-            title = cms.string("Number of close DT outer all pairs; Number of close DT outer all pairs with deltaR < 0.5"),
+            title = cms.string("Number of close DT outer-all pairs; Number of close DT outer-all pairs with #DeltaR < 0.5"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("closeOuterAllDTPairDeltaPhi0p5"),
         ),
         cms.PSet (
             name = cms.string("maxDeltaJetPhiNoDTST4"),
-            title = cms.string("max($#Delta#phi$(DT Segment$_{i}$(no st 4), Leading jet)); max($#Delta#phi$(DT Segment$_{i}$(no st 4), Leading jet))"),
-            binsX = cms.untracked.vdouble(32, 0, 32),
+            title = cms.string("Maximum DT Segment (station 1-3)-Jet #Delta#phi; Maximum DT Segment (station 1-3)-Jet #Delta#phi"),
+            binsX = cms.untracked.vdouble(32, 0, 3.2),
             inputVariables = cms.vstring("maxDeltaJetPhiNoDTST4"),
         ),
         cms.PSet (
@@ -1295,8 +1295,8 @@ OtherDtHistograms = cms.PSet(
         ),
         cms.PSet(
             name = cms.string("minDeltaRDTST4RPCInner3Layers"),
-            title = cms.string("minDeltaRDTST4RPCInner3Layers; minDeltaRDTST4RPCInner3Layers"),
-            binsX = cms.untracked.vdouble(40, 0, 10),
+            title = cms.string("minDeltaRDTST4RPCInner3Layers; Minimum DT (station 4) - RPC (station 1-3) #DeltaR"),
+            binsX = cms.untracked.vdouble(20, 0, 2),
             inputVariables = cms.vstring("minDeltaRDTST4RPCInner3Layers"),
         ),
         cms.PSet(
@@ -1495,7 +1495,7 @@ OtherRpcHistograms = cms.PSet(
         ),
         cms.PSet (
             name = cms.string("nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar"),
-            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaRDeltar < 0.2; Number of close outer barrel RPC pairs"),
+            title = cms.string("nCloseOuterAllBarrelRPCPairDeltaRDeltar < 0.2; Number of close outer-all barrel RPC pairs with #Deltar > 0.5m"),
             binsX = cms.untracked.vdouble(20, 0, 20),
             inputVariables = cms.vstring("nCloseOuterAllBarrelRPCPairDeltaR0p2Deltar"),
         ),
