@@ -105,10 +105,10 @@ void allInOneLifetime(double lumi=4560.) {
 
   //double mchamp2ref      = 4049;// gluino 400GeV 2016
   //double mchamp2ref      = 4049;// gluino 400GeV 2015 
-  //double mchamp2ref      = 1961;// gluino 1000GeV 2016  
-  //double mchamp2ref      = 1783;// gluino 1000GeV 2015 
-  //double mchamp2ref      = 986.2;// gluino 2600GeV 2016 
-  double mchamp2ref      = 1131;// gluino 2600GeV 2015    
+  //double mchamp2ref      = 1730;// gluino 1000GeV 2016  
+  //double mchamp2ref      = 1961;// gluino 1000GeV 2015 
+  double mchamp2ref      = 1131;// gluino 2600GeV 2016 
+  //double mchamp2ref      = 1012;// gluino 2600GeV 2015    
 
   cout << "scales: " << g_obs->GetY()[0] 
        << '/' <<g_obs_gluino->GetY()[0]
@@ -335,5 +335,5 @@ void allInOneLifetime(double lumi=4560.) {
 
   CMS_lumi(canvas, iPeriod, iPos);
 
-  canvas->Print("allInOneLifetime_2015gluino_2600GeV.pdf");
+  canvas->Print("allInOneLifetime_2016gluino_2600GeV.pdf");
 }
