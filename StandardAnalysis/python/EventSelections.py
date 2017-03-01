@@ -532,42 +532,69 @@ noiseRBXRiched = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      #cutTowerIPhiNoise,
       cutHpdR2Noise,
-      #cutDeltaMinCscJet,
-      #cutJetEnergy,
       cutJetEta,
-      #cutMaxiEtaDiffSameiRbxGeq11,
-      #cutNoDT,
-      #cutBeamHaloFilter2016Tight,
       cutJetN90LT2,
       cutNoBeamHaloCscNearJet,
-      #cutDTSegN1,
-      #newNOuterAllBarrelRPCHitsDeltaREq1,
+    )
+)
+
+noiseRBXRiched_oldHaloVeto = cms.PSet(
+    name = cms.string("noiseRBXRichedOldHaloVeto"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHpdR2Noise,
+      cutJetEta,
+      cutJetN90LT2,
+      cutNoBeamHaloCscNearJet,
+      cutCscSegNumber,
+    )
+)
+
+noiseRBXRiched_newHaloVeto = cms.PSet(
+    name = cms.string("noiseRBXRichedNewHaloVeto"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHpdR2Noise,
+      cutJetEta,
+      cutJetN90LT2,
+      cutNoBeamHaloCscNearJet,
+      cutHavingNoCscSegNHit56,
+    )
+)
+
+noiseRBXRiched_newHaloVetoSyst = cms.PSet(
+    name = cms.string("noiseRBXRichedNewHaloVetoSyst"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHpdR2Noise,
+      cutJetEta,
+      cutJetN90Eq2,
+      cutNoBeamHaloCscNearJet,
+      cutHavingNoCscSegNHit56,
+    )
+)
+
+noiseRBXRiched_oldCosmicVeto = cms.PSet(
+    name = cms.string("noiseRBXRichedOldCosmicVeto"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutHpdR2Noise,
+      cutJetEta,
+      cutJetN90LT2,
+      cutNoBeamHaloCscNearJet,
       cutOuterDT,
       cutDTPair,
       cutMaxDeltaJetPhi,
       newNOuterAllBarrelRPCHitsDeltaR,
-      #cutCscSegNumber,
-      #cutMinDeltaPhiCscJet,
-      #cutMaxDeltaPhiCscDt,
-      #cutMaxDeltaPhiCscPair, 
-      #cutMinDeltaPhiOuterCscJet,
-      #cutCscSegNumber,
-      #cutHavingNoCscSegNHit56,
-      #cutCscRDT400,
-      #cutOneCscSeg,
-      #cutNoDT,
-      #cutNDTStation3,
-      #cutNDTStation4,
-      #cutDTPair,
-      #cutMaxDeltaJetPhi,
-      #cutMaxDeltaJetPhiNoDTST4,
-      #cutCloseOuterAllDTPairDeltaPhi0p5,
-      #cutMinDeltaRDTST4RPCInner3Layers,
-      #cutMinDeltaROuterRpcInnerDT,
-      #newNOuterAllBarrelRPCHitsDeltaR,
-      #newNOuterAllBarrelRPCHitsDeltaRDeltar,
     )
 )
 
