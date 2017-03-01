@@ -882,7 +882,7 @@ DeltaDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("resolution_qOverPt"),
             title = cms.string("DSA Track q/p_{T} Resolution; DSA Track q/p_{T} Resolution"),
-            binsX = cms.untracked.vdouble(120, -3, 3),
+            binsX = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
             ),
 
@@ -1078,6 +1078,13 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             inputVariables = cms.vstring("track.p","track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
+            name = cms.string("pUpper_resolution_qOverPt"),
+            title = cms.string("Upper DSA Track p vs q/p_{T} Resolution; Upper DSA Track p [eV]; DSA Track q/p_{T} Resolution"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("track.p","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
+            ),
+        cms.PSet (
             name = cms.string("ptUpper_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Upper DSA Track p_{T} vs #Delta DSA Track TimeInOut; Upper DSA Track p_{T} [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
@@ -1104,6 +1111,13 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("track.pt","track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("ptUpper_resolution_qOverPt"),
+            title = cms.string("Upper DSA Track p_{T} vs q/p_{T} Resolution; Upper DSA Track p_{T} [eV]; DSA Track q/p_{T} Resolution"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("track.pt","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
             ),
         )
     )
@@ -1140,6 +1154,13 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             inputVariables = cms.vstring("secondaryTrack.p","track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
+            name = cms.string("pLower_resolution_qOverPt"),
+            title = cms.string("Lower DSA Track p vs q/p_{T} Resolution; Lower DSA Track p [eV]; DSA Track q/p_{T} Resolution"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("secondaryTrack.p","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
+            ),
+        cms.PSet (
             name = cms.string("ptLower_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Lower DSA Track p_{T} vs #Delta DSA Track TimeInOut; Lower DSA Track p_{T} [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
@@ -1166,6 +1187,13 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("secondaryTrack.pt","track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("ptLower_resolution_qOverPt"),
+            title = cms.string("Lower DSA Track p_{T} vs q/p_{T} Resolution; Lower DSA Track p_{T} [eV]; DSA Track q/p_{T} Resolution"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(100, -10, 10),
+            inputVariables = cms.vstring("secondaryTrack.pt","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
             ),
         )
     )
