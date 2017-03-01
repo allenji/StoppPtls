@@ -463,6 +463,13 @@ cutHpdR2Noise = cms.PSet(
     alias = cms.string("$R_{2}$ < 0.075")
 )
 
+cutHpdRPeakNoise = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("topHPD5RPeak > 0.8"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("$R_{Peak}$ > 0.8")
+)
+
 cutCscSegNumberOne = cms.PSet(
     inputCollection = cms.vstring("cscsegs"),
     cutString = cms.string("nHits > -1"),
@@ -514,9 +521,9 @@ cutNoCscSegJetDeltaPhi0p2MinZ = cms.PSet(
 
 cutCscSegNLayersNearJets = cms.PSet(
     inputCollection = cms.vstring("eventvariables"),
-    cutString = cms.string("nLayersNearJetDeltaPhi0p2 >= 3"),
+    cutString = cms.string("nLayersNearJetDeltaPhi0p2 >= 2"),
     numberRequired = cms.string("= 1"),
-    alias = cms.string("nCscLayersNearJetDeltaPhi0p2 >= 3")
+    alias = cms.string("nCscLayersNearJetDeltaPhi0p2 >= 2")
 )
 
 cutBeam1 = cms.PSet (
@@ -805,3 +812,11 @@ cutNDTWhl0Seg10 = cms.PSet(
     cutString = cms.string('nDTWhl0Seg10 > 0'),
     numberRequired = cms.string('= 1'),
 )
+
+cutPassNoiseTowerFraction = cms.PSet(
+    inputCollection = cms.vstring("events"),
+    cutString = cms.string("leadingIPhiFractionValue >= 0.95"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("$E_{i\phi}/E_{jet}$ >= 0.95")
+)
+

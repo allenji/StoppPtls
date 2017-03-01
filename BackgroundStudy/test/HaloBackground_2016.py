@@ -29,7 +29,7 @@ from StoppPtls.Collection.frmwrkCollectionMap_cfi import collectionMap_Custom
 weights = cms.VPSet (
     )
 
-variableProducers = ["StoppPtlsEventVariableProducer"]
+variableProducers = ["StoppPtlsLivetimeEventVariableProducer"]
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
 from StoppPtls.BackgroundStudy.HaloBkgCutDefinition_2016 import *
@@ -60,5 +60,5 @@ scalingfactorproducers = []
 
 add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
-process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
+process.StoppPtlsLivetimeEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
