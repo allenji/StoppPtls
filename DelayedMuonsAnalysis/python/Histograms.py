@@ -265,7 +265,7 @@ UpperDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("qOverPt"),
             title = cms.string("Upper DSA Track q/p_{T}; Upper DSA Track q/p_{T}"),
-            binsX = cms.untracked.vdouble(100, -5, 5),
+            binsX = cms.untracked.vdouble(100, -0.2, 0.2),
             inputVariables = cms.vstring("1.0*charge/pt"),
             ),
         cms.PSet (
@@ -541,7 +541,7 @@ LowerDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("qOverPt"),
             title = cms.string("Lower DSA Track q/p_{T}; Lower DSA Track q/p_{T}"),
-            binsX = cms.untracked.vdouble(100, -5, 5),
+            binsX = cms.untracked.vdouble(100, -0.2, 0.2),
             inputVariables = cms.vstring("1.0*charge/pt"),
             ),
         cms.PSet (
