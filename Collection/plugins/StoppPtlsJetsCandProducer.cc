@@ -52,6 +52,7 @@ StoppPtlsJetsCandProducer::~StoppPtlsJetsCandProducer()
 void
 StoppPtlsJetsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+  //std::cout<<"starting produce of StoppPtlsJetsCandProducer"<<std::endl;
   //doCscHits(iEvent, iSetup);
   doCscSegments(iEvent, iSetup);
   doMuonDTs(iEvent, iSetup);

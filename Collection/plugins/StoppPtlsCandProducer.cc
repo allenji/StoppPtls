@@ -79,6 +79,7 @@ StoppPtlsCandProducer::~StoppPtlsCandProducer()
 void
 StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+  //std::cout<<"starting produce of StoppPtlsCandProducer"<<std::endl;
   doEvents(iEvent, iSetup);
 
   //if (isMC_){
@@ -204,7 +205,9 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   }
   edm::Handle<CaloJetCollection> calojets;
   iEvent.getByToken(jetToken_, calojets);
+
   if (calojets.isValid()) {
+    std::cout<<"got calojets collection is valid"<<std::endl;
     vector<CaloJet> jets;
     jets.insert(jets.end(), calojets->begin(), calojets->end());
     sort(jets.begin(), jets.end(), jete_gt());
@@ -228,11 +231,13 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
           candjets->push_back(candjet);
         }
         for (int i = 0; i< it->nConstituents(); ++i){
-          CaloTowerPtr tower = it->getCaloConstituent(i);
-          if(tower->energy() > towerMinEnergy_ && fabs(tower->eta()) < towerMaxEta_) {
-            if (tower_N < 100) {
-              tmp.at(tower->iphi()) += tower->energy();
-            }
+	  if (caloTowers.isValid()) {
+	    CaloTowerPtr tower = it->getCaloConstituent(i);
+	    if(tower->energy() > towerMinEnergy_ && fabs(tower->eta()) < towerMaxEta_) {
+	      if (tower_N < 100) {
+		tmp.at(tower->iphi()) += tower->energy();
+	      }
+	    }
           }
         }//loop over towers
       }
@@ -249,6 +254,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else {
     edm::LogWarning("MissingProduct") << "CaloJets not found";
   }
+
   /***************************end doGlobalCalo*********************************/
   edm::Handle<reco::VertexCollection> recoVertices;
   iEvent.getByToken(verticesToken_, recoVertices);
@@ -275,6 +281,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else {
     edm::LogWarning("MissingProduct") << "No noise result filter flag in the event";
   }
+
   /**************************begin halo filter result *************************/
   edm::Handle<reco::BeamHaloSummary> beamHaloSummary;
   iEvent.getByToken(beamHaloSummaryToken_ , beamHaloSummary);
@@ -313,7 +320,6 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else {
     edm::LogWarning("MissingProduct") << "No beam halo filter result in the event";
   }
-
 
   /**************************begin adding pulse shape**************************/
   edm::Handle<HcalNoiseRBXCollection> rbxs;
@@ -360,7 +366,6 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   
   events->push_back(event);
   iEvent.put(events);
-  
  
 }
 
