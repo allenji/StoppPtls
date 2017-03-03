@@ -9,12 +9,18 @@ intLumi = 2830
 #config_file = "delayedMuonsCandiate_cfg.py"
 
 #config_file = "delayedMuonsCandiate2016_OnlyControlTriggers_cfg.py"
-config_file = "delayedMuonsCandiate2016_OnlyControlTriggers_23Sep2016BCDEFGReReco_cfg.py"
+#config_file = "delayedMuonsCandiate2016_OnlyControlTriggers_23Sep2016BCDEFGReReco_cfg.py"
 #config_file = "delayedMuonsCandiate2016_OnlyControlTriggers_PromptRecoH_cfg.py"
 
+#config_file = "delayedMuonsCandiate2016_OnlyJetTriggers_23Sep2016BCDEFGReReco_cfg.py"
+config_file = "delayedMuonsCandiate2016_OnlyJetTriggers_PromptRecoH_cfg.py"
+
 datasets = [
-    "NoBPTX_2016BCDEFG_23Sep2016",
+    #"NoBPTX_2016BCDEFG_23Sep2016",
     #"NoBPTX_2016H_PromptReco",
+
+    "NoBPTX_2016H_PromptReco_AOD_v2",
+    "NoBPTX_2016H_PromptReco_AOD_v3",
 
     #"NoBPTX_16Dec2015",
 
