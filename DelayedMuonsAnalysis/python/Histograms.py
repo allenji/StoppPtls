@@ -1079,7 +1079,7 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("pUpper_resolution_qOverPt"),
-            title = cms.string("Upper DSA Track p vs q/p_{T} Resolution; Upper DSA Track p [eV]; DSA Track q/p_{T} Resolution"),
+            title = cms.string("Upper DSA Track p vs q/p_{T} Resolution; Upper DSA Track p [GeV]; DSA Track q/p_{T} Resolution"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("track.p","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
@@ -1114,7 +1114,7 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("ptUpper_resolution_qOverPt"),
-            title = cms.string("Upper DSA Track p_{T} vs q/p_{T} Resolution; Upper DSA Track p_{T} [eV]; DSA Track q/p_{T} Resolution"),
+            title = cms.string("Upper DSA Track p_{T} vs q/p_{T} Resolution; Upper DSA Track p_{T} [GeV]; DSA Track q/p_{T} Resolution"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("track.pt","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
@@ -1155,7 +1155,7 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("pLower_resolution_qOverPt"),
-            title = cms.string("Lower DSA Track p vs q/p_{T} Resolution; Lower DSA Track p [eV]; DSA Track q/p_{T} Resolution"),
+            title = cms.string("Lower DSA Track p vs q/p_{T} Resolution; Lower DSA Track p [GeV]; DSA Track q/p_{T} Resolution"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("secondaryTrack.p","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
@@ -1190,7 +1190,7 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("ptLower_resolution_qOverPt"),
-            title = cms.string("Lower DSA Track p_{T} vs q/p_{T} Resolution; Lower DSA Track p_{T} [eV]; DSA Track q/p_{T} Resolution"),
+            title = cms.string("Lower DSA Track p_{T} vs q/p_{T} Resolution; Lower DSA Track p_{T} [GeV]; DSA Track q/p_{T} Resolution"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("secondaryTrack.pt","((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
