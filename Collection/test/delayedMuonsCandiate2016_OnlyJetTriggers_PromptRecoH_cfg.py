@@ -13,7 +13,7 @@ process.load("Configuration.StandardSequences.Reconstruction_cff")
 process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (1000)
     #input = cms.untracked.int32 (-1)
 )
 
@@ -49,9 +49,10 @@ process.muontiming.TimingFillerParameters.DTTimingParameters.PruneCut = cms.doub
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
-process.candidateDelayedMuons.timeTag = cms.InputTag ("muontiming","dt")
+#process.candidateDelayedMuons.timeTag = cms.InputTag ("muontiming","dt")
 process.eventproducer = cms.Path(
-    process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
+    #process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
+    process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons #removed muontiming because was getting an error when running over aod
     )
 
 # Apply lumi mask; comment out to process all events  

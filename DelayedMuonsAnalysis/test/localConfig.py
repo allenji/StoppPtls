@@ -79,6 +79,8 @@ datasetsData = [
     #'NoBPTX_2016H_23Sep2016_Ntuple_v2',
     #'NoBPTX_2016H_23Sep2016_Ntuple_v3',
 
+    #'NoBPTX_2016BCDEFGH_23Sep2016_OnlyJetTriggers_Ntuple', #2016 rereco with only jet triggers
+
     #'NoBPTX_2016BCDEFGH_23Sep2016_OnlyControlTriggers_Ntuple', #2016 rereco with only control triggers
 
     #'NoBPTX_2016BCDEFGH_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
@@ -111,6 +113,7 @@ datasets = datasetsSig + datasetsData + datasetsCosmicData + datasetsCosmicMC
 #datasets = datasetsData
 #datasets = datasetsCosmicData
 #datasets = datasetsCosmicMC
+#datasets = datasetsCosmicMC + datasetsCosmicData
 #datasets = datasetsCosmicMC + datasetsData
 #datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
 #datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
