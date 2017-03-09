@@ -54,28 +54,36 @@ for dataset in datasets:
         (numC, errC) = getYield(dataset,condor_dir, regionC)
         (numD, errD) = getYield(dataset,condor_dir, regionD)
 
+        errC_plus = errC
+        errC_minum = errC
+
         print "/////////////////////////////////////////////////////////////////////"
         print "for " + dataset + ", "
         print "  \Delta RPC Hit BX Average cut at -0.3, "
         print "   and upper DSA p threshold " + str(pt) + " GeV:"
-        print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
-        print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
-        print "number of events in region C is: " + str(int(numC)) + " +/- " + str("%.1f" % errC)
-        if blinded!=True: print "number of events in region D is: " + str(int(numD)) + " +/- " + str("%.1f" % errD)
+
+        if numC==0.:
+            numC = 0.000001
+            errC_plus = 1.8 #poisson error
+            errC_minus = 1.8
+            print "numC is 0 +/- 1.8, need to model as gamma function"
+        if numC==1.:
+            errC_plus = 2.3
+            errC_minus = 0.8
+            print "numC is 1 +2.3 -0.8"
 
         if numA!=0.:
             background_estimate = 1.0*numB*numC/numA
         else:
             print "numA is zero!!!"
 
-        if numC==0.:
-            background_error = 0.0
-            print "numC is 0, so background error is 0, need to model as gamma function"
-        if numC==1.:
-            background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB) ))
-            print "numC is 1, so background error is only error on numA and numB"
-        if numC>1.:
-            background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC/numC)*(errC/numC) ))
+        print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
+        print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
+        #print "number of events in region C is: " + str(int(numC)) + " + " + str("%.1f" % errC_plus) + " - " + str("%.1f" % errC_minus)
+        print "number of events in region C is: " + str((numC)) + " + " + str("%.1f" % errC_plus) + " - " + str("%.1f" % errC_minus)
+        if blinded!=True: print "number of events in region D is: " + str(int(numD)) + " +/- " + str("%.1f" % errD)
+
+        background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_plus/numC)*(errC_minus/numC) ))
         print "background estimate (B*C/A) is: " + str("%.2f" % background_estimate) + " +/- " + str("%.2f" % background_error)
         print "/////////////////////////////////////////////////////////////////////"
 print "done"
