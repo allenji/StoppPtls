@@ -83,8 +83,8 @@ for dataset in datasets:
         print "number of events in region C is: " + str((numC)) + " + " + str("%.1f" % errC_plus) + " - " + str("%.1f" % errC_minus)
         if blinded!=True: print "number of events in region D is: " + str(int(numD)) + " +/- " + str("%.1f" % errD)
 
-        background_error = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_plus/numC)*(errC_minus/numC) ))
-        print "background estimate (B*C/A) is: " + str("%.2f" % background_estimate) + " +/- " + str("%.2f" % background_error)
+        background_error_plus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_plus/numC)*(errC_plus/numC) ))
+        background_error_minus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_minus/numC)*(errC_minus/numC) ))
+        print "background estimate (B*C/A) is: " + str("%.2f" % background_estimate) + " + " + str("%.2f" % background_error_plus) + " - " + str("%.2f" % background_error_minus)
         print "/////////////////////////////////////////////////////////////////////"
 print "done"
-
