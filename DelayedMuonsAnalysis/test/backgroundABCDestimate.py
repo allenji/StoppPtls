@@ -36,11 +36,13 @@ else:
 
 blinded = arguments.blinded
 
-pt_threshold = [63, 65, 100, 150, 200]
+#pt_threshold = [63, 65, 100, 150, 200]
 #pt_threshold = [63, 65, 70, 90, 100]
-#pt_threshold = [110, 120, 130, 150] 
+#pt_threshold = [70, 90, 110, 120]
+#pt_threshold = [110, 120, 130, 160, 170] 
+#pt_threshold = [130, 160, 170, 190]
 #pt_threshold = [160, 170, 190, 200]
-#pt_threshold = [230, 240, 260, 290]
+pt_threshold = [190, 230, 240, 260, 290]
 
 
 for dataset in datasets:
@@ -65,8 +67,8 @@ for dataset in datasets:
         if numC==0.:
             numC = 0.000001
             errC_plus = 1.8 #poisson error
-            errC_minus = 1.8
-            print "numC is 0 +/- 1.8, need to model as gamma function"
+            errC_minus = 0
+            print "numC is 0 + 1.8, need to model as gamma function"
         if numC==1.:
             errC_plus = 2.3
             errC_minus = 0.8
