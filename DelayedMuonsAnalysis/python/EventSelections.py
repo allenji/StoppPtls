@@ -137,6 +137,31 @@ PreSelectionUpperLowerTurnOnNum40.name = cms.string("PreSelectionUpperLowerTurnO
 PreSelectionUpperLowerTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
 
 
+LooseTurnOnDen = cms.PSet(
+    name = cms.string("LooseTurnOnDen"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAsUpperOnly,
+      #cutPreDSAUpperOnly, #remove requirement that track is in upper hemisphere
+      cutPreDSAPtUpperOnly,
+      cutPreDSAAtLeast4DtChambersWithValidHitsUpperOnly,
+      cutPreDSANValidRpcHitsUpperOnly,
+      cutPreDSANValidCscHitsUpperOnly,
+      )
+    )
+
+#For HLT turn-on curve: numerator is preselection plus signal trigger
+LooseTurnOnNum35 = copy.deepcopy(LooseTurnOnDen)
+LooseTurnOnNum35.name = cms.string("LooseTurnOnNum35")
+LooseTurnOnNum35.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v")
+
+#For HLT turn-on curve: numerator is preselection plus signal trigger
+LooseTurnOnNum40 = copy.deepcopy(LooseTurnOnDen)
+LooseTurnOnNum40.name = cms.string("LooseTurnOnNum40")
+LooseTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
+
 
 
 #full analysis selection
@@ -187,6 +212,40 @@ DelayedMuonsUpperLowerSelectionRegionCD.name = cms.string("DelayedMuonsUpperLowe
 DelayedMuonsUpperLowerSelectionRegionCD.cuts.append(cutUpperLowerDSADeltaRpcHitBxAverage)
 
 #now split into 4 regions (A,B,C,D) by applying the various p cuts
+DelayedMuonsUpperLowerSelectionRegionAUpperP55 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionAB)
+DelayedMuonsUpperLowerSelectionRegionAUpperP55.name = cms.string("DelayedMuonsUpperLowerSelectionRegionAUpperP55")
+DelayedMuonsUpperLowerSelectionRegionAUpperP55.cuts.append(cutUpperLowerDSAUpperP55Inverted)
+
+DelayedMuonsUpperLowerSelectionRegionBUpperP55 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionAB)
+DelayedMuonsUpperLowerSelectionRegionBUpperP55.name = cms.string("DelayedMuonsUpperLowerSelectionRegionBUpperP55")
+DelayedMuonsUpperLowerSelectionRegionBUpperP55.cuts.append(cutUpperLowerDSAUpperP55)
+
+DelayedMuonsUpperLowerSelectionRegionCUpperP55 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionCD)
+DelayedMuonsUpperLowerSelectionRegionCUpperP55.name = cms.string("DelayedMuonsUpperLowerSelectionRegionCUpperP55")
+DelayedMuonsUpperLowerSelectionRegionCUpperP55.cuts.append(cutUpperLowerDSAUpperP55Inverted)
+
+DelayedMuonsUpperLowerSelectionRegionDUpperP55 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionCD)
+DelayedMuonsUpperLowerSelectionRegionDUpperP55.name = cms.string("DelayedMuonsUpperLowerSelectionRegionDUpperP55")
+DelayedMuonsUpperLowerSelectionRegionDUpperP55.cuts.append(cutUpperLowerDSAUpperP55)
+
+
+DelayedMuonsUpperLowerSelectionRegionAUpperP60 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionAB)
+DelayedMuonsUpperLowerSelectionRegionAUpperP60.name = cms.string("DelayedMuonsUpperLowerSelectionRegionAUpperP60")
+DelayedMuonsUpperLowerSelectionRegionAUpperP60.cuts.append(cutUpperLowerDSAUpperP60Inverted)
+
+DelayedMuonsUpperLowerSelectionRegionBUpperP60 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionAB)
+DelayedMuonsUpperLowerSelectionRegionBUpperP60.name = cms.string("DelayedMuonsUpperLowerSelectionRegionBUpperP60")
+DelayedMuonsUpperLowerSelectionRegionBUpperP60.cuts.append(cutUpperLowerDSAUpperP60)
+
+DelayedMuonsUpperLowerSelectionRegionCUpperP60 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionCD)
+DelayedMuonsUpperLowerSelectionRegionCUpperP60.name = cms.string("DelayedMuonsUpperLowerSelectionRegionCUpperP60")
+DelayedMuonsUpperLowerSelectionRegionCUpperP60.cuts.append(cutUpperLowerDSAUpperP60Inverted)
+
+DelayedMuonsUpperLowerSelectionRegionDUpperP60 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionCD)
+DelayedMuonsUpperLowerSelectionRegionDUpperP60.name = cms.string("DelayedMuonsUpperLowerSelectionRegionDUpperP60")
+DelayedMuonsUpperLowerSelectionRegionDUpperP60.cuts.append(cutUpperLowerDSAUpperP60)
+
+
 DelayedMuonsUpperLowerSelectionRegionAUpperP63 = copy.deepcopy(DelayedMuonsUpperLowerSelectionRegionAB)
 DelayedMuonsUpperLowerSelectionRegionAUpperP63.name = cms.string("DelayedMuonsUpperLowerSelectionRegionAUpperP63")
 DelayedMuonsUpperLowerSelectionRegionAUpperP63.cuts.append(cutUpperLowerDSAUpperP63Inverted)
