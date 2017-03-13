@@ -169,11 +169,11 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
     for (DTRecSegment4DCollection::const_iterator segment4D = range.first;
         segment4D!=range.second;
         ++segment4D){
-      //skip invalid values
-      //if((*chamberId).station() != 4 &&
-          //(*segment4D).dimension() != 4) continue;
-      //if((*chamberId).station() == 4 &&
-          //(*segment4D).dimension() != 2) continue;
+      skip invalid values
+      if((*chamberId).station() != 4 &&
+          (*segment4D).dimension() != 4) continue;
+      if((*chamberId).station() == 4 &&
+          (*segment4D).dimension() != 2) continue;
 
       const GeomDet* gdet=dtGeom->idToDet(segment4D->geographicalId());
       const BoundPlane& DTSurface = gdet->surface();
