@@ -112,6 +112,7 @@ selections = []
 #selections.append(PreSelectionUpperLowerTurnOnNum35)
 #selections.append(PreSelectionUpperLowerTurnOnNum40)
 #selections.append(PrePreSelection)
+#selections.append(PrePreSelectionUpperLower)
 #selections.append(PreSelectionUpperOnly)
 #selections.append(PreSelectionUpperLower)
 #selections.append(PreSelectionUpperLowerNoTrigger)

@@ -69,6 +69,19 @@ PrePreSelection = cms.PSet(
       )
 )
 
+PrePreSelectionUpperLower = cms.PSet(
+    name = cms.string("PrePreSelectionUpperLower"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAs,
+      cutPreDSAUpperAndLower,
+      cutPreDSAPt,
+      )
+)
+
 #Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
 PreSelectionUpperOnly = cms.PSet(
