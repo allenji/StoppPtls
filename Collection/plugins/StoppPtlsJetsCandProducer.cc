@@ -169,7 +169,7 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
     for (DTRecSegment4DCollection::const_iterator segment4D = range.first;
         segment4D!=range.second;
         ++segment4D){
-      skip invalid values
+      //skip invalid values
       if((*chamberId).station() != 4 &&
           (*segment4D).dimension() != 4) continue;
       if((*chamberId).station() == 4 &&
