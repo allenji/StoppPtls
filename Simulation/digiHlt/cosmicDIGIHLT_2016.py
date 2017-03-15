@@ -24,6 +24,12 @@ process.load('HLTrigger.Configuration.HLT_25ns10e33_v2_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
+process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
+process.MessageLogger.categories.append('L1GtTrigReport')
+process.MessageLogger.categories.append('L1TGlobalSummary')
+process.MessageLogger.categories.append('HLTrigReport')
+process.MessageLogger.categories.append('FastReport')
+
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(102)
 )
@@ -56,7 +62,7 @@ process.source = cms.Source("PoolSource",
 )
 
 process.options = cms.untracked.PSet(
-
+    wantSummary = cms.untracked.bool( True ),
 )
 
 # Production Info
