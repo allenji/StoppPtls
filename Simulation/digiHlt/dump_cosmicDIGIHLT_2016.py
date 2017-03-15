@@ -17,8 +17,8 @@ process = cms.Process("HLT")
 process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
     fileNames = cms.untracked.vstring(#'file:/data/users/jalimena/condor/Stage2GenSimGluinosSeparateEventsParticle0/gluino2000/hist_0.root'
-'file:/mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/CosmicMu_GEN_SIM_999.root'
-),
+        'file:/mnt/hadoop/se/store/user/jalimena/Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_7122_V5/161118_091353/0000/CosmicMu_GEN_SIM_999.root'
+        ),
     inputCommands = cms.untracked.vstring('keep *', 
         #'drop *_genParticles_*_*', 
         'drop *_genParticlesForJets_*_*', 
@@ -15462,7 +15462,7 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 process.options = cms.untracked.PSet(
-
+    wantSummary = cms.untracked.bool(True)
 )
 
 process.pileupVtxDigitizer = cms.PSet(
@@ -18630,7 +18630,7 @@ process.gmtStage2Raw = cms.EDProducer("L1TDigiToRaw",
 process.gtStage2Raw = cms.EDProducer("L1TDigiToRaw",
     EGammaInputTag = cms.InputTag("simCaloStage2Digis"),
     EtSumInputTag = cms.InputTag("simCaloStage2Digis"),
-    ExtInputTag = cms.InputTag("simGtStage2Digis"),
+    ExtInputTag = cms.InputTag("simGtExtFakeStage2Digis"),
     FWId = cms.uint32(1),
     FedId = cms.int32(1404),
     GtInputTag = cms.InputTag("simGtStage2Digis"),
@@ -48778,14 +48778,6 @@ process.simMuonDTDigis = cms.EDProducer("DTDigitizer",
         offset = cms.double(500.0)
     ),
     vPropWire = cms.double(24.4)
-)
-
-
-process.simMuonQualityAdjusterDigis = cms.EDProducer("L1TMuonQualityAdjuster",
-    bmtfBxOffset = cms.int32(0),
-    bmtfInput = cms.InputTag("simBmtfDigis","BMTF"),
-    emtfInput = cms.InputTag("simEmtfDigis","EMTF"),
-    omtfInput = cms.InputTag("simOmtfDigis","OMTF")
 )
 
 
@@ -88726,7 +88718,7 @@ process.HLTBeginSequenceL1Fat = cms.Sequence(process.hltTriggerType+process.hltL
 process.HLTL3muonHcalPFisorecoSequenceNoBoolsForMuons = cms.Sequence(process.HLTPFHcalClusteringForMuons+process.hltMuonHcalPFClusterIsoForMuons)
 
 
-process.SimL1TMuon = cms.Sequence(process.SimL1TMuonCommon+process.simTwinMuxDigis+process.simBmtfDigis+process.simEmtfDigis+process.simOmtfDigis+process.simGmtCaloSumDigis+process.simMuonQualityAdjusterDigis+process.simGmtStage2Digis)
+process.SimL1TMuon = cms.Sequence(process.SimL1TMuonCommon+process.simTwinMuxDigis+process.simBmtfDigis+process.simEmtfDigis+process.simOmtfDigis+process.simGmtCaloSumDigis+process.simGmtStage2Digis)
 
 
 process.HLTTrackReconstructionForIsoHighPtTkMuIter02 = cms.Sequence(process.HLTPixelTrackingHighPtTkMuIso+process.HLTDoLocalStripSequence+process.HLTIterativeTrackingHighPtTkMuIsoIter02+process.hltHighPtTkMuRelIsolationsIterTrkRegIter02)
@@ -91287,7 +91279,12 @@ process.MessageLogger = cms.Service("MessageLogger",
     categories = cms.untracked.vstring('FwkJob', 
         'FwkReport', 
         'FwkSummary', 
-        'Root_NoDictionary'),
+        'Root_NoDictionary', 
+        'TriggerSummaryProducerAOD', 
+        'L1GtTrigReport', 
+        'L1TGlobalSummary', 
+        'HLTrigReport', 
+        'FastReport'),
     cerr = cms.untracked.PSet(
         FwkJob = cms.untracked.PSet(
             limit = cms.untracked.int32(0),
@@ -92139,7 +92136,7 @@ process.L1TGlobalPrescalesVetos = cms.ESProducer("L1TGlobalPrescalesVetosESProdu
     AlgoBxMaskDefault = cms.int32(1),
     AlgoBxMaskXMLFile = cms.string('UGT_BASE_RS_ALGOBX_MASK_V1.xml'),
     FinOrMaskXMLFile = cms.string('UGT_BASE_RS_FINOR_MASK_v17.xml'),
-    PrescaleXMLFile = cms.string('UGT_BASE_RS_PRESCALES_v10.xml'),
+    PrescaleXMLFile = cms.string('UGT_BASE_RS_PRESCALES_v11.xml'),
     TriggerMenuLuminosity = cms.string('startup'),
     Verbosity = cms.int32(0),
     VetoMaskXMLFile = cms.string('UGT_BASE_RS_VETO_MASK_v1.xml')
@@ -92427,7 +92424,7 @@ process.caloStage2Params = cms.ESProducer("L1TCaloStage2ParamsESProducer",
     egTrimmingLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/egTrimmingLUT_10_v16.01.19.txt'),
     etSumEcalSumPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
     etSumEtThreshold = cms.vdouble(0.0, 30.0, 0.0, 30.0, 0.0),
-    etSumEtaMax = cms.vint32(28, 28, 28, 28, 28),
+    etSumEtaMax = cms.vint32(28, 28, 28, 28, 27),
     etSumEtaMin = cms.vint32(1, 1, 1, 1, 1),
     etSumEttPUSLUTFile = cms.FileInPath('L1Trigger/L1TCalorimeter/data/lut_etSumPUS_dummy.txt'),
     etSumLsb = cms.double(0.5),
