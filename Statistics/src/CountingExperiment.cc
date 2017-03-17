@@ -118,6 +118,9 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   std::vector <double> vLimit;
   int maxNegBckg = int(floor(background()));
   double precision = 1.e-3*ROOT::Math::poisson_pdf(maxNegBckg, background());
+  if (fabs(backgroundN())< 0.01) {
+    precision = 1.e-10*ROOT::Math::poisson_pdf(maxNegBckg, background());
+  }
   double sumAll = 0;
   int nSampling = 100;
   double dSumpling = 5*backgroundSigma()/nSampling;
@@ -125,7 +128,6 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   for (int i = maxNegBckg; i >= 0; --i) {
     //    cout << "cl95limit... " << i << endl;
     Double_t s95 = cl95limit (i);
-    //  cout << "nObserved/limit: " << i << '/' << s95 << endl;
     vObserved.push_back (i);
     vLimit.push_back (s95);
     vWeight.push_back (0);
@@ -135,7 +137,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
-	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
 	//std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
@@ -146,7 +148,6 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   for (int i = maxNegBckg+1; ; ++i) {
     // cout << "cl95limit... " << i << endl;
     Double_t s95 = cl95limit (i);
-    // cout << "nObserved/limit: " << i << '/' << s95 << endl;
     vObserved.push_back (i);
     vLimit.push_back (s95);
     vWeight.push_back (0);
@@ -156,21 +157,37 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
-	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
 	//std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
     }
     sumAll += vWeight.back()*vLimit.back();
+    //cout << "weight:" << vWeight.back() << endl;
     if (vWeight.back() < precision) break;
   }
   
   // make median/quantiles
   double median = getQuantile (0.5, vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    median = getQuantile (0.01, vLimit, vWeight);
+  }
   double sigma1Minus = getQuantile (ROOT::Math::normal_cdf (-1), vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    sigma1Minus = getQuantile (0.01, vLimit, vWeight);
+  }
   double sigma1Plus = getQuantile (ROOT::Math::normal_cdf (1), vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    sigma1Plus = getQuantile (0.68, vLimit, vWeight);
+  }
   double sigma2Minus = getQuantile (ROOT::Math::normal_cdf (-2), vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    sigma2Minus = getQuantile (0.01, vLimit, vWeight);
+  }
   double sigma2Plus = getQuantile (ROOT::Math::normal_cdf (2), vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    sigma2Plus = getQuantile (0.95, vLimit, vWeight);
+  }
   
   std::cout << "CLAQuantile->" << "median:" << median 
 	    << " -+1sigma: - " << sigma1Minus << " + " << sigma1Plus
@@ -178,6 +195,9 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	    << std::endl;
   
   double mean = getMean (vLimit, vWeight);
+  if (fabs(backgroundN())< 0.01) {
+    mean = getQuantile (0.01, vLimit, vWeight);
+  }
   double msigma = getSideRMS (-1, mean, vLimit, vWeight);
   double psigma = getSideRMS (1, mean, vLimit, vWeight);
   std::cout << "MEAN:" << mean
