@@ -318,14 +318,12 @@ void Simulator::calculateExpectedBG(unsigned firstFill, unsigned lastFill) {
   expt_->expBackground_N = expt_->bgN;
   expt_->expBackground_Alpha = expt_->bgAlpha;
   expt_->expBackground   = expt_->livetime * expt_->bgRate;
-  if(expt_->bgN>-1.) expt_->expBackground_e = ROOT::Math::gamma_quantile(.68,1+expt_->bgN,expt_->bgAlpha);
-  else expt_->expBackground_e = expt_->livetime * expt_->bgRate_e;
+  expt_->expBackground_e = expt_->livetime * expt_->bgRate_e;
 
   std::cout << "Total time             : " << totalTime << std::endl;
   std::cout << "Live time              : " << livetime << std::endl;
   std::cout << "Fraction of BX masked  : " << 1. - (livetime/totalTime) << std::endl;
   std::cout << "Expected background    : " << livetime * expt_->bgRate << " +/- " << livetime * expt_->bgRate_e << std::endl;
-  std::cout << "Expected background    : " << expt_->expBackground << " +/- " << expt_->expBackground_e << std::endl;
 
   nExp_   = livetime * expt_->bgRate;
   nExp_e_ = livetime * expt_->bgRate_e;
