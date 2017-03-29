@@ -137,7 +137,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
-	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN()+1, backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
 	//std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
@@ -157,7 +157,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	double sampledBkg = background() + smearing*iSide*(iSample+0.5)*dSumpling;
 	if (sampledBkg < 0) continue;
 	double bkgWeight = ROOT::Math::normal_pdf(sampledBkg, backgroundSigma(), background())*ROOT::Math::poisson_pdf (i, sampledBkg);
-	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
+	if(backgroundN()>-1) bkgWeight = ROOT::Math::gamma_pdf(sampledBkg, backgroundN()+1, backgroundAlpha())*ROOT::Math::poisson_pdf (i, sampledBkg);
 	//std::cout << "sampledBkg/bkgWeight: " << sampledBkg << '/' << bkgWeight << ' ' << i << std::endl;
 	vWeight.back() += bkgWeight;
       }
@@ -170,11 +170,12 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   // make median/quantiles
   double median = getQuantile (0.5, vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
-    median = getQuantile (0.01, vLimit, vWeight);
+    //median = getQuantile (0.001, vLimit, vWeight);
+    median = vLimit.at(0);
   }
   double sigma1Minus = getQuantile (ROOT::Math::normal_cdf (-1), vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
-    sigma1Minus = getQuantile (0.01, vLimit, vWeight);
+    sigma1Minus = getQuantile (0.001, vLimit, vWeight);
   }
   double sigma1Plus = getQuantile (ROOT::Math::normal_cdf (1), vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
@@ -182,7 +183,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   }
   double sigma2Minus = getQuantile (ROOT::Math::normal_cdf (-2), vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
-    sigma2Minus = getQuantile (0.01, vLimit, vWeight);
+    sigma2Minus = getQuantile (0.001, vLimit, vWeight);
   }
   double sigma2Plus = getQuantile (ROOT::Math::normal_cdf (2), vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
@@ -196,7 +197,8 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   
   double mean = getMean (vLimit, vWeight);
   if (fabs(backgroundN())< 0.01) {
-    mean = getQuantile (0.01, vLimit, vWeight);
+    mean = vLimit.at(0);
+    //mean = getQuantile (0.01, vLimit, vWeight);
   }
   double msigma = getSideRMS (-1, mean, vLimit, vWeight);
   double psigma = getSideRMS (1, mean, vLimit, vWeight);

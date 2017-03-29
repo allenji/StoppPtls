@@ -30,14 +30,14 @@ namespace {
     for (int iToy = 0; iToy < nToys; ++iToy) {
       //ROOT::Math::gamma_pdf(sampledBkg, backgroundN(), backgroundAlpha(), background())
       if (backgroundN > -1) {
-        bkg = ROOT::Math::gamma_quantile(rndm.Uniform(1), backgroundN, backgroundAlpha);
+        bkg = ROOT::Math::gamma_quantile(rndm.Uniform(1), backgroundN+1, backgroundAlpha);
         while (bkg < 0) {
-          bkg = ROOT::Math::gamma_quantile(rndm.Uniform(1), backgroundN, backgroundAlpha);
+          bkg = ROOT::Math::gamma_quantile(rndm.Uniform(1), backgroundN+1, backgroundAlpha);
         }
       }
       else{
-      bkg = rndm.Gaus (bkgMean, bkgSigma);
-      while (bkg < 0) bkg = rndm.Gaus (bkgMean, bkgSigma);
+	bkg = rndm.Gaus (bkgMean, bkgSigma);
+	while (bkg < 0) bkg = rndm.Gaus (bkgMean, bkgSigma);
       }
       double scale = rndm.Gaus (1., scaleSigma);
       while (scale <= 0) scale = rndm.Gaus (1., scaleSigma);
