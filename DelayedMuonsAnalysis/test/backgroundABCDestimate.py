@@ -36,6 +36,7 @@ else:
 
 blinded = arguments.blinded
 
+#pt_threshold = [110]
 pt_threshold = [52, 53]
 #pt_threshold = [55, 60]
 #pt_threshold = [63, 65, 100, 150, 200]
@@ -83,12 +84,16 @@ for dataset in datasets:
 
         print "number of events in region A is: " + str(int(numA)) + " +/- " + str("%.1f" % errA)
         print "number of events in region B is: " + str(int(numB)) + " +/- " + str("%.1f" % errB)
-        #print "number of events in region C is: " + str(int(numC)) + " + " + str("%.1f" % errC_plus) + " - " + str("%.1f" % errC_minus)
         print "number of events in region C is: " + str((numC)) + " + " + str("%.1f" % errC_plus) + " - " + str("%.1f" % errC_minus)
         if blinded!=True: print "number of events in region D is: " + str(int(numD)) + " +/- " + str("%.1f" % errD)
 
-        background_error_plus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_plus/numC)*(errC_plus/numC) ))
-        background_error_minus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_minus/numC)*(errC_minus/numC) ))
+        if numC==0.000001:
+            background_error_plus = ROOT.Math.gamma_quantile(.68,1,1.0*numB/numA) #68% confidence, 1+N (N is numC which here is 0), alpha=numB/numA
+            background_error_minus = 0.
+        else:
+            background_error_plus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_plus/numC)*(errC_plus/numC) ))
+            background_error_minus = background_estimate*(sqrt( (errA/numA)*(errA/numA)+(errB/numB)*(errB/numB)+(errC_minus/numC)*(errC_minus/numC) ))
+
         print "background estimate (B*C/A) is: " + str("%.2f" % background_estimate) + " + " + str("%.2f" % background_error_plus) + " - " + str("%.2f" % background_error_minus)
         print "/////////////////////////////////////////////////////////////////////"
 print "done"
