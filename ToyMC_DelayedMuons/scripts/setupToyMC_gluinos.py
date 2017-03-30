@@ -3,18 +3,19 @@ import sys
 import re
 from decimal import Decimal
 #2015
-#livetime = 559080 
-#bkg_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/mchampBkg_2015.txt"
+#livetime = 559080
+#bkg_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/gluinoBkg_2015.txt"
 #parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2015.txt"
 #searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2015.txt"
 
 #2016
-livetime = 2119960 
-bkg_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/mchampBkg_2016.txt"
+livetime = 2119960
+bkg_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/gluinoBkg_2016.txt"
 parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_lowPCuts.txt"
 searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_lowPCuts.txt"
 #parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_highPCuts.txt"
 #searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_highPCuts.txt"
+
 
 print "Importing background file"
 bkg_file = open(bkg_fpath, "r")
@@ -30,12 +31,11 @@ while bkg_line != "":
 print "Finished importing background file"
         
 
-
-#for mass in [100, 200, 400, 600, 1000, 1400]: #for 2015 mchamps
-for mass in [100, 200, 400]: #low p cuts for 2016 mchamps
-#for mass in [600, 800, 1000, 1800, 2600]: #high p cuts for 2016 mchamps
+#for mass in [400, 600, 1000, 2000]: #2015 gluinos
+for mass in [400, 600, 1000, 1200]: #2016 gluinos low p cuts
+#for mass in [1600, 1800, 2000, 2400]: #2016 gluinos high p cuts
 #for mass in range(2600, 2800, 200):
-    tdir = "mchamp2016_" + str(mass)
+    tdir = "gluino2016_" + str(mass)
     os.mkdir(tdir)
 
     cmd = "cp " + parameters_fpath + " "  + tdir + "/parameters.txt "

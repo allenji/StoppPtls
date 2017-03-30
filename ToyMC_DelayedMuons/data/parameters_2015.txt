@@ -15,7 +15,7 @@ jsonFile                 0
 lumiFirstRun             254227
 lumiLastRun              260627
 fills                    4201,4243,4249,4254,4256,4257,4376,4381,4384,4386,4391,4393,4397,4398,4410,4418,4420,4423,4426,4428,4432,4434,4435,4437,4440,4444,4448,4449,4452,4455,4462,4466,4467,4476,4477,4479,4485,4518,4519,4522,4525,4528,4530,4532,4555,4557,4560,4562,4565,4569
-eventsFile               /home/weifengji/StoppedParticles_Run2/SPAnalysis_2017_Jan11/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC_DelayedMuons/data/searchEvents_2015.txt
+eventsFile               /home/jalimena/StoppedParticles2016/CMSSW_8_0_26_patch2/src/StoppPtls/ToyMC_DelayedMuons/data/searchEvents_2015.txt
 nTrialsSignal            100
 nTrialsBackground        100
 simulateExpt             0
