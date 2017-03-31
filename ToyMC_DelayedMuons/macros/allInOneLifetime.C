@@ -104,8 +104,8 @@ void allInOneLifetime(double lumi=4560.) {
   double stau2ref      = g_obs_stau->GetY()[0] / g_obs->GetY()[0];
   TGraph* g_obs_mchamp   = plots.getLimitMchamp();
   //ref = 1/(stopping_eff*reco_eff)
-  //double mchamp2ref      = 90.74;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
-  //double mchamp2ref      = 101;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2015
+  //double mchamp2ref      = 88.4;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
+  //double mchamp2ref      = 98.5;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2015
   //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2016
   //double mchamp2ref      = 107;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2015
   double mchamp2ref      = 80.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2016
@@ -248,16 +248,16 @@ void allInOneLifetime(double lumi=4560.) {
 
   // mchamp LIMIT
   //theory cross section/reference
-  TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //200 GeV
-  //TLine *lmchamp = new TLine(7.5e-8, 0.0002403/mchamp2ref, 1e6, 0.0002403/mchamp2ref); //1000 GeV
+  //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //200 GeV
+  TLine *lmchamp = new TLine(7.5e-8, 0.0002403/mchamp2ref, 1e6, 0.0002403/mchamp2ref); //1000 GeV
   //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //2600 GeV //won't be on plot
   lmchamp->SetLineColor(kRed);
   lmchamp->SetLineWidth(2);
   //lmchamp->Draw();
   
   TLatex *t1mchamp;
-  t1mchamp = new TLatex(0.001, 0.1/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
-  //t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
+  //t1mchamp = new TLatex(0.001, 0.1/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
+  t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
   t1mchamp->SetTextSize(0.035);
@@ -271,7 +271,7 @@ void allInOneLifetime(double lumi=4560.) {
     g_obs->SetLineWidth(2);
     g_obs->SetMarkerStyle(20);
     g_obs->SetMarkerSize(1);
-    //g_obs->Draw("l");
+    g_obs->Draw("l");
   }
 
 /*
@@ -319,7 +319,7 @@ void allInOneLifetime(double lumi=4560.) {
   TGraph* expectedStyle2 = new TGraph (*g_exp);
   expectedStyle2->SetFillColor (g_exp_2sig->GetFillColor());
   cout << "colors: " << g_exp_1sig->GetFillColor() << ':' << g_exp_2sig->GetFillColor() << endl;
-  //leg->AddEntry(g_obs, "Observed", "l");
+  leg->AddEntry(g_obs, "Observed", "l");
   leg->AddEntry(expectedStyle1, "Expected #pm1#sigma", "lf");
   leg->AddEntry(expectedStyle2, "Expected #pm2#sigma", "lf");
   //leg->AddEntry(g_obs_stop,"Obs.: Counting Exp. (#tilde{t})", "l");

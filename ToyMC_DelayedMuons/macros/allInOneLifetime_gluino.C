@@ -103,8 +103,8 @@ void allInOneLifetime(double lumi=4560.) {
   double stau2ref      = g_obs_stau->GetY()[0] / g_obs->GetY()[0];
   TGraph* g_obs_mchamp   = plots.getLimitMchamp();
 
-  //double mchamp2ref      = 4049;// gluino 400GeV 2016
-  //double mchamp2ref      = 4049;// gluino 400GeV 2015 
+  //double mchamp2ref      = 3448;// gluino 400GeV 2016
+  //double mchamp2ref      = 3125;// gluino 400GeV 2015 
   //double mchamp2ref      = 1730;// gluino 1000GeV 2016  
   //double mchamp2ref      = 1961;// gluino 1000GeV 2015 
   double mchamp2ref      = 1131;// gluino 2600GeV 2016 
@@ -270,7 +270,7 @@ void allInOneLifetime(double lumi=4560.) {
     g_obs->SetLineWidth(2);
     g_obs->SetMarkerStyle(20);
     g_obs->SetMarkerSize(1);
-    //g_obs->Draw("l");
+    g_obs->Draw("l");
   }
 
 /*
@@ -318,7 +318,7 @@ void allInOneLifetime(double lumi=4560.) {
   TGraph* expectedStyle2 = new TGraph (*g_exp);
   expectedStyle2->SetFillColor (g_exp_2sig->GetFillColor());
   cout << "colors: " << g_exp_1sig->GetFillColor() << ':' << g_exp_2sig->GetFillColor() << endl;
-  //leg->AddEntry(g_obs, "Observed", "l");
+  leg->AddEntry(g_obs, "Observed", "l");
   leg->AddEntry(expectedStyle1, "Expected #pm1#sigma", "lf");
   leg->AddEntry(expectedStyle2, "Expected #pm2#sigma", "lf");
   //leg->AddEntry(g_obs_stop,"Obs.: Counting Exp. (#tilde{t})", "l");
