@@ -93,8 +93,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   
   TCanvas* canvas = new TCanvas("canvas","",10,10,575,500);
 
-  //Double_t x[10], yMinus[10], x2[10], y[10], yPlus[10], z[10];
-  Double_t x[12], yMinus[12], x2[12], y[12], yPlus[12], z[12];
+  Double_t x[10], yMinus[10], x2[10], y[10], yPlus[10], z[10];
+  //Double_t x[12], yMinus[12], x2[12], y[12], yPlus[12], z[12];
   cout<<"MCHAMP LIMITS ARE: "<<endl;
   for(Int_t i=0; i<g_mchamp->GetN(); i++){
     g_mchamp->GetPoint(i, x[i], y[i]);
@@ -123,14 +123,14 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   cout<<"set logy"<<endl;
   
   TH1 * h;
-  //h = canvas->DrawFrame(100., 3e-8, 2600., 1e3); //mchamps
-  h = canvas->DrawFrame(400., 1e-5, 2600., 1e5); //gluinos
+  h = canvas->DrawFrame(100., 3e-8, 2600., 1e3); //mchamps
+  //h = canvas->DrawFrame(400., 1e-5, 2600., 1e5); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
-  //h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mchamp mchamp) [pb]");
-  h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) [pb]");
-  //h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]");
-  //h->SetTitle("Beamgap Expt;m_{#tilde{g}} [GeV/c^{2}]; #sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BR(#tilde{g} #rightarrow g#tilde{#chi}^{0}) [pb]");
-  
+  h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mchamp mchamp #times BF(mchamp #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
+  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g} #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow l^{+}l^{-}#tilde{#chi}_{LSP})) [pb]");
+  h->GetYaxis()->SetTitleSize(0.035);
+  h->GetYaxis()->SetTitleOffset(1.6);
+
   cout<<"finished drawing canvas"<<endl;
 
   // not covered region
@@ -184,7 +184,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   leg->SetFillColor(0);
 
   cout<<"starting legend2"<<endl;
-  //leg->AddEntry(g_obs_mchamp, "Observed, 10 #mus - 1000 s", "lp");
+  leg->AddEntry(g_obs_mchamp, "Observed, 10 #mus - 1000 s", "lp");
   leg->AddEntry(g_mchamp, "Expected, 10 #mus - 1000 s", "l");
   leg->AddEntry(g_exp_1sig, "Expected #pm1#sigma, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_exp_2sig, "Expected #pm2#sigma, 10 #mus - 1000 s", "lf");
@@ -311,7 +311,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_obs_mchamp->SetLineWidth(2);
   g_obs_mchamp->SetMarkerStyle(20);
   g_obs_mchamp->SetMarkerSize(1);
-  //g_obs_mchamp->Draw("pl");
+  g_obs_mchamp->Draw("pl");
 
   //g_mchamp->SetLineColor(kBlue);
   g_mchamp->SetLineStyle(2);
@@ -362,9 +362,9 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
 
   CMS_lumi(canvas, iPeriod, iPos);
 
-  //canvas->Print("MassLimit_gluino2015.pdf");
-  canvas->Print("MassLimit_gluinoCombined.pdf");
-  canvas->Print("MassLimit_gluinoCombined.C");
+  //canvas->Print("MassLimit_gluino2016.pdf");
+  canvas->Print("MassLimit_mchamp2016.pdf");
+  //canvas->Print("MassLimit_mchamp2016.C");
 
   plots.calculateIntercepts();
 

@@ -44,8 +44,9 @@ ExtraAxis anotherScale (const TH1* refHist, double scale, int color, const char*
   axis->SetTextColor (color);
   axis->SetLabelColor (color);
   axis->SetLabelOffset (0.);
-  axis->SetTitleOffset (0.75);
+  axis->SetTitleOffset (1.3);
   axis->SetTickSize(0.015);	
+  axis->SetTitleSize(0.035);
   result.Add (axis);
 
   TLine* line = new TLine (xoffset, y0, xoffset, y1);
@@ -119,15 +120,14 @@ void allInOneLifetime(double lumi=4560.) {
   cout<<"mchamp2ref is: "<<mchamp2ref<<endl;
   cout<<"expected limit at 1 s is: "<<g_exp->GetY()[30]<<endl;
   
-  //TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,700,500);
-  TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,800,500);
+  TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,650,500);
   
   canvas->SetGrid();
   canvas->SetLogx();
   canvas->SetLogy();
 
   canvas->SetRightMargin(0.8*canvas->GetLeftMargin());
-  canvas->SetLeftMargin(1.2*canvas->GetLeftMargin());
+  //canvas->SetLeftMargin(1.2*canvas->GetLeftMargin());
   canvas->SetTicks (canvas->GetTickx(), 0);
   
   TH1F* h = new TH1F ("h", "", 1, 7.5e-8, 1e6);
@@ -141,14 +141,14 @@ void allInOneLifetime(double lumi=4560.) {
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
   h->GetXaxis()->SetTitle("#tau [s]");
   h->GetYaxis()->SetTitle("#sigma #times BF #times #varepsilon_{stop} #times #varepsilon_{det} [pb]  ");
-  h->GetYaxis()->SetTitleOffset(1);
+  h->GetYaxis()->SetTitleOffset(1.2);
   h->Draw ("Y+");
 
   ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
   ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
   ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
   //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]", 0.0);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g} #tilde{g}) [pb]", 0.0);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow l^{+}l^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
 
   
   /*
