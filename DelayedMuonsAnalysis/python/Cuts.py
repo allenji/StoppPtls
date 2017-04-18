@@ -125,6 +125,13 @@ cutPreDSANValidCscHitsUpperOnly = cms.PSet(
     alias = cms.string("DSA Track 0 valid CSC hits")
 )
 
+cutDSAPtUpperOnly = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > 50"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track $p_{T}$ > 50 \GeV")
+)
+
 ########################################
 #preselection upper and lower DSA cuts
 ########################################

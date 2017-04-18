@@ -19,7 +19,8 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
-        'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
+        #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
+        'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
@@ -115,6 +116,7 @@ selections = []
 #selections.append(PrePreSelectionUpperLower)
 #selections.append(PreSelectionUpperOnly)
 #selections.append(PreSelectionUpperLower)
+#selections.append(TriggerPuritySelection)
 #selections.append(PreSelectionUpperLowerNoTrigger)
 #selections.append(PreSelectionUpperLowerTurnOnDen)
 #selections.append(PreSelectionUpperLowerTurnOnNum35)
@@ -235,6 +237,7 @@ histograms = cms.VPSet()
 #histograms.append(UpperDSAHistograms)
 #histograms.append(LowerDSAHistograms)
 #histograms.append(TriggerTurnOnUpperDSAHistograms)
+#histograms.append(TriggerPurityDSAHistograms)
 #histograms.append(NumberOfObjectsHistograms)
 #histograms.append(NumberOfDelayedMuonsObjectsHistograms)
 #histograms.append(DelayedMuonsObjectsVsTimeHistograms)

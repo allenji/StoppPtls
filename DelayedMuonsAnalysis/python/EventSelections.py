@@ -24,6 +24,7 @@ NoCutsStage1 = cms.PSet(
 #For vertex number plot
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
+    #triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
@@ -81,6 +82,23 @@ PrePreSelectionUpperLower = cms.PSet(
       cutPreDSAPt,
       )
 )
+
+#for trigger purity study, on data, cosmic data, and signal MC
+#no upper lower cut, no dt tof cut
+TriggerPuritySelection = cms.PSet(
+    name = cms.string("TriggerPuritySelection"),
+    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAs,
+      cutDSAPtUpperOnly,
+      cutPreDSANDtChambersWithValidHitsUpperOnly,
+      cutPreDSANValidRpcHitsUpperOnly,
+      cutPreDSANValidCscHitsUpperOnly,
+      )
+    )
 
 #Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
