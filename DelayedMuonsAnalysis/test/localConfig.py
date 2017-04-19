@@ -1,4 +1,4 @@
-from OSUT3Analysis.Configuration.configurationOptions import *
+B1;95;0cfrom OSUT3Analysis.Configuration.configurationOptions import *
 from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2460
@@ -103,6 +103,9 @@ datasetsCosmicMC = [
 
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple',
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple_2016',
+
+    #'cosmicMC_0To25Timing_OnlyJetTriggers_Ntuple',
+    #'cosmicMC_0To25Timing_OnlyJetTriggers_Ntuple_2016',
 ]
 
     
