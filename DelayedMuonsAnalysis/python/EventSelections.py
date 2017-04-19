@@ -175,8 +175,7 @@ LooseTurnOnDen = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutPreMinNDSAsUpperOnly,
-      #cutPreDSAUpperOnly, #remove requirement that track is in upper hemisphere
-      cutPreDSAPtUpperOnly,
+      cutDSAPtUpperOnly,
       cutPreDSAAtLeast4DtChambersWithValidHitsUpperOnly,
       cutPreDSANValidRpcHitsUpperOnly,
       cutPreDSANValidCscHitsUpperOnly,
