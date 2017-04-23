@@ -118,7 +118,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   std::vector <double> vLimit;
   int maxNegBckg = int(floor(background()));
   double precision = 1.e-3*ROOT::Math::poisson_pdf(maxNegBckg, background());
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     precision = 1.e-10*ROOT::Math::poisson_pdf(maxNegBckg, background());
   }
   double sumAll = 0;
@@ -169,24 +169,24 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
   
   // make median/quantiles
   double median = getQuantile (0.5, vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     //median = getQuantile (0.001, vLimit, vWeight);
     median = vLimit.at(0);
   }
   double sigma1Minus = getQuantile (ROOT::Math::normal_cdf (-1), vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     sigma1Minus = getQuantile (0.001, vLimit, vWeight);
   }
   double sigma1Plus = getQuantile (ROOT::Math::normal_cdf (1), vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     sigma1Plus = getQuantile (0.68, vLimit, vWeight);
   }
   double sigma2Minus = getQuantile (ROOT::Math::normal_cdf (-2), vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     sigma2Minus = getQuantile (0.001, vLimit, vWeight);
   }
   double sigma2Plus = getQuantile (ROOT::Math::normal_cdf (2), vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     sigma2Plus = getQuantile (0.95, vLimit, vWeight);
   }
   
@@ -196,7 +196,7 @@ vector<double> CountingExperiment::cl95ExpectedLimit () {
 	    << std::endl;
   
   double mean = getMean (vLimit, vWeight);
-  if (fabs(backgroundN())< 0.01) {
+  if (fabs(backgroundN())> -1) {
     mean = vLimit.at(0);
     //mean = getQuantile (0.01, vLimit, vWeight);
   }
