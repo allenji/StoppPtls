@@ -315,8 +315,8 @@ void Simulator::calculateExpectedBG(unsigned firstFill, unsigned lastFill) {
 
   expt_->livetime        += livetime;
 
-  expt_->expBackground_N = expt_->bgN;
-  expt_->expBackground_Alpha = expt_->bgAlpha;
+  expt_->expBackground_N = expt_->livetime * expt_->bgN;
+  expt_->expBackground_Alpha = expt_->livetime * expt_->bgAlpha;
   expt_->expBackground   = expt_->livetime * expt_->bgRate;
   expt_->expBackground_e = expt_->livetime * expt_->bgRate_e;
 

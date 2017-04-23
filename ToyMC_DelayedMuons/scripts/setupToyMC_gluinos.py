@@ -58,7 +58,7 @@ for mass in [400, 600, 1000, 1200]: #2016 gluinos low p cuts
             paramfile.write(line)
         elif m4:
             paramfile.write(m4.group(1))
-            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3]))
+            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3])/livetime)
             paramfile.write(bkg_Alpha)
             paramfile.write("\n")
         elif m3:

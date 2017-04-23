@@ -160,6 +160,8 @@ void Experiment::summary(std::ostream& o) {
   o << expSignal << "\t";
   o << expBackground << "\t";
   o << expBackground_e << "\t";
+  o << expBackground_N << "\t";
+  o << expBackground_Alpha << "\t";
   o << nObserved << "\t";
   o << limit95cl << "\t";
   o << expLimit << "\t";

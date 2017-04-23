@@ -58,7 +58,7 @@ for mass in [100, 200, 400]: #low p cuts for 2016 mchamps
             paramfile.write(line)
         elif m4:
             paramfile.write(m4.group(1))
-            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3]))
+            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3])/livetime)
             paramfile.write(bkg_Alpha)
             paramfile.write("\n")
         elif m3:
