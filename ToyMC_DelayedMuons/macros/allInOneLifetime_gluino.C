@@ -148,7 +148,7 @@ void allInOneLifetime(double lumi=4560.) {
   ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
   ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
   //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]", 0.0);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow l^{+}l^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
 
   
   /*
