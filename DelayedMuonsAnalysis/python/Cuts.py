@@ -59,6 +59,13 @@ cutPrePreDSADtTofNDofUpperOnly = cms.PSet(
     alias = cms.string("DSA Track > 0 TOF nDof")
 )
 
+cutCscSegNumber = cms.PSet(
+    inputCollection = cms.vstring("cscsegs"),
+    cutString = cms.string("nHits > -1"),
+    numberRequired = cms.string("= 0"),
+    alias = cms.string("0 CSC Segments")
+)
+
 ########################################
 #preselection upper only DSA cuts
 ########################################

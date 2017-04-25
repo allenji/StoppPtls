@@ -174,6 +174,7 @@ LooseTurnOnDen = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
+      cutCscSegNumber,
       cutPreMinNDSAsUpperOnly,
       cutDSAPtUpperOnly,
       cutPreDSAAtLeast4DtChambersWithValidHitsUpperOnly,
@@ -211,7 +212,6 @@ DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSAPt)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
-DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeOutInErr)
 DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
 #DelayedMuonsUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOutClosureTest)
 DelayedMuonsUpperLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
