@@ -177,8 +177,9 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   //TLegend *leg = new TLegend(600., 1.e1, 900., 4e2,"95% C.L. Limits","");
   //TLegend* leg = new TLegend(0.67, 0.70, 0.82, 0.92,"95% CL Limits:","NDC");
   /////////TLegend* leg = new TLegend(0.52, 0.70, 0.77, 0.92,"95% CL Limits:","NDC");
-  TLegend* leg = new TLegend(0.45, 0.70, 0.70, 0.92,"95% CL Limits:","NDC");
-  leg->SetTextSize(0.033);
+  TLegend* leg = new TLegend(0.45, 0.68, 0.70, 0.90,"95% CL Limits:","NDC");
+  //leg->SetTextSize(0.033);
+  leg->SetTextSize(0.04);
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
   leg->SetFillColor(0);
