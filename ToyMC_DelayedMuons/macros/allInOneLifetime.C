@@ -108,9 +108,9 @@ void allInOneLifetime(double lumi=4560.) {
   //double mchamp2ref      = 88.4;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
   //double mchamp2ref      = 98.5;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2015
   //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2016
-  //double mchamp2ref      = 107;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2015
-  double mchamp2ref      = 80.52;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2016
-  //double mchamp2ref      = 81;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2015
+  //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2015
+  double mchamp2ref      = 77.16;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2016
+  //double mchamp2ref      = 77.16;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2015
 
   
   cout << "scales: " << g_obs->GetY()[0] 

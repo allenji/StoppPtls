@@ -105,11 +105,11 @@ void allInOneLifetime(double lumi=4560.) {
   TGraph* g_obs_mchamp   = plots.getLimitMchamp();
 
   //double mchamp2ref      = 3448;// gluino 400GeV 2016
-  //double mchamp2ref      = 3125;// gluino 400GeV 2015 
-  //double mchamp2ref      = 1730;// gluino 1000GeV 2016  
-  //double mchamp2ref      = 1961;// gluino 1000GeV 2015 
-  double mchamp2ref      = 1131;// gluino 2600GeV 2016 
-  //double mchamp2ref      = 1012;// gluino 2600GeV 2015    
+  //double mchamp2ref      = 2941;// gluino 400GeV 2015 
+  //double mchamp2ref      = 1667;// gluino 1000GeV 2016  
+  //double mchamp2ref      = 1887;// gluino 1000GeV 2015 
+  double mchamp2ref      = 1098;// gluino 2600GeV 2016 
+  //double mchamp2ref      = 990;// gluino 2600GeV 2015    
 
   cout << "scales: " << g_obs->GetY()[0] 
        << '/' <<g_obs_gluino->GetY()[0]
