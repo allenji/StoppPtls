@@ -20,11 +20,11 @@ process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
-        'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
+        #'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
-        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -51,8 +51,8 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    #input = cms.untracked.int32 (1000)
-    input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (1000)
+    #input = cms.untracked.int32 (100)
     #input = cms.untracked.int32 (-1)
     #input = cms.untracked.int32 (10)
 )
@@ -171,6 +171,14 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP110)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP110)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionDUpperP110)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionAUpperP110)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionBUpperP110)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionCUpperP110)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionDUpperP110)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionAUpperP120)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionBUpperP120)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionCUpperP120)
+#selections.append(DelayedMuonsUpperLowerClosureTestSelectionRegionDUpperP120)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP120)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP120)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP120)
