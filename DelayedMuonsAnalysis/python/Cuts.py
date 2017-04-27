@@ -406,6 +406,20 @@ cutUpperLowerDSADeltaRpcHitBxAverageInverted = cms.PSet(
     numberRequired = cms.string(">= 1"),
     alias = cms.string("#Delta RPC Hit BX Average <= -0.3")
 )
+
+cutUpperLowerDSADeltaRpcHitBxAverageClosureTest = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.2 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta RPC Hit BX Average > -1.2")
+)
+
+cutUpperLowerDSADeltaRpcHitBxAverageInvertedClosureTest = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -1.2 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("#Delta RPC Hit BX Average <= -1.2")
+)
  
 cutUpperLowerDSAUpperP52 = cms.PSet(
     inputCollection = cms.vstring("tracks"),
