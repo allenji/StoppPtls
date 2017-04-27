@@ -438,7 +438,8 @@ UpperDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("dtTofFreeInverseBeta"),
-            title = cms.string("Upper DSA Track #beta^{-1}_{Free}; Upper DSA Track #beta^{-1}_{Free}"),
+            #title = cms.string("Upper DSA Track #beta^{-1}_{Free}; Upper DSA Track #beta^{-1}_{Free}"),
+            title = cms.string("Upper DSA Track #beta^{-1}; Upper DSA Track #beta^{-1}"), #for pas
             binsX = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("dtTofFreeInverseBeta"),
             ),
@@ -450,7 +451,8 @@ UpperDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut"),
-            title = cms.string("Upper DSA Track TimeInOut; Upper DSA Track TimeInOut [ns]"),
+            #title = cms.string("Upper DSA Track TimeInOut; Upper DSA Track TimeInOut [ns]"),
+            title = cms.string("Upper DSA Track TimeInOut; Upper DSA Track Time_{DT} [ns]"), #for pas
             binsX = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut"),
             ),
@@ -489,6 +491,12 @@ UpperDSAHistograms = cms.PSet(
             title = cms.string("Upper DSA Track RPC Hit BX Average; Upper DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitTime"),
+            title = cms.string("Upper DSA Track Time_{RPC}; Upper DSA Track Time_{RPC} [ns]"),
+            binsX = cms.untracked.vdouble(120, -60, 60),
+            inputVariables = cms.vstring("25.0*rpcHitBxAverage"),
             ),
         )
     )
@@ -714,7 +722,8 @@ LowerDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("dtTofFreeInverseBeta"),
-            title = cms.string("Lower DSA Track #beta^{-1}_{Free}; Lower DSA Track #beta^{-1}_{Free}"),
+            #title = cms.string("Lower DSA Track #beta^{-1}_{Free}; Lower DSA Track #beta^{-1}_{Free}"),
+            title = cms.string("Lower DSA Track #beta^{-1}; Lower DSA Track #beta^{-1}"), #for pas
             binsX = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("dtTofFreeInverseBeta"),
             ),
@@ -726,7 +735,8 @@ LowerDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut"),
-            title = cms.string("Lower DSA Track TimeInOut; Lower DSA Track TimeInOut [ns]"),
+            #title = cms.string("Lower DSA Track TimeInOut; Lower DSA Track TimeInOut [ns]"),
+            title = cms.string("Lower DSA Track TimeInOut; Lower DSA Track Time_{DT} [ns]"), #for pas
             binsX = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut"),
             ),
@@ -765,6 +775,12 @@ LowerDSAHistograms = cms.PSet(
             title = cms.string("Lower DSA Track RPC Hit BX Average; Lower DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("rpcHitTime"),
+            title = cms.string("Lower DSA Track Time_{RPC}; Lower DSA Track Time_{RPC} [ns]"),
+            binsX = cms.untracked.vdouble(120, -60, 60),
+            inputVariables = cms.vstring("25.0*rpcHitBxAverage"),
             ),
         )
     )
@@ -887,7 +903,8 @@ DeltaDSAHistograms = cms.PSet(
     histograms = cms.VPSet (
         cms.PSet (
             name = cms.string("delta_dtTofTimeAtIpInOut"),
-            title = cms.string("#Delta DSA Track TimeInOut; #Delta DSA Track TimeInOut [ns]"),
+            #title = cms.string("#Delta DSA Track TimeInOut; #Delta DSA Track TimeInOut [ns]"),
+            title = cms.string("#Delta DSA Track Time_{DT}; #Delta Time_{DT} [ns]"), #for pas
             binsX = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
@@ -908,6 +925,12 @@ DeltaDSAHistograms = cms.PSet(
             title = cms.string("#Delta DSA Track RPC Hit BX Average; #Delta DSA Track RPC Hit BX Average"),
             binsX = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("delta_rpcTime"),
+            title = cms.string("#Delta DSA Track Time_{RPC}; #Delta Time_{RPC} [ns]"),
+            binsX = cms.untracked.vdouble(120, -60, 60),
+            inputVariables = cms.vstring("25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
             name = cms.string("resolution_qOverPt"),
@@ -1106,6 +1129,13 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(120, -3, 3),
             inputVariables = cms.vstring("track.p","track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage"),
+            ),
+        cms.PSet (
+            name = cms.string("pUpper_delta_rpcTime"),
+            title = cms.string("Upper DSA Track p vs #Delta DSA Track Time_{RPC}; p_{upper} [GeV]; #Delta Time_{RPC} [ns]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            binsY = cms.untracked.vdouble(120, -60, 60),
+            inputVariables = cms.vstring("track.p","25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
             name = cms.string("pUpper_resolution_qOverPt"),
