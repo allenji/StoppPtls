@@ -11,10 +11,10 @@ from decimal import Decimal
 #2016
 livetime = 2119960
 bkg_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/gluinoBkg_2016.txt"
-parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_lowPCuts.txt"
-searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_lowPCuts.txt"
-#parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_highPCuts.txt"
-#searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_highPCuts.txt"
+#parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_lowPCuts.txt"
+#searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_lowPCuts.txt"
+parameters_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/parameters_2016_highPCuts.txt"
+searchLifetime_fpath = os.environ["CMSSW_BASE"] + "/src/StoppPtls/ToyMC_DelayedMuons/data/searchLifetimes_2016_highPCuts.txt"
 
 
 print "Importing background file"
@@ -32,8 +32,12 @@ print "Finished importing background file"
         
 
 #for mass in [400, 600, 1000, 2000]: #2015 gluinos
-for mass in [400, 600, 1000, 1200]: #2016 gluinos low p cuts
-#for mass in [1600, 1800, 2000, 2400]: #2016 gluinos high p cuts
+#for mass in [400, 600, 1000, 1200]: #2016 gluinos low p cuts
+#for mass in [400, 1000]: #2016 gluinos low p cuts, need to run all lifetimes
+#for mass in [600, 1200]: #2016 gluinos low p cuts, only need to run 1 sec
+for mass in [1600, 1800, 2000, 2400]: #2016 gluinos high p cuts
+#for mass in [2400]: #2016 gluinos high p cuts, need to run all lifetimes
+#for mass in [1600, 1800, 2000]: #2016 gluinos high p cuts, only need to run 1 sec
 #for mass in range(2600, 2800, 200):
     tdir = "gluino2016_" + str(mass)
     os.mkdir(tdir)
@@ -58,7 +62,7 @@ for mass in [400, 600, 1000, 1200]: #2016 gluinos low p cuts
             paramfile.write(line)
         elif m4:
             paramfile.write(m4.group(1))
-            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3])/livetime)
+            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3]))
             paramfile.write(bkg_Alpha)
             paramfile.write("\n")
         elif m3:

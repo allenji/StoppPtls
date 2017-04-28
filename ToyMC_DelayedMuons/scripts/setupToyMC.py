@@ -33,7 +33,12 @@ print "Finished importing background file"
 
 #for mass in [100, 200, 400, 600, 1000, 1400]: #for 2015 mchamps
 for mass in [100, 200, 400]: #low p cuts for 2016 mchamps
+#for mass in [100, 400]: #low p cuts for 2016 mchamps, only need to run 1 sec
+#for mass in [200]: #low p cuts for 2016 mchamps, need to run all of the lifetimes
 #for mass in [600, 800, 1000, 1800, 2600]: #high p cuts for 2016 mchamps
+#for mass in [800, 1800]: #high p cuts for 2016 mchamps, only need to run 1 sec
+#for mass in [1000, 2600]: #high p cuts for 2016 mchamps, need to run all of the lifetimes
+#for mass in [600]: #high p cuts for 2016 mchamps, need to run all of the lifetimes for counting experiment table
 #for mass in range(2600, 2800, 200):
     tdir = "mchamp2016_" + str(mass)
     os.mkdir(tdir)
@@ -58,7 +63,7 @@ for mass in [100, 200, 400]: #low p cuts for 2016 mchamps
             paramfile.write(line)
         elif m4:
             paramfile.write(m4.group(1))
-            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3])/livetime)
+            bkg_Alpha = '%.2E' % Decimal(float(bkg_dic[str(mass)][3]))
             paramfile.write(bkg_Alpha)
             paramfile.write("\n")
         elif m3:
