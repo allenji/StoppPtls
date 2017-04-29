@@ -17,7 +17,8 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
         #'file:/data/users/weifengji/condor/temp/RunningAnalysisCutOnSearchWithSkim/NoBPTX_2015D_v4/StoppedParticlesSelection/skim_335.root',
         #'file:/data/users/weifengji/condor/temp/RunningAnalysisCutOnSearchWithSkim/NoBPTX_2015D_v4/StoppedParticlesSelection/skim_489.root'
-        'file:/home/jalimena/PickEvents/CMSSW_8_0_25/src/pickevents_NoBPTX2016DataRegionC.root'
+        #'file:/home/jalimena/PickEvents/CMSSW_8_0_25/src/pickevents_NoBPTX2016DataRegionC.root'
+        'file:/home/jalimena/PickEvents/CMSSW_8_0_25/src/pickevents_NoBPTX2016DataRegionD_highPEvent.root'
 )
 )
 process.eventFilter = cms.EDFilter("PrintEventInfo",
