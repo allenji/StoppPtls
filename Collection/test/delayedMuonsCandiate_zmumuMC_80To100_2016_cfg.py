@@ -35,17 +35,18 @@ process.load('DPGAnalysis.Skims.ZMuSkim_cff')
 process.dimuonsZMuSkim.cut = cms.string('mass > 80 && mass < 100 && charge=0')
 
 #rerun muon timing with pruning off
-process.muontiming.TimingFillerParameters.DTTimingParameters.PruneCut = cms.double(10000.)
+#process.muontiming.TimingFillerParameters.DTTimingParameters.PruneCut = cms.double(10000.)
 
 #load producers
 process.load('StoppPtls/Collection/stoppPtlsCandidate_cfi')
 process.load('StoppPtls/Collection/stoppPtlsJetsCandidate_cfi')
 process.load('StoppPtls/Collection/delayedMuonsCandidate_cfi')
 process.candidateStoppPtls.isMC = True
-process.candidateDelayedMuons.timeTag = cms.InputTag ("muontiming","dt")
+#process.candidateDelayedMuons.timeTag = cms.InputTag ("muontiming","dt")
 
 process.eventproducer = cms.Path(
-    process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
+    #process.muontiming * process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
+    process.candidateStoppPtls * process.candidateStoppPtlsJets * process.candidateDelayedMuons
     )
 
 # Apply lumi mask; comment out to process all events  
