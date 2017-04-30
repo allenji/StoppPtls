@@ -145,6 +145,19 @@ PreSelectionUpperLowerNoTrigger = copy.deepcopy(PreSelectionUpperLower)
 PreSelectionUpperLowerNoTrigger.name = cms.string("PreSelectionUpperLowerNoTrigger")
 PreSelectionUpperLowerNoTrigger.triggers = cms.vstring("")
 
+PreSelectionUpperLowerZMuMu = cms.PSet(
+    name = cms.string("PreSelectionUpperLowerZMuMu"),
+    triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutPreMinNDSAs,
+      cutPreDSAUpperAndLower,
+      cutPreDSAPt,
+      cutPreDSANDtChambersWithValidHits,
+      cutPreDSANValidRpcHits,
+      cutPreDSANValidCscHits,
+      )
+    )
+
 #for trigger turn on: run over ntuples where only control triggers are used in the selection
 PreSelectionUpperLowerAtLeast4ValidDtChambers = copy.deepcopy(PreSelectionUpperLower)
 PreSelectionUpperLowerAtLeast4ValidDtChambers.name = cms.string("PreSelectionUpperLowerAtLeast4ValidDtChambers")
@@ -232,6 +245,16 @@ removeCuts(DelayedMuonsUpperLowerOnlyThroughTimeOutInErr.cuts,[cutUpperLowerDSAD
 DelayedMuonsUpperLowerNoTrigger = copy.deepcopy(DelayedMuonsUpperLowerSelection)
 DelayedMuonsUpperLowerNoTrigger.name = cms.string("DelayedMuonsUpperLowerNoTrigger")
 DelayedMuonsUpperLowerNoTrigger.triggers = cms.vstring("")
+
+DelayedMuonsUpperLowerZMuMu = copy.deepcopy(PreSelectionUpperLowerZMuMu)
+DelayedMuonsUpperLowerZMuMu.name = cms.string("DelayedMuonsUpperLowerZMuMu")
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutPreDSADtTofNDof)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutUpperLowerDSAPt)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutUpperLowerDSANValidRpcHits)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutUpperLowerDSADeltaTimeInOut)
+DelayedMuonsUpperLowerZMuMu.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 
 
 #ABCD regions
