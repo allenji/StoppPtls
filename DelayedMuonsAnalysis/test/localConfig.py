@@ -1,4 +1,4 @@
-B1;95;0cfrom OSUT3Analysis.Configuration.configurationOptions import *
+from OSUT3Analysis.Configuration.configurationOptions import *
 from OSUT3Analysis.Configuration.RECOSamples import *
 
 intLumi = 2460
@@ -108,8 +108,16 @@ datasetsCosmicMC = [
     #'cosmicMC_0To25Timing_OnlyJetTriggers_Ntuple_2016',
 ]
 
+datasetsZmumuData = [
+    'ZMuSkim_80To100_2016H_PromptReco_Ntuple_v2'
+]
+
+datasetsZmumuMC = [
+    'ZToMuMu_80To100_80X_Ntuple'
+]
     
 datasets = datasetsSig + datasetsData + datasetsCosmicData + datasetsCosmicMC
+#datasets = datasetsSig + datasetsData + datasetsCosmicMC
 #datasets = datasetsSig + datasetsData
 #datasets = datasetsSig + datasetsCosmicData
 #datasets = datasetsSig
@@ -118,10 +126,6 @@ datasets = datasetsSig + datasetsData + datasetsCosmicData + datasetsCosmicMC
 #datasets = datasetsCosmicMC
 #datasets = datasetsCosmicMC + datasetsCosmicData
 #datasets = datasetsCosmicMC + datasetsData
-#datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
-#datasets = datasetsCosmicData + datasetsCosmicMC + datasetsSig_2BodyDecay
-#datasets = datasetsCosmicMC + datasetsSig_2BodyDecay
-#datasets = datasetsDummy
-#datasets = datasetsData + datasetsRpcStudy
+#datasets = datasetsZmumuData + datasetsZmumuMC
 
 InputCondorArguments = {}
