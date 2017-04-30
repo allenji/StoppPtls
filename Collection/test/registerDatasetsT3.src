@@ -142,8 +142,9 @@
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2016_v2/cosmicMC_0To25Timing_Reco_2016_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_8025_Ntuple_v2/USER -f RAWSIM
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_OnlyJetTriggers_2016/cosmicMC_0To25Timing_Reco_2016_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_OnlyJetTriggers_MCRUN2_8026patch2_Ntuple/USER -f RAWSIM
 
+#osudb --location /data/users/jalimena/condor/ZMuMu80XMCNtuples/ZToMuMu_50To120_80X_AODSIM/ create /ZToMuMu_NNPDF30_13TeV-powheg_M_50_120/RunIISummer16DR80Premix-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1_Ntuple/USER -f RAWSIM
 
-
+#osudb --location /data/users/jalimena/condor/ZMuMuDataSkim2016ReRecoNtuples/ZMuSkim_2016H_PromptReco_RAWRECO_v2/ create /SingleMuon/Run2016H-ZMu-80To100-PromptReco-v2_8026patch2_Ntuple/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016B_23Sep2016_v2 create /NoBPTX/Run2016B-23Sep2016-v2/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016B_23Sep2016_v3 create /NoBPTX/Run2016B-23Sep2016-v3/USER -f RECOSIM

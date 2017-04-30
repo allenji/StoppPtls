@@ -228,6 +228,11 @@ DelayedMuonsUpperLowerOnlyThroughTimeOutInErr.name = cms.string("DelayedMuonsUpp
 removeCuts(DelayedMuonsUpperLowerOnlyThroughTimeOutInErr.cuts,[cutUpperLowerDSADeltaTimeInOut])
 
 
+#full selection with no trigger
+DelayedMuonsUpperLowerNoTrigger = copy.deepcopy(DelayedMuonsUpperLowerSelection)
+DelayedMuonsUpperLowerNoTrigger.name = cms.string("DelayedMuonsUpperLowerNoTrigger")
+DelayedMuonsUpperLowerNoTrigger.triggers = cms.vstring("")
+
 
 #ABCD regions
 #first split into 2 regions (AB and CD) by applying RPC timing cut

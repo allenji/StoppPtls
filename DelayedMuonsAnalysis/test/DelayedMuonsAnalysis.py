@@ -24,7 +24,8 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -51,9 +52,9 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
-    input = cms.untracked.int32 (1000)
+    #input = cms.untracked.int32 (1000)
     #input = cms.untracked.int32 (100)
-    #input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (-1)
     #input = cms.untracked.int32 (10)
 )
 
@@ -126,6 +127,7 @@ selections = []
 #selections.append(LooseTurnOnNum40)
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
+#selections.append(DelayedMuonsUpperLowerNoTrigger) 
 #selections.append(DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerOnlyThroughTimeOutInErr)
 #selections.append(DelayedMuonsUpperLowerStricterDeltaTimeInOut)
