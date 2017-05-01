@@ -17,7 +17,7 @@ parser.add_option("-l", "--localConfig", dest="localConfig",
                   help="local config file")
 parser.add_option("-b", "--batchMode", action="store_true", dest="batchMode", default=False,
                   help="run on the condor queue")
-parser.add_option("-M", "--method", dest="method", default="Asymptotic",
+parser.add_option("-M", "--method", dest="method", default="HybridNew",
                                     help="which method of combine to use: currently supported options are Asymptotic (default), MarkovChainMC and HybridNew")
 (arguments, args) = parser.parse_args()
 
@@ -133,7 +133,7 @@ for lifetime in lt_itr:
     #hybridExtraOptions = "--fork 4 --frequentist --testStat LHC --rAbsAcc 0.00001 -T 2000 "
     #hybridExtraOptions = "--fork 4 --frequentist --testStat LHC --rAbsAcc 0.001 -T 2000 "
     #hybridExtraOptions = "--testStat LHC --rAbsAcc 0.00001 -T 2000 "
-    hybridExtraOptions = "--fork 4 --testStat LHC --rAbsAcc 0.01 --rRelAcc 0.001 --fullBToys -T 5000 "
+    hybridExtraOptions = "--fork 4 --testStat LHC --rAbsAcc 0.01 --rRelAcc 0.01 --fullBToys -T 2000 "
     if gammaOnly is True:
         combine_expected_options = combine_expected_options + hybridExtraOptions + " --expectedFromGrid 0.01 "
     else:
