@@ -26,7 +26,7 @@ class DelayedMuonsEventVariableProducer : public EventVariableProducer
 
   edm::EDGetTokenT<vector<TYPE(tracks)> > tracksToken_;
   edm::EDGetTokenT<vector<TYPE(secondaryTracks)> > secondaryTracksToken_;
-
+  TRandom2* rndm;
 };
 
 

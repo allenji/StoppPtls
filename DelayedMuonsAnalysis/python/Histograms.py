@@ -785,6 +785,36 @@ LowerDSAHistograms = cms.PSet(
         )
     )
 
+SmearedMomentumDSAHistograms = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    histograms = cms.VPSet (
+        cms.PSet (
+            name = cms.string("pSmearedUpper"),
+            title = cms.string("Upper DSA Track Smeared Momentum; Upper DSA Track Smeared p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pSmearedUpper"),
+            ),
+        cms.PSet (
+            name = cms.string("ptSmearedUpper"),
+            title = cms.string("Upper DSA Track Smeared Transverse Momentum; Upper DSA Track Smeared p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("ptSmearedUpper"),
+            ),
+        cms.PSet (
+            name = cms.string("pSmearedLower"),
+            title = cms.string("Lower DSA Track Smeared Momentum; Lower DSA Track Smeared p [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("pSmearedLower"),
+            ),
+        cms.PSet (
+            name = cms.string("ptSmearedLower"),
+            title = cms.string("Lower DSA Track Smeared Transverse Momentum; Lower DSA Track Smeared p_{T} [GeV]"),
+            binsX = cms.untracked.vdouble(100, 0, 1000),
+            inputVariables = cms.vstring("ptSmearedLower"),
+            ),
+        )
+)
+
 #trigger turn on histos: same as upper DSA histos except plot p/pt to 200 GeV and bin width is 2 GeV
 TriggerTurnOnUpperDSAHistograms = cms.PSet(
     inputCollection = cms.vstring("tracks"),
