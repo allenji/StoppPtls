@@ -15,6 +15,7 @@ DelayedMuonsEventVariableProducer::DelayedMuonsEventVariableProducer(const edm::
   tracksToken_ = consumes<vector<TYPE(tracks)> >(collections_.getParameter<edm::InputTag>("tracks"));
   secondaryTracksToken_ = consumes<vector<TYPE(secondaryTracks)> >(collections_.getParameter<edm::InputTag>("secondaryTracks"));
   rndm = new TRandom2();
+  ptResolutionWidth_ = cfg.getParameter<double>("ptResolutionWidth");
 }
 
 DelayedMuonsEventVariableProducer::~DelayedMuonsEventVariableProducer()
@@ -45,7 +46,7 @@ void DelayedMuonsEventVariableProducer::AddVariables(const edm::Event & event) {
   for(decltype(tracks->size()) i = 0; i != tracks->size(); ++i) {
     //std::cout<<"track number "<<i<<": phi is: "<<tracks->at(i).phi()<<std::endl;
     //std::cout<<"track number "<<i<<": pt is: "<<tracks->at(i).pt()<<std::endl;
-    double randomNum = rndm->Gaus(0, 0.09);
+    double randomNum = rndm->Gaus(0, ptResolutionWidth_);
     //std::cout<<"randomNum is: "<<randomNum<<std::endl;
     if(ptSmearedUpper==0. && tracks->at(i).phi()>0.){
       ptSmearedUpper = tracks->at(i).pt()*(1 + randomNum);

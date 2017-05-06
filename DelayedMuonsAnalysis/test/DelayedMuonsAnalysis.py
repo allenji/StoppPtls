@@ -21,11 +21,11 @@ process.source = cms.Source ("PoolSource",
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
-        #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
                              )
@@ -54,8 +54,8 @@ process.TFileService = cms.Service ('TFileService',
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (1000)
     #input = cms.untracked.int32 (100)
-    input = cms.untracked.int32 (-1)
-    #input = cms.untracked.int32 (10)
+    #input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (10)
 )
 
 ################################################################################
@@ -298,6 +298,9 @@ add_channels(process, selections, histograms, weights, scalingfactorproducers, c
 #process.StoppPtlsEventVariableProducer.stoppedParticlesPdgId = cms.InputTag("g4SimHits", "StoppedParticlesPdgId")
 #process.StoppPtlsEventVariableProducer.stoppedParticlesMass = cms.InputTag("g4SimHits", "StoppedParticlesMass")
 #process.StoppPtlsEventVariableProducer.stoppedParticlesCharge = cms.InputTag("g4SimHits", "StoppedParticlesCharge")
+
+#process.DelayedMuonsEventVariableProducer.ptResolutionWidth = cms.double(0.09) #2015
+process.DelayedMuonsEventVariableProducer.ptResolutionWidth = cms.double(0.053) #2016
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
