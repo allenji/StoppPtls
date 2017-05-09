@@ -241,6 +241,16 @@ DelayedMuonsUpperLowerOnlyThroughTimeOutInErr.name = cms.string("DelayedMuonsUpp
 removeCuts(DelayedMuonsUpperLowerOnlyThroughTimeOutInErr.cuts,[cutUpperLowerDSADeltaTimeInOut])
 
 
+DelayedMuonsUpperLowerSelection2 = copy.deepcopy(PreSelectionUpperLower)
+DelayedMuonsUpperLowerSelection2.name = cms.string("DelayedMuonsUpperLowerSelection2")
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSAPt)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSANValidRpcHits)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutLowerDSADtTofFreeInverseBeta)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSADeltaRpcHitBxAverage)
+DelayedMuonsUpperLowerSelection2.cuts.append(cutUpperLowerDSAUpperP52Inverted)
+
 #full selection with no trigger
 DelayedMuonsUpperLowerNoTrigger = copy.deepcopy(DelayedMuonsUpperLowerSelection)
 DelayedMuonsUpperLowerNoTrigger.name = cms.string("DelayedMuonsUpperLowerNoTrigger")

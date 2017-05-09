@@ -128,6 +128,7 @@ selections = []
 #selections.append(LooseTurnOnNum40)
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
+#selections.append(DelayedMuonsUpperLowerSelection2)
 #selections.append(DelayedMuonsUpperLowerNoTrigger) 
 #selections.append(DelayedMuonsUpperLowerZMuMu)
 #selections.append(DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut)
