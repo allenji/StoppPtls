@@ -21,10 +21,10 @@ process.source = cms.Source ("PoolSource",
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
-        'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
-        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
+        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
         ),
@@ -139,6 +139,17 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerSelection2DeltaTrpcTimeNeg15)
 #selections.append(DelayedMuonsUpperLowerSelection2DeltaTrpcTimeNeg10)
 #selections.append(DelayedMuonsUpperLowerSelection2DeltaTrpcTimeNeg5)
+#selections.append(DelayedMuonsUpperLowerSelection3)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg50)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg45)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg40)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg35)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg30)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg25)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg20)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg15)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg10)
+#selections.append(DelayedMuonsUpperLowerSelection3DeltaTrpcTimeNeg5)
 #selections.append(DelayedMuonsUpperLowerNoTrigger) 
 #selections.append(DelayedMuonsUpperLowerZMuMu)
 #selections.append(DelayedMuonsUpperLowerOnlyThroughDeltaTimeInOut)
