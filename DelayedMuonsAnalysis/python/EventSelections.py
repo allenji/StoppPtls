@@ -158,6 +158,24 @@ PreSelectionUpperLowerZMuMu = cms.PSet(
       )
     )
 
+PreSelectionExactly1UpperExactly1Lower = cms.PSet(
+    name = cms.string("PreSelectionExactly1UpperExactly1Lower"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAs,
+      cutPreDSAExactly1UpperAndExactly1Lower,
+      cutPreDSA3DangleBackToBack,
+      cutPreDSAPt,
+      cutPreDSANDtChambersWithValidHits,
+      cutPreDSANValidRpcHits,
+      cutPreDSADtTofNDof,
+      cutPreDSANValidCscHits,
+      )
+    )
+
 #for trigger turn on: run over ntuples where only control triggers are used in the selection
 PreSelectionUpperLowerAtLeast4ValidDtChambers = copy.deepcopy(PreSelectionUpperLower)
 PreSelectionUpperLowerAtLeast4ValidDtChambers.name = cms.string("PreSelectionUpperLowerAtLeast4ValidDtChambers")

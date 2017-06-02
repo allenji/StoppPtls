@@ -21,6 +21,26 @@ process.source = cms.Source ("PoolSource",
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleMchampsSeparateEventsParticle0/mchamp600_RecoSeparateEventsParticle0/hist_0.root'
         #'file:/data/users/jalimena/condor/Stage2NtupleSeparateEvents_2016/mchamp600_RecoSeparateEventsParticle0_2016/hist_0.root'
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_0.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_1.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_2.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_4.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_5.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_6.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_7.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_8.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_9.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_10.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_11.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_12.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_13.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_14.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_15.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_16.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_17.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_18.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_19.root',
+        #'file:/data/users/jalimena/condor/Stage2NtupleGluinosSeparateEventsParticle0/gluino1000_RecoSeparateEventsParticle0/hist_20.root',
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
@@ -52,6 +72,7 @@ process.TFileService = cms.Service ('TFileService',
 
 # number of events to process when running interactively
 process.maxEvents = cms.untracked.PSet (
+    #input = cms.untracked.int32 (5000)
     #input = cms.untracked.int32 (1000)
     #input = cms.untracked.int32 (100)
     #input = cms.untracked.int32 (-1)
@@ -117,6 +138,7 @@ selections = []
 #selections.append(PrePreSelectionUpperLower)
 #selections.append(PreSelectionUpperOnly)
 #selections.append(PreSelectionUpperLower)
+#selections.append(PreSelectionExactly1UpperExactly1Lower)
 #selections.append(TriggerPuritySelection)
 #selections.append(PreSelectionUpperLowerNoTrigger)
 #selections.append(PreSelectionUpperLowerZMuMu)

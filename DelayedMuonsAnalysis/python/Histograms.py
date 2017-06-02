@@ -968,7 +968,12 @@ DeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(100, -10, 10),
             inputVariables = cms.vstring("((track.charge)/(track.pt) - (secondaryTrack.charge)/(secondaryTrack.pt))/(1.414*(secondaryTrack.charge)/(secondaryTrack.pt))"),
             ),
-
+        cms.PSet (
+            name = cms.string("3Dangle"),
+            title = cms.string("3D angle; 3D angle between Upper and Lower DSA Tracks"),
+            binsX = cms.untracked.vdouble(100, 0, 4),
+            inputVariables = cms.vstring("acos((track.px*secondaryTrack.px + track.py*secondaryTrack.py + track.pz*secondaryTrack.pz)/sqrt((track.px*track.px + track.py*track.py + track.pz*track.pz)*(secondaryTrack.px*secondaryTrack.px + secondaryTrack.py*secondaryTrack.py + secondaryTrack.pz*secondaryTrack.pz)))"),
+            ),
         )
     )
 

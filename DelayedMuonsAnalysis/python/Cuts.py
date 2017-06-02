@@ -163,6 +163,20 @@ cutPreDSAUpperAndLower = cms.PSet(
     alias = cms.string("At least one DSA track in upper hemisphere and at least one DSA track in lower hemisphere")
 )
 
+cutPreDSAExactly1UpperAndExactly1Lower = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("track.phi > 0. && secondaryTrack.phi < 0."),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("Exactly one DSA track in upper hemisphere and exactly one DSA track in lower hemisphere")
+)
+
+cutPreDSA3DangleBackToBack = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("acos((track.px*secondaryTrack.px + track.py*secondaryTrack.py + track.pz*secondaryTrack.pz)/sqrt((track.px*track.px + track.py*track.py + track.pz*track.pz)*(secondaryTrack.px*secondaryTrack.px + secondaryTrack.py*secondaryTrack.py + secondaryTrack.pz*secondaryTrack.pz))) > 3.04 && acos((track.px*secondaryTrack.px + track.py*secondaryTrack.py + track.pz*secondaryTrack.pz)/sqrt((track.px*track.px + track.py*track.py + track.pz*track.pz)*(secondaryTrack.px*secondaryTrack.px + secondaryTrack.py*secondaryTrack.py + secondaryTrack.pz*secondaryTrack.pz))) < 3.24"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("3.04 < 3D angle between upper and lower tracks < 3.24")
+)
+
 cutPreDSAPt = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("track.pt > 10 && secondaryTrack.pt > 10"),
