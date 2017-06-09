@@ -54,7 +54,7 @@ GenPlotsSelection = cms.PSet(
 
 #PrePre Selection (only pt>10 GeV cut)
 #For jetE, jetEta plots
-cutPreDSAPtGeneric = copy.deepcopy(cutPreDSAPtUpperOnly)
+cutPreDSAPtGeneric = copy.deepcopy(cutPreDSAPtExactlyOne)
 cutPreDSAPtGeneric.alias = cms.string("DSA Track $p_{T}$ > 10 \GeV")
 
 PrePreSelection = cms.PSet(
@@ -66,7 +66,7 @@ PrePreSelection = cms.PSet(
       cutVertexNumber,
       cutPreMinNDSAs,
       cutPreDSAPtGeneric,
-      cutPrePreDSADtTofNDofUpperOnly,
+      cutPrePreDSADtTofNDofExactlyOne,
       )
 )
 
@@ -78,7 +78,8 @@ PrePreSelectionUpperLower = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutPreMinNDSAs,
-      cutPreDSAUpperAndLower,
+      #cutPreDSAUpperAndLower,
+      cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       )
 )
@@ -93,10 +94,10 @@ TriggerPuritySelection = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutPreMinNDSAs,
-      cutDSAPtUpperOnly,
-      cutPreDSANDtChambersWithValidHitsUpperOnly,
-      cutPreDSANValidRpcHitsUpperOnly,
-      cutPreDSANValidCscHitsUpperOnly,
+      cutDSAPtExactlyOne,
+      cutPreDSANDtChambersWithValidHitsExactlyOne,
+      cutPreDSANValidRpcHitsExactlyOne,
+      cutPreDSANValidCscHitsExactlyOne,
       )
     )
 
@@ -109,14 +110,32 @@ PreSelectionUpperOnly = cms.PSet(
     cuts = cms.VPSet(
       cutBx,
       cutVertexNumber,
-      cutPreMinNDSAsUpperOnly,
-      cutPreMaxNDSAsUpperOnly,
+      cutPreMinNDSAsExactlyOne,
+      cutPreMaxNDSAsExactlyOne,
       cutPreDSAUpperOnly,
-      cutPreDSAPtUpperOnly,
-      cutPreDSANDtChambersWithValidHitsUpperOnly,
-      cutPreDSANValidRpcHitsUpperOnly,
-      cutPreDSADtTofNDofUpperOnly,
-      cutPreDSANValidCscHitsUpperOnly,
+      cutPreDSAPtExactlyOne,
+      cutPreDSANDtChambersWithValidHitsExactlyOne,
+      cutPreDSANValidRpcHitsExactlyOne,
+      cutPreDSADtTofNDofExactlyOne,
+      cutPreDSANValidCscHitsExactlyOne,
+      )
+    )
+
+PreSelectionLowerOnly = cms.PSet(
+    name = cms.string("PreSelectionLowerOnly"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAsExactlyOne,
+      cutPreMaxNDSAsExactlyOne,
+      cutPreDSALowerOnly,
+      cutPreDSAPtExactlyOne,
+      cutPreDSANDtChambersWithValidHitsExactlyOne,
+      cutPreDSANValidRpcHitsExactlyOne,
+      cutPreDSADtTofNDofExactlyOne,
+      cutPreDSANValidCscHitsExactlyOne,
       )
     )
 
@@ -131,7 +150,8 @@ PreSelectionUpperLower = cms.PSet(
       cutVertexNumber,
       cutPreMinNDSAs,
       #cutPreMaxNDSAs,
-      cutPreDSAUpperAndLower,
+      #cutPreDSAUpperAndLower,
+      cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       cutPreDSANDtChambersWithValidHits,
       cutPreDSANValidRpcHits,
@@ -150,7 +170,8 @@ PreSelectionUpperLowerZMuMu = cms.PSet(
     triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutPreMinNDSAs,
-      cutPreDSAUpperAndLower,
+      #cutPreDSAUpperAndLower,
+      cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       cutPreDSANDtChambersWithValidHits,
       cutPreDSANValidRpcHits,
@@ -206,11 +227,11 @@ LooseTurnOnDen = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutCscSegNumber,
-      cutPreMinNDSAsUpperOnly,
-      cutDSAPtUpperOnly,
-      cutPreDSAAtLeast4DtChambersWithValidHitsUpperOnly,
-      cutPreDSANValidRpcHitsUpperOnly,
-      cutPreDSANValidCscHitsUpperOnly,
+      cutPreMinNDSAsExactlyOne,
+      cutDSAPtExactlyOne,
+      cutPreDSAAtLeast4DtChambersWithValidHitsExactlyOne,
+      cutPreDSANValidRpcHitsExactlyOne,
+      cutPreDSANValidCscHitsExactlyOne,
       )
     )
 
@@ -230,11 +251,17 @@ LooseTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHa
 DelayedMuonsUpperOnlySelection = copy.deepcopy(PreSelectionUpperOnly)
 DelayedMuonsUpperOnlySelection.name = cms.string("DelayedMuonsUpperOnlySelection")
 DelayedMuonsUpperOnlySelection.cuts.append(cutDSAPt)
-#DelayedMuonsUpperOnlySelection.cuts.append(cutDSAEta)
 DelayedMuonsUpperOnlySelection.cuts.append(cutDSANDtChambersWithValidHits)
 DelayedMuonsUpperOnlySelection.cuts.append(cutDSANValidRpcHits)
-#DelayedMuonsUpperOnlySelection.cuts.append(cutDSADtTofTimeInOut)
 DelayedMuonsUpperOnlySelection.cuts.append(cutDSADtTofTimeInOutErr)
+
+DelayedMuonsLowerOnlySelection = copy.deepcopy(PreSelectionLowerOnly)
+DelayedMuonsLowerOnlySelection.name = cms.string("DelayedMuonsLowerOnlySelection")
+DelayedMuonsLowerOnlySelection.cuts.append(cutDSAPt)
+DelayedMuonsLowerOnlySelection.cuts.append(cutDSANDtChambersWithValidHits)
+DelayedMuonsLowerOnlySelection.cuts.append(cutDSANValidRpcHits)
+DelayedMuonsLowerOnlySelection.cuts.append(cutDSADtTofTimeInOutErr)
+DelayedMuonsLowerOnlySelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 
 #full analysis upper and lower selection
 DelayedMuonsUpperLowerSelection = copy.deepcopy(PreSelectionUpperLower)

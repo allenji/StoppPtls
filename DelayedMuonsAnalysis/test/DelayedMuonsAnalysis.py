@@ -75,9 +75,9 @@ process.TFileService = cms.Service ('TFileService',
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (5000)
     #input = cms.untracked.int32 (1000)
-    #input = cms.untracked.int32 (100)
+    input = cms.untracked.int32 (100)
     #input = cms.untracked.int32 (10)
-    input = cms.untracked.int32 (-1)
+    #input = cms.untracked.int32 (-1)
 )
 
 ################################################################################
@@ -138,6 +138,7 @@ selections = []
 #selections.append(PrePreSelection)
 #selections.append(PrePreSelectionUpperLower)
 #selections.append(PreSelectionUpperOnly)
+#selections.append(PreSelectionLowerOnly)
 #selections.append(PreSelectionUpperLower)
 #selections.append(PreSelectionExactly1UpperExactly1Lower)
 #selections.append(TriggerPuritySelection)
@@ -150,6 +151,7 @@ selections = []
 #selections.append(LooseTurnOnNum35)
 #selections.append(LooseTurnOnNum40)
 #selections.append(DelayedMuonsUpperOnlySelection)
+#selections.append(DelayedMuonsLowerOnlySelection)
 #selections.append(DelayedMuonsUpperLowerSelection)
 #selections.append(DelayedMuonsExactly1UpperExactly1LowerSelection)
 #selections.append(DelayedMuonsUpperLowerSelection2)
