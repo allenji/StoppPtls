@@ -139,6 +139,41 @@ PreSelectionLowerOnly = cms.PSet(
       )
     )
 
+
+PreSelectionAtLeastOneUpper = cms.PSet(
+    name = cms.string("PreSelectionAtLeastOneUpper"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAsExactlyOne,
+      cutPreDSAAtLeastOneUpper,
+      cutPreDSAPtAtLeastOne,
+      cutPreDSANDtChambersWithValidHitsAtLeastOne,
+      cutPreDSANValidRpcHitsAtLeastOne,
+      cutPreDSADtTofNDofAtLeastOne,
+      cutPreDSANValidCscHitsAtLeastOne,
+      )
+    )
+
+PreSelectionAtLeastOneLower = cms.PSet(
+    name = cms.string("PreSelectionAtLeastOneLower"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAsExactlyOne,
+      cutPreDSAAtLeastOneLower,
+      cutPreDSAPtAtLeastOne,
+      cutPreDSANDtChambersWithValidHitsAtLeastOne,
+      cutPreDSANValidRpcHitsAtLeastOne,
+      cutPreDSADtTofNDofAtLeastOne,
+      cutPreDSANValidCscHitsAtLeastOne,
+      )
+    )
+
 #Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
 PreSelectionUpperLower = cms.PSet(
@@ -262,6 +297,22 @@ DelayedMuonsLowerOnlySelection.cuts.append(cutDSANDtChambersWithValidHits)
 DelayedMuonsLowerOnlySelection.cuts.append(cutDSANValidRpcHits)
 DelayedMuonsLowerOnlySelection.cuts.append(cutDSADtTofTimeInOutErr)
 DelayedMuonsLowerOnlySelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
+
+
+DelayedMuonsAtLeastOneUpperSelection = copy.deepcopy(PreSelectionAtLeastOneUpper)
+DelayedMuonsAtLeastOneUpperSelection.name = cms.string("DelayedMuonsAtLeastOneUpperSelection")
+DelayedMuonsAtLeastOneUpperSelection.cuts.append(cutDSAPtAtLeastOne)
+DelayedMuonsAtLeastOneUpperSelection.cuts.append(cutDSANDtChambersWithValidHitsAtLeastOne)
+DelayedMuonsAtLeastOneUpperSelection.cuts.append(cutDSANValidRpcHitsAtLeastOne)
+DelayedMuonsAtLeastOneUpperSelection.cuts.append(cutDSADtTofTimeInOutErrAtLeastOne)
+
+DelayedMuonsAtLeastOneLowerSelection = copy.deepcopy(PreSelectionAtLeastOneLower)
+DelayedMuonsAtLeastOneLowerSelection.name = cms.string("DelayedMuonsAtLeastOneLowerSelection")
+DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutDSAPtAtLeastOne)
+DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutDSANDtChambersWithValidHitsAtLeastOne)
+DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutDSANValidRpcHitsAtLeastOne)
+DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutDSADtTofTimeInOutErrAtLeastOne)
+DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBetaAtLeastOne)
 
 #full analysis upper and lower selection
 DelayedMuonsUpperLowerSelection = copy.deepcopy(PreSelectionUpperLower)

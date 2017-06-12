@@ -146,6 +146,74 @@ cutDSAPtExactlyOne = cms.PSet(
     alias = cms.string("DSA Track $p_{T}$ > 50 \GeV")
 )
 
+
+########################################
+#preselection at least 1 DSA cuts
+########################################
+
+cutPreDSAAtLeastOneUpper = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("phi > 0."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("At least one DSA track in upper hemisphere")
+)
+
+cutPreDSAAtLeastOneLower = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("phi < 0."),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("At least one DSA track in lower hemisphere")
+)
+
+cutPreDSAPtAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > 10"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track $p_{T}$ > 10 \GeV")
+)
+
+cutPreDSANDtChambersWithValidHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nDtChambersWithValidHits > 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track > 1 DT chambers with valid hits")
+)
+
+cutPreDSAAtLeast4DtChambersWithValidHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nDtChambersWithValidHits > 3"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track > 3 DT chambers with valid hits")
+)
+
+cutPreDSANValidRpcHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nValidRpcHits > 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track > 1 valid RPC hits")
+)
+
+cutPreDSADtTofNDofAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofNDof > 7"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track > 7 TOF nDof")
+)
+
+cutPreDSANValidCscHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nValidCscHits < 1"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track 0 valid CSC hits")
+)
+
+cutDSAPtAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > 50"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("DSA Track $p_{T}$ > 50 \GeV")
+)
+
 ########################################
 #preselection upper and lower DSA cuts
 ########################################
@@ -289,6 +357,68 @@ cutDSADtTofFreeInverseBeta = cms.PSet(
 
 
 ########################################
+#final selection DSA cuts
+########################################
+cutDSAPtAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("pt > 50"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track $p_{T}$ > 50 \GeV")
+)
+
+cutDSAEtaAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("abs(eta) < 1.0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track $|#eta|$ < 1.0")
+)
+
+cutDSANDtChambersWithValidHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nDtChambersWithValidHits > 2"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track > 2 DT chambers with valid hits")
+)
+
+cutDSANValidRpcHitsAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("nValidRpcHits > 2"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track > 2 valid RPC hits")
+)
+
+cutDSADtTofTimeInOutAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofTimeAtIpInOut > -10"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track TimeInOut > -10 ns")
+)
+
+cutDSADtTofTimeInOutErrAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofTimeAtIpInOutErr < 5"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track TimeInOut Error < 5 ns")
+)
+
+cutDSADtTofDirectionAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofDirection > 0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track TOF Direction == 1")
+)
+
+cutDSADtTofFreeInverseBetaAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("tracks"),
+    cutString = cms.string("dtTofFreeInverseBeta > 0.0"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Upper DSA Track #beta_{Free}^{-1} > 005")
+)
+
+
+
+
+########################################
 #upper and lower DSA selection cuts
 ########################################
 cutUpperLowerDSAPt = cms.PSet(
@@ -406,6 +536,13 @@ cutLowerDSADtTofFreeInverseBeta = cms.PSet(
     inputCollection = cms.vstring("secondaryTracks"),
     cutString = cms.string("dtTofFreeInverseBeta > 0.0"),
     numberRequired = cms.string("== 1"),
+    alias = cms.string("Lower DSA Track #beta_{Free}^{-1} > 0.0")
+)
+
+cutLowerDSADtTofFreeInverseBetaAtLeastOne = cms.PSet(
+    inputCollection = cms.vstring("secondaryTracks"),
+    cutString = cms.string("dtTofFreeInverseBeta > 0.0"),
+    numberRequired = cms.string(">= 1"),
     alias = cms.string("Lower DSA Track #beta_{Free}^{-1} > 0.0")
 )
 
