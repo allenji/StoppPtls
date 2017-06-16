@@ -15,7 +15,10 @@ intLumi = 2830
 #config_file = "delayedMuonsCandiate2016_OnlyJetTriggers_23Sep2016BCDEFGReReco_cfg.py"
 #config_file = "delayedMuonsCandiate2016_OnlyJetTriggers_PromptRecoH_cfg.py"
 
-config_file = "delayedMuonsCandiate2016_PromptRecoH_ZMuMu_80To100_cfg.py"
+config_file = "delayedMuonsCandiate_OnlyJetTriggers_cfg.py"
+
+#config_file = "delayedMuonsCandiate2015_ZMuMu_80To100_cfg.py"
+#config_file = "delayedMuonsCandiate2016_PromptRecoH_ZMuMu_80To100_cfg.py"
 
 datasets = [
     #"NoBPTX_2016BCDEFG_23Sep2016",
@@ -26,9 +29,13 @@ datasets = [
 
     #"NoBPTX_16Dec2015",
 
+    "NoBPTX_2015C_16Dec2015_AOD",
+    #"NoBPTX_2015D_16Dec2015_AOD",
+
     #"NoBPTX_2016DE_PromptReco_Cosmic_TopAndBottom",
 
-    "ZMuSkim_2016H_PromptReco_RAWRECO_v2",
+    #"ZMuSkim_2015D_16Dec2015_RAWRECO",
+    #"ZMuSkim_2016H_PromptReco_RAWRECO_v2",
 ]
     
 InputCondorArguments = {}

@@ -65,12 +65,15 @@
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_2015_v2/cosmicMC_0To25Timing_Reco_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_MCRUN2_766_Ntuple_v2/USER -f RAWSIM
 #osudb --location /data/users/jalimena/condor/cosmicMCNtuple_0To25Timing_OnlyJetTriggers_2015/cosmicMC_0To25Timing_Reco_v2 create /Cosmic/Cosmic_fullDetector_0To25Timing_OnlyJetTriggers_MCRUN2_766_Ntuple/USER -f RAWSIM
 
+#osudb --location /data/users/jalimena/condor/ZMuMu76XMCNtuples/ZToMuMu_50To120_76X_AODSIM/ create /ZToMuMu_NNPDF30_13TeV-powheg_M_50_120/RunIIFall15DR76-PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_80To100_Ntuple/USER -f RAWSIM
+
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-16Dec2015-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-16Dec2015-v1/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples_OnlyControlTriggers/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-OnlyControlTriggers-16Dec2015-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples_OnlyControlTriggers/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-OnlyControlTriggers-16Dec2015-v1/USER -f RECOSIM
 
+#osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples_OnlyJetTriggers/NoBPTX_2015D_16Dec2015_AOD create /NoBPTX/Run2015D_25ns-OnlyJetTriggers-16Dec2015-v1/USER -f RECOSIM
 
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015B_PromptReco create /NoBPTX/Run2015B_Cosmic-PromptReco-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015C_PromptReco create /NoBPTX/Run2015C_Cosmic-PromptReco-v1/USER -f RECOSIM
@@ -79,6 +82,8 @@
 #osudb --location /data/users/jalimena/condor/NoBPTX2015CosmicNtuples/NoBPTX_2015E_PromptReco create /NoBPTX/Run2015E_Cosmic-PromptReco-v1/USER -f RECOSIM
 
 
+#osudb --location /data/users/weifengji/condor/Cosmics15_RECO_Preselection_Apr3_10000 create /Cosmic_JetsChannelCosmicPreselection/MCRUN2_76X_RECO/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/cosmicMCNtuple_JetsChannelPreselection_OnlyJetTriggers_2015/cosmicMC_JetsChannelCosmicPreselection_reco_2015 create /Cosmic_JetsChannelCosmicPreselection/OnlyJetTriggers_MCRUN2_766_Ntuple/USER -f RECOSIM
 
 ##############################
 # 2016
