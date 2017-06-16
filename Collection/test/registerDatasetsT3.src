@@ -67,6 +67,8 @@
 
 #osudb --location /data/users/jalimena/condor/ZMuMu76XMCNtuples/ZToMuMu_50To120_76X_AODSIM/ create /ZToMuMu_NNPDF30_13TeV-powheg_M_50_120/RunIIFall15DR76-PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_80To100_Ntuple/USER -f RAWSIM
 
+#osudb --location /data/users/jalimena/condor/ZMuMuDataSkim2015Ntuples/ZMuSkim_2015D_16Dec2015_RAWRECO/ create /SingleMuon/Run2015D-ZMu-80To100-16Dec2015-76X_Ntuple/USER -f RECOSIM
+
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015 create /NoBPTX/Run2015C_25ns-16Dec2015-v1/USER -f RECOSIM
 #osudb --location /data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015D_16Dec2015 create /NoBPTX/Run2015D_25ns-16Dec2015-v1/USER -f RECOSIM
 

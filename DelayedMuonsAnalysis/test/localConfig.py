@@ -98,7 +98,7 @@ datasetsCosmicMC = [
     #'cosmicMC_0To25Timing_Ntuple',
     #'cosmicMC_0To25Timing_Ntuple_2016',
 
-    'cosmicMC_0To25Timing_Ntuple_v2',
+    'cosmicMC_0To25Timing_Ntuple_v2',   
     #'cosmicMC_0To25Timing_Ntuple_2016_v2',
 
     #'cosmicMC_0To25Timing_onlyControlTriggers_Ntuple',
@@ -106,13 +106,17 @@ datasetsCosmicMC = [
 
     #'cosmicMC_0To25Timing_OnlyJetTriggers_Ntuple',
     #'cosmicMC_0To25Timing_OnlyJetTriggers_Ntuple_2016',
+
+    #'cosmicMC_JetsChannelCosmicPreselection_OnlyJetTriggers_Ntuple_2015',
 ]
 
 datasetsZmumuData = [
+    #'ZMuSkim_80To100_201BD_16Dec2015_Ntuple'
     'ZMuSkim_80To100_2016H_PromptReco_Ntuple_v2'
 ]
 
 datasetsZmumuMC = [
+    #'ZToMuMu_80To100_76X_Ntuple'
     'ZToMuMu_80To100_80X_Ntuple'
 ]
     
@@ -122,6 +126,7 @@ datasets = datasetsSig + datasetsData + datasetsCosmicData + datasetsCosmicMC
 #datasets = datasetsSig + datasetsCosmicData
 #datasets = datasetsSig
 #datasets = datasetsData
+#datasets = datasetsData + datasetsCosmicMC
 #datasets = datasetsCosmicData
 #datasets = datasetsCosmicMC
 #datasets = datasetsCosmicMC + datasetsCosmicData
