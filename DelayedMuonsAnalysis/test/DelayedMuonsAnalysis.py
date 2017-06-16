@@ -175,6 +175,7 @@ selections = []
 #selections.append(DelayedMuonsUpperLowerStricterDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerMismeasuredDeltaTimeInOut)
 #selections.append(DelayedMuonsUpperLowerMismeasuredDeltaTimeOutIn)
+#selections.append(DelayedMuonsUpperLowerSelectionRegionCD)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionAUpperP52)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionBUpperP52)
 #selections.append(DelayedMuonsUpperLowerSelectionRegionCUpperP52)
