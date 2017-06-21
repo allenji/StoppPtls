@@ -1,13 +1,13 @@
 mass                     300
 crossSection             106
 lifetime                 1
-signalEff                0.02469
+signalEff                0.185
 signalEff_e              0.0
-bgRate                   0.254e-05
-bgRate_e                 0.217e-05
+bgRate                   7.155e-08
+bgRate_e                 5.366e-08
 bgN			 1
 bgAlpha			 1
-scaleUncert              0.212
+scaleUncert              0.185
 optimizeTimeCut          1
 histFile                 /home/weifengji/StoppedParticles_Run2/SPAnalysis_2017_Jan11/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC_DelayedMuons/data/DelayedMuonToyMCLumiHist_2015.root
 lumiFile                 /home/weifengji/StoppedParticles_Run2/SPAnalysis_2017_Jan11/CMSSW_8_0_19_patch1/src/StoppPtls/ToyMC_DelayedMuons/data/lumi_254227_260627.csv
