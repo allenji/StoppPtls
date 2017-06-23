@@ -40,7 +40,6 @@ def getParams(param_file):
     alpha = 0
     signal_err = 0
     for line in pf:
-        print line
         split_line = line.split()
         if split_line != []:
             if split_line[0] == "bgN":
@@ -314,9 +313,7 @@ toymcDM = '/home/jalimena/StoppedParticles2016/CMSSW_8_0_26_patch2/src/ToyMCmcha
 if combine is True:
     toymc_result = combineToyMCFile(toymc[0], toymc[1])
     signal_err1, gamma1, gammaN1, gammaalpha1 = getParams(param[0])
-    print [signal_err1, gamma1, gammaN1, gammaalpha1]
     signal_err2, gamma2, gammaN2, gammaalpha2 = getParams(param[1])
-    print [signal_err2, gamma2, gammaN2, gammaalpha2]
 #toymc_result = combineToyMCFile(toymc2015, toymc2016)
     #for lifetime in toymc_result.keys():
         #writeDataCardCombine(toymc_result, [signal_err1, signal_err2], [signal_eff[0], signal_eff[1]], dataset_name, gamma1, gamma2, gammaN1, gammaN2, gammaalpha1, gammaalpha2)

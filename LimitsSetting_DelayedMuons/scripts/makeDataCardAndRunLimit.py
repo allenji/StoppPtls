@@ -1,13 +1,14 @@
-gluino_mass = [400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600]
-
-mchamp_mass = [100, 200, 400, 600, 800, 1000, 1400, 1800, 2200, 2600]
-
+#!/bin/env python
 import os,sys
+import re
 from optparse import OptionParser
 
 parser = OptionParser()
 parser.add_option("-o", "--outputDir", dest="outputDir",
                           help="output directory")
+
+parser.add_option("-p", "--localConfig", dest="localConfig",
+                          help="parameters file")
 
 (arguments, args) = parser.parse_args()
 
@@ -24,18 +25,29 @@ else:
     print "No output directory specified, shame on you"
     sys.exit(0)
 
+if arguments.localConfig:
+    sys.path.append(os.getcwd())
+    exec("from " + re.sub (r".py$", r"", arguments.localConfig) + " import *")
+else:
+    print "No local config specified, shame on you"
+    sys.exit(0)
+
 os.chdir(arguments.outputDir)
 
-for mass in mchamp_mass:
-    makeDataCardCMD = "python ../makeDataCardsFinal_DM.py -l localConfig_DMMchampCombined_%s'.py' -c DelayedMuonCombinedMchamp_%s"%(str(mass), str(mass))
-    runLimitCMS = "python ../runLimits_DM.py -M HybridNew -l localConfig_DMMchampCombined_%s'.py' -c DelayedMuonCombinedMchamp_%s"%(str(mass), str(mass))
+for mass in mass_mchamp_runLimits:
+    makeDataCardCMD = "makeDataCardsFinal_DM.py -l localConfig_DMMchampCombined_%s'.py' -c DelayedMuonCombinedMchamp_%s"%(str(mass), str(mass))
+    runLimitCMS = "runLimits_DM.py -M HybridNew -l localConfig_DMMchampCombined_%s'.py' -c DelayedMuonCombinedMchamp_%s"%(str(mass), str(mass))
+    print "Writing datacards for mchamp of mass %d GeV..."%(mass)
     os.system(makeDataCardCMD)
+    print "Submitting jobs for mchamp of mass %d GeV..."%(mass)
     os.system(runLimitCMS)
 
-for mass in gluino_mass:
-    makeDataCardCMD = "python ../makeDataCardsFinal_DM.py -l localConfig_DMGluinoCombined_%s'.py' -c DelayedMuonCombinedGluino_%s"%(str(mass), str(mass))
-    runLimitCMS = "python ../runLimits_DM.py -M HybridNew -l localConfig_DMGluinoCombined_%s'.py' -c DelayedMuonCombinedGluino_%s"%(str(mass), str(mass))
+for mass in mass_gluino_runLimits:
+    makeDataCardCMD = "makeDataCardsFinal_DM.py -l localConfig_DMGluinoCombined_%s'.py' -c DelayedMuonCombinedGluino_%s"%(str(mass), str(mass))
+    runLimitCMS = "runLimits_DM.py -M HybridNew -l localConfig_DMGluinoCombined_%s'.py' -c DelayedMuonCombinedGluino_%s"%(str(mass), str(mass))
+    print "Writing datacards for gluino of mass %d GeV..."%mass
     os.system(makeDataCardCMD)
+    print "Submitting jobs for gluino of mass %d GeV..."%(mass)
     os.system(runLimitCMS)    
 
 
