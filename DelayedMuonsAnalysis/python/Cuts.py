@@ -505,25 +505,11 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     alias = cms.string("#Delta TimeInOut > -20 ns")
 )
 
-cutUpperLowerDSADeltaTimeInOutClosureTest = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) > -40 && (track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 999"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("#Delta TimeInOut > -40 ns")
-)
-
 cutUpperLowerDSADeltaTimeOutIn = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -30 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
     numberRequired = cms.string("== 1"),
     alias = cms.string("#Delta TimeOutIn > -30 ns")
-)
-
-cutUpperLowerDSADeltaTimeOutInClosureTest = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -40 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("#Delta TimeOutIn > -40 ns")
 )
 
 
@@ -550,25 +536,11 @@ cutLowerDSADtTofFreeInverseBetaAtLeastOne = cms.PSet(
 #upper and lower DSA ABCD cuts
 ########################################
 
-cutLowerDSARpcBxPattern = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("secondaryTrack.rpcHitBxPattern == 0"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("Lower DSA Track RPC Hit BXs==0 ")
-)
-
 cutUpperLowerDSADeltaRpcHitBxAverage = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -0.3 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
     numberRequired = cms.string("== 1"),
     alias = cms.string("#Delta RPC Hit BX Average > -0.3")
-)
-
-cutUpperLowerDSADeltaRpcHitBxAverageInverted = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -0.3 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("#Delta RPC Hit BX Average <= -0.3")
 )
 
 cutUpperLowerDSADeltaRpcTimeNeg50 = cms.PSet(
@@ -640,18 +612,3 @@ cutUpperLowerDSADeltaRpcTimeNeg5 = cms.PSet(
     numberRequired = cms.string("== 1"),
     alias = cms.string("#Delta t_{RPC} > -5 ns")
 )
-
-cutUpperLowerDSADeltaRpcHitBxAverageClosureTest = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -1.2 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("#Delta RPC Hit BX Average > -1.2")
-)
-
-cutUpperLowerDSADeltaRpcHitBxAverageInvertedClosureTest = cms.PSet(
-    inputCollection = cms.vstring("tracks","secondaryTracks"),
-    cutString = cms.string("(track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) <= -1.2 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) > -999"),
-    numberRequired = cms.string("== 1"),
-    alias = cms.string("#Delta RPC Hit BX Average <= -1.2")
-)
- 
