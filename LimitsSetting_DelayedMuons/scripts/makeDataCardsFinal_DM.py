@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import time
 import os
 import sys
@@ -72,6 +72,38 @@ def combineToyMCFile(toymc_summary1, toymc_summary2):
             toymc_result_combined[lifetime] = [toymc_result1[lifetime], toymc_result2[lifetime]]
     return toymc_result_combined
 
+def writeDataCard(toymc_result, lifetime, signal_error, dataset_name="StoppedPartiles", gammabkg=False, gammaN=0, gammaalpha=0):
+    background = float(toymc_result[lifetime][2])
+    background_error = float(toymc_result[lifetime][3])
+    event_yield = int(toymc_result[lifetime][6])
+    lifetime = lifetime.replace(".", "p")
+    bkg_error_fraction = 1 + background_error/background
+
+    os.system("rm -f limits/"+arguments.outputDir+"/datacard_"+dataset_name+"_"+lifetime+"s.txt")
+    datacards = open("limits/"+arguments.outputDir+"/datacard_"+dataset_name+"_"+lifetime+"s.txt", "w")
+
+    datacards.write('imax 1 number of channels\n')
+    datacards.write('jmax 1 number of backgrounds\n')
+    datacards.write('kmax * number of nuisance parameters\n')
+    datacards.write('\n')
+
+    datacards.write('---------------------\n')
+    datacards.write('%-15s%-10d\n'%("bin", 1))
+    datacards.write('%-15s%-10d\n'%("observation", event_yield))
+
+    datacards.write('---------------------\n')
+    datacards.write('%-25s%-10d%-10d\n'%("bin", 1, 1))
+    datacards.write('%-25s%-10s%-10s\n'%("process", "signal", "bkg"))
+    datacards.write('%-25s%-10d%-10d\n'%("process", 0, 1))
+    datacards.write('%-25s%-10d%-10.2f\n'%("rate", 1, background))
+
+    datacards.write('---------------------\n')
+    datacards.write('%-15s%-10s%-10.2f%-10s\n'%("signal_err", "lnN", 1+signal_error, '-'))
+    if gammabkg is True:
+        datacards.write('%-15s%-5s%-5d%-10s%-10.2f\n'%("bkg_err", "gmN",gammaN, '-', gammaalpha))
+    else:
+        datacards.write('%-15s%-10s%-10s%-10.2f\n'%("bkg_err", "lnN", '-', bkg_error_fraction))
+    datacards.close()
 
 def writeDataCard_temp(toymc_result, lifetime, bkg_estimate, bkg_process,  signal_error, dataset_name="StoppedPartiles"):
     event_yield = int(toymc_result[lifetime][6])
@@ -221,11 +253,61 @@ def writeDataCardCombine_temp(toymc_result_combined, signal_error, signal_eff, b
                     for i in result:
                         datacards.write("%-10s"%(i))
                     datacards.write('\n')
-        datacards.write('%-10s%-10s%-10s%-10f%-10s%-10f\n'%('bkgsys', 'lnN', '-', 2.0, '-', 2.0))
+        #datacards.write('%-10s%-10s%-10s%-10f%-10s%-10f\n'%('bkgsys', 'lnN', '-', 2.0, '-', 2.0))
         
                     
 
 
+
+def writeDataCardCombine(toymc_result_combined, signal_error, signal_eff, dataset_name="StoppedParticles", gamma1=False, gamma2=False, gammaN1=0, gammaN2=0, gammaalpha1=0, gammaalpha2=0):
+    for lifetime in toymc_result_combined.keys():
+        n_obs1 = int(toymc_result_combined[lifetime][0][4])
+        n_obs2 = int(toymc_result_combined[lifetime][1][4])
+        bkg_1 = float(toymc_result_combined[lifetime][0][2])
+        bkg_2 = float(toymc_result_combined[lifetime][1][2])
+        bkg_err1 = float(toymc_result_combined[lifetime][0][3])
+        bkg_err2 = float(toymc_result_combined[lifetime][1][3])
+        l_eff1 = float(toymc_result_combined[lifetime][0][0])/1000
+        l_eff2 = float(toymc_result_combined[lifetime][1][0])/1000
+        bkg_err_fraction1 = 1 + bkg_err1/bkg_1
+        bkg_err_fraction2 = 1 + bkg_err2/bkg_2
+        signal_err1 = signal_error[0]
+        signal_err2 = signal_error[1]
+        signal_eff1 = signal_eff[0]
+        signal_eff2 = signal_eff[1]
+
+        lifetime = lifetime.replace(".", "p")
+        os.system("rm -f limits/"+arguments.outputDir+"/datacard_"+dataset_name+"_"+lifetime+"s.txt")
+        datacards = open("limits/"+arguments.outputDir+"/datacard_"+dataset_name+"_"+lifetime+"s.txt", "w")
+        datacards.write('imax 2 number of bins\n')
+        datacards.write('jmax 1 number of processes minus 1\n')
+        datacards.write('kmax * number of nuisance parameters\n')
+        datacards.write('\n')
+
+        datacards.write('-----------------------------------------------------------\n')
+        datacards.write('%-15s%-10s%-10s\n'%("bin", "ch1", "ch2"))
+        datacards.write('%-15s%-10d%-10d\n'%("observation", n_obs1, n_obs2))
+
+        datacards.write('-----------------------------------------------------------\n')
+        datacards.write('%-25s%-10s%-10s%-10s%-10s\n'%("bin", "ch1", "ch1", "ch2", "ch2"))
+        datacards.write('%-25s%-10s%-10s%-10s%-10s\n'%("process", "signal", "bkg", "signal", "bkg"))
+        datacards.write('%-25s%-10d%-10d%-10d%-10d\n'%("process", 0, 1, 0, 1))
+        datacards.write('%-25s%-10.4f%-10.2f%-10.4f%-10.2f\n'%("rate", l_eff1*signal_eff1, bkg_1, l_eff2*signal_eff2, bkg_2))
+
+        datacards.write('-----------------------------------------------------------\n')
+        datacards.write('%-15s%-10s%-10.2f%-10s%-10.2f%-10s\n'%("signal_err", "lnN", 1+signal_err1, '-', 1+signal_err2, '-'))
+        if (gamma1 is False) and (gamma2 is False):
+            datacards.write('%-15s%-10s%-10s%-10.2f%-10s%-10.2f\n'%("bkg_err", "lnN", '-',bkg_err_fraction1, '-', bkg_err_fraction2))
+        elif (gamma1 is True) and (gamma2 is False):
+            datacards.write('%-15s%-5s%-5d%-10s%-10.2f%-10s%-10s\n'%("bkg_err1", "gmN",gammaN1, '-', gammaalpha1, '-', '-'))
+            datacards.write('%-15s%-10s%-10s%-10s%-10s%-10.2f\n'%("bkg_err2", "lnN", '-', '-', '-', bkg_err_fraction2))
+        elif (gamma1 is False) and (gamma2 is True):
+            datacards.write('%-15s%-10s%-10s%-10.2f%-10s%-10s\n'%("bkg_err1", "lnN", '-',bkg_err_fraction1, '-', '-'))
+            datacards.write('%-15s%-5s%-5d%-10s%-10s%-10s%-10.2f\n'%("bkg_err2", "gmN",gammaN2, '-', '-', '-', gammaalpha2))
+        else:
+            datacards.write('%-15s%-5s%-5d%-10s%-10.2f%-10s%-10s\n'%("bkg_err1", "gmN",gammaN1, '-', gammaalpha1, '-', '-'))
+            datacards.write('%-15s%-5s%-5d%-10s%-10s%-10s%-10.2f\n'%("bkg_err2", "gmN",gammaN2, '-', '-', '-', gammaalpha2))
+        datacards.close()
 
 toymcDM = '/home/jalimena/StoppedParticles2016/CMSSW_8_0_26_patch2/src/ToyMCmchamps2016_30March_unblinded/mchamp2016_100/toymc.txt'
 #toymc_result = readToyMCResult(toymc2016, toymcDM)
@@ -241,7 +323,6 @@ if combine is True:
     writeDataCardCombine_temp(toymc_result, [signal_err1, signal_err2], signal_eff, [bkg_estimate_1, bkg_estimate_2], bkg, dataset_name)
 else:
     if year == 2015:
-        print 'nimei'
         toymc_result = readToyMCResult(toymc[0])
         signal_err1, gamma1, gammaN1, gammaalpha1 = getParams(param[0])
         for lifetime in toymc_result.keys():
