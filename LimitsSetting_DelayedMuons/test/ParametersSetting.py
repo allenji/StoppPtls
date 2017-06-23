@@ -31,3 +31,6 @@ bkg_list = ['bkg']
 # currently lnN only, parameters in the list are in the order: central estimate, stat. error, syst. error
 bkg_estimate_2015 = {'bkg':['lnN', 0.0400022 , 0.0, 0.03], 'total': 0.0400022 }
 bkg_estimate_2016 = {'bkg':['lnN', 0.500099  , 0.02, 0.40], 'total': 0.500099  }
+
+effLumi_2016 = 13673.9
+effLumi_2015 = 0
