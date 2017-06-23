@@ -1,3 +1,11 @@
+toymc2015 = '/home/jalimena/StoppedParticles2015_2/CMSSW_7_6_6/src/2015/toymc.txt'
+toymc2016 = '/home/jalimena/StoppedParticles2016/CMSSW_8_0_26_patch2/src/2016/toymc.txt'
+outputFile = "toymc_combinedGluino1000.txt"
+#outputFile = "toymc_combinedMchamp1000.txt"
+signal_efficiency = 0.00050 # 2016 1000 GeV gluino
+#signal_efficiency = 0.01104 # 2016 1000 GeV mchamp
+
+
 import time
 import os
 import sys
@@ -55,8 +63,6 @@ def get_lifetime_combine(toymc_txt1, toymc_txt2):
         lifetimes2.append(lifetime+"s")
     return set(lifetimes1).intersection(lifetimes2)
 
-toymc2015 = '/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_8_0_12/src/ToyMC_Apr27_2015/toymc/summary.txt'
-toymc2016 = '/home/weifengji/StoppedParticles_Run2/AnalysisFramework_Dev/CMSSW_8_0_12/src/ToyMC_Apr27_2016Full/toymc/summary.txt'
 limits = {}
 limits_type = ["observed", "expected","expected_up1",
             "expected_up2", "expected_down1", "expected_down2"]
@@ -76,7 +82,7 @@ for lifetime in lifetimes:
 
 #toymc_input = open(toymc2016)
 toymc_input = open(toymc[1])
-toymc_output = open("toymc_combinedMchamp2600", "w")
+toymc_output = open(outputFile, "w")
 for line in toymc_input:
     line_split = line.split()
     lifetime = line_split[0].replace('.', 'p') + 's'
@@ -87,7 +93,8 @@ for line in toymc_input:
         #signal_efficiency = 0.023
         #signal_efficiency = 0.01436
         #signal_efficiency = 0.00060 # delayed muon 2016 1000GeV gluino
-        signal_efficiency = 0.00960 # delayed muon 2016 1000GeV mchamp
+        #signal_efficiency = 0.00960 # delayed muon 2016 1000GeV mchamp
+        #signal_efficiency = 0.01131 # delayed muon 2016 200GeV mchamp
         #signal_efficiency = 0.01296 # delayed muon 2016 2600GeV mchamp
         #signal_efficiency = 0.00091 # delayed muon 2016 2600GeV gluino
         obs = float(limits[lifetime]["observed"]) * float(line_split[1]) * signal_efficiency / 1000
