@@ -174,6 +174,30 @@ PreSelectionAtLeastOneLower = cms.PSet(
       )
     )
 
+#tag
+TagAndProbeDen = cms.PSet(
+    name = cms.string("TagAndProbeDen"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      cutPreMinNDSAsExactlyOne,
+      cutPreDSAUpperOnly,
+      cutPreDSAPtAtLeastOne,
+      cutPreDSANDtChambersWithValidHitsAtLeastOne,
+      cutPreDSANValidRpcHitsAtLeastOne,
+      cutPreDSADtTofNDofAtLeastOne,
+      cutPreDSANValidCscHitsAtLeastOne,
+      )
+    )
+
+#tag and probe
+TagAndProbeNum = copy.deepcopy(TagAndProbeDen)
+TagAndProbeNum.name = cms.string("TagAndProbeNum")
+TagAndProbeNum.cuts.append(cutPreDSAExactly1UpperAndExactly1Lower)
+TagAndProbeNum.cuts.append(cutPreDSA3DangleBackToBack)
+
 #Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
 PreSelectionUpperLower = cms.PSet(

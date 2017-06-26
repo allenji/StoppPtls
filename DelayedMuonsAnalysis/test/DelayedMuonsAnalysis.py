@@ -144,6 +144,8 @@ selections = []
 #selections.append(PreSelectionUpperLowerTurnOnDen)
 #selections.append(PreSelectionUpperLowerTurnOnNum35)
 #selections.append(PreSelectionUpperLowerTurnOnNum40)
+#selections.append(TagAndProbeDen)
+#selections.append(TagAndProbeNum)
 #selections.append(LooseTurnOnDen)
 #selections.append(LooseTurnOnNum35)
 #selections.append(LooseTurnOnNum40)
