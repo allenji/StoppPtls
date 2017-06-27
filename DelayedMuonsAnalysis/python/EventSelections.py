@@ -196,7 +196,6 @@ TagAndProbeDen = cms.PSet(
 TagAndProbeNum = copy.deepcopy(TagAndProbeDen)
 TagAndProbeNum.name = cms.string("TagAndProbeNum")
 TagAndProbeNum.cuts.append(cutPreDSAExactly1UpperAndExactly1Lower)
-TagAndProbeNum.cuts.append(cutPreDSA3DangleBackToBack)
 
 #Pre Selection (trigger + BX veto + vertex veto)
 #For jetE, jetEta plots
