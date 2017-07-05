@@ -505,6 +505,15 @@ cutUpperLowerDSADeltaTimeInOut = cms.PSet(
     alias = cms.string("#Delta TimeInOut > -20 ns")
 )
 
+
+cutUpperLowerDSADeltaTimeInOutLessThanZero = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut) < 0."),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("#Delta TimeInOut < 0 ns")
+)
+
+
 cutUpperLowerDSADeltaTimeOutIn = cms.PSet(
     inputCollection = cms.vstring("tracks","secondaryTracks"),
     cutString = cms.string("(track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) > -30 && (track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn) < 999"),
@@ -611,4 +620,75 @@ cutUpperLowerDSADeltaRpcTimeNeg5 = cms.PSet(
     cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -5 && (track.rpcHitBxAverage - secondaryTrack.rpcHitBxAverage) < 999"),
     numberRequired = cms.string("== 1"),
     alias = cms.string("#Delta t_{RPC} > -5 ns")
+)
+
+
+cutUpperLowerDSADeltaRpcTimeNeg999ToNeg50 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -999 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -50"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("#Delta t_{RPC} < -50 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg50ToNeg45 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -50 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -45"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-50 ns < #Delta t_{RPC} < -45 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg45ToNeg40 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -45 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -40"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-45 ns < #Delta t_{RPC} < -40 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg40ToNeg35 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -40 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -35"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-40 ns < #Delta t_{RPC} < -35 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg35ToNeg30 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -35 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -30"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-35 ns < #Delta t_{RPC} < -30 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg30ToNeg25 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -30 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -25"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-30 ns < #Delta t_{RPC} < -25 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg25ToNeg20 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -25 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -20"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-25 ns < #Delta t_{RPC} < -20 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg20ToNeg15 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -20 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -15"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-20 ns < #Delta t_{RPC} < -15 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg15ToNeg10 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -15 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -10"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-15 ns < #Delta t_{RPC} < -10 ns")
+)
+
+cutUpperLowerDSADeltaRpcTimeNeg10ToNeg7P5 = cms.PSet(
+    inputCollection = cms.vstring("tracks","secondaryTracks"),
+    cutString = cms.string("(25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) > -10 && (25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage) < -7.5"),
+    numberRequired = cms.string("== 1"),
+    alias = cms.string("-10 ns < #Delta t_{RPC} < -7.5 ns")
 )
