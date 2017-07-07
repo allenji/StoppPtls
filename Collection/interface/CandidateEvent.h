@@ -13,6 +13,16 @@ class CandidateEvent
     bxWrtBunch_(0),
     instLumi_(0),
     nVtx_(0),
+    l1Jet43NoBptx3BX_BXN2_(0),
+    l1Jet43NoBptx3BX_BXN1_(0),
+    l1Jet43NoBptx3BX_BX0_(0),
+    l1Jet43NoBptx3BX_BXP1_(0),
+    l1Jet43NoBptx3BX_BXP2_(0),
+    l1Jet46NoBptx3BX_BXN2_(0),
+    l1Jet46NoBptx3BX_BXN1_(0),
+    l1Jet46NoBptx3BX_BX0_(0),
+    l1Jet46NoBptx3BX_BXP1_(0),
+    l1Jet46NoBptx3BX_BXP2_(0),
     noiseFilterResult_(0),
     numIsolatedNoiseChannels_(0),
     isolatedNoiseSumE_(0),
@@ -54,6 +64,16 @@ class CandidateEvent
     void set_bxWrtBunch(int bxWrtBunch) {bxWrtBunch_ = bxWrtBunch;}
     void set_instLumi(double instLumi) {instLumi_ = instLumi;}
     void set_nVtx(unsigned nVtx) {nVtx_ = nVtx;}
+    void set_l1Jet43NoBptx3BX_BXN2 (bool l1Jet43NoBptx3BX_BX0) {l1Jet43NoBptx3BX_BX0_ = l1Jet43NoBptx3BX_BX0;}
+    void set_l1Jet43NoBptx3BX_BXN1 (bool l1Jet43NoBptx3BX_BX0) {l1Jet43NoBptx3BX_BX0_ = l1Jet43NoBptx3BX_BX0;}
+    void set_l1Jet43NoBptx3BX_BX0 (bool l1Jet43NoBptx3BX_BX0) {l1Jet43NoBptx3BX_BX0_ = l1Jet43NoBptx3BX_BX0;}
+    void set_l1Jet43NoBptx3BX_BXP1 (bool l1Jet43NoBptx3BX_BX0) {l1Jet43NoBptx3BX_BX0_ = l1Jet43NoBptx3BX_BX0;}
+    void set_l1Jet43NoBptx3BX_BXP2 (bool l1Jet43NoBptx3BX_BX0) {l1Jet43NoBptx3BX_BX0_ = l1Jet43NoBptx3BX_BX0;}
+    void set_l1Jet46NoBptx3BX_BXN2 (bool l1Jet46NoBptx3BX_BX0) {l1Jet46NoBptx3BX_BX0_ = l1Jet46NoBptx3BX_BX0;}
+    void set_l1Jet46NoBptx3BX_BXN1 (bool l1Jet46NoBptx3BX_BX0) {l1Jet46NoBptx3BX_BX0_ = l1Jet46NoBptx3BX_BX0;}
+    void set_l1Jet46NoBptx3BX_BX0 (bool l1Jet46NoBptx3BX_BX0) {l1Jet46NoBptx3BX_BX0_ = l1Jet46NoBptx3BX_BX0;}
+    void set_l1Jet46NoBptx3BX_BXP1 (bool l1Jet46NoBptx3BX_BX0) {l1Jet46NoBptx3BX_BX0_ = l1Jet46NoBptx3BX_BX0;}
+    void set_l1Jet46NoBptx3BX_BXP2 (bool l1Jet46NoBptx3BX_BX0) {l1Jet46NoBptx3BX_BX0_ = l1Jet46NoBptx3BX_BX0;}
     void set_noiseFilterResult(bool noiseFilterResult){noiseFilterResult_ = noiseFilterResult;}
     void set_numIsolatedNoiseChannels(int numIsolatedNoiseChannels){numIsolatedNoiseChannels_ = numIsolatedNoiseChannels;}
     void set_isolatedNoiseSumE(int isolatedNoiseSumE){isolatedNoiseSumE_ = isolatedNoiseSumE;}
@@ -104,6 +124,18 @@ class CandidateEvent
     double instLumi() const {return instLumi_;}
 
     unsigned nVtx() {return nVtx_;}
+
+    bool l1Jet43NoBptx3BX_BXN2() {return l1Jet43NoBptx3BX_BXN2_;}
+    bool l1Jet43NoBptx3BX_BXN1() {return l1Jet43NoBptx3BX_BXN1_;}
+    bool l1Jet43NoBptx3BX_BX0() {return l1Jet43NoBptx3BX_BX0_;}
+    bool l1Jet43NoBptx3BX_BXP1() {return l1Jet43NoBptx3BX_BXP1_;}
+    bool l1Jet43NoBptx3BX_BXP2() {return l1Jet43NoBptx3BX_BXP2_;}
+    bool l1Jet46NoBptx3BX_BXN2() {return l1Jet46NoBptx3BX_BXN2_;}
+    bool l1Jet46NoBptx3BX_BXN1() {return l1Jet46NoBptx3BX_BXN1_;}
+    bool l1Jet46NoBptx3BX_BX0() {return l1Jet46NoBptx3BX_BX0_;}
+    bool l1Jet46NoBptx3BX_BXP1() {return l1Jet46NoBptx3BX_BXP1_;}
+    bool l1Jet46NoBptx3BX_BXP2() {return l1Jet46NoBptx3BX_BXP2_;}
+
 
     bool noiseFilterResult() {return noiseFilterResult_;}
 
@@ -160,6 +192,16 @@ class CandidateEvent
 
     //number of vertex
     unsigned nVtx_;
+    bool l1Jet43NoBptx3BX_BXN2_;
+    bool l1Jet43NoBptx3BX_BXN1_;
+    bool l1Jet43NoBptx3BX_BX0_;
+    bool l1Jet43NoBptx3BX_BXP1_;
+    bool l1Jet43NoBptx3BX_BXP2_;
+    bool l1Jet46NoBptx3BX_BXN2_;
+    bool l1Jet46NoBptx3BX_BXN1_;
+    bool l1Jet46NoBptx3BX_BX0_;
+    bool l1Jet46NoBptx3BX_BXP1_;
+    bool l1Jet46NoBptx3BX_BXP2_;
 
     //noise
     bool noiseFilterResult_;
