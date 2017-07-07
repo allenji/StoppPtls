@@ -67,7 +67,7 @@ void StoppPtlsJetsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSe
   edm::ESHandle<CSCGeometry> cscGeom;
   iSetup.get<MuonGeometryRecord>().get(cscGeom);
    
-  auto_ptr<vector<CandidateCscHit> > candCscHits(new vector<CandidateCscHit> ());
+  unique_ptr<vector<CandidateCscHit> > candCscHits(new vector<CandidateCscHit> ());
   int iHit = 0;
   CSCRecHit2DCollection::const_iterator dRHIter;
   for (dRHIter = hits->begin(); dRHIter != hits->end(); dRHIter++) {
@@ -83,7 +83,7 @@ void StoppPtlsJetsCandProducer::doCscHits(edm::Event& iEvent, const edm::EventSe
     h.set_time(dRHIter->tpeak());
     candCscHits->push_back(h);
   }
-  iEvent.put (candCscHits);
+  iEvent.put (std::move(candCscHits));
 }
 
 
@@ -96,7 +96,7 @@ void StoppPtlsJetsCandProducer::doCscSegments(edm::Event& iEvent, const edm::Eve
   edm::ESHandle<CSCGeometry> cscGeom;
   iSetup.get<MuonGeometryRecord>().get(cscGeom);
 
-    auto_ptr<vector<CandidateCscSeg> > candCscSegs(new vector<CandidateCscSeg>());
+    unique_ptr<vector<CandidateCscSeg> > candCscSegs(new vector<CandidateCscSeg>());
     // write segment info to ntuple
     if(segments.isValid()) {
       unsigned i=0;
@@ -141,7 +141,7 @@ void StoppPtlsJetsCandProducer::doCscSegments(edm::Event& iEvent, const edm::Eve
       if (!cscSegsMissing_) edm::LogWarning("MissingProduct") << "CSC Segments not found.  Branches will not be filled";
       cscSegsMissing_ = true;
     }*/
-    iEvent.put(candCscSegs);
+    iEvent.put(std::move(candCscSegs));
 }
 
 void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSetup& iSetup)
@@ -155,7 +155,7 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
   iEvent.getByToken(DTRecHitsToken_, dtRecHits);
 
   // create vector we are gonna save
-  auto_ptr<vector<CandidateDTSeg> > candDTs (new vector<CandidateDTSeg>());
+  unique_ptr<vector<CandidateDTSeg> > candDTs (new vector<CandidateDTSeg>());
 
   //loop over each DT chamber
   DTRecSegment4DCollection::id_iterator chamberId;
@@ -215,7 +215,7 @@ void StoppPtlsJetsCandProducer::doMuonDTs(edm::Event& iEvent, const edm::EventSe
     }//finish loop over all segments in chamber
   }//finish loop over all chambers
   // save the vector
-  iEvent.put(candDTs);
+  iEvent.put(std::move(candDTs));
 }
 
 void StoppPtlsJetsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventSetup& iSetup){
@@ -228,7 +228,7 @@ void StoppPtlsJetsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventS
   int iHit = 0;
   RPCRecHitCollection::const_iterator rpcIter;
   //create object we are gonna put back to the event
-  auto_ptr<vector<CandidateRpcHit> > candRpcHits(new vector<CandidateRpcHit> ());
+  unique_ptr<vector<CandidateRpcHit> > candRpcHits(new vector<CandidateRpcHit> ());
   for (rpcIter = hits->begin(); rpcIter != hits->end(); ++rpcIter) {
     ++iHit;
     const RPCDetId detId = static_cast<const RPCDetId>(rpcIter->rpcId());
@@ -246,7 +246,7 @@ void StoppPtlsJetsCandProducer::doMuonRPCs(edm::Event& iEvent, const edm::EventS
     
     candRpcHits->push_back(candRpcHit); 
   }//loop on rpc hits
-  iEvent.put(candRpcHits);
+  iEvent.put(std::move(candRpcHits));
 }
 
 

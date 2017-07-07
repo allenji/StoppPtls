@@ -25,6 +25,8 @@ StoppPtlsCandProducer::StoppPtlsCandProducer(const edm::ParameterSet& iConfig) :
   isMC_             (iConfig.getUntrackedParameter<bool>("isMC",false)),
   lumiscalersTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("lumiscalersTag",edm::InputTag("scalersRawToDigi"))),
   lumiscalersToken_   (consumes<LumiScalersCollection>(lumiscalersTag_)),
+  l1BitsTag_ (iConfig.getUntrackedParameter<edm::InputTag>("l1BitsTag",edm::InputTag("gtDigis"))),
+  l1BitsToken_ (consumes<L1GlobalTriggerReadoutRecord>(l1BitsTag_)),
   caloTowerTag_     (iConfig.getUntrackedParameter<edm::InputTag> ("EventTag",edm::InputTag("towerMaker"))),
   caloTowerToken_   (consumes<CaloTowerCollection>(caloTowerTag_)),
   hcalNoiseFilterResultTag_ (iConfig.getUntrackedParameter<edm::InputTag> ("hcalNoiseFilterResultTag",edm::InputTag("HBHENoiseFilterResultProducer","HBHENoiseFilterResult"))),
@@ -93,7 +95,7 @@ StoppPtlsCandProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup
 
 void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-  auto_ptr<vector<CandidateEvent> > events(new vector<CandidateEvent> ());
+  unique_ptr<vector<CandidateEvent> > events(new vector<CandidateEvent> ());
   
   CandidateEvent event;
   //cout<<iEvent.id().run()<<":" << iEvent.luminosityBlock() << ":" << iEvent.id().event() << endl;
@@ -116,6 +118,43 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   } 
   else event.set_instLumi(-1);
 
+  /****************** do L1 bits *******************************************/
+  edm::ESHandle<L1GtTriggerMenu> menuRcd;
+  iSetup.get<L1GtTriggerMenuRcd>().get(menuRcd);
+  const L1GtTriggerMenu* menu = menuRcd.product();
+
+  edm::Handle<L1GlobalTriggerReadoutRecord> gtReadoutRecord;
+  iEvent.getByToken(l1BitsToken_, gtReadoutRecord);
+
+  int start = -2;
+  int end = 3;
+  vector<bool> vecl1Jet43NoBptx3BX;
+  vector<bool> vecl1Jet46NoBptx3BX;
+
+  for (int bx=start; bx<end; ++bx) {
+
+    const DecisionWord decisionWord = gtReadoutRecord->decisionWord(bx);
+    const TechnicalTriggerWord technicalWord = gtReadoutRecord->technicalTriggerWord(bx);
+
+    bool l1Jet43NoBptx3BX = menu->gtAlgorithmResult("L1_SingleMuOpen_NotBptxOR_3BX", decisionWord);
+    bool l1Jet46NoBptx3BX = menu->gtAlgorithmResult("L1_SingleJet46er3p0_NotBptxOR_3BX", decisionWord);
+
+    vecl1Jet43NoBptx3BX.push_back(l1Jet43NoBptx3BX ? 1 : 0);
+    vecl1Jet46NoBptx3BX.push_back(l1Jet46NoBptx3BX ? 1 : 0);
+
+    //     event_->l1BptxPlus.at(bx+2)        = l1BptxPlus;
+    //     event_->l1BptxMinus.at(bx+2)       = l1BptxMinus;
+  }
+    event.set_l1Jet43NoBptx3BX_BXN2(vecl1Jet43NoBptx3BX.at(0));
+    event.set_l1Jet43NoBptx3BX_BXN1(vecl1Jet43NoBptx3BX.at(1));
+    event.set_l1Jet43NoBptx3BX_BX0(vecl1Jet43NoBptx3BX.at(2));
+    event.set_l1Jet43NoBptx3BX_BXP1(vecl1Jet43NoBptx3BX.at(3));
+    event.set_l1Jet43NoBptx3BX_BXP2(vecl1Jet43NoBptx3BX.at(4));
+    event.set_l1Jet46NoBptx3BX_BXN2(vecl1Jet46NoBptx3BX.at(0));
+    event.set_l1Jet46NoBptx3BX_BXN1(vecl1Jet46NoBptx3BX.at(1));
+    event.set_l1Jet46NoBptx3BX_BX0(vecl1Jet46NoBptx3BX.at(2));
+    event.set_l1Jet46NoBptx3BX_BXP1(vecl1Jet46NoBptx3BX.at(3));
+    event.set_l1Jet46NoBptx3BX_BXP2(vecl1Jet46NoBptx3BX.at(4));
 
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
@@ -212,7 +251,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     jets.insert(jets.end(), calojets->begin(), calojets->end());
     sort(jets.begin(), jets.end(), jete_gt());
 
-    auto_ptr<vector<CandidateJet> > candjets(new vector<CandidateJet> ());
+    unique_ptr<vector<CandidateJet> > candjets(new vector<CandidateJet> ());
 
     vector<double> tmp(75, 0);
     int tower_N = 0;
@@ -242,7 +281,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
         }//loop over towers
       }
     }//loop over jets
-    iEvent.put(candjets);
+    iEvent.put(std::move(candjets));
     if (!bjets.size())
       event.set_leadingIPhiFractionValue(0.);
     else {
@@ -365,7 +404,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   /**************************end adding pulse shape**************************/
   
   events->push_back(event);
-  iEvent.put(events);
+  iEvent.put(std::move(events));
  
 }
 

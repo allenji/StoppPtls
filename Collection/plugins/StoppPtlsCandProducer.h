@@ -32,6 +32,11 @@
 #include "FWCore/Utilities/interface/InputTag.h"
 #include "FWCore/Framework/interface/ESHandle.h"
 
+// L1 triggers
+#include "CondFormats/L1TObjects/interface/L1GtTriggerMenu.h"
+#include "CondFormats/DataRecord/interface/L1GtTriggerMenuRcd.h"
+#include "DataFormats/L1GlobalTrigger/interface/L1GlobalTriggerReadoutRecord.h"
+
 // towers
 #include "DataFormats/CaloTowers/interface/CaloTowerCollection.h"
 #include "DataFormats/CaloTowers/interface/CaloTowerDetId.h"
@@ -107,6 +112,9 @@ private:
 
   edm::InputTag lumiscalersTag_;
   edm::EDGetTokenT<LumiScalersCollection> lumiscalersToken_;
+
+  edm::InputTag l1BitsTag_;
+  edm::EDGetTokenT<L1GlobalTriggerReadoutRecord> l1BitsToken_;
 
   edm::InputTag caloTowerTag_;
   edm::EDGetTokenT<CaloTowerCollection> caloTowerToken_;

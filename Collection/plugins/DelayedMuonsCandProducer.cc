@@ -77,7 +77,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
   edm::ESHandle<GlobalTrackingGeometry> theTrackingGeometry;
   iSetup.get<GlobalTrackingGeometryRecord>().get(theTrackingGeometry);
 
-  auto_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());
+  unique_ptr<vector<CandidateDelayedMuonsTrack> > candDelayedMuonsTracks(new vector<CandidateDelayedMuonsTrack> ());
   //std::cout<<"got all collections"<<std::endl;
   
   if (displacedStandAloneMuons.isValid()) {
@@ -328,7 +328,7 @@ void DelayedMuonsCandProducer::doDisplacedStandAloneMuons(edm::Event& iEvent, co
     }//end of loop over DSAs
   }//end of if DSAs is valid
 
-  iEvent.put(candDelayedMuonsTracks);
+  iEvent.put(std::move(candDelayedMuonsTracks));
 }//end of doDisplacedStandAloneMuons
 
 int DelayedMuonsCandProducer::Rpc_Bx_Pattern(std::vector<int> &rpcHitBx_){

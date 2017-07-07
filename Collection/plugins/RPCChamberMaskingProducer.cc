@@ -71,7 +71,7 @@ void RPCChamberMaskingProducer::produce(edm::Event &iEvent, const edm::EventSetu
 //iEvent.getByLabel(candidateRpcHitsTag_, rpchits);
   iEvent.getByToken(token_, rpchits);
 
-  auto_ptr<vector<CandidateRpcHit> > candNotMaskedRpcHits(new vector<CandidateRpcHit> ());
+  unique_ptr<vector<CandidateRpcHit> > candNotMaskedRpcHits(new vector<CandidateRpcHit> ());
 
   clog<<"beginning to loop over rpc hits for run "<<iEvent.id().run()<<" and event "<<iEvent.id().event()<<endl;
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) {
@@ -91,7 +91,7 @@ void RPCChamberMaskingProducer::produce(edm::Event &iEvent, const edm::EventSetu
       candNotMaskedRpcHits->push_back(candNotMaskedRpcHit); 
     }//end of if isNotMaskedRpchit
   }//end of loop over rpc hits
-  iEvent.put(candNotMaskedRpcHits);
+  iEvent.put(std::move(candNotMaskedRpcHits));
 
 }  //end of produce
 

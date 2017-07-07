@@ -17,6 +17,9 @@
 #include "StoppPtls/Collection/interface/CandidateCscSeg.h"
 #include "StoppPtls/Collection/interface/CandidateRpcHit.h"
 
+#include "DataFormats/Common/interface/TriggerResults.h"
+#include "FWCore/Common/interface/TriggerNames.h"
+
 using namespace std;
 
 class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
@@ -34,6 +37,7 @@ class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
   edm::EDGetTokenT<vector<TYPE(dtsegs)> > dtsegsToken_;
   edm::EDGetTokenT<vector<TYPE(cscsegs)> > cscsegsToken_;
   edm::EDGetTokenT<vector<TYPE(rpchits)> > rpchitsToken_;
+  edm::EDGetTokenT<edm::TriggerResults> TriggerToken_;
 
 };
 

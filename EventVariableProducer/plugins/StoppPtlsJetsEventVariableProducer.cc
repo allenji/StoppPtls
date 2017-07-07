@@ -15,6 +15,7 @@ StoppPtlsJetsEventVariableProducer::StoppPtlsJetsEventVariableProducer(const edm
   dtsegsToken_ = consumes<vector<TYPE(dtsegs)> >(collections_.getParameter<edm::InputTag>("dtsegs"));
   cscsegsToken_ = consumes<vector<TYPE(cscsegs)> >(collections_.getParameter<edm::InputTag>("cscsegs"));
   rpchitsToken_ = consumes<vector<TYPE(rpchits)> >(collections_.getParameter<edm::InputTag>("rpchits"));
+  TriggerToken_ = consumes<edm::TriggerResults> (edm::InputTag("TriggerResults","","HLT"));
 }
 
 StoppPtlsJetsEventVariableProducer::~StoppPtlsJetsEventVariableProducer()
@@ -27,11 +28,56 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
+  edm::Handle<edm::TriggerResults> TriggerCollection;
   
   event.getByToken (jetsToken_, jets);
   event.getByToken (dtsegsToken_, dtsegs);
   event.getByToken (cscsegsToken_, cscsegs);
   event.getByToken (rpchitsToken_, rpchits);
+  event.getByToken (TriggerToken_ , TriggerCollection);
+
+const edm::TriggerNames &triggerNames = event.triggerNames(*TriggerCollection);
+  int hlt_JetE30_NoBPTX_v = -1;
+  int hlt_JetE30_NoBPTX3BX_v = -1;
+  int hlt_JetE60_NoBPTX3BX_v = -1;
+  int hlt_MuP10_NoBPTX3BX_v = -1;
+  int hlt_MuP10_NoBPTX_v = -1;
+  int hlt_MuP40_NoBPTX3BX_v = -1;
+  int hlt_MuP45_NoBPTX3BX_v = -1;
+
+  for (unsigned triggerIndex = 0; triggerIndex < triggerNames.size (); triggerIndex++){
+    string name = triggerNames.triggerName(triggerIndex);
+    if (name.find("HLT_UncorrectedJetE30_NoBPTX3BX_")!= std::string::npos) {
+      hlt_JetE30_NoBPTX3BX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_UncorrectedJetE30_NoBPTX_")!= std::string::npos) {
+      hlt_JetE30_NoBPTX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_UncorrectedJetE60_NoBPTX3BX_")!= std::string::npos) {
+      hlt_JetE60_NoBPTX3BX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_L2Mu10_NoVertex_NoBPTX3BX_")!= std::string::npos) {
+      hlt_MuP10_NoBPTX3BX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_L2Mu10_NoVertex_NoBPTX_")!= std::string::npos) {
+      hlt_MuP10_NoBPTX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_")!= std::string::npos) {
+      hlt_MuP40_NoBPTX3BX_v = TriggerCollection->accept(triggerIndex);
+    }
+    if (name.find("HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_")!= std::string::npos) {
+      hlt_MuP45_NoBPTX3BX_v = TriggerCollection->accept(triggerIndex);
+    }
+  }
+
+  (*eventvariables)["hlt_JetE30_NoBPTX3BX_v"] = hlt_JetE30_NoBPTX3BX_v;
+  (*eventvariables)["hlt_JetE30_NoBPTX_v"] = hlt_JetE30_NoBPTX_v;
+  (*eventvariables)["hlt_JetE60_NoBPTX3BX_v"] = hlt_JetE60_NoBPTX3BX_v;
+  (*eventvariables)["hlt_MuP10_NoBPTX3BX_v"] = hlt_MuP10_NoBPTX3BX_v;
+  (*eventvariables)["hlt_MuP10_NoBPTX_v"] = hlt_MuP10_NoBPTX_v;
+  (*eventvariables)["hlt_MuP40_NoBPTX3BX_v"] = hlt_MuP40_NoBPTX3BX_v;
+  (*eventvariables)["hlt_MuP45_NoBPTX3BX_v"] = hlt_MuP45_NoBPTX3BX_v;
+  
 
   (*eventvariables)["jetN"] = jets->size();
   (*eventvariables)["dtSegN"] = dtsegs->size();
