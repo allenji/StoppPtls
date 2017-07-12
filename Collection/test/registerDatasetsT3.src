@@ -218,3 +218,12 @@
 #osudb --location /data/users/weifengji/NoBPTX_2016SearchSP_Aug23/crab_Run2016F-PromptReco-v1_OSUT3Ntuples_Oct14 create /NoBPTX/Run2016F-PromptReco-v1_SP/USER -f MINIAOD
 #osudb --location /data/users/weifengji/NoBPTX_2016SearchSP_Aug23/crab_Run2016G-PromptReco-v1_OSUT3Ntuples_Oct14 create /NoBPTX/Run2016G-PromptReco-v1_SP/USER -f MINIAOD
 
+
+
+##############################
+# 2017
+##############################
+
+#osudb --location /data/users/jalimena/condor/NoBPTX2017Ntuples/NoBPTX_2017B_v1_PromptReco_RECO create /NoBPTX/Run2017B-PromptReco-v1/USER -f RECOSIM
+#osudb --location /data/users/jalimena/condor/NoBPTX2017Ntuples/NoBPTX_2017B_v2_PromptReco_RECO create /NoBPTX/Run2017B-PromptReco-v2/USER -f RECOSIM
+

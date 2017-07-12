@@ -67,7 +67,7 @@ datasetsData = [
 
     #'NoBPTX_16Dec2015_OnlyControlTriggers_Ntuple', #2015 rereco with only control triggers
     
-    'NoBPTX_2016BCDEFGH_23Sep2016_Ntuple', #2016 rereco
+    #'NoBPTX_2016BCDEFGH_23Sep2016_Ntuple', #2016 rereco
     
     #'NoBPTX_2016B_23Sep2016_Ntuple_v2',
     #'NoBPTX_2016B_23Sep2016_Ntuple_v3',
@@ -88,6 +88,8 @@ datasetsData = [
     #'NoBPTX_2016C_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016D_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
     #'NoBPTX_2016F_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
+
+    'NoBPTX_2017_PromptReco_Ntuple', #2017 prompt reco
 ]
 
 datasetsCosmicData = [

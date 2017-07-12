@@ -44,10 +44,11 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/jalimena/condor/NoBPTX2015Ntuples/NoBPTX_2015C_16Dec2015/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016B_PromptReco/hist_0.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples/NoBPTX_2016G_PromptReco/hist_357.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root',
-        'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_1.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_0.root',
+        #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_1.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
+        'file:/data/users/jalimena/condor/NoBPTX2017Ntuples/NoBPTX_2017B_v1_PromptReco_RECO/hist_454.root'
         ),
                              )
 
@@ -75,9 +76,9 @@ process.TFileService = cms.Service ('TFileService',
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (5000)
     #input = cms.untracked.int32 (1000)
-    input = cms.untracked.int32 (100)
+    #input = cms.untracked.int32 (100)
     #input = cms.untracked.int32 (10)
-    #input = cms.untracked.int32 (-1)
+    input = cms.untracked.int32 (-1)
 )
 
 ################################################################################
