@@ -31,6 +31,7 @@ class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
  private:
   void AddVariables(const edm::Event &);
   int chamberType(int, int);
+  int nCandTowerInLargestRbx(const std::vector<std::vector<double> > &, double, int);
 
 
   edm::EDGetTokenT<vector<TYPE(jets)> > jetsToken_;
@@ -38,6 +39,7 @@ class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
   edm::EDGetTokenT<vector<TYPE(cscsegs)> > cscsegsToken_;
   edm::EDGetTokenT<vector<TYPE(rpchits)> > rpchitsToken_;
   edm::EDGetTokenT<edm::TriggerResults> TriggerToken_;
+  edm::EDGetTokenT<vector<TYPE(events)> > eventsToken_;
 
 };
 

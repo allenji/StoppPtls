@@ -16,6 +16,7 @@ StoppPtlsJetsEventVariableProducer::StoppPtlsJetsEventVariableProducer(const edm
   cscsegsToken_ = consumes<vector<TYPE(cscsegs)> >(collections_.getParameter<edm::InputTag>("cscsegs"));
   rpchitsToken_ = consumes<vector<TYPE(rpchits)> >(collections_.getParameter<edm::InputTag>("rpchits"));
   TriggerToken_ = consumes<edm::TriggerResults> (edm::InputTag("TriggerResults","","HLT"));
+  eventsToken_ = consumes<vector<TYPE(events)> >(collections_.getParameter<edm::InputTag>("events"));
 }
 
 StoppPtlsJetsEventVariableProducer::~StoppPtlsJetsEventVariableProducer()
@@ -29,12 +30,43 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
   edm::Handle<edm::TriggerResults> TriggerCollection;
+  edm::Handle<std::vector<CandidateEvent> > events;
   
   event.getByToken (jetsToken_, jets);
   event.getByToken (dtsegsToken_, dtsegs);
   event.getByToken (cscsegsToken_, cscsegs);
   event.getByToken (rpchitsToken_, rpchits);
   event.getByToken (TriggerToken_ , TriggerCollection);
+  event.getByToken (eventsToken_, events);
+
+   std::vector<std::vector<double> > caloTowerHadEtLargestRbx = (events->at(0)).caloTowerHadEtLargestRbx();
+
+  int nCandTowerInLargestRbxThres1Mode1 = nCandTowerInLargestRbx(caloTowerHadEtLargestRbx, 1 , 1);
+  int nCandTowerInLargestRbxThresP5Mode1 = nCandTowerInLargestRbx(caloTowerHadEtLargestRbx, 0.5 , 1);
+  int nCandTowerInLargestRbxThres5Mode1 = nCandTowerInLargestRbx(caloTowerHadEtLargestRbx, 5 , 1);
+  int nCandTowerInLargestRbxThres10Mode1 = nCandTowerInLargestRbx(caloTowerHadEtLargestRbx, 10 , 1);
+
+  (*eventvariables)["nCandTowerInLargestRbxThres1Mode1"] = nCandTowerInLargestRbxThres1Mode1;
+  (*eventvariables)["nCandTowerInLargestRbxThresP5Mode1"] = nCandTowerInLargestRbxThresP5Mode1;
+  (*eventvariables)["nCandTowerInLargestRbxThres5Mode1"] = nCandTowerInLargestRbxThres5Mode1;
+  (*eventvariables)["nCandTowerInLargestRbxThres10Mode1"] = nCandTowerInLargestRbxThres10Mode1;
+
+  std::vector<double> tphpd5TimeSamples = (events->at(0)).tphpd5TimeSamples();
+  std::vector<double> tphpdTimeSamples = (events->at(0)).tphpdTimeSamples();
+
+  double sumTphpd5TimeSamples = std::accumulate(tphpd5TimeSamples.begin(), tphpd5TimeSamples.end(), 0);
+  double sumTphpdTimeSamples = std::accumulate(tphpdTimeSamples.begin(), tphpdTimeSamples.end() ,0);
+
+  for (int i = 0; i < 10; ++i) {
+    (*eventvariables)["tphpd5TimeSample" + std::to_string(i)] = tphpd5TimeSamples.at(i) / sumTphpd5TimeSamples;
+  }
+  for (int i = 0; i < 10; ++i) {
+    (*eventvariables)["tphpdTimeSample" + std::to_string(i)] = tphpdTimeSamples.at(i) / sumTphpdTimeSamples;
+  }
+
+
+  //std::vector<double > tphpd5TimeSamples = (events->at(0)).tphpd5TimeSamples();
+ // std::vector<double > tphpdTimeSamples = (events->at(0)).tphpdTimeSamples();
 
 const edm::TriggerNames &triggerNames = event.triggerNames(*TriggerCollection);
   int hlt_JetE30_NoBPTX_v = -1;
@@ -744,6 +776,34 @@ int StoppPtlsJetsEventVariableProducer::chamberType(int iStation, int iRing) {
     if (i>4) i = 1;
   }
   return i;
+}
+
+int StoppPtlsJetsEventVariableProducer::nCandTowerInLargestRbx(const std::vector<std::vector<double> > & caloTowerHadEtLargestRbx, double threshold, int mode) {
+  int result = 0;
+  switch(mode) {
+    case 0: for(int i = 0; i < 4; ++i) {
+              for (int j = 0; j < 16; ++j) {
+                if (caloTowerHadEtLargestRbx[i][j] >= threshold) {
+                result++;
+                }
+              }
+            }
+            return result;
+            break;
+
+    case 1: for(int i = 0; i < 4; ++i) {
+              for (int j = 0; j < 16; ++j) {
+                if (caloTowerHadEtLargestRbx[i][j] >= threshold || caloTowerHadEtLargestRbx[i][j==0? 0: j-1] >= threshold || caloTowerHadEtLargestRbx[i][j==15? 15: j+1] >= threshold) {
+                result++;
+                }
+              }
+            }
+            return result;
+            break;
+
+  }
+  return -1;
+  
 }
 
 #include "FWCore/Framework/interface/MakerMacros.h"

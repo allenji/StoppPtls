@@ -54,6 +54,14 @@ void StoppPtlsEventVariableProducer::AddVariables(const edm::Event & event) {
   
   event.getByToken (eventsToken_, events);
   event.getByToken (mcparticlesToken_, mcparticles);
+  //
+  std::vector<std::vector<double> > caloTowerHadEtLargestRbx = (events->at(0)).caloTowerHadEtLargestRbx();
+  for (int i = 0; i < 4; i++) {
+    std::cout << "ieta" << i << std::endl;
+    for (int j = 0; j < 16; j++) {
+      std::cout << caloTowerHadEtLargestRbx[i][j] << ", " << std::endl;
+    }
+  }
 
   //////////////////////////////stage2////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////
