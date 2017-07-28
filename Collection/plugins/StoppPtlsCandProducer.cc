@@ -119,9 +119,11 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else event.set_instLumi(-1);
 
   /****************** do L1 bits *******************************************/
+  /*
   edm::ESHandle<L1GtTriggerMenu> menuRcd;
   iSetup.get<L1GtTriggerMenuRcd>().get(menuRcd);
   const L1GtTriggerMenu* menu = menuRcd.product();
+
 
   edm::Handle<L1GlobalTriggerReadoutRecord> gtReadoutRecord;
   iEvent.getByToken(l1BitsToken_, gtReadoutRecord);
@@ -156,9 +158,13 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     event.set_l1Jet46NoBptx3BX_BXP1(vecl1Jet46NoBptx3BX.at(3));
     event.set_l1Jet46NoBptx3BX_BXP2(vecl1Jet46NoBptx3BX.at(4));
 
+    */
   /*******************begin doGlobalCalo***************************************/
   edm::Handle<CaloTowerCollection> caloTowers;
   iEvent.getByToken(caloTowerToken_,caloTowers);
+
+//std::vector<std::vector<double> > caloTowerHadEtLargestRbx_temp (4, std::vector<double> (16));
+  std::vector<std::vector<double> > caloTowerHadEtLargestRbx_temp(4, std::vector<double> (16));
 
   if (caloTowers.isValid()) {
     
@@ -197,6 +203,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
       int nTowerDiffRbxDeltaR0p4 = 0;
       int nTowerDiffRbxDeltaR0p5 = 0;
       int nTowerDiffRbxDeltaR0p6 = 0;
+
       for(std::vector<CaloTower>::const_iterator twr = caloTowersTmp.begin();
       twr!=caloTowersTmp.end();
     ++twr) {
@@ -219,6 +226,10 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
             maxiEta = abs(current_ieta);
           }
         }
+        if (current_irbx == irbxFirst && abs(twr->ieta()) <= 16) {
+          //caloTowerHadEtLargestRbx_temp[(current_iphi-1)%4][current_ieta-1] = twr->hadEt();
+          caloTowerHadEtLargestRbx_temp[(current_iphi-1)%4][abs(current_ieta)-1] = twr->hadEt();
+        }
         if ((current_irbx == - irbxFirst || abs(current_irbx - irbxFirst) == 1 || abs(current_irbx - irbxFirst) == 17) && twr-> hadEt() > 0.2) {
           double absdelta_ieta = static_cast<double> (abs(ietaFirst - current_ieta));
           double absdelta_iphi = static_cast<double> (abs(iphiFirst - current_iphi));
@@ -235,6 +246,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
       event.set_nTowerDiffRbxDeltaR0p6(nTowerDiffRbxDeltaR0p6);
       event.set_nTowerDiffRbxDeltaR0p5(nTowerDiffRbxDeltaR0p5);
       event.set_nTowerDiffRbxDeltaR0p4(nTowerDiffRbxDeltaR0p4);
+      event.set_caloTowerHadEtLargestRbx(caloTowerHadEtLargestRbx_temp);
 
     }
     //event_->leadingIPhiFractionValue=event_->leadingIPhiFraction();
@@ -242,11 +254,11 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
   else {
     edm::LogWarning("MissingProduct") << "CaloTowers not found.  Branches will not be filled";
   }
+
   edm::Handle<CaloJetCollection> calojets;
   iEvent.getByToken(jetToken_, calojets);
 
   if (calojets.isValid()) {
-    std::cout<<"got calojets collection is valid"<<std::endl;
     vector<CaloJet> jets;
     jets.insert(jets.end(), calojets->begin(), calojets->end());
     sort(jets.begin(), jets.end(), jete_gt());
@@ -382,6 +394,7 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
       }//loop on HPDs
     }//loop on RBXs
     vector<double> tphpd5TimeSamples;
+    vector<double> tphpdTimeSamples;
     for (int i = 0; i != 10; ++i) {
       tphpd5TimeSamples.push_back(std::max(0., static_cast<double>(maxHPD.big5Charge().at(i))));
     }
@@ -400,6 +413,13 @@ void StoppPtlsCandProducer::doEvents(edm::Event& iEvent, const edm::EventSetup& 
     event.set_topHPD5R2(tphpd5R2);
     event.set_topHPD5RPeak(tphpd5RPeak);
     event.set_topHPD5ROuter(tphpd5ROuter);
+    event.set_tphpd5TimeSamples(tphpd5TimeSamples);
+    
+
+    for (int i = 0; i != 10; ++i) {
+      tphpdTimeSamples.push_back(std::max(0., static_cast<double>(maxHPD.bigCharge().at(i))));
+    }
+    event.set_tphpdTimeSamples(tphpdTimeSamples);
   }
   /**************************end adding pulse shape**************************/
   
