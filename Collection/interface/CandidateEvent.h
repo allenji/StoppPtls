@@ -115,6 +115,10 @@ class CandidateEvent
     void set_stoppedParticlePhi(float stoppedParticlePhi) {stoppedParticlePhi_ = stoppedParticlePhi;}
     void set_stoppedParticleTime(float stoppedParticleTime) {stoppedParticleTime_ = stoppedParticleTime;}
 
+    void set_caloTowerHadEtLargestRbx(std::vector<std::vector<double> > & caloTowerHadEtLargestRbx) {caloTowerHadEtLargestRbx_ = caloTowerHadEtLargestRbx;}
+    void set_tphpd5TimeSamples(std::vector<double> & tphpd5TimeSamples) {tphpd5TimeSamples_ = tphpd5TimeSamples;}
+    void set_tphpdTimeSamples(std::vector<double> & tphpdTimeSamples) {tphpdTimeSamples_ = tphpdTimeSamples;}
+
     ULong_t bx() const {return bx_;}
     ULong_t run() const {return run_;}
     ULong_t fill() const {return fill_;}
@@ -175,6 +179,10 @@ class CandidateEvent
     float stoppedParticleR() const {return stoppedParticleR_/10.;}
     float stoppedParticlePhi() const {return stoppedParticlePhi_;}
     float stoppedParticleTime() const {return stoppedParticleTime_;}
+
+    std::vector<std::vector<double> > caloTowerHadEtLargestRbx() const{return caloTowerHadEtLargestRbx_;}
+    std::vector<double> tphpd5TimeSamples() const{return tphpd5TimeSamples_;}
+    std::vector<double> tphpdTimeSamples() const{return tphpdTimeSamples_;}
 
 
   private:
@@ -246,6 +254,10 @@ class CandidateEvent
     float stoppedParticleR_;
     float stoppedParticlePhi_;
     float stoppedParticleTime_;
+
+    std::vector<std::vector<double> > caloTowerHadEtLargestRbx_;
+    std::vector<double> tphpd5TimeSamples_;
+    std::vector<double> tphpdTimeSamples_;
 
 };
 
