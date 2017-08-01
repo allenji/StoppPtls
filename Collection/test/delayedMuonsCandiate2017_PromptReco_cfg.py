@@ -23,7 +23,8 @@ process.source = cms.Source ("PoolSource",
         #'/store/data/Run2016C/NoBPTX/RECO/PromptReco-v2/000/275/419/00000/1E52F317-F439-E611-81F8-02163E0143A1.root'
         #'/store/data/Run2016C/NoBPTX/AOD/PromptReco-v2/000/275/419/00000/C8A87E13-F439-E611-BDD1-02163E011DC3.root'
         #'file:./C8A87E13-F439-E611-BDD1-02163E011DC3.root' #AOD
-        "file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_15/src/RecoMuon/MuonIdentification/test/5EB8577E-2C45-E611-A6A4-02163E0133A4.root" #RECO
+        #"file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_15/src/RecoMuon/MuonIdentification/test/5EB8577E-2C45-E611-A6A4-02163E0133A4.root" #RECO
+        'file:/home/jalimena/StoppedParticles2017/CMSSW_9_2_7_patch1/src/EXONoBPTXSkim.root'
         ),
                              )
 
