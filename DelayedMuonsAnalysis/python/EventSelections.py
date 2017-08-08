@@ -25,7 +25,7 @@ NoCutsStage1 = cms.PSet(
 TriggerSelection = cms.PSet(
     name = cms.string("TriggerSelection"),
     #triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
         cutDummy,
@@ -59,7 +59,7 @@ cutPreDSAPtGeneric.alias = cms.string("DSA Track $p_{T}$ > 10 \GeV")
 
 PrePreSelection = cms.PSet(
     name = cms.string("PrePreSelection"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutBx,
@@ -72,7 +72,7 @@ PrePreSelection = cms.PSet(
 
 PrePreSelectionUpperLower = cms.PSet(
     name = cms.string("PrePreSelectionUpperLower"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -88,7 +88,7 @@ PrePreSelectionUpperLower = cms.PSet(
 #no upper lower cut, no dt tof cut
 TriggerPuritySelection = cms.PSet(
     name = cms.string("TriggerPuritySelection"),
-    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    #triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -105,7 +105,7 @@ TriggerPuritySelection = cms.PSet(
 #For jetE, jetEta plots
 PreSelectionUpperOnly = cms.PSet(
     name = cms.string("PreSelectionUpperOnly"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -123,7 +123,7 @@ PreSelectionUpperOnly = cms.PSet(
 
 PreSelectionLowerOnly = cms.PSet(
     name = cms.string("PreSelectionLowerOnly"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -142,7 +142,7 @@ PreSelectionLowerOnly = cms.PSet(
 
 PreSelectionAtLeastOneUpper = cms.PSet(
     name = cms.string("PreSelectionAtLeastOneUpper"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -159,7 +159,7 @@ PreSelectionAtLeastOneUpper = cms.PSet(
 
 PreSelectionAtLeastOneLower = cms.PSet(
     name = cms.string("PreSelectionAtLeastOneLower"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -177,7 +177,7 @@ PreSelectionAtLeastOneLower = cms.PSet(
 #tag
 TagAndProbeDen = cms.PSet(
     name = cms.string("TagAndProbeDen"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -201,7 +201,7 @@ TagAndProbeNum.cuts.append(cutPreDSAExactly1UpperAndExactly1Lower)
 #For jetE, jetEta plots
 PreSelectionUpperLower = cms.PSet(
     name = cms.string("PreSelectionUpperLower"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -239,7 +239,7 @@ PreSelectionUpperLowerZMuMu = cms.PSet(
 
 PreSelectionExactly1UpperExactly1Lower = cms.PSet(
     name = cms.string("PreSelectionExactly1UpperExactly1Lower"),
-    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v"),
+    triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
       cutBx,
@@ -277,6 +277,10 @@ PreSelectionUpperLowerTurnOnNum40 = copy.deepcopy(PreSelectionUpperLowerAtLeast4
 PreSelectionUpperLowerTurnOnNum40.name = cms.string("PreSelectionUpperLowerTurnOnNum40")
 PreSelectionUpperLowerTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
 
+PreSelectionUpperLowerTurnOnNum45 = copy.deepcopy(PreSelectionUpperLowerAtLeast4ValidDtChambers)
+PreSelectionUpperLowerTurnOnNum45.name = cms.string("PreSelectionUpperLowerTurnOnNum45")
+PreSelectionUpperLowerTurnOnNum45.triggers = cms.vstring("HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v")
+
 
 LooseTurnOnDen = cms.PSet(
     name = cms.string("LooseTurnOnDen"),
@@ -302,6 +306,10 @@ LooseTurnOnNum35.triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHa
 LooseTurnOnNum40 = copy.deepcopy(LooseTurnOnDen)
 LooseTurnOnNum40.name = cms.string("LooseTurnOnNum40")
 LooseTurnOnNum40.triggers = cms.vstring("HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v")
+
+LooseTurnOnNum45 = copy.deepcopy(LooseTurnOnDen)
+LooseTurnOnNum45.name = cms.string("LooseTurnOnNum45")
+LooseTurnOnNum45.triggers = cms.vstring("HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v")
 
 
 

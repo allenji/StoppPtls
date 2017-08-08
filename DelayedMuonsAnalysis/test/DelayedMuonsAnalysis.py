@@ -48,7 +48,8 @@ process.source = cms.Source ("PoolSource",
         #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016C_23Sep2016/hist_1.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016ReRecoNtuples/NoBPTX_2016E_23Sep2016/hist_249.root'
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
-        'file:/data/users/jalimena/condor/NoBPTX2017Ntuples/NoBPTX_2017B_v1_PromptReco_RECO/hist_454.root'
+        #'file:/data/users/jalimena/condor/NoBPTX2017Ntuples/NoBPTX_2017B_v1_PromptReco_RECO/hist_454.root'
+        'file:/home/jalimena/StoppedParticles2017/CMSSW_9_2_8/src/StoppPtls/Collection/test/RECOWithStoppedParticleEvents.root'
         ),
                              )
 
@@ -145,11 +146,13 @@ selections = []
 #selections.append(PreSelectionUpperLowerTurnOnDen)
 #selections.append(PreSelectionUpperLowerTurnOnNum35)
 #selections.append(PreSelectionUpperLowerTurnOnNum40)
+#selections.append(PreSelectionUpperLowerTurnOnNum45)
 #selections.append(TagAndProbeDen)
 #selections.append(TagAndProbeNum)
 #selections.append(LooseTurnOnDen)
 #selections.append(LooseTurnOnNum35)
 #selections.append(LooseTurnOnNum40)
+#selections.append(LooseTurnOnNum45)
 #selections.append(TriggerPuritySelection)
 #selections.append(DelayedMuonsUpperOnlySelection)
 #selections.append(DelayedMuonsLowerOnlySelection)
