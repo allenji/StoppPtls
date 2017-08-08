@@ -12,6 +12,9 @@ process.load("Configuration.StandardSequences.Reconstruction_cff")
 
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
+#process.options.SkipEvent = cms.untracked.vstring('ProductNotFound')
+process.options = cms.untracked.PSet( SkipEvent = cms.untracked.vstring( 'ProductNotFound' ) )
+
 process.maxEvents = cms.untracked.PSet (
     #input = cms.untracked.int32 (1000)
     input = cms.untracked.int32 (-1)
@@ -24,7 +27,8 @@ process.source = cms.Source ("PoolSource",
         #'/store/data/Run2016C/NoBPTX/AOD/PromptReco-v2/000/275/419/00000/C8A87E13-F439-E611-BDD1-02163E011DC3.root'
         #'file:./C8A87E13-F439-E611-BDD1-02163E011DC3.root' #AOD
         #"file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_15/src/RecoMuon/MuonIdentification/test/5EB8577E-2C45-E611-A6A4-02163E0133A4.root" #RECO
-        'file:/home/jalimena/StoppedParticles2017/CMSSW_9_2_7_patch1/src/EXONoBPTXSkim.root'
+        #'file:/home/jalimena/StoppedParticles2017/CMSSW_9_2_7_patch1/src/EXONoBPTXSkim.root'
+        '/store/backfill/1/data/Tier0_REPLAY_vocms015/NoBPTX/USER/EXONoBPTXSkim-PromptReco-v148/000/300/156/00000/3082B5CD-607B-E711-874E-02163E01A4E0.root'
         ),
                              )
 
@@ -38,7 +42,6 @@ process.hltHighLevel.throw = cms.bool(False)
 process.hltHighLevel.HLTPaths = cms.vstring(
     "HLT_L2Mu10_NoVertex_NoBPTX_*",
     "HLT_L2Mu10_NoVertex_NoBPTX3BX_*",
-    "HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_*",
     "HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_*",
     "HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_*",
 )
