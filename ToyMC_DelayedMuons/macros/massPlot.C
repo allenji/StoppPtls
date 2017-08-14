@@ -123,11 +123,11 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   cout<<"set logy"<<endl;
   
   TH1 * h;
-  h = canvas->DrawFrame(100., 3e-8, 2600., 1e3); //mchamps
-  //h = canvas->DrawFrame(400., 1e-5, 2600., 1e5); //gluinos
+  h = canvas->DrawFrame(100., 1e-4, 2600., 1e1); //mchamps
+  //h = canvas->DrawFrame(400., 1e-2, 2600., 1e3); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
-  h->SetTitle(";m_{mchamp} [GeV];#sigma(pp #rightarrow mchamp mchamp #times BF(mchamp #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
-  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g} #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow l^{+}l^{-}#tilde{#chi}_{LSP})) [pb]");
+  h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
+  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g} #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP})) [pb]");
   h->GetYaxis()->SetTitleSize(0.035);
   h->GetYaxis()->SetTitleOffset(1.6);
 

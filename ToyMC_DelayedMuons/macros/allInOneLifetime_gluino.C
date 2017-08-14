@@ -140,15 +140,15 @@ void allInOneLifetime(double lumi=4560.) {
   h->SetTitle("Beamgap Expt");
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
   h->GetXaxis()->SetTitle("#tau [s]");
-  h->GetYaxis()->SetTitle("#sigma #times BF #times #varepsilon_{stop} #times #varepsilon_{det} [pb]  ");
+  h->GetYaxis()->SetTitle("#sigma #times #bf{#it{#Beta}} #times #varepsilon_{signal} [pb]  ");
   h->GetYaxis()->SetTitleOffset(1.2);
   h->Draw ("Y+");
 
-  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
-  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
-  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
-  //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]", 0.0);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times BF(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
+  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
+  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times #bf{#it{#Beta}}(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
+  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times #bf{#it{#Beta}}(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
+  //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) #times #bf{#it{#Beta}}(mch #rightarrow #mu#mu)  [pb]", 0.0);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
 
   
   /*
