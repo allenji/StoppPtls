@@ -142,14 +142,14 @@ void allInOneLifetime(double lumi=4560.) {
   h->SetTitle("Beamgap Expt");
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
   h->GetXaxis()->SetTitle("#tau [s]");
-  h->GetYaxis()->SetTitle("#sigma #times BF #times #varepsilon_{stop} #times #varepsilon_{det} [pb]  ");
+  h->GetYaxis()->SetTitle("#sigma #times #bf{#it{#Beta}} #times #varepsilon_{signal} [pb]  ");
   h->GetYaxis()->SetTitleOffset(1.2);
   h->Draw ("Y+");
 
-  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
-  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
-  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mchamp mchamp) #times BF(mchamp #rightarrow #mu^{#pm}#mu^{#pm}) [pb]", 0.0);
+  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
+  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times #bf{#it{#Beta}}(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
+  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times #bf{#it{#Beta}}(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow MCHAMP MCHAMP) #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]", 0.0);
 
   
   /*
@@ -255,8 +255,8 @@ void allInOneLifetime(double lumi=4560.) {
   //lmchamp->Draw();
   
   TLatex *t1mchamp;
-  //t1mchamp = new TLatex(0.001, 0.1/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
-  t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
+  //t1mchamp = new TLatex(0.001, 0.1/mchamp2ref, "#sigma_{theory} (m_{MCHAMP} = 200 GeV)");
+  t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{MCHAMP} = 1000GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
   t1mchamp->SetTextSize(0.035);
