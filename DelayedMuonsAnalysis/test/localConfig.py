@@ -90,6 +90,7 @@ datasetsData = [
     #'NoBPTX_2016F_PromptReco_OnlyControlTriggers_Ntuple', #2016 prompt reco with only control triggers
 
     'NoBPTX_2017_PromptReco_Ntuple', #2017 prompt reco
+    #'NoBPTX_2017_PromptReco_OnlyJetTriggers_Ntuple', #2017 prompt reco, only jet trigger
 ]
 
 datasetsCosmicData = [
