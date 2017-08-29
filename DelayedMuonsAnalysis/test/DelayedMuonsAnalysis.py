@@ -137,10 +137,10 @@ selections = []
 #selections.append(PrePreSelectionUpperLower)
 #selections.append(PreSelectionUpperOnly)
 #selections.append(PreSelectionLowerOnly)
-#selections.append(PreSelectionUpperLower)
+#selections.append(PreSelectionUpperLower)  #run first: for most plots
 #selections.append(PreSelectionAtLeastOneUpper)
 #selections.append(PreSelectionAtLeastOneLower)
-#selections.append(PreSelectionExactly1UpperExactly1Lower)
+#selections.append(PreSelectionUpperLowerBackToBack)
 #selections.append(PreSelectionUpperLowerNoTrigger)
 #selections.append(PreSelectionUpperLowerZMuMu)
 #selections.append(PreSelectionUpperLowerTurnOnDen)
@@ -158,8 +158,8 @@ selections = []
 #selections.append(DelayedMuonsLowerOnlySelection)
 #selections.append(DelayedMuonsAtLeastOneUpperSelection)
 #selections.append(DelayedMuonsAtLeastOneLowerSelection)
-#selections.append(DelayedMuonsExactly1UpperExactly1LowerSelection)
-#selections.append(BackgroundExtrapolationUpperLowerSelection)
+#selections.append(DelayedMuonsUpperLowerBackToBackSelection)
+#selections.append(BackgroundExtrapolationUpperLowerSelection) #run first
 #selections.append(BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50)
 #selections.append(BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45)
 #selections.append(BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40)
@@ -170,7 +170,7 @@ selections = []
 #selections.append(BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15)
 #selections.append(BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10)
 #selections.append(UpperLowerZMuMuSelection)
-#selections.append(FullUpperLowerSelection)
+#selections.append(FullUpperLowerSelection) #run first
 #selections.append(FullUpperLowerPtSmearedSelection)
 
 

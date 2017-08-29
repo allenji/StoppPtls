@@ -78,7 +78,6 @@ PrePreSelectionUpperLower = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutPreMinNDSAs,
-      #cutPreDSAUpperAndLower,
       cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       )
@@ -207,8 +206,6 @@ PreSelectionUpperLower = cms.PSet(
       cutBx,
       cutVertexNumber,
       cutPreMinNDSAs,
-      #cutPreMaxNDSAs,
-      #cutPreDSAUpperAndLower,
       cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       cutPreDSANDtChambersWithValidHits,
@@ -228,7 +225,6 @@ PreSelectionUpperLowerZMuMu = cms.PSet(
     triggers = cms.vstring(""),
     cuts = cms.VPSet(
       cutPreMinNDSAs,
-      #cutPreDSAUpperAndLower,
       cutPreDSAExactly1UpperAndExactly1Lower,
       cutPreDSAPt,
       cutPreDSANDtChambersWithValidHits,
@@ -237,8 +233,8 @@ PreSelectionUpperLowerZMuMu = cms.PSet(
       )
     )
 
-PreSelectionExactly1UpperExactly1Lower = cms.PSet(
-    name = cms.string("PreSelectionExactly1UpperExactly1Lower"),
+PreSelectionUpperLowerBackToBack = cms.PSet(
+    name = cms.string("PreSelectionUpperLowerBackToBack"),
     triggers = cms.vstring("HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_NoHalo_v","HLT_L2Mu35_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX_v","HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v"),
     #triggers = cms.vstring("HLT_L2Mu10_NoVertex_NoBPTX3BX_NoHalo_v","HLT_L2Mu10_NoVertex_NoBPTX3BX_v"),
     cuts = cms.VPSet(
@@ -313,7 +309,7 @@ LooseTurnOnNum45.triggers = cms.vstring("HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX_v")
 
 
 
-#full analysis selection
+#OLD full analysis selection
 DelayedMuonsUpperOnlySelection = copy.deepcopy(PreSelectionUpperOnly)
 DelayedMuonsUpperOnlySelection.name = cms.string("DelayedMuonsUpperOnlySelection")
 DelayedMuonsUpperOnlySelection.cuts.append(cutDSAPt)
@@ -347,14 +343,14 @@ DelayedMuonsAtLeastOneLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta
 
 
 
-DelayedMuonsExactly1UpperExactly1LowerSelection = copy.deepcopy(PreSelectionExactly1UpperExactly1Lower)
-DelayedMuonsExactly1UpperExactly1LowerSelection.name = cms.string("DelayedMuonsExactly1UpperExactly1LowerSelection")
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutUpperLowerDSAPt)
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
-DelayedMuonsExactly1UpperExactly1LowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
+DelayedMuonsUpperLowerBackToBackSelection = copy.deepcopy(PreSelectionUpperLowerBackToBack)
+DelayedMuonsUpperLowerBackToBackSelection.name = cms.string("DelayedMuonsUpperLowerBackToBackSelection")
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutUpperLowerDSAPt)
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutUpperLowerDSANDtChambersWithValidHits)
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
+DelayedMuonsUpperLowerBackToBackSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 
 
 BackgroundExtrapolationUpperLowerSelection = copy.deepcopy(PreSelectionUpperLower)
@@ -364,6 +360,7 @@ BackgroundExtrapolationUpperLowerSelection.cuts.append(cutUpperLowerDSANDtChambe
 BackgroundExtrapolationUpperLowerSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
 BackgroundExtrapolationUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
+BackgroundExtrapolationUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50")
@@ -373,6 +370,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg50)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg50.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45")
@@ -382,6 +380,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg45)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg45.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40")
@@ -391,6 +390,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg40)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg40.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35")
@@ -400,6 +400,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg35)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg35.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30")
@@ -409,6 +410,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg30)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg30.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25")
@@ -418,6 +420,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg25)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg25.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20")
@@ -427,6 +430,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg20)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg20.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15")
@@ -436,6 +440,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg15)
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg15.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10 = copy.deepcopy(PreSelectionUpperLower)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.name = cms.string("BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10")
@@ -445,7 +450,7 @@ BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.cuts.append(cutUppe
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg10)
-
+BackgroundExtrapolationUpperLowerSelectionDeltaTrpcTimeNeg10.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5Inverted)
 
 
 
@@ -469,7 +474,7 @@ FullUpperLowerSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
 FullUpperLowerSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 FullUpperLowerSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 FullUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
-FullUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaRpcHitBxAverage)
+FullUpperLowerSelection.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5)
 
 FullUpperLowerPtSmearedSelection = copy.deepcopy(PreSelectionUpperLower)
 FullUpperLowerPtSmearedSelection.name = cms.string("FullUpperLowerPtSmearedSelection")
@@ -479,4 +484,4 @@ FullUpperLowerPtSmearedSelection.cuts.append(cutUpperLowerDSANValidRpcHits)
 FullUpperLowerPtSmearedSelection.cuts.append(cutUpperLowerDSADtTofTimeInOutErr)
 FullUpperLowerPtSmearedSelection.cuts.append(cutLowerDSADtTofFreeInverseBeta)
 FullUpperLowerPtSmearedSelection.cuts.append(cutUpperLowerDSADeltaTimeInOut)
-FullUpperLowerPtSmearedSelection.cuts.append(cutUpperLowerDSADeltaRpcHitBxAverage)
+FullUpperLowerPtSmearedSelection.cuts.append(cutUpperLowerDSADeltaRpcTimeNeg7p5)
