@@ -4,6 +4,7 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 intLumi = 2830
 
 config_file = "delayedMuonsCandiate2017_PromptReco_cfg.py"
+#config_file = "delayedMuonsCandiate2017_OnlyJetTriggers_PromptReco_cfg.py"
 
 #config_file = "delayedMuonsCandiate2016_23Sep2016BCDEFGReReco_cfg.py"
 #config_file = "delayedMuonsCandiate2016_PromptRecoH_cfg.py"
