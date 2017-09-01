@@ -2,7 +2,7 @@
 #include <fstream>
 
 namespace CLHEP {
-  class RandFlat;
+  class HepRandomEngine;
 }
 
 
@@ -17,29 +17,26 @@ public:
   void getStoppingPoint(edm::Event& iEvent); 
 
   /// return a new event vertex
-  //virtual CLHEP::Hep3Vector* newVertex();
-  virtual HepMC::FourVector* newVertex(CLHEP::HepRandomEngine*);
+  virtual HepMC::FourVector newVertex(CLHEP::HepRandomEngine*) const override;
   
-  virtual TMatrixD* GetInvLorentzBoost() {
+  virtual TMatrixD* GetInvLorentzBoost() const override {
     return 0;
   }
 private:
 
-  bool mVerbose;
+  bool verbose;
 
-  // repetition of base class private member :-(
-  edm::InputTag mSourceLabel;
+  edm::EDGetTokenT<edm::HepMCProduct> sourceToken;
 
   // input
-  bool mReadFromFile;
-  std::string mFileName;
-  std::ifstream* mFile;
-  std::string mStopPointProducer;
+  bool readFromFile;
+  std::string fileName;
+  std::ifstream* file;
+  std::string stopPointProducer;
 
   // time smearing
-  double mTimeMin;
-  double mTimeMax;
-  //CLHEP::RandFlat* mRandom;
+  double timeMin;
+  double timeMax;
 
   bool putTwoStoppedInSameEvent;
   int stoppedParticleNumber;
@@ -47,16 +44,16 @@ private:
   bool isStoppedEvent;
 
   // stopped particle vertex
-  std::vector<float> mVx_;
-  std::vector<float> mVy_;
-  std::vector<float> mVz_;
-  std::vector<float> mVt_;
+  std::vector<float> vx_;
+  std::vector<float> vy_;
+  std::vector<float> vz_;
+  std::vector<float> vt_;
   std::vector<int> ids_;
 
-  float mVx;
-  float mVy;
-  float mVz;
-  float mVt;
+  float vx;
+  float vy;
+  float vz;
+  float vt;
   int id;
 
 };
