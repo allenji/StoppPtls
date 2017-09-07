@@ -32,7 +32,13 @@ private:
   bool readFromFile;
   std::string fileName;
   std::ifstream* file;
-  std::string stopPointProducer;
+  //std::string stopPointProducer;
+  edm::EDGetTokenT<std::vector<std::string> > stoppedParticlesName;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesX;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesY;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesZ;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesTime;
+  edm::EDGetTokenT<std::vector<int> > stoppedParticlesPdgId;
 
   // time smearing
   double timeMin;

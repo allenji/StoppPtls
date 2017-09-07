@@ -51,8 +51,7 @@ private:
   virtual bool endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
   
   // ----------member data ---------------------------
-  std::string mStopPointProducer_;
-  //edm::InputTag stoppedParticlesXLabel_;
+  edm::EDGetTokenT<std::vector<float> > stoppedParticlesX;
   bool putTwoStoppedInSameEvent;
   int stoppedParticleNumber;
   int nStoppedParticles;
@@ -62,7 +61,7 @@ private:
 // constructors and destructor
 //
 MCStoppedEventFilter::MCStoppedEventFilter(const edm::ParameterSet& iConfig) :
-  mStopPointProducer_(iConfig.getUntrackedParameter<std::string>("stopPointInputTag", "g4SimHits")),
+  stoppedParticlesX(consumes<std::vector<float> >(iConfig.getParameter<edm::InputTag>("StoppedParticlesX"))),
   putTwoStoppedInSameEvent(iConfig.getUntrackedParameter<bool>("PutTwoStoppedInSameEvent", false)),
   stoppedParticleNumber(iConfig.getUntrackedParameter<int>("StoppedParticleNumber", 0)),
   nStoppedParticles(0)
@@ -85,7 +84,7 @@ MCStoppedEventFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   //std::cout<<"begining filter of MCStoppedEventFilter"<<std::endl;
   edm::Handle<std::vector<float> > xs;
-  iEvent.getByLabel(mStopPointProducer_, "StoppedParticlesX", xs);
+  iEvent.getByToken(stoppedParticlesX, xs);
   nStoppedParticles = xs->size();
 
   bool rightParticleNumber = false;

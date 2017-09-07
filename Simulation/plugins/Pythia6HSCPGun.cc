@@ -293,7 +293,11 @@ namespace {
 Pythia6HSCPGun::Pythia6HSCPGun( const ParameterSet& pset ) :
   Pythia6ParticleGun(pset),
   mReadFromFile(pset.getUntrackedParameter<bool>("readFromFile", true)),
-  mStopPointProducer(pset.getUntrackedParameter<std::string>("stopPointInputTag", "g4SimHits")),
+  stoppedParticlesName(consumes<std::vector<std::string> >(pset.getParameter<edm::InputTag>("StoppedParticlesName"))),
+  stoppedParticlesX(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesX"))),
+  stoppedParticlesY(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesY"))),
+  stoppedParticlesZ(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesZ"))),
+  stoppedParticlesTime(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesTime"))),
   mFileName(pset.getParameter<std::string>("stoppedData")),
   isDelayedMuons(pset.getUntrackedParameter<bool>("IsDelayedMuons", false)),
   putTwoStoppedInSameEvent(pset.getUntrackedParameter<bool>("PutTwoStoppedInSameEvent", false)),
@@ -372,16 +376,16 @@ void Pythia6HSCPGun::produce(edm::Event& evt, const edm::EventSetup& iSetup) {
   else {  // or from the event
 
     edm::Handle<std::vector<std::string> > names;
-    evt.getByLabel (mStopPointProducer, "StoppedParticlesName", names);
+    evt.getByToken (stoppedParticlesName, names);
     edm::Handle<std::vector<float> > xs;
-    evt.getByLabel (mStopPointProducer, "StoppedParticlesX", xs);
+    evt.getByToken (stoppedParticlesX, xs);
     edm::Handle<std::vector<float> > ys;
-    evt.getByLabel (mStopPointProducer, "StoppedParticlesY", ys);
+    evt.getByToken (stoppedParticlesY, ys);
     edm::Handle<std::vector<float> > zs;
-    evt.getByLabel (mStopPointProducer, "StoppedParticlesZ", zs);
+    evt.getByToken (stoppedParticlesZ, zs);
     edm::Handle<std::vector<float> > ts;
-    evt.getByLabel (mStopPointProducer, "StoppedParticlesTime", ts);
-    
+    evt.getByToken (stoppedParticlesTime, ts);
+
     if (names->size() != xs->size() || xs->size() != ys->size() || ys->size() != zs->size()) {
       edm::LogError ("Pythia6HSCPGun") << "mismatch array sizes name/x/y/z:"
 				       << names->size() << '/' << xs->size() << '/' << ys->size() << '/' << zs->size()

@@ -28,7 +28,11 @@ namespace gen {
    private:
 
 	bool mReadFromFile;
-	std::string mStopPointProducer;
+	edm::EDGetTokenT<std::vector<std::string> > stoppedParticlesName;
+	edm::EDGetTokenT<std::vector<float> > stoppedParticlesX;
+	edm::EDGetTokenT<std::vector<float> > stoppedParticlesY;
+	edm::EDGetTokenT<std::vector<float> > stoppedParticlesZ;
+	edm::EDGetTokenT<std::vector<float> > stoppedParticlesTime;
 	std::string mFileName;
 	std::ifstream* mFile;
 	bool isDelayedMuons;
@@ -41,12 +45,6 @@ namespace gen {
 	std::vector<float> mVy;
 	std::vector<float> mVz;
 	std::vector<float> mVt;
-
-	//int mPID;
-	//float mVx;
-	//float mVy;
-	//float mVz;
-
    };
   
 

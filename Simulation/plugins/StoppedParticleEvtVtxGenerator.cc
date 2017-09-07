@@ -30,7 +30,12 @@ StoppedParticleEvtVtxGenerator::StoppedParticleEvtVtxGenerator(const edm::Parame
     sourceToken(consumes<edm::HepMCProduct>(pset.getParameter<edm::InputTag>("src"))),
     readFromFile(pset.getUntrackedParameter<bool>("readFromFile", true)),
     fileName (pset.getParameter<std::string>("stoppedData")),
-    stopPointProducer(pset.getUntrackedParameter<std::string>("stopPointInputTag", "g4SimHits")),
+    stoppedParticlesName(consumes<std::vector<std::string> >(pset.getParameter<edm::InputTag>("StoppedParticlesName"))),
+    stoppedParticlesX(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesX"))),
+    stoppedParticlesY(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesY"))),
+    stoppedParticlesZ(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesZ"))),
+    stoppedParticlesTime(consumes<std::vector<float> >(pset.getParameter<edm::InputTag>("StoppedParticlesTime"))),
+    stoppedParticlesPdgId(consumes<std::vector<int> >(pset.getParameter<edm::InputTag>("StoppedParticlesPdgId"))),
     timeMin (pset.getParameter<double>( "timeOffsetMin") * ns * c_light),
     timeMax (pset.getParameter<double>( "timeOffsetMax") * ns * c_light),
     putTwoStoppedInSameEvent(pset.getUntrackedParameter<bool>("PutTwoStoppedInSameEvent", false)),
@@ -49,7 +54,6 @@ StoppedParticleEvtVtxGenerator::StoppedParticleEvtVtxGenerator(const edm::Parame
 {
   LogDebug("StoppedParticleEvtVtxGenerator")<<"begining constructor of StoppedParticleEvtVtxGenerator"<<std::endl;
 
-  produces<edm::HepMCProduct>();
   if (readFromFile) {
     file = new std::ifstream (fileName.c_str());
   }
@@ -184,17 +188,17 @@ void StoppedParticleEvtVtxGenerator::getStoppingPoint(edm::Event& iEvent) {
   else {  // or from the event
 
     edm::Handle<std::vector<std::string> > names;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesName", names);
+    iEvent.getByToken (stoppedParticlesName, names);
     edm::Handle<std::vector<float> > xs;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesX", xs);
+    iEvent.getByToken (stoppedParticlesX, xs);
     edm::Handle<std::vector<float> > ys;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesY", ys);
+    iEvent.getByToken (stoppedParticlesY, ys);
     edm::Handle<std::vector<float> > zs;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesZ", zs);
+    iEvent.getByToken (stoppedParticlesZ, zs);
     edm::Handle<std::vector<float> > ts;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesTime", ts);
+    iEvent.getByToken (stoppedParticlesTime, ts);
     edm::Handle<std::vector<int> > ids;
-    iEvent.getByLabel (stopPointProducer, "StoppedParticlesPdgId", ids);
+    iEvent.getByToken (stoppedParticlesPdgId, ids);
 
     if (names->size() != xs->size() || xs->size() != ys->size() || ys->size() != zs->size()) {
       edm::LogError ("StoppedParticles") << "mismatch array sizes name/x/y/z:"
