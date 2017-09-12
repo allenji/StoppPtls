@@ -36,18 +36,18 @@ process.load('SimGeneral.HepPDTESSource.pythiapdt_cfi')
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.load('Configuration.EventContent.EventContent_cff')
 process.load('SimGeneral.MixingModule.mixNoPU_cfi')
-process.load('Configuration.StandardSequences.GeometryDB_cff')
-#process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
-#process.load('Configuration.StandardSequences.MagneticField_38T_cff')
-process.load('Configuration.StandardSequences.MagneticField_38T_PostLS1_cff')
+process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
+process.load('Configuration.StandardSequences.GeometrySimDB_cff')
+process.load('Configuration.StandardSequences.MagneticField_cff')
 process.load('Configuration.StandardSequences.Generator_cff')
+process.load('IOMC.EventVertexGenerators.VtxSmearedRealistic25ns13TeVEarly2017Collision_cfi')
 process.load('GeneratorInterface.Core.genFilterSummary_cff')
 process.load('Configuration.StandardSequences.SimIdeal_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(20)
     #input = cms.untracked.int32(-1)
     )
 
@@ -59,7 +59,10 @@ process.options = cms.untracked.PSet(
 process.source = cms.Source ("PoolSource",
                              fileNames=cms.untracked.vstring(
         #'file:../stage1/step1_mchamp500.root'
-        'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        #'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        #'/store/mc/RunIIWinter15GS/HSCPgluino_M-100_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/18D0DCDC-9301-E511-B022-002590D600B6.root'
+        #'/store/mc/RunIIWinter15GS/HSCPgluino_M-200_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/10000/1EA7F398-0B02-E511-A978-8F2B71CB40F1.root'
+        '/store/mc/RunIIWinter15GS/HSCPgluino_M-2000_TuneCUETP8M1_13TeV-pythia8/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/00000/0E4DC19D-6201-E511-833F-0022194FEC31.root'
         )
                              )
 
@@ -79,12 +82,12 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
 process.RAWSIMoutput.outputCommands.append('drop *_*_*_SIM')
 process.RAWSIMoutput.outputCommands.append('drop *_generator_*_SIM2')
 
-process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1 
-process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM') #keep generator from stage 1 
+process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1
+process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM') #keep generator from stage 1
 process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2') #keep VtxSmeared from stage 2
 
 process.eventFilter = cms.EDFilter("MCStoppedEventFilter",
-                                   #StoppedParticlesXLabel = cms.InputTag("StoppedParticlesX")
+                                   StoppedParticlesX = cms.InputTag("g4SimHits","StoppedParticlesX","SIM"),
                                    PutTwoStoppedInSameEvent = cms.untracked.bool(SAME_EVENT),
                                    StoppedParticleNumber = cms.untracked.int32(PARTICLE_NUMBER)
                                    )
@@ -93,11 +96,18 @@ process.eventFilter = cms.EDFilter("MCStoppedEventFilter",
 
 # Other statements
 #process.GlobalTag.globaltag = 'MCRUN2_71_V1::All' #Run2 Stopped Particles stage 2 MC, stage 1 MC
-process.GlobalTag.globaltag = 'MCRUN2_71_V5::All' #Run2 stage 2 MC produced in 7_1_22
+#process.GlobalTag.globaltag = 'MCRUN2_71_V5::All' #Run2 stage 2 MC produced in 7_1_22
+from Configuration.AlCa.GlobalTag import GlobalTag
+process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase1_2017_realistic', '') #2017 MC produced in 93X
 
 process.generator = cms.EDProducer("Pythia6HSCPGun",
                                    readFromFile = cms.untracked.bool(False),
                                    stoppedData = cms.string(''),
+                                   StoppedParticlesName = cms.InputTag("g4SimHits","StoppedParticlesName","SIM"),
+                                   StoppedParticlesX = cms.InputTag("g4SimHits","StoppedParticlesX","SIM"),
+                                   StoppedParticlesY = cms.InputTag("g4SimHits","StoppedParticlesY","SIM"),
+                                   StoppedParticlesZ = cms.InputTag("g4SimHits","StoppedParticlesZ","SIM"),
+                                   StoppedParticlesTime = cms.InputTag("g4SimHits","StoppedParticlesTime","SIM"),
                                    IsDelayedMuons = cms.untracked.bool(DELAYED_MUONS),
                                    PutTwoStoppedInSameEvent = cms.untracked.bool(SAME_EVENT),
                                    StoppedParticleNumber = cms.untracked.int32(PARTICLE_NUMBER),
@@ -109,7 +119,7 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                                              sparticleMass = cms.double(SPARTICLE_MASS),
                                                              MaxEta = cms.double(10),
                                                              MaxPhi = cms.double(3.14159265359),
-                                                             diJetGluino = cms.bool(False),
+                                                             diJetGluino = cms.bool(False), 
                                                              #decayTable = cms.string('src/stage2ParticlesTable.txt') #for crab
                                                              decayTable = cms.string('../../../stage2ParticlesTable_gluino1200.txt') #for interactive:  where you do cmsenv
                                                              ),
@@ -208,6 +218,24 @@ process.g4SimHits.HCalSD.UseShowerLibrary = False
 #this is the only place in the GEN-SIM step, other than the input to genParticles above, where it matters to change the input collection to VtxSmeared
 process.g4SimHits.Generator.HepMCProductLabel = cms.string("VtxSmeared")
 
+process.generatorSmeared2 = cms.EDProducer("GeneratorSmearedProducer",
+    currentTag = cms.untracked.InputTag("VtxSmeared"),
+    previousTag = cms.untracked.InputTag("generatorSmeared")
+)
+process.caloParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
+process.pileupVtxDigitizer.vtxTag = cms.InputTag("generatorSmeared2")
+process.theDigitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
+process.theDigitizersValid.mergedtruth.HepMCProductLabel = cms.InputTag("generatorSmeared2")
+process.theDigitizersValid.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
+process.theMixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
+process.trackingParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
+process.g4SimHits.HepMCProductLabel = cms.InputTag("generatorSmeared2")
+process.genParticleCandidates.src = cms.InputTag("generatorSmeared2")
+process.mix.digitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
+process.mix.mixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
+
+process.GenSmeared = cms.Sequence(process.generatorSmeared2)
+
 # Path and EndPath definitions
 process.filter_step = cms.Path(process.eventFilter)
 process.generation_step = cms.Path(process.pgen)
@@ -223,8 +251,4 @@ process.schedule.extend([process.endjob_step,process.filter_step,process.RAWSIMo
 # filter all path with the production filter sequence
 for path in process.paths:
     getattr(process,path)._seq = process.ProductionFilterSequence * getattr(process,path)._seq
-
-#call to customisation function customisePostLS1 imported from SLHCUpgradeSimulations.Configuration.postLS1Customs
-from SLHCUpgradeSimulations.Configuration.postLS1Customs import customisePostLS1
-process = customisePostLS1(process)
 
