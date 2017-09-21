@@ -3,6 +3,10 @@
 
 echo gluinos...
 foreach i (100 200 400 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600) #Run2
+    sed "s/XXX/$i/" stage2StoppedEventFilter_gluinoXXX_neutralinoYYY_separateEvents_particle0_cfg.py > stage2StoppedEventFilter_gluino${i}_neutralinoYYY_separateEvents_particle0_cfg.py
+    sed "s/XXX/$i/" stage2StoppedEventFilter_gluinoXXX_neutralinoYYY_separateEvents_particle1_cfg.py > stage2StoppedEventFilter_gluino${i}_neutralinoYYY_separateEvents_particle1_cfg.py
+    sed "s/XXX/$i/" stage2StoppedEventFilter_gluinoXXX_neutralinoYYY_sameEvent_cfg.py > stage2StoppedEventFilter_gluino${i}_neutralinoYYY_sameEvent_cfg.py
+
     sed "s/XXX/$i/" stage2GENSIM_gluinoXXX_neutralinoYYY_separateEvents_particle0_cfg.py > stage2GENSIM_gluino${i}_neutralinoYYY_separateEvents_particle0_cfg.py
     sed "s/XXX/$i/" stage2GENSIM_gluinoXXX_neutralinoYYY_separateEvents_particle1_cfg.py > stage2GENSIM_gluino${i}_neutralinoYYY_separateEvents_particle1_cfg.py
     sed "s/XXX/$i/" stage2GENSIM_gluinoXXX_neutralinoYYY_sameEvent_cfg.py > stage2GENSIM_gluino${i}_neutralinoYYY_sameEvent_cfg.py
@@ -63,6 +67,10 @@ end
 
 echo mchamps...
 foreach i (100 200 400 600 800 1000 1400 1800 2200 2600) #Run2
+    sed "s/XXX/$i/" stage2StoppedEventFilter_mchampXXX_sameEvent_cfg.py > stage2StoppedEventFilter_mchamp${i}_sameEvent_cfg.py
+    sed "s/XXX/$i/" stage2StoppedEventFilter_mchampXXX_separateEvents_particle0_cfg.py > stage2StoppedEventFilter_mchamp${i}_separateEvents_particle0_cfg.py
+    sed "s/XXX/$i/" stage2StoppedEventFilter_mchampXXX_separateEvents_particle1_cfg.py > stage2StoppedEventFilter_mchamp${i}_separateEvents_particle1_cfg.py
+
     sed "s/XXX/$i/" stage2GENSIM_mchampXXX_sameEvent_cfg.py > stage2GENSIM_mchamp${i}_sameEvent_cfg.py
     sed "s/XXX/$i/" stage2GENSIM_mchampXXX_separateEvents_particle0_cfg.py > stage2GENSIM_mchamp${i}_separateEvents_particle0_cfg.py
     sed "s/XXX/$i/" stage2GENSIM_mchampXXX_separateEvents_particle1_cfg.py > stage2GENSIM_mchamp${i}_separateEvents_particle1_cfg.py

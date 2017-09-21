@@ -9,6 +9,7 @@ PARTICLE_NUMBER=0
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('SIM2')
+#process.Tracer = cms.Service("Tracer")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.MessageLogger = cms.Service("MessageLogger",
@@ -47,20 +48,18 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
-    #input = cms.untracked.int32(-1)
+    #input = cms.untracked.int32(10)
+    input = cms.untracked.int32(-1)
     )
 
 process.options = cms.untracked.PSet(
-    SkipEvent = cms.untracked.vstring( 'g4SimHits','G4HadronicProcess' )
+    SkipEvent = cms.untracked.vstring( 'g4SimHits','G4HadronicProcess' ),
     )
 
 # Input source
 process.source = cms.Source ("PoolSource",
                              fileNames=cms.untracked.vstring(
-        #'file:../stage1/step1_mchamp500.root'
-        'file:/mnt/hadoop/se/store/mc/RunIIWinter15GS/HSCPmchamp6_M-100_TuneZ2star_13TeV-pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/38B5899C-B1EF-E411-AEF7-782BCB161F1B.root'
-        #'root://cmsxrootd.fnal.gov//store/mc/RunIIWinter15GS/HSCPmchamp6_M-600_TuneZ2star_13TeV_pythia6/GEN-SIM/HSCP_customise_MCRUN2_71_V1-v2/80000/8ADD9B8F-CDEF-E411-BE7E-00074305CD50.root'
+        'file:HSCPmchamp6_M_1400_TuneZ2star_13TeV_pythia6_cff_GEN_SIM_StoppedEventFilter.root'
         )
                              )
 
@@ -78,11 +77,12 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
                                         )
 
 process.RAWSIMoutput.outputCommands.append('drop *_*_*_SIM')
-process.RAWSIMoutput.outputCommands.append('drop *_generator_*_SIM2')
 
-process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1
-process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM') #keep generator from stage 1
-process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2') #keep VtxSmeared from stage 2
+process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_*') 
+process.RAWSIMoutput.outputCommands.append('keep *_generator_*_*') 
+process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_*') 
+process.RAWSIMoutput.outputCommands.append('keep *_generatorSmeared_*_*') 
+process.RAWSIMoutput.outputCommands.append('keep *_genParticles_*_*')
 
 process.eventFilter = cms.EDFilter("MCStoppedEventFilter",
                                    StoppedParticlesX = cms.InputTag("g4SimHits","StoppedParticlesX","SIM"),
@@ -142,20 +142,23 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
                                                                 )
                                    )
 
-process.genParticles = cms.EDProducer("GenParticleProducer",
-                                      saveBarCodes = cms.untracked.bool(True),
-                                      #src = cms.InputTag("generator"),
-                                      src = cms.InputTag("VtxSmeared"),
-                                      abortOnUnknownPDGCode = cms.untracked.bool(False),
-                                      )
-
 process.ProductionFilterSequence = cms.Sequence(process.generator)
 
 # FR Extra stuff
+
+#genParticles will take generatorSmeared in SIM2 as input by default (which is what we want)
+#g4SimHits will take generatorSmeared in SIM2 as input by default (which is what we want)
+
 process.load('StoppPtls/Simulation/StoppedParticleEvtVtxGenerator_cfi')
 process.VtxSmeared.PutTwoStoppedInSameEvent = SAME_EVENT
 process.VtxSmeared.StoppedParticleNumber = PARTICLE_NUMBER
 process.VtxSmeared.verbose = True
+
+#making sure that GeneratorSmearedProducer picks up right collection (or right backup collection)
+process.generatorSmeared = cms.EDProducer("GeneratorSmearedProducer",
+    currentTag = cms.untracked.InputTag("VtxSmeared","","SIM2"),
+    previousTag = cms.untracked.InputTag("generator","unsmeared","StoppedEventFilter")
+)
 
 #Unknown particles is OK
 process.genParticles.abortOnUnknownPDGCode = False
@@ -164,28 +167,11 @@ process.genParticles.abortOnUnknownPDGCode = False
 process.g4SimHits.HCalSD.UseShowerLibrary = False
 
 # FR END Extra stuff
-#this is the only place in the GEN-SIM step, other than the input to genParticles above, where it matters to change the input collection to VtxSmeared
-process.g4SimHits.Generator.HepMCProductLabel = cms.string("VtxSmeared")
 
-process.generatorSmeared2 = cms.EDProducer("GeneratorSmearedProducer",
-    currentTag = cms.untracked.InputTag("VtxSmeared"),
-    previousTag = cms.untracked.InputTag("generatorSmeared")
-)
-process.caloParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.pileupVtxDigitizer.vtxTag = cms.InputTag("generatorSmeared2")
-process.theDigitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.theDigitizersValid.mergedtruth.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.theDigitizersValid.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.theMixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
-process.trackingParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.g4SimHits.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.genParticleCandidates.src = cms.InputTag("generatorSmeared2")
-process.mix.digitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.mix.mixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
-
-process.GenSmeared = cms.Sequence(process.generatorSmeared2)
+#process.content = cms.EDAnalyzer("EventContentAnalyzer")
 
 # Path and EndPath definitions
+#process.eventContent_step = cms.Path(process.content)
 process.filter_step = cms.Path(process.eventFilter)
 process.generation_step = cms.Path(process.pgen)
 process.simulation_step = cms.Path(process.psim)

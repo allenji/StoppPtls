@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
 VtxSmeared = cms.EDProducer("StoppedParticleEvtVtxGenerator",
-                            src = cms.InputTag("generatorSmeared"),
+                            src = cms.InputTag("generator","unsmeared","StoppedEventFilter"),
                             StoppedParticlesName = cms.InputTag("g4SimHits","StoppedParticlesName","SIM"),
                             StoppedParticlesX = cms.InputTag("g4SimHits","StoppedParticlesX","SIM"),
                             StoppedParticlesY = cms.InputTag("g4SimHits","StoppedParticlesY","SIM"),

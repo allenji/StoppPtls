@@ -80,11 +80,12 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
                                         )
 
 process.RAWSIMoutput.outputCommands.append('drop *_*_*_SIM')
-process.RAWSIMoutput.outputCommands.append('drop *_generator_*_SIM2')
 
-process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_SIM') #keep StoppedParticles from stage 1
-process.RAWSIMoutput.outputCommands.append('keep *_generator_*_SIM') #keep generator from stage 1
-process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_SIM2') #keep VtxSmeared from stage 2
+process.RAWSIMoutput.outputCommands.append('keep *_*_Stopped*_*')
+process.RAWSIMoutput.outputCommands.append('keep *_generator_*_*')
+process.RAWSIMoutput.outputCommands.append('keep *_VtxSmeared_*_*')
+process.RAWSIMoutput.outputCommands.append('keep *_generatorSmeared_*_*')
+process.RAWSIMoutput.outputCommands.append('keep *_genParticles_*_*')
 
 process.eventFilter = cms.EDFilter("MCStoppedEventFilter",
                                    StoppedParticlesX = cms.InputTag("g4SimHits","StoppedParticlesX","SIM"),
@@ -193,50 +194,36 @@ process.generator = cms.EDProducer("Pythia6HSCPGun",
         )
                                    )
 
-process.genParticles = cms.EDProducer("GenParticleProducer",
-                                      saveBarCodes = cms.untracked.bool(True),
-                                      #src = cms.InputTag("generator"),
-                                      src = cms.InputTag("VtxSmeared"),
-                                      abortOnUnknownPDGCode = cms.untracked.bool(False),
-                                      )
-
 process.ProductionFilterSequence = cms.Sequence(process.generator)
 
 # FR Extra stuff
+
+#genParticles will take generatorSmeared in SIM2 as input by default (which is what we want)
+#g4SimHits will take generatorSmeared in SIM2 as input by default (which is what we want) 
+
 process.load('StoppPtls/Simulation/StoppedParticleEvtVtxGenerator_cfi')
 process.VtxSmeared.PutTwoStoppedInSameEvent = SAME_EVENT
 process.VtxSmeared.StoppedParticleNumber = PARTICLE_NUMBER
 process.VtxSmeared.verbose = True
 
-#Unknown particles is OK
+#making sure that GeneratorSmearedProducer picks up right collection (or right backup collection) 
+process.generatorSmeared = cms.EDProducer("GeneratorSmearedProducer",
+    currentTag = cms.untracked.InputTag("VtxSmeared","","SIM2"),
+    previousTag = cms.untracked.InputTag("generator","unsmeared","StoppedEventFilter")
+)
+
+#Unknown particles is OK 
 process.genParticles.abortOnUnknownPDGCode = False
 
-#Don't use shower library
+#Don't use shower library 
 process.g4SimHits.HCalSD.UseShowerLibrary = False
 
-# FR END Extra stuff
-#this is the only place in the GEN-SIM step, other than the input to genParticles above, where it matters to change the input collection to VtxSmeared
-process.g4SimHits.Generator.HepMCProductLabel = cms.string("VtxSmeared")
+# FR END Extra stuff 
 
-process.generatorSmeared2 = cms.EDProducer("GeneratorSmearedProducer",
-    currentTag = cms.untracked.InputTag("VtxSmeared"),
-    previousTag = cms.untracked.InputTag("generatorSmeared")
-)
-process.caloParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.pileupVtxDigitizer.vtxTag = cms.InputTag("generatorSmeared2")
-process.theDigitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.theDigitizersValid.mergedtruth.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.theDigitizersValid.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.theMixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
-process.trackingParticles.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.g4SimHits.HepMCProductLabel = cms.InputTag("generatorSmeared2")
-process.genParticleCandidates.src = cms.InputTag("generatorSmeared2")
-process.mix.digitizers.puVtx.vtxTag = cms.InputTag("generatorSmeared2")
-process.mix.mixObjects.mixHepMC.input = cms.VInputTag(cms.InputTag("generatorSmeared2"), cms.InputTag("generator"))
+#process.content = cms.EDAnalyzer("EventContentAnalyzer") 
 
-process.GenSmeared = cms.Sequence(process.generatorSmeared2)
-
-# Path and EndPath definitions
+# Path and EndPath definitions 
+#process.eventContent_step = cms.Path(process.content) 
 process.filter_step = cms.Path(process.eventFilter)
 process.generation_step = cms.Path(process.pgen)
 process.simulation_step = cms.Path(process.psim)
@@ -244,11 +231,10 @@ process.genfiltersummary_step = cms.EndPath(process.genFilterSummary)
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.RAWSIMoutput_step = cms.EndPath(process.RAWSIMoutput)
 
-# Schedule definition
-#put filter_step at end to avoid OscarProducer seg fault in beginRun
+# Schedule definition 
+#put filter_step at end to avoid OscarProducer seg fault in beginRun 
 process.schedule = cms.Schedule(process.generation_step,process.genfiltersummary_step,process.simulation_step)
 process.schedule.extend([process.endjob_step,process.filter_step,process.RAWSIMoutput_step])
-# filter all path with the production filter sequence
+# filter all path with the production filter sequence 
 for path in process.paths:
     getattr(process,path)._seq = process.ProductionFilterSequence * getattr(process,path)._seq
-
