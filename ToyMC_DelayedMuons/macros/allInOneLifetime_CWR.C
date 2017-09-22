@@ -165,13 +165,13 @@ void allInOneLifetime(double lumi=4560.) {
   cout<<"mchamp2ref is: "<<mchamp2ref<<endl;
   cout<<"expected limit at 1 s is: "<<g_exp->GetY()[30]<<endl;
   
-  TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,650,500);
-  
-//canvas->SetGrid();
+  TCanvas *canvas = new TCanvas("allLifetime", "allLifetime",10,10,550,500);
+
+  //canvas->SetGrid();
   canvas->SetLogx();
   canvas->SetLogy();
 
-  canvas->SetRightMargin(0.8*canvas->GetLeftMargin());
+  //canvas->SetRightMargin(0.8*canvas->GetLeftMargin());
   //canvas->SetLeftMargin(1.2*canvas->GetLeftMargin());
   canvas->SetTicks (canvas->GetTickx(), 0);
   
@@ -305,7 +305,7 @@ void allInOneLifetime(double lumi=4560.) {
   t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
-  t1mchamp->SetTextSize(0.035);
+  t1mchamp->SetTextSize(0.04);
   t1mchamp->Draw();
   
 
@@ -353,9 +353,8 @@ void allInOneLifetime(double lumi=4560.) {
   
   
 
-  //TLegend* leg = new TLegend(0.67, 0.65, 0.82, 0.87,"95% CL Limits:","NDC");
-  TLegend* leg = new TLegend(0.67, 0.70, 0.82, 0.92,"95% CL Limits:","NDC");
-  leg->SetTextSize(0.033);
+  TLegend* leg = new TLegend(0.6, 0.65, 0.82, 0.87,"95% CL Limits:","NDC");
+  leg->SetTextSize(0.04);
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
   leg->SetFillColor(0);
@@ -382,5 +381,5 @@ void allInOneLifetime(double lumi=4560.) {
 
   CMS_lumi(canvas, iPeriod, iPos);
 
-  canvas->Print("nimei.pdf");
+  canvas->Print("allInOneLifetime_combinedmchamp_400GeV.pdf");
 }

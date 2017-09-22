@@ -35,7 +35,7 @@
 #include "DifferentXSLimitPlots.C"
 
 //#include "tdrstyle.C"
-#include "CMS_lumi.C"
+//#include "CMS_lumi.C"
 
 // .L massPlot.C+
 // massPlot("limit_summary.txt", "time_profile_summary.txt");
@@ -128,13 +128,14 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   cout << "finished setting grids" << endl;
   
   TH1 * h;
-  h = canvas->DrawFrame(100., 1e-4, 2600., 1e1); //mchamps
-  //h = canvas->DrawFrame(400., 1e-2, 2600., 1e3); //gluinos
+  h = canvas->DrawFrame(100., 6e-4, 800., 1e1); //mchamps
+  //h = canvas->DrawFrame(400., 7e-3, 1600., 1e2); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
   h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP ) #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
   //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]");
   cout << "finished setting title" << endl;
-  h->GetYaxis()->SetTitleSize(0.035);
+  h->GetYaxis()->SetTitleSize(0.035);//mchamps
+  //h->GetYaxis()->SetTitleSize(0.04);//gluinos
   h->GetYaxis()->SetTitleOffset(1.6);
 
   cout<<"finished drawing canvas"<<endl;
@@ -180,11 +181,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   cout<<"starting legend"<<endl;
   TBox *legbg = new TBox(600., 0.1e1, 900., 0.4e2);
   //legbg->Draw();
-  //TLegend *leg = new TLegend(600., 1.e1, 900., 4e2,"95% C.L. Limits","");
-  //TLegend* leg = new TLegend(0.67, 0.70, 0.82, 0.92,"95% CL Limits:","NDC");
-  /////////TLegend* leg = new TLegend(0.52, 0.70, 0.77, 0.92,"95% CL Limits:","NDC");
-  TLegend* leg = new TLegend(0.55, 0.65, 0.70, 0.85,"95% CL Limits:","NDC");
-  leg->SetTextSize(0.033);
+  TLegend* leg = new TLegend(0.45, 0.6, 0.70, 0.85,"95% CL Limits:","NDC");
+  leg->SetTextSize(0.04);
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
   leg->SetFillColor(0);
@@ -370,9 +368,10 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
 
   //canvas->Print("MassLimit_gluino2016.pdf");
   //canvas->Print("MassLimit_mchamp2016.pdf");
-  //canvas->Print("MassLimit_mchampCombined_Jul2.pdf");
-  canvas->Print("nimei.pdf");
   //canvas->Print("MassLimit_mchamp2016.C");
+  canvas->Print("MassLimit_mchampCombined.pdf");
+  //canvas->Print("MassLimit_gluinoCombined.pdf");
+
 
   plots.calculateIntercepts();
 
