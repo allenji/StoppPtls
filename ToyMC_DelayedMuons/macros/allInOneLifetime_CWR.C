@@ -179,9 +179,9 @@ void allInOneLifetime(double lumi=4560.) {
   TH1F* h = new TH1F ("h", "", 1, 7.5e-8, 1e6);
   h->SetStats (0);
   //h->SetMinimum (.0001);
-  h->SetMinimum (2e-5);
+  h->SetMinimum (4e-5);
   //h->SetMaximum (0.99e1);
-  h->SetMaximum (0.1);
+  h->SetMaximum (0.02);
   // TH1* h = canvas->DrawFrame(7.5e-8, .001, 1e6, 1e2, "Y+");
   h->SetTitle("Beamgap Expt");
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
@@ -305,7 +305,7 @@ void allInOneLifetime(double lumi=4560.) {
   TLatex *t1mchamp;
   //t1mchamp = new TLatex(0.001, 0.5/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
   //t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
-  t1mchamp = new TLatex(0.001, 0.008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 400GeV)");
+  t1mchamp = new TLatex(0.001, 0.015/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 400GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
   t1mchamp->SetTextSize(0.04);
