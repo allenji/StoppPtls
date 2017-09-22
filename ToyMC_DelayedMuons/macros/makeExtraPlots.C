@@ -1,8 +1,8 @@
 #include "ExtraLimitPlots.C"
-//#include "allInOneLifetime_gluino.C"
-#include "allInOneLifetime.C"
-#include "massLimit.C"
-#include "massPlot.C"
+#include "allInOneLifetime_gluino_CWR.C"
+//#include "allInOneLifetime_CWR.C"
+//#include "massLimit.C"
+#include "massPlot_CWR.C"
 void makeExtraPlots(double lumi=4560., double maxInstLumi=5000.)
 {
   std::cout <<" Integrated lumi = "<<lumi<<"  max Inst. Lumi = "<<maxInstLumi<<std::endl;
