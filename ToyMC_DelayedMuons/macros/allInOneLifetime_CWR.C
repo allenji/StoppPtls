@@ -149,7 +149,8 @@ void allInOneLifetime(double lumi=4560.) {
   //ref = 1/(stopping_eff*reco_eff)
   //double mchamp2ref      = 88.4;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
   //double mchamp2ref      = 98.5;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2015
-  double mchamp2ref      = 90.6;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2016
+  //double mchamp2ref      = 90.6;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2016
+  double mchamp2ref      = 79.4;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 400GeV 2016
   //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 200GeV 2016
   //double mchamp2ref      = 104.17;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 1000GeV 2015
 // double mchamp2ref      = 77.16;//g_obs_mchamp->GetY()[0] / g_obs->GetY()[0]; mchamp 2600GeV 2016
@@ -178,7 +179,7 @@ void allInOneLifetime(double lumi=4560.) {
   TH1F* h = new TH1F ("h", "", 1, 7.5e-8, 1e6);
   h->SetStats (0);
   //h->SetMinimum (.0001);
-  h->SetMinimum (1e-6);
+  h->SetMinimum (2e-5);
   //h->SetMaximum (0.99e1);
   h->SetMaximum (0.1);
   // TH1* h = canvas->DrawFrame(7.5e-8, .001, 1e6, 1e2, "Y+");
@@ -294,7 +295,8 @@ void allInOneLifetime(double lumi=4560.) {
   // mchamp LIMIT
   //theory cross section/reference
   //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //200 GeV
-  TLine *lmchamp = new TLine(7.5e-8, 0.0002403/mchamp2ref, 1e6, 0.0002403/mchamp2ref); //1000 GeV
+  //TLine *lmchamp = new TLine(7.5e-8, 0.0002403/mchamp2ref, 1e6, 0.0002403/mchamp2ref); //1000 GeV
+  TLine *lmchamp = new TLine(7.5e-8, 0.02399/mchamp2ref, 1e6, 0.02399/mchamp2ref); //400 GeV
   //TLine *lmchamp = new TLine(7.5e-8, 0.299/mchamp2ref, 1e6, 0.299/mchamp2ref); //2600 GeV //won't be on plot
   lmchamp->SetLineColor(kRed);
   lmchamp->SetLineWidth(2);
@@ -302,7 +304,8 @@ void allInOneLifetime(double lumi=4560.) {
   
   TLatex *t1mchamp;
   //t1mchamp = new TLatex(0.001, 0.5/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200 GeV)");
-  t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
+  //t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
+  t1mchamp = new TLatex(0.001, 0.008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 400GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
   t1mchamp->SetTextSize(0.04);
