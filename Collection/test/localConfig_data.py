@@ -24,7 +24,11 @@ config_file = "delayedMuonsCandiate2017_PromptReco_cfg.py"
 #config_file = "delayedMuonsCandiate2016_PromptRecoH_ZMuMu_80To100_cfg.py"
 
 datasets = [
-    "NoBPTX_2017_PromptReco_RECO",
+    "NoBPTX_2017_PromptReco_AOD",
+
+    #"NoBPTX_2017E_v1_PromptReco_AOD", #for top and bottom triggered cosmics
+
+
 
     #"NoBPTX_2016BCDEFG_23Sep2016",
     #"NoBPTX_2016H_PromptReco",
