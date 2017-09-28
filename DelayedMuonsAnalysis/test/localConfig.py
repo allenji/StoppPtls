@@ -95,6 +95,10 @@ datasetsData = [
 
 datasetsCosmicData = [
     'NoBPTX_2016DE_PromptReco_Cosmic_TopAndBottom_Ntuple', #2016 top and bottom cosmics
+
+    #'NoBPTX_2017E_v1_PromptReco_CosmicTopAndBottom_DtCsc_Ntuple', #2017 top and bottom cosmics, DTs and CSCs with HV on
+    'NoBPTX_2017E_v1_PromptReco_CosmicTopAndBottom_DtCscRpc_Ntuple', #2017 top and bottom cosmics, DTs, CSCs, and RPCs with HV on
+
 ]
 
 datasetsCosmicMC = [
