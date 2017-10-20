@@ -6,6 +6,8 @@
 
 #include "OSUT3Analysis/AnaTools/interface/DataFormatAOD.h"
 
+#define STOPPPED_PTLS
+
 #undef jets_TYPE
 #define jets_TYPE CandidateJet
 #undef jets_INVALID
