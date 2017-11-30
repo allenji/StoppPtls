@@ -192,7 +192,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   leg->AddEntry(g_mchamp, "Median expected, 10 #mus - 1000 s", "l");
   leg->AddEntry(g_exp_1sig, "68% expected, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_exp_2sig, "95% expected, 10 #mus - 1000 s", "lf");
-  leg->AddEntry(g_thMchamp, "LO Prediction", "l");
+  leg->AddEntry(g_thMchamp, "LO prediction", "l");
   cout<<"finishing legend"<<endl;
   
   /* 
@@ -200,14 +200,14 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   leg->AddEntry(g_gluino, "Expected, 10 #mus - 1000 s", "l");
   leg->AddEntry(g_expGluino_1sig, "Expected #pm1#sigma, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_expGluino_2sig, "Expected #pm2#sigma, 10 #mus - 1000 s", "lf");
-  leg->AddEntry(g_thGluino, "LO Prediction", "l");
+  leg->AddEntry(g_thGluino, "LO prediction", "l");
   cout<<"finishing legend"<<endl;
   */
   /*  
   leg->AddEntry(g_gluino, "Expected Gluino Limit, 10 #mus - 1000 s", "l");
-  leg->AddEntry(g_thGluino, "Gluino LO Prediction", "l");
+  leg->AddEntry(g_thGluino, "Gluino LO prediction", "l");
   leg->AddEntry(g_stop, "Expected Stop Limit, 10 #mus - 1000 s", "l");
-  leg->AddEntry(g_thStop, "Stop LO Prediction", "l");
+  leg->AddEntry(g_thStop, "Stop LO prediction", "l");
   */
   //leg->AddEntry(g_thGluino, "NLO+NLL #tilde{g}", "l");
   //leg->AddEntry(g_gluino, "Obs.: 10 #mus - 1000 s Counting Exp. (#tilde{g})", "l");
