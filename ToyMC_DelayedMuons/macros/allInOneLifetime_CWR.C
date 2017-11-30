@@ -186,17 +186,17 @@ void allInOneLifetime(double lumi=4560.) {
   h->SetTitle("Beamgap Expt");
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
   h->GetXaxis()->SetTitle("#tau [s]");
-  //h->GetYaxis()->SetTitle("#sigma #times BF #times #varepsilon_{stop} #times #varepsilon_{det} [pb]  ");
+  //h->GetYaxis()->SetTitle("#sigma BF #varepsilon_{stop} #varepsilon_{det} [pb]  ");
   h->GetYaxis()->SetTitleOffset(1.2);
   h->GetYaxis()->SetTickSize(0);
   h->GetYaxis()->SetLabelSize(0);
   h->GetXaxis()->SetNdivisions(6,20);
   h->Draw ("Y+");
 
-  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
-  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
-  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow MCHAMP MCHAMP) #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]", 0.0);
+  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
+  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
+  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow MCHAMP MCHAMP) #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]", 0.0);
   ExtraAxis aMchampRight = anotherScaleRight (h, mchamp2ref, kBlack, "", 0.0);
 
   
@@ -220,7 +220,7 @@ void allInOneLifetime(double lumi=4560.) {
 
   //blurb->AddText("CMS 2011");
   blurb->AddText("#int L dt = 19.7 fb^{-1}");//,  #int L_{eff} dt = 935 pb^{-1}");
-  //blurb->AddText("L^{max}_{inst} = 3.5 #times 10^{33} cm^{-2}s^{-1}");
+  //blurb->AddText("L^{max}_{inst} = 3.5 10^{33} cm^{-2}s^{-1}");
   //blurb->AddText("#sqrt{s} = 8 TeV");
   //blurb->AddText("E_{gluon} > 120 GeV, E_{top} > 150 GeV");
   //blurb->AddText("m_{#tilde{g}} = 300 GeV/c^{2}");

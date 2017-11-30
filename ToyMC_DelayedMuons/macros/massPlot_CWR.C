@@ -131,8 +131,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   h = canvas->DrawFrame(100., 6e-4, 800., 1e1); //mchamps
   //h = canvas->DrawFrame(400., 7e-3, 1600., 1e2); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
-  h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP ) #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
-  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]");
+  h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP ) #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
+  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]");
   cout << "finished setting title" << endl;
   h->GetYaxis()->SetTitleSize(0.035);//mchamps
   //h->GetYaxis()->SetTitleSize(0.04);//gluinos
