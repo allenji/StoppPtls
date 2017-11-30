@@ -131,8 +131,8 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   h = canvas->DrawFrame(100., 6e-4, 800., 1e1); //mchamps
   //h = canvas->DrawFrame(400., 7e-3, 1600., 1e2); //gluinos
   //h->SetTitle(";m [GeV];#sigma [pb]");
-  h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP ) #times #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
-  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]");
+  h->SetTitle(";m_{MCHAMP} [GeV];#sigma(pp #rightarrow MCHAMP MCHAMP ) #bf{#it{#Beta}}(MCHAMP #rightarrow #mu^{#pm}#mu^{#pm}) [pb]");
+  //h->SetTitle(";m_{#tilde{g}} [GeV];#sigma(pp #rightarrow #tilde{g}#tilde{g}) #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]");
   cout << "finished setting title" << endl;
   h->GetYaxis()->SetTitleSize(0.035);//mchamps
   //h->GetYaxis()->SetTitleSize(0.04);//gluinos
@@ -181,7 +181,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   cout<<"starting legend"<<endl;
   TBox *legbg = new TBox(600., 0.1e1, 900., 0.4e2);
   //legbg->Draw();
-  TLegend* leg = new TLegend(0.45, 0.6, 0.70, 0.85,"95% CL Limits:","NDC");
+  TLegend* leg = new TLegend(0.45, 0.6, 0.70, 0.85,"95% CL upper limits","NDC");
   leg->SetTextSize(0.04);
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
@@ -189,9 +189,9 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
 
   cout<<"starting legend2"<<endl;
   leg->AddEntry(g_obs_mchamp, "Observed, 10 #mus - 1000 s", "lp");
-  leg->AddEntry(g_mchamp, "Expected, 10 #mus - 1000 s", "l");
-  leg->AddEntry(g_exp_1sig, "Expected #pm1#sigma, 10 #mus - 1000 s", "lf");
-  leg->AddEntry(g_exp_2sig, "Expected #pm2#sigma, 10 #mus - 1000 s", "lf");
+  leg->AddEntry(g_mchamp, "Median expected, 10 #mus - 1000 s", "l");
+  leg->AddEntry(g_exp_1sig, "68% expected, 10 #mus - 1000 s", "lf");
+  leg->AddEntry(g_exp_2sig, "95% expected, 10 #mus - 1000 s", "lf");
   leg->AddEntry(g_thMchamp, "LO Prediction", "l");
   cout<<"finishing legend"<<endl;
   
@@ -227,7 +227,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_expGluino_2sig->SetLineColor(0);
   g_expGluino_2sig->SetLineStyle(0);
   g_expGluino_2sig->SetLineWidth(0);
-  g_expGluino_2sig->SetFillColor(kYellow);
+  g_expGluino_2sig->SetFillColor(kOrange);
   g_expGluino_2sig->SetFillStyle(1001);
   g_expGluino_2sig->Draw("3");
 
@@ -237,7 +237,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_expGluino_1sig->SetLineStyle(0);
   g_expGluino_1sig->SetLineWidth(0);
   // g_expGluino_1sig->SetFillColor(8);                                                                                                                                                           
-  g_expGluino_1sig->SetFillColor(kGreen);
+  g_expGluino_1sig->SetFillColor(kGreen+1);
   g_expGluino_1sig->SetFillStyle(1001);
   // g_expGluino_1sig->SetFillStyle(3005);                                                                                                                                                        
   g_expGluino_1sig->Draw("3");
@@ -295,7 +295,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_exp_2sig->SetLineColor(0);
   g_exp_2sig->SetLineStyle(0);
   g_exp_2sig->SetLineWidth(0);
-  g_exp_2sig->SetFillColor(kYellow);
+  g_exp_2sig->SetFillColor(kOrange);
   g_exp_2sig->SetFillStyle(1001);
   g_exp_2sig->Draw("3");
 
@@ -305,7 +305,7 @@ void massPlot(double lumi=-1., double maxInstLumi=-1.) {
   g_exp_1sig->SetLineStyle(0);
   g_exp_1sig->SetLineWidth(0);
   // g_exp_1sig->SetFillColor(8);                                                                                                                                                           
-  g_exp_1sig->SetFillColor(kGreen);
+  g_exp_1sig->SetFillColor(kGreen+1);
   g_exp_1sig->SetFillStyle(1001);
   // g_exp_1sig->SetFillStyle(3005);                                                                                                                                                        
   g_exp_1sig->Draw("3");

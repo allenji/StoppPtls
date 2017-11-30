@@ -185,18 +185,19 @@ void allInOneLifetime(double lumi=4560.) {
   h->SetTitle("Beamgap Expt");
   //  h->GetXaxis()->SetTitle("#tau_{#tilde{g},#tilde{t},#tilde{#tau}} [s]");
   h->GetXaxis()->SetTitle("#tau [s]");
-//h->GetYaxis()->SetTitle("#sigma #times BF #times #varepsilon_{stop} #times #varepsilon_{det} [pb]  ");
+//h->GetYaxis()->SetTitle("#sigma BF #varepsilon_{stop} #varepsilon_{det} [pb]  ");
   h->GetYaxis()->SetTitleOffset(1.2);
   h->GetYaxis()->SetTickLength(0);
   h->GetYaxis()->SetLabelSize(0);
+  h->GetXaxis()->SetNdivisions(6,20);
   //h->Draw ("Y+");
   h->Draw ("Y+");
 
-  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
-  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) #times BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
-  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) #times BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
-  //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) #times BF(mch #rightarrow #mu#mu)  [pb]", 0.0);
-  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #times #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #times #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
+  ExtraAxis aGluino = anotherScale (h, gluino2ref, kRed+2, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) BF(#tilde{g} #rightarrow g#tilde{#chi}^{0})   [pb]  ", 0.0);
+  ExtraAxis aStop = anotherScale (h, stop2ref, kBlue+2, "#sigma(pp #rightarrow #tilde{t}#tilde{t}) BF(#tilde{t} #rightarrow t#tilde{#chi}^{0})   [pb]  ", 0.2);
+  ExtraAxis aStau = anotherScale (h, stau2ref, kGreen+2, "#sigma(pp #rightarrow #tilde{#tau}#tilde{#tau}) BF(#tilde{#tau} #rightarrow #tau#tilde{#chi}^{0})   [pb]  ", 0.4);
+  //ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow mch mch) BF(mch #rightarrow #mu#mu)  [pb]", 0.0);
+  ExtraAxis aMchamp = anotherScale (h, mchamp2ref, kBlack, "#sigma(pp #rightarrow #tilde{g}#tilde{g}) #bf{#it{#Beta}}(#tilde{g} #rightarrow q#bar{q}#tilde{#chi}^{0}_{2}) #bf{#it{#Beta}}(#tilde{#chi}^{0}_{2} #rightarrow #mu^{+}#mu^{-}#tilde{#chi}_{LSP}) [pb]", 0.0);
   ExtraAxis aMchampRight = anotherScaleRight (h, mchamp2ref, kBlack, "", 0.0);
 
   
@@ -239,7 +240,7 @@ void allInOneLifetime(double lumi=4560.) {
     g_exp_2sig->SetLineColor(0);
     g_exp_2sig->SetLineStyle(0);
     g_exp_2sig->SetLineWidth(0);
-    g_exp_2sig->SetFillColor(kYellow);
+    g_exp_2sig->SetFillColor(kOrange);
     g_exp_2sig->SetFillStyle(1001);
     g_exp_2sig->Draw("3");
   }
@@ -251,7 +252,7 @@ void allInOneLifetime(double lumi=4560.) {
     g_exp_1sig->SetLineStyle(0);
     g_exp_1sig->SetLineWidth(0);
     // g_exp_1sig->SetFillColor(8);
-    g_exp_1sig->SetFillColor(kGreen);
+    g_exp_1sig->SetFillColor(kGreen+1);
     g_exp_1sig->SetFillStyle(1001);
     // g_exp_1sig->SetFillStyle(3005);
     g_exp_1sig->Draw("3");
@@ -303,12 +304,12 @@ void allInOneLifetime(double lumi=4560.) {
   
   TLatex *t1mchamp;
   //t1mchamp = new TLatex(0.001, 50/mchamp2ref, "#sigma_{theory} (m_{#tilde{g}} = 400 GeV)");
-  t1mchamp = new TLatex(0.001, 0.2/mchamp2ref, "#sigma_{theory} (m_{#tilde{g}} = 1000 GeV)");
+  t1mchamp = new TLatex(0.0001, 0.2/mchamp2ref, "#sigma_{theory} (m_{#tilde{g}} = 1000 GeV)");
   //t1mchamp = new TLatex(0.001, 0.001/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 200GeV)");
   //t1mchamp = new TLatex(0.001, 0.0008/mchamp2ref, "#sigma_{theory} (m_{mchamp} = 1000GeV)");
   t1mchamp->SetTextColor(kRed);
   t1mchamp->SetTextFont(42);
-  t1mchamp->SetTextSize(0.04);
+  t1mchamp->SetTextSize(0.045);
   t1mchamp->Draw();
   
 
@@ -356,7 +357,7 @@ void allInOneLifetime(double lumi=4560.) {
   
   
 
-  TLegend* leg = new TLegend(0.6, 0.65, 0.82, 0.87,"95% CL Limits:","NDC");
+  TLegend* leg = new TLegend(0.6, 0.65, 0.82, 0.87,"95% CL upper limits","NDC");
   leg->SetTextSize(0.04);
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
@@ -367,8 +368,8 @@ void allInOneLifetime(double lumi=4560.) {
   expectedStyle2->SetFillColor (g_exp_2sig->GetFillColor());
   cout << "colors: " << g_exp_1sig->GetFillColor() << ':' << g_exp_2sig->GetFillColor() << endl;
   leg->AddEntry(g_obs, "Observed", "l");
-  leg->AddEntry(expectedStyle1, "Expected #pm1#sigma", "lf");
-  leg->AddEntry(expectedStyle2, "Expected #pm2#sigma", "lf");
+  leg->AddEntry(expectedStyle1, "68% expected", "lf");
+  leg->AddEntry(expectedStyle2, "95% expected", "lf");
   //leg->AddEntry(g_obs_stop,"Obs.: Counting Exp. (#tilde{t})", "l");
   //leg->AddEntry(g_obs_nb, "Obs.: Counting Exp. (Neutral R-Baryon)", "l");
   //leg->AddEntry(g_obs_em, "Observed: Counting Exp. (EM only)", "l");
