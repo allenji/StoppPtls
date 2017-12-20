@@ -934,14 +934,14 @@ DeltaDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("delta_dtTofTimeAtIpInOut"),
             #title = cms.string("#Delta DSA Track TimeInOut; #Delta DSA Track TimeInOut [ns]"),
-            title = cms.string("#Delta DSA Track t_{DT}; #Delta t_{DT} [ns]"), #for pas
+            title = cms.string("#Delta DSA Track t_{DT}; #Deltat_{DT} [ns]"), #for pas
             binsX = cms.untracked.vdouble(40, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("delta_dtTofTimeAtIpOutIn"),
             title = cms.string("#Delta DSA Track TimeOutIn; #Delta DSA Track TimeOutIn [ns]"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
@@ -958,8 +958,8 @@ DeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("delta_rpcTime"),
-            title = cms.string("#Delta DSA Track t_{RPC}; #Delta t_{RPC} [ns]"),
-            binsX = cms.untracked.vdouble(30, -60, 60),
+            title = cms.string("#Delta DSA Track t_{RPC}; #Deltat_{RPC} [ns]"),
+            binsX = cms.untracked.vdouble(40, -100, 100),
             inputVariables = cms.vstring("25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
@@ -997,15 +997,15 @@ UppervsLowerDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut"),
             title = cms.string("Upper vs Lower DSA Track TimeInOut; Upper DSA Track TimeInOut [ns]; Lower DSA Track TimeInOut [ns]"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut","secondaryTrack.dtTofTimeAtIpInOut"),
         ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpOutIn"),
             title = cms.string("Upper vs Lower DSA Track TimeOutIn; Upper DSA Track TimeOutIn [ns]; Lower DSA Track TimeOutIn [ns]"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpOutIn","secondaryTrack.dtTofTimeAtIpOutIn"),
         ),
         cms.PSet (
@@ -1024,14 +1024,14 @@ UppervsUpperDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofTimeAtIpOutIn"),
             title = cms.string("Upper DSA Track TimeInOut vs TimeOutIn; Upper DSA Track TimeInOut [ns]; Upper DSA Track TimeOutIn [ns]"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
-            binsY = cms.untracked.vdouble(40, -50, 150),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -50, 150),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofTimeAtIpOutIn"),
         ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta"),
             title = cms.string("Upper DSA Track TimeInOut vs #beta^{-1}_{Free}; Upper DSA Track TimeInOut [ns]; Upper DSA Track #beta^{-1}_{Free}"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
             binsY = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofFreeInverseBeta"),
         ),
@@ -1072,14 +1072,14 @@ LowervsLowerDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofTimeAtIpOutIn"),
             title = cms.string("Lower DSA Track TimeInOut vs TimeOutIn; Lower DSA Track TimeInOut [ns]; Lower DSA Track TimeOutIn [ns]"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
-            binsY = cms.untracked.vdouble(40, -50, 150),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -50, 150),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofTimeAtIpOutIn"),
         ),
         cms.PSet (
             name = cms.string("dtTofTimeAtIpInOut_dtTofFreeInverseBeta"),
             title = cms.string("Lower DSA Track TimeInOut vs #beta^{-1}_{Free}; Lower DSA Track TimeInOut [ns]; Lower DSA Track #beta^{-1}_{Free}"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
             binsY = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("dtTofTimeAtIpInOut","dtTofFreeInverseBeta"),
         ),
@@ -1120,16 +1120,23 @@ VsDeltaDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("delta_dtTofTimeAtIpInOut_delta_dtTofFreeInverseBeta"),
             title = cms.string("#Delta DSA Track TimeInOut vs #Delta DSA Track #beta^{-1}_{Free}; #Delta DSA Track TimeInOut [ns]; #Delta DSA Track #beta^{-1}_{Free}"),
-            binsX = cms.untracked.vdouble(40, -100, 100),
+            binsX = cms.untracked.vdouble(200, -100, 100),
             binsY = cms.untracked.vdouble(120, -6, 6),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofFreeInverseBeta - secondaryTrack.dtTofFreeInverseBeta"),
             ),
         cms.PSet (
             name = cms.string("delta_dtTofTimeAtIpInOut_delta_dtTofTimeAtIpOutIn"),
             title = cms.string("#Delta DSA Track TimeInOut vs #Delta DSA Track TimeOutIn; #Delta DSA Track TimeInOut [ns]; #Delta DSA Track TimeOutIn [ns]"),
+            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
+            inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
+            ),
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpInOut_delta_rpcTime"),
+            title = cms.string("#Delta t_DT vs #Delta t_RPC; #Deltat_{DT} [ns]; #Deltat_{RPC}"),
             binsX = cms.untracked.vdouble(40, -100, 100),
             binsY = cms.untracked.vdouble(40, -100, 100),
-            inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
+            inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         )
     )
@@ -1141,14 +1148,14 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             name = cms.string("pUpper_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Upper DSA Track p vs #Delta DSA Track TimeInOut; Upper DSA Track p [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.p","track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("pUpper_delta_dtTofTimeAtIpOutIn"),
             title = cms.string("Upper DSA Track p vs #Delta DSA Track TimeOutIn; Upper DSA Track p [GeV]; #Delta DSA Track TimeOutIn [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.p","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
@@ -1167,7 +1174,7 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             ),
         cms.PSet (
             name = cms.string("pUpper_delta_rpcTime"),
-            title = cms.string("Upper DSA Track p vs #Delta DSA Track t_{RPC}; p_{upper} [GeV]; #Delta t_{RPC} [ns]"),
+            title = cms.string("Upper DSA Track p vs #Delta DSA Track t_{RPC}; p_{upper} [GeV]; #Deltat_{RPC} [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
             binsY = cms.untracked.vdouble(30, -60, 60),
             inputVariables = cms.vstring("track.p","25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
@@ -1183,14 +1190,14 @@ UpperVsDeltaDSAHistograms = cms.PSet(
             name = cms.string("ptUpper_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Upper DSA Track p_{T} vs #Delta DSA Track TimeInOut; Upper DSA Track p_{T} [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.pt","track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("ptUpper_delta_dtTofTimeAtIpOutIn"),
             title = cms.string("Upper DSA Track p_{T} vs #Delta DSA Track TimeOutIn; Upper DSA Track p_{T} [GeV]; #Delta DSA Track TimeOutIn [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.pt","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
@@ -1224,14 +1231,14 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             name = cms.string("pLower_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Lower DSA Track p vs #Delta DSA Track TimeInOut; Lower DSA Track p [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("secondaryTrack.p","track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("pLower_delta_dtTofTimeAtIpOutIn"),
             title = cms.string("Lower DSA Track p vs #Delta DSA Track TimeOutIn; Lower DSA Track p [GeV]; #Delta DSA Track TimeOutIn [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("secondaryTrack.p","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
@@ -1259,14 +1266,14 @@ LowerVsDeltaDSAHistograms = cms.PSet(
             name = cms.string("ptLower_delta_dtTofTimeAtIpInOut"),
             title = cms.string("Lower DSA Track p_{T} vs #Delta DSA Track TimeInOut; Lower DSA Track p_{T} [GeV]; #Delta DSA Track TimeInOut [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("secondaryTrack.pt","track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
             name = cms.string("ptLower_delta_dtTofTimeAtIpOutIn"),
             title = cms.string("Lower DSA Track p_{T} vs #Delta DSA Track TimeOutIn; Lower DSA Track p_{T} [GeV]; #Delta DSA Track TimeOutIn [ns]"),
             binsX = cms.untracked.vdouble(100, 0, 1000),
-            binsY = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("secondaryTrack.pt","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
             ),
         cms.PSet (
