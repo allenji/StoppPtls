@@ -935,7 +935,7 @@ DeltaDSAHistograms = cms.PSet(
             name = cms.string("delta_dtTofTimeAtIpInOut"),
             #title = cms.string("#Delta DSA Track TimeInOut; #Delta DSA Track TimeInOut [ns]"),
             title = cms.string("#Delta DSA Track t_{DT}; #Deltat_{DT} [ns]"), #for pas
-            binsX = cms.untracked.vdouble(200, -100, 100),
+            binsX = cms.untracked.vdouble(40, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut"),
             ),
         cms.PSet (
@@ -959,7 +959,7 @@ DeltaDSAHistograms = cms.PSet(
         cms.PSet (
             name = cms.string("delta_rpcTime"),
             title = cms.string("#Delta DSA Track t_{RPC}; #Deltat_{RPC} [ns]"),
-            binsX = cms.untracked.vdouble(30, -60, 60),
+            binsX = cms.untracked.vdouble(40, -100, 100),
             inputVariables = cms.vstring("25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         cms.PSet (
@@ -1130,6 +1130,13 @@ VsDeltaDSAHistograms = cms.PSet(
             binsX = cms.untracked.vdouble(200, -100, 100),
             binsY = cms.untracked.vdouble(200, -100, 100),
             inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","track.dtTofTimeAtIpOutIn - secondaryTrack.dtTofTimeAtIpOutIn"),
+            ),
+        cms.PSet (
+            name = cms.string("delta_dtTofTimeAtIpInOut_delta_rpcTime"),
+            title = cms.string("#Delta t_DT vs #Delta t_RPC; #Deltat_{DT} [ns]; #Deltat_{RPC}"),
+            binsX = cms.untracked.vdouble(40, -100, 100),
+            binsY = cms.untracked.vdouble(40, -100, 100),
+            inputVariables = cms.vstring("track.dtTofTimeAtIpInOut - secondaryTrack.dtTofTimeAtIpInOut","25.0*track.rpcHitBxAverage - 25.0*secondaryTrack.rpcHitBxAverage"),
             ),
         )
     )
