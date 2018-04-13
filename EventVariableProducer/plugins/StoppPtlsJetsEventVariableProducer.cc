@@ -15,6 +15,9 @@ StoppPtlsJetsEventVariableProducer::StoppPtlsJetsEventVariableProducer(const edm
   dtsegsToken_ = consumes<vector<TYPE(dtsegs)> >(collections_.getParameter<edm::InputTag>("dtsegs"));
   cscsegsToken_ = consumes<vector<TYPE(cscsegs)> >(collections_.getParameter<edm::InputTag>("cscsegs"));
   rpchitsToken_ = consumes<vector<TYPE(rpchits)> >(collections_.getParameter<edm::InputTag>("rpchits"));
+
+  rndm = new TRandom2();
+  jetEnergyResolutionWidth_ = cfg.getParameter<double>("jetEnergyResolutionWidth");
 }
 
 StoppPtlsJetsEventVariableProducer::~StoppPtlsJetsEventVariableProducer()
@@ -27,7 +30,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   edm::Handle<std::vector<CandidateDTSeg> > dtsegs;
   edm::Handle<std::vector<CandidateCscSeg> > cscsegs;
   edm::Handle<std::vector<CandidateRpcHit> > rpchits;
-  
+
   event.getByToken (jetsToken_, jets);
   event.getByToken (dtsegsToken_, dtsegs);
   event.getByToken (cscsegsToken_, cscsegs);
@@ -157,7 +160,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["outerRPCendcap"] = outerRPCendcap;
   (*eventvariables)["innerRPCendcap"] = innerRPCendcap;
   (*eventvariables)["RPCendcap"] = RPCendcap;
-
+  
   double minDeltaROuterRPCInnerDT = 999;
   for (decltype(rpchits->size()) i = 0; i!= rpchits->size(); ++i) { 
     for (decltype(dtsegs->size()) j = 0; j!= dtsegs->size(); ++j) {
@@ -295,7 +298,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     }
   }
   (*eventvariables)["minDeltaRDTST4LeadingJet"] = minDeltaRDTST4LeadingJet;
-  
+
 
   unsigned ljetRPCPairsST1 = 0;
   unsigned ljetRPCPairsGT1 = 0;
@@ -406,6 +409,11 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetN60"] = jets->begin()->n60();
     (*eventvariables)["leadingJetN90"] = jets->begin()->n90();
     (*eventvariables)["leadingJetEMFraction"] = jets->begin()->emJetEnergyFraction();
+
+    double randomNum = rndm->Gaus(0, jetEnergyResolutionWidth_);    
+    double energySmeared = jets->begin()->energy()*(1.+randomNum/TMath::Sqrt(jets->begin()->energy()));
+    (*eventvariables)["leadingJetEnergySmearedUp"] = energySmeared;
+
   }
   else {
     (*eventvariables)["leadingJetEnergy"] = -1;
@@ -416,6 +424,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
     (*eventvariables)["leadingJetN60"] = -1;
     (*eventvariables)["leadingJetN90"] = -1;
     (*eventvariables)["leadingJetEMFraction"] = -1;
+    (*eventvariables)["leadingJetEnergySmeared"] = -1;
   }
 
   if (jets->size() > 1){
@@ -520,7 +529,7 @@ void StoppPtlsJetsEventVariableProducer::AddVariables(const edm::Event & event) 
   (*eventvariables)["maxDeltaPhiCscPair"] = maxDeltaPhiCscPair;
   (*eventvariables)["minDeltaPhiCscDT"] = minDeltaPhiCscDT;
   (*eventvariables)["maxDeltaPhiCscDT"] = maxDeltaPhiCscDT;
-
+  
   unsigned closeOuterAllDTPairDeltaPhi0p5 = 0;
   for (unsigned i = 0; i < dtsegs->size(); ++i) {
     for (unsigned j = i + 1; j < dtsegs->size(); ++j) {

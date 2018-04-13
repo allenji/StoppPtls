@@ -71,7 +71,8 @@ weights = cms.VPSet (
 ##### Set up any user-defined variable producers ###############################
 ################################################################################
 
-variableProducers = ["StoppPtlsLivetimeEventVariableProducer"]
+variableProducers = []
+variableProducers.append("StoppPtlsLivetimeEventVariableProducer")
 variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
 ################################################################################
@@ -104,6 +105,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 
 selections = []
 selections.append(StoppPtlsSelection_2016)
+selections.append(StoppPtlsSelection_2016_jetEnergySmeared)
 #selections.append(HaloSelection)
 #selections.append(HaloControlSelection)
 #selections.append(HaloTagAndProbeSelection)
@@ -155,11 +157,11 @@ histograms.append(DtSegmentHistograms)
 
 scalingfactorproducers = []
 
-#add_channels (process, selections, histograms, weights, collectionMap_Custom, variableProducers, False)
+add_channels (process, selections, histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 
 #add_channels (process, [StoppPtlsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [cosmicRunNum], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
-add_channels (process, [StoppPtlsSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [StoppPtlsSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [EventSelection_PlotLeadingJetEM], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [TriggerSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [TriggerSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
@@ -240,5 +242,6 @@ process.StoppPtlsLivetimeEventVariableProducer.livetimeRootFile = cms.string("/d
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/weifengji/condor/092016_2016ControlLivetime/NoBPTX_CosJet_2016BCDE_PromptReco.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
+process.StoppPtlsJetsEventVariableProducer.jetEnergyResolutionWidth = cms.double(0.25) 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()

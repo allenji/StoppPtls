@@ -16,6 +16,14 @@ cutJetEnergy = cms.PSet(
     alias = cms.string("$E_{jet}$ > 70 \GeV")
 )
 
+cutLeadingJetEnergySmeared = cms.PSet(
+    inputCollection = cms.vstring("eventvariables"),
+    cutString = cms.string("leadingJetEnergySmeared > 70"),
+    numberRequired = cms.string(">= 1"),
+    alias = cms.string("Smeared $E_{jet}$ > 70 \GeV")
+)
+
+
 ########################################
 ##Stopped Particle in EB or HB
 #######################################
