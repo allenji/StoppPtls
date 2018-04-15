@@ -90,6 +90,59 @@ StoppPtlsSelection_2016 = cms.PSet(
     )
 )
 
+#Full 2016 stopped particles analysis cuts, with jet energy smeared by 25%/sqrt(E)
+StoppPtlsSelection_2016_jetEnergySmeared = cms.PSet(
+    name = cms.string("StoppedParticlesSelection"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    #triggers = cms.vstring(""),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
+      #cutNoBeamHaloCscNearJet,
+      #cutMinDeltaPhiCscDt,
+      #cutMinDeltaPhiCscPair,
+      #cutOuterDT,
+      cutNDTStation3,
+      cutNDTStation4,
+      cutDTPair,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
+      cutNoise,
+      cutMaxiEtaDiffSameiRbx,
+      cutLeadingJetEnergySmeared,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter,
+      #cutCscSeg,
+      #cutNOuterCsc,
+      #cutMinDeltaPhiCscDt,
+      #cutMinDeltaPhiCscPair,
+      #cutOneCscSeg,
+      #cutMaxDeltaPhiCscDt,
+      #cutMaxDeltaPhiCscPair,
+      #cutOuterDT,
+      #cutDTPair,
+      #cutMaxDeltaJetPhi,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      #cutNoDT,
+      #cutNoOuterBarrelRPC,
+      #cutMinDeltaPhiOuterCscJet
+      #cutNCaloTowerDiffRBX,
+    )
+)
+
 #Halo Selection (invert halo veto)
 HaloSelection = cms.PSet(
     name = cms.string("BeamHaloSelection"),

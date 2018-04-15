@@ -4,6 +4,7 @@
 #include "TFile.h"
 #include "TH1.h"
 #include <math.h>
+#include "TRandom2.h"
 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
@@ -41,6 +42,8 @@ class StoppPtlsJetsEventVariableProducer : public EventVariableProducer
   edm::EDGetTokenT<edm::TriggerResults> TriggerToken_;
   edm::EDGetTokenT<vector<TYPE(events)> > eventsToken_;
 
+  TRandom2* rndm;
+  double jetEnergyResolutionWidth_;
 };
 
 

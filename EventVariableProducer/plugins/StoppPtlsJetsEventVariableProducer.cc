@@ -17,6 +17,9 @@ StoppPtlsJetsEventVariableProducer::StoppPtlsJetsEventVariableProducer(const edm
   rpchitsToken_ = consumes<vector<TYPE(rpchits)> >(collections_.getParameter<edm::InputTag>("rpchits"));
   TriggerToken_ = consumes<edm::TriggerResults> (edm::InputTag("TriggerResults","","HLT"));
   eventsToken_ = consumes<vector<TYPE(events)> >(collections_.getParameter<edm::InputTag>("events"));
+
+  rndm = new TRandom2();
+  jetEnergyResolutionWidth_ = cfg.getParameter<double>("jetEnergyResolutionWidth");
 }
 
 StoppPtlsJetsEventVariableProducer::~StoppPtlsJetsEventVariableProducer()
@@ -484,6 +487,10 @@ const edm::TriggerNames &triggerNames = event.triggerNames(*TriggerCollection);
     (*eventvariables)["leadingJetN60"] = jets->begin()->n60();
     (*eventvariables)["leadingJetN90"] = jets->begin()->n90();
     (*eventvariables)["leadingJetEMFraction"] = jets->begin()->emJetEnergyFraction();
+
+    double randomNum = rndm->Gaus(0, jetEnergyResolutionWidth_);    
+    double energySmeared = jets->begin()->energy()*(1.+randomNum/TMath::Sqrt(jets->begin()->energy()));
+    (*eventvariables)["leadingJetEnergySmearedUp"] = energySmeared;
   }
   else {
     (*eventvariables)["leadingJetEnergy"] = -1;
@@ -494,6 +501,7 @@ const edm::TriggerNames &triggerNames = event.triggerNames(*TriggerCollection);
     (*eventvariables)["leadingJetN60"] = -1;
     (*eventvariables)["leadingJetN90"] = -1;
     (*eventvariables)["leadingJetEMFraction"] = -1;
+    (*eventvariables)["leadingJetEnergySmeared"] = -1;
   }
 
   if (jets->size() > 1){
