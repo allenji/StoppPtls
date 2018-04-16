@@ -18,10 +18,10 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.source = cms.Source ("PoolSource",
                              fileNames = cms.untracked.vstring (
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/Collection/python/NoBPTX_2016collisions_OSUT3Ntuples.root'
-        #'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
+        'file:/data/users/weifengji/condor/stage2SPntuplesSample/stage2RECO_HSCPstop_600_400/readfile_energyScan/HSCPstop2tchi0_745R5_MCRUN2_74_V9_SPntuples_4.root',
         #'file:/home/jalimena/StoppedParticles2015/CMSSW_7_4_5_ROOT5/src/StoppPtls/Collection/python/RECOWithStoppedParticleEvents_MC_g2qqchi_1200_1000.root'
         #'file:/data/users/jalimena/condor/NoBPTX2016DNtuples_Jets_BxStudy/NoBPTX_2016D_PromptReco/hist_332.root'
-        'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_Jets_OnlyControlTriggers/NoBPTX_2016D_PromptReco/hist_599.root',
+        #'file:/data/users/jalimena/condor/NoBPTX2016Ntuples_Jets_OnlyControlTriggers/NoBPTX_2016D_PromptReco/hist_599.root',
         #'file:/home/jalimena/StoppedParticles2016/CMSSW_8_0_16/src/StoppPtls/StandardAnalysis/test/condor/StoppedParticles_NoBPTX2016_ControlTriggerSkim/NoBPTX_Jet_2016B_PromptReco_v2/BothControlTriggerSelection2016/skim_0.root'
         #'file:./BothControlTriggerSelection2016/skim_BothControlTriggerSelection2016_2016_09_26_10h18m13s.root'
         ),
@@ -79,7 +79,7 @@ weights = cms.VPSet (
 
 variableProducers = []
 #variableProducers = ["StoppPtlsEventVariableProducer"]
-#variableProducers.append("StoppPtlsJetsEventVariableProducer")
+variableProducers.append("StoppPtlsJetsEventVariableProducer")
 
 ################################################################################
 ##### Import the channels to be run ############################################
@@ -110,7 +110,8 @@ from StoppPtls.StandardAnalysis.Histograms import *
 ################################################################################
 
 selections = []
-#selections.append(StoppPtlsSelection)
+selections.append(StoppPtlsSelection)
+selections.append(StoppPtlsSelection_jetEnergySmeared)
 #selections.append(HaloSelection)
 #selections.append(HaloControlSelection)
 #selections.append(HaloTagAndProbeSelection)
@@ -138,13 +139,13 @@ histograms = cms.VPSet()
 #histograms.append(UHistograms)
 #histograms.append(UbarHistograms)
 #histograms.append(GenJetHistograms)
-#histograms.append(EventHistograms)
+histograms.append(EventHistograms)
 #histograms.append(NumberOfObjectsHistograms)
 #histograms.append(ObjectsVsTimeHistograms)
 #histograms.append(RpcHitsVsTimeHistograms)
 #histograms.append(NoiseHistograms)
-#histograms.append(JetHistograms)
-#histograms.append(LeadingJetHistograms)
+histograms.append(JetHistograms)
+histograms.append(LeadingJetHistograms)
 #histograms.append(JetHistogramsForTurnOn)
 #histograms.append(LeadingJetHistogramsForTurnOn)
 #histograms.append(SecondJetHistograms)
@@ -176,6 +177,8 @@ add_channels (process, selections, histograms, weights, scalingfactorproducers, 
 
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/StpPtls_controlSample_2015.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
+
+process.StoppPtlsJetsEventVariableProducer.jetEnergyResolutionWidth = cms.double(0.25)
 
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()
