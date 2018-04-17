@@ -162,6 +162,7 @@ add_channels (process, selections, histograms, weights, scalingfactorproducers, 
 #add_channels (process, [StoppPtlsSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [cosmicRunNum], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [StoppPtlsSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
+#add_channels (process, [StoppPtlsSelection_2016_jetEnergySmeared], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [EventSelection_PlotLeadingJetEM], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [TriggerSelection], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
 #add_channels (process, [TriggerSelection_2016], histograms, weights, scalingfactorproducers, collectionMap_Custom, variableProducers, False)
