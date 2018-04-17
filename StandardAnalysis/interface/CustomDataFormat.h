@@ -1,10 +1,11 @@
 //Based on AOD data format specified in OSUT3Analysis/AnaTools/interface/DataFormatAOD.h
 //Add definition/include for jet collection
 
-
 #ifndef CUSTOM_DATA_FORMAT
 
 #include "OSUT3Analysis/AnaTools/interface/DataFormatAOD.h"
+
+#define STOPPPED_PTLS
 
 #undef jets_TYPE
 #define jets_TYPE CandidateJet
