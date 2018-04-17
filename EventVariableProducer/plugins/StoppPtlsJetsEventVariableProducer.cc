@@ -490,7 +490,7 @@ const edm::TriggerNames &triggerNames = event.triggerNames(*TriggerCollection);
 
     double randomNum = rndm->Gaus(0, jetEnergyResolutionWidth_);    
     double energySmeared = jets->begin()->energy()*(1.+randomNum/TMath::Sqrt(jets->begin()->energy()));
-    (*eventvariables)["leadingJetEnergySmearedUp"] = energySmeared;
+    (*eventvariables)["leadingJetEnergySmeared"] = energySmeared;
   }
   else {
     (*eventvariables)["leadingJetEnergy"] = -1;

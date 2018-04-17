@@ -37,9 +37,42 @@ StoppPtlsSelection = cms.PSet(
     )
 )
 
+StoppPtlsSelection_jetEnergySmeared = cms.PSet(
+    name = cms.string("StoppedParticlesSelectionJetEnergySmeared"),
+    triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
+    cuts = cms.VPSet(
+      cutBx,
+      cutVertexNumber,
+      #cutCscSegNumber,
+      cutHavingNoCscSegNHit56,
+      #cutCscSegNumber,
+      cutNDTStation3,
+      cutNDTStation4,
+      cutDTPair,
+      #cutMaxDeltaJetPhi,
+      cutMaxDeltaJetPhiNoDTST4,
+      cutCloseOuterAllDTPairDeltaPhi0p5,
+      cutMinDeltaRDTST4RPCInner3Layers,
+      cutMinDeltaROuterRpcInnerDT,
+      #newNOuterAllBarrelRPCHitsDeltaR,
+      newNOuterAllBarrelRPCHitsDeltaRDeltar,
+      cutNoise,
+      cutLeadingJetEnergySmeared,
+      cutJetEta,
+      cutJetN90,
+      cutTowerIPhi,
+      cutTowerFraction,
+      cutHpdR1,
+      cutHpdR2,
+      cutHpdRPeak,
+      cutHpdRPeakSample,
+      cutHpdROuter
+    )
+)
+
 #Full 2016 stopped particles analysis cuts
 StoppPtlsSelection_2016 = cms.PSet(
-    name = cms.string("StoppedParticlesSelection"),
+    name = cms.string("StoppedParticlesSelection2016"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     #triggers = cms.vstring(""),
     cuts = cms.VPSet(
@@ -92,7 +125,7 @@ StoppPtlsSelection_2016 = cms.PSet(
 
 #Full 2016 stopped particles analysis cuts, with jet energy smeared by 25%/sqrt(E)
 StoppPtlsSelection_2016_jetEnergySmeared = cms.PSet(
-    name = cms.string("StoppedParticlesSelection"),
+    name = cms.string("StoppedParticlesSelection2016jetEnergySmeared"),
     triggers = cms.vstring("HLT_JetE50_NoBPTX3BX_"),
     #triggers = cms.vstring(""),
     cuts = cms.VPSet(

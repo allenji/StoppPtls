@@ -111,6 +111,7 @@ from StoppPtls.StandardAnalysis.Histograms import *
 
 selections = []
 #selections.append(StoppPtlsSelection)
+#selections.append(StoppPtlsSelectionJetEnergySmeared)
 #selections.append(HaloSelection)
 #selections.append(HaloControlSelection)
 #selections.append(HaloTagAndProbeSelection)
