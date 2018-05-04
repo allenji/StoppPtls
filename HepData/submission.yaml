@@ -1,7 +1,7 @@
 comment: ''
 ---
 name: Table 1
-description: The background extrapolation for the muon search. The integral of the fit function to $\Delta t_{\text{DT}}$ with the sum of two Gaussian distributions and a Crystal Ball function, for $\Delta t_{\text{DT}}>-20$ ns, is plotted as a function of the lower $\Delta t_{\text{RPC}}$ selection, for 2015 and 2016 data. The points are fitted with an error function and used to extrapolate to the signal region, which is defined as $\Delta t_{\text{RPC}}>-7.5$ ns.
+description: The background extrapolation for the muon search. The integral of the fit function to $\Delta t_{DT}$ with the sum of two Gaussian distributions and a Crystal Ball function, for $\Delta t_{DT}$>−20 ns, is plotted as a function of the lower $\Delta t_{RPC}$ selection, for 2015 and 2016 data. The uncertainties correspond to when the fit function parameters are varied by one standard deviation.
 keywords: []
 data_file: background_extrapolating.yaml
 location: Data from Figure 3, located on page 12.
