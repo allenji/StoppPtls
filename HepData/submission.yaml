@@ -1,67 +1,115 @@
 comment: ''
 ---
 name: Table 1
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{g}$, for $\tilde{g}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body gluino decay, when $m_{\tilde{g}}$ is 600 GeV.
+keywords: []
+data_file: ereco_2body_gluino600GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 2
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{g}$, for $\tilde{g}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body gluino decay, when $m_{\tilde{g}}$ is 1200 GeV.
+keywords: []
+data_file: ereco_2body_gluino1200GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 3
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{g}$, for $\tilde{g}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body gluino decay, when $m_{\tilde{g}}$ is 1800 GeV.
+keywords: []
+data_file: ereco_2body_gluino1800GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 4
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{t}$, for $\tilde{t}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body top squark decays, when $m_{\tilde{t}}$ is 400 GeV.
+keywords: []
+data_file: ereco_2body_stop400GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 5
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{t}$, for $\tilde{t}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body top squark decays, when $m_{\tilde{t}}$ is 600 GeV.
+keywords: []
+data_file: ereco_2body_stop600GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 6
+description: The $\varepsilon_{\text{reco}}$ values as a function of $E_{t}$, for $\tilde{t}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the two-body top squark decays, when $m_{\tilde{t}}$ is 1000 GeV.
+keywords: []
+data_file: ereco_2body_stop1000GeV.yaml
+location: Data from Figure 2 (left), located on page 9.
+---
+name: Table 7
+description: The $\varepsilon_{\text{reco}}$ values as a function of $m_{\tilde{g}} - m_{\tilde{\chi}^{0}}$, for $\tilde{g}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the three-body gluino decay, when $m_{\tilde{g}}$ is 800 and 1000 GeV.
+keywords: []
+data_file: ereco_3body_800and1000GeV.yaml
+location: Data from Figure 2 (right), located on page 9.
+---
+name: Table 8
+description: The $\varepsilon_{\text{reco}}$ values as a function of $m_{\tilde{g}} - m_{\tilde{\chi}^{0}}$, for $\tilde{g}$ R-hadrons that stop in the EB or HB, in the MC simulation, for the calorimeter search. The $\varepsilon_{\text{reco}}$ values are plotted for the three-body gluino decay, when $m_{\tilde{g}}$ is 1800 GeV.
+keywords: []
+data_file: ereco_3body_1800GeV.yaml
+location: Data from Figure 2 (right), located on page 9.
+---
+name: Table 9
 description: The background extrapolation for the muon search. The integral of the fit function to $\Delta t_{DT}$ with the sum of two Gaussian distributions and a Crystal Ball function, for $\Delta t_{DT}$>−20 ns, is plotted as a function of the lower $\Delta t_{RPC}$ selection, for 2015 and 2016 data. The uncertainties correspond to when the fit function parameters are varied by one standard deviation.
 keywords: []
 data_file: background_extrapolating.yaml
 location: Data from Figure 3, located on page 12.
 ---
-name: Table 2
+name: Table 10
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for gluino pair production, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g2bdecay.yaml
 location: Data from Figure 4 (upper left), located on page 17.
 ---
-name: Table 3
+name: Table 11
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for top squark pair production, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show top squarks that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_stopdecay.yaml
 location: Data from Figure 4 (upper right), located on page 17.
 ---
-name: Table 4
+name: Table 12
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for gluino pair production, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a three-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g3bdecay.yaml
 location: Data from Figure 4 (lower middle), located on page 17.
 ---
-name: Table 5
+name: Table 13
 description: The 95% CL upper the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g2bdecaymass.yaml
 location: Data from Figure 5 (left), located on page 18.
 ---
-name: Table 6
+name: Table 14
 description: The 95% CL upper the top squark mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show top squarks that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_stopdecaymass.yaml
 location: Data from Figure 5 (left), located on page 18.
 ---
-name: Table 7
+name: Table 15
 description: The 95% CL upper the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a three-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g3bdecaymass.yaml
 location: Data from Figure 5 (right), located on page 18.
 ---
-name: Table 8
-description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 1000 GeV gluino pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search. The theory lines assume $\mathcal{B}=100\%$.
+name: Table 16
+description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 1000 GeV gluino pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_gdecay.yaml
 location: Data from Figure 7 (left), located on page 19.
 ---
-name: Table 9
-description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 400 GeV MCHAMP pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search. The theory lines assume $\mathcal{B}=100\%$.
+name: Table 17
+description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 400 GeV MCHAMP pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_mchampdecay.yaml
 location: Data from Figure 7 (right), located on page 19.
 ---
-name: Table 10
+name: Table 18
 description: 95% CL upper limits on $\mathcal{B}\sigma$ for gluino pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$.
 keywords: []
 data_file: lim_delayedmuon_gdecaymass.yaml
 location: Data from Figure 8 (left), located on page 19.
 ---
-name: Table 11
-description: 95% CL upper limits on $\mathcal{B}\sigma$ for MCHAMP pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$
+name: Table 19
+description: 95% CL upper limits on $\mathcal{B}\sigma$ for MCHAMP pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$.
 keywords: []
 data_file: lim_delayedmuon_mchampdecaymass.yaml
 location: Data from Figure 8 (right), located on page 19.
