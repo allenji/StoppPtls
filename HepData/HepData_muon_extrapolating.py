@@ -26,7 +26,6 @@ if __name__ == '__main__':
 
     info += "- header:\n"
     info += "    name: Fit integral for $\\Delta t_{\\mathrm{DT}}$ > -20 ns\n"
-    info += "    units: ns\n"
     info += "  qualifiers:\n"
     info += "  - {name: Year, value: 2015}\n"
     info += "  values:\n"
@@ -42,7 +41,6 @@ if __name__ == '__main__':
 
     info += "- header:\n"
     info += "    name: Fit integral for $\\Delta t_{\\mathrm{DT}}$ > -20 ns\n"
-    info += "    units: ns\n"
     info += "  qualifiers:\n"
     info += "  - {name: Year, value: 2016}\n"
     info += "  values:\n"

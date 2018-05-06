@@ -31,7 +31,7 @@ if __name__ == '__main__':
     info += "dependent_variables:\n"
 
     info += "- header:\n"
-    info += "    name: $\\sigma(pp \\rightarrow MCHAMP~MCHAMP) ~\\mathcal{B}(MCHAMP \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
+    info += "    name: $\\sigma(pp \\rightarrow \\mathrm{MCHAMP}~\\mathrm{MCHAMP}) ~\\mathcal{B}(\\mathrm{MCHAMP} \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
     info += "    units: pb\n"
     info += "  qualifiers:\n"
     info += "  - {name: Limit, value: Observed}\n"
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         info += "  - value: {0:.6g}\n".format(lim)
 
     info += "- header:\n"
-    info += "    name: $\\sigma(pp \\rightarrow MCHAMP~MCHAMP) ~\\mathcal{B}(MCHAMP \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
+    info += "    name: $\\sigma(pp \\rightarrow \\mathrm{MCHAMP}~\\mathrm{MCHAMP}) ~\\mathcal{B}(\\mathrm{MCHAMP} \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
     info += "    units: pb\n"
     info += "  qualifiers:\n"
     info += "  - {name: Limit, value: Expected}\n"
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     #print info.rstrip("\n")
     info += "- header:\n"
-    info += "    name: $\\sigma(pp \\rightarrow MCHAMP MCHAMP) ~\\mathcal{B}(MCHAMP \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
+    info += "    name: $\\sigma(pp \\rightarrow \\mathrm{MCHAMP}~\\mathrm{MCHAMP}) ~\\mathcal{B}(\\mathrm{MCHAMP} \\rightarrow \\mu^{\\pm}\\mu^{\\pm})$\n"
     info += "    units: pb\n"
     info += "  qualifiers:\n"
     info += "  - {name: Limit, value: LO prediction}\n"
