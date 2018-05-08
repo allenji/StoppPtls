@@ -1,3 +1,5 @@
+python deltaTDT_muon.py
+python deltaTRPC_muon.py
 python ereco_calo_gluino2b_600GeV.py
 python ereco_calo_gluino2b_1200GeV.py
 python ereco_calo_gluino2b_1800GeV.py
@@ -21,5 +23,6 @@ mkdir to_submit
 mv lim_* to_submit/
 mv background_extrapolating.yaml to_submit/
 mv ereco_*.yaml to_submit/
+mv delta*.yaml to_submit/
 cp submission.yaml to_submit/
 tar -cvzf submission.tar.gz to_submit/
