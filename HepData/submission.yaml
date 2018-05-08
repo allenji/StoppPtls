@@ -103,18 +103,24 @@ data_file: lim_g3bdecaymass.yaml
 location: Data from Figure 5 (right), located on page 18.
 ---
 name: Table 18
+description: The 95\% CL upper limits in the neutralino mass vs.~gluino (top squark) mass plane, for lifetimes between 10\mus and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95\% CL upper limits on $\mathcal{B}\sigma$. The mostly triangular region defined by the black solid (dashed) line shows the excluded observed (expected) region. We show gluinos that undergo a two-body decay (upper \cmsLeft), top squarks that undergo a two-body decay (upper \cmsRight), and gluinos that undergo a three-body decay (lower).
+keywords: []
+data_file: 
+location: Data from Figure 6 (upper left), located on page 18.
+---
+name: Table 19
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 1000 GeV gluino pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_gdecay.yaml
 location: Data from Figure 7 (left), located on page 19.
 ---
-name: Table 19
+name: Table 20
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 400 GeV MCHAMP pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_mchampdecay.yaml
 location: Data from Figure 7 (right), located on page 19.
 ---
-name: Table 20
+name: Table 21
 description: 95% CL upper limits on $\mathcal{B}\sigma$ for gluino pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$.
 keywords: []
 data_file: lim_delayedmuon_gdecaymass.yaml

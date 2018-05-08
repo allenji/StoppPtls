@@ -16,7 +16,7 @@
 #include "CMS_lumi.C"
 //#include "gluinostopMassLifetime.C"
 
-void excludedRegionGluinoThreeBody() {
+void excludedRegionGluinoThreeBody_CWR_new() {
   double gluinoNum[] = {6781.,5541.,5390.,5112.,5432.,5317., 5822., 6247.};
   double gluinoDenom[] = {98893., 99405., 99410., 98459., 99306., 99013., 99411., 98800.};
   double gluinoStopEff[8] = {0};
@@ -565,6 +565,7 @@ void excludedRegionGluinoThreeBody() {
   
 	
   canvas3.Print("excludedRegionGluinoThreeBody_awesome.pdf");
+  canvas3.Print("excludedRegionGluinoThreeBody_awesome.C");
   canvas3.Print("excludedRegionGluinoThreeBody_awesome.eps");
 /*
   double g_mass [26] = {
