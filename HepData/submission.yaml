@@ -85,25 +85,25 @@ data_file: lim_g3bdecay.yaml
 location: Data from Figure 4 (lower middle), located on page 17.
 ---
 name: Table 15
-description: The 95% CL upper the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
+description: The 95% CL upper limits on the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g2bdecaymass.yaml
 location: Data from Figure 5 (left), located on page 18.
 ---
 name: Table 16
-description: The 95% CL upper the top squark mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show top squarks that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
+description: The 95% CL upper limits on the top squark mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show top squarks that undergo a two-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_stopdecaymass.yaml
 location: Data from Figure 5 (left), located on page 18.
 ---
 name: Table 17
-description: The 95% CL upper the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a three-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
+description: The 95% CL upper limits on the gluino mass, using the cloud model of R-hadron interactions, as a function of lifetime, for combined 2015 and 2016 data for the calorimeter search. We show gluinos that undergo a three-body decay. The discontinuous structure observed between $10^{-7}$ and $10^{-5}$ s is due to the increase of the number of observed events in the search window as the lifetime increases.
 keywords: []
 data_file: lim_g3bdecaymass.yaml
 location: Data from Figure 5 (right), located on page 18.
 ---
 name: Table 18
-description: The 95\% CL upper limits in the neutralino mass vs.~gluino (top squark) mass plane, for lifetimes between 10\mus and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95\% CL upper limits on $\mathcal{B}\sigma$. The mostly triangular region defined by the black solid (dashed) line shows the excluded observed (expected) region. We show gluinos that undergo a two-body decay (upper \cmsLeft), top squarks that undergo a two-body decay (upper \cmsRight), and gluinos that undergo a three-body decay (lower).
+description: The 95% CL upper limits in the neutralino mass vs.~gluino (top squark) mass plane, for lifetimes between 10$\mu$s and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95% CL upper limits on $\mathcal{B}\sigma$. The mostly triangular region defined by the black solid (dashed) line shows the excluded observed (expected) region. We show gluinos that undergo a two-body decay (upper \cmsLeft), top squarks that undergo a two-body decay (upper \cmsRight), and gluinos that undergo a three-body decay (lower).
 keywords: []
 data_file: 
 location: Data from Figure 6 (upper left), located on page 18.
