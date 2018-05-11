@@ -6,7 +6,7 @@ from hepdata_lib import *
 #\\sigma(pp \\rightarrow \\tilde{g}\\tilde{g}) ~\\mathcal{B}(\\tilde{g} \\rightarrow q\\bar{q}\\tilde{\\chi}^{0})
 
 def make_figure_6_graph_obs(outdir):
-    reader = RootFileReader("../ToyMC/macros/excludedRegionGluinoThreeBody_CWR_new.root")
+    reader = RootFileReader("data/excludedRegionGluinoThreeBody_CWR_new.root")
     points_obs = reader.read_graph("70y")
 
     gluinoMass = Variable("Gluino mass", is_independent=True, is_binned=False, units="GeV")
@@ -24,7 +24,7 @@ def make_figure_6_graph_obs(outdir):
     return table
 
 def make_figure_6_graph_exp(outdir):
-    reader = RootFileReader("../ToyMC/macros/excludedRegionGluinoThreeBody_CWR_new.root")
+    reader = RootFileReader("data/excludedRegionGluinoThreeBody_CWR_new.root")
     points_exp = reader.read_graph("expExcl70")
 
     gluinoMass = Variable("Gluino mass", is_independent=True, is_binned=False, units="GeV")
@@ -42,7 +42,7 @@ def make_figure_6_graph_exp(outdir):
     return table
 
 def make_figure_6_graph_expP1(outdir):
-    reader = RootFileReader("../ToyMC/macros/excludedRegionGluinoThreeBody_CWR_new.root")
+    reader = RootFileReader("data/excludedRegionGluinoThreeBody_CWR_new.root")
     points_exp_p1 = reader.read_graph("expExcl70p1")
 
     gluinoMass = Variable("Gluino mass", is_independent=True, is_binned=False, units="GeV")
@@ -60,7 +60,7 @@ def make_figure_6_graph_expP1(outdir):
     return table
 
 def make_figure_6_graph_expM1(outdir):
-    reader = RootFileReader("../ToyMC/macros/excludedRegionGluinoThreeBody_CWR_new.root")
+    reader = RootFileReader("data/excludedRegionGluinoThreeBody_CWR_new.root")
     points_exp_m1 = reader.read_graph("expExcl70m1")
 
     gluinoMass = Variable("Gluino mass", is_independent=True, is_binned=False, units="GeV")
