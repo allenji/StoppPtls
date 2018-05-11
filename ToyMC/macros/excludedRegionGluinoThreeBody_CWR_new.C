@@ -181,6 +181,7 @@ void excludedRegionGluinoThreeBody_CWR_new() {
   
 
   // exclusion in m_gluino m_neutralino plane
+  TFile f("excludedRegionGluinoThreeBody_CWR_new.root","RECREATE");
 	
   double m_chi0[1400];
   for (int i=0; i<1400; ++i) {
@@ -563,10 +564,17 @@ void excludedRegionGluinoThreeBody_CWR_new() {
 
   gStyle->SetPalette(kRainBow);
   
-	
+  g_obs70y->Write();
+  g_expExcl70.Write("expExcl70");
+  g_expExcl70p1.Write("expExcl70p1");
+  g_expExcl70m1.Write("expExcl70m1");
+  f.Write();
+
   canvas3.Print("excludedRegionGluinoThreeBody_awesome.pdf");
   canvas3.Print("excludedRegionGluinoThreeBody_awesome.C");
   canvas3.Print("excludedRegionGluinoThreeBody_awesome.eps");
+
+
 /*
   double g_mass [26] = {
     200 ,     250 ,     300 ,     350 ,     400 ,

@@ -1,5 +1,8 @@
 *.pyc
 *.root
+*.eps
+*.pdf
+*.tar.gz
 *__init__*
 *~
 out*

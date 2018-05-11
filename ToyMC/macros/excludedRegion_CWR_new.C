@@ -17,7 +17,7 @@
 #include "CMS_lumi.C"
 //#include "gluinostopMassLifetime.C"
 
-void excludedRegion() {
+void excludedRegion_CWR_new() {
   gStyle->SetPalette(57);
   double gluinoNum[] = {6781.,5541.,5390.,5112.,5432.,5317., 5822., 6247.};
   double gluinoDenom[] = {98893., 99405., 99410., 98459., 99306., 99013., 99411., 98800.};
@@ -182,8 +182,9 @@ void excludedRegion() {
   
   
 
-  // exclusion in m_gluino m_neutralino plane
-	
+  // exclusion in m_gluino m_neutralino plane	
+  TFile f("excludedRegionGluinoTwoBody_CWR_new.root","RECREATE");
+
   double m_chi0[1400];
   for (int i=0; i<1400; ++i) {
     m_chi0[i] = i;
@@ -642,7 +643,7 @@ public:
   //canvas4.SetRightMargin(0.15);
   
   gStyle->SetPalette(kRainBow);
-  TFile  F("rehi.root","RECREATE");
+  //TFile  F("rehi.root","RECREATE");
   //TH2F h4("gluinoxsec","",200, 0, 1200, 200, 200, 1400);
   //TF2 h4("gluinoxsec", "x+y", 0, 1200, 200, 1400);
   /*
@@ -680,6 +681,13 @@ public:
 
   CMS_lumi(&canvas3, iPeriod, iPos);
   gPad->RedrawAxis();
+
+  g_obs70y->Write();
+  g_expExcl70.Write("expExcl70");
+  g_expExcl70p1.Write("expExcl70p1");
+  g_expExcl70m1.Write("expExcl70m1");
+  f.Write();
+
   canvas3.Print("excludedRegion_awesome.pdf");
   canvas3.Print("excludedRegion_awesome.eps"); 
   

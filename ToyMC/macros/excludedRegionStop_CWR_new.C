@@ -15,7 +15,7 @@
 #include "ExtraLimitPlots.h"
 #include "CMS_lumi.C" 
 
-void excludedRegionStop() {
+void excludedRegionStop_CWR_new() {
   double stopNum[] = {5494.,4797.,4449.,4215.,4205.,4076.,3993.};
   double stopDenom[] = {95902.,96352.,99608.,100000.,100000.,100000.,100000};
   double stopStopEff[7] = {0};
@@ -50,8 +50,10 @@ void excludedRegionStop() {
   TGraphAsymmErrors g_exp_2sig(4, &e[0], &exp[0], 0, 0, &exp_2sig_lo[0], &exp_2sig_hi[0]);
   TGraph g_exp(4, &e[0], &exp[0]); 
   TGraph g_obs(4, &e[0], &obs[0]); 
-  // exclusion in m_stop, m_neutralino plane
-	
+
+  // exclusion in m_stop, m_neutralino plane	
+  TFile f("excludedRegionStop_CWR_new.root","RECREATE");
+
   double m_chi0[1000];
   double m_chi0sq[1000];
   for (int i=0; i<1000; i++) {
@@ -95,63 +97,40 @@ void excludedRegionStop() {
   int npoints_expExcl70m1 = 0;
 
   for (int i=0; i<1000; ++i) {
-    double tmp = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
-    if (isnan(tmp)) {
-      start70 = i + 1;
-      continue;
-    }
-    obsExcl70[i] = tmp;
-   if (obsExcl70[i]>obs[0]) break;	
-    npoints70++;
-  }
-
-  for (int i=0; i<1000; ++i) {
-    double tmp = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
-    if (isnan(tmp)) {
-      start70exp = i + 1;
-      continue;
-    }
-    expExcl70[i] = tmp;
-   if (expExcl70[i]>expExcl70v) break;
+    expExcl70[i] = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
+    if (expExcl70[i]>expExcl70v) break;
     npoints_expExcl70++;
   }
 
   for (int i=0; i<1000; ++i) {
-    double tmp = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
-    if (isnan(tmp)) {
-      start70expp1 = i + 1;
-      continue;
-    }
-    expExcl70p1[i] = tmp;
-   if (expExcl70p1[i]>expExcl70p1v) break;
+    expExcl70p1[i] = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
+    if (expExcl70p1[i]>expExcl70p1v) break;
     npoints_expExcl70p1++;
   }
 
   for (int i=0; i<1000; ++i) {
-    double tmp = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
-    if (isnan(tmp)) {
-      start70expm1 = i + 1;
-      continue;
-    }
-    expExcl70m1[i] = tmp;
-   if (expExcl70m1[i]>expExcl70m1v) break;
+    expExcl70m1[i] = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
+    if (expExcl70m1[i]>expExcl70m1v) break;
     npoints_expExcl70m1++;
   }
-  	
+
+  for (int i=0; i<1000; ++i) {
+    obsExcl70[i] = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
+    if (obsExcl70[i]>obs[0]) break;
+    npoints70++;
+  }
+
   for (int i=0; i<100; ++i) {
-    double tmp = e_g[1] + sqrt(e_g[1]*e_g[1] + m_chi0sq[i]-stopMass*stopMass);
-    if (isnan(tmp)) {
-      start100 = i + 1;
-      continue;
-    }
-    obsExcl100[i] = tmp;
-    if (obsExcl100[i]>obs[1]) break;	
+    obsExcl100[i] = e_g[0] + sqrt(e_g[0]*e_g[0] + m_chi0sq[i]-stopMass*stopMass);
+    if (obsExcl100[i]>obs[1]) break;
     npoints100++;
-  }	
+  }
+
   
   // For small values of m_chi0, on-shell top mass is fine. 
   // But as m_chi0 increases, we need to decrease the top mass (take it off-shell)
   // Starting off-shell means that the calculated stop mass is larger than the limit
+  /*
   for (int i=0; i<100; ++i) {
     double tmp = e_g[2] + sqrt(e_g[2]*e_g[2] + m_chi0sq[i]-stopMass*stopMass);
     if (isnan(tmp)) {
@@ -184,7 +163,7 @@ void excludedRegionStop() {
     if (obsExclFull[i]>obs[1]) break;	
     npointsFull++;	
   }
-
+  */
 	
 	
   TGraph g_obsExcl70(npoints70+1,&obsExcl70[start70], &m_chi0[start70]);
@@ -224,7 +203,7 @@ void excludedRegionStop() {
   // MAKE ALL THE TEXT BLURBS
   //-------------------------
   //TH1F h3("h3", "", 1, 0., 650.);
-	TH2F h3("nimei", "",400, 0, 800, 400, 0, 650);
+	TH2F h3("stopxsec", "",400, 0, 800, 400, 0, 650);
   h3.SetStats (0);
 
   h3.SetMinimum (30);
@@ -243,7 +222,7 @@ void excludedRegionStop() {
   canvas3.SetLeftMargin(0.8*canvas3.GetLeftMargin());
 
   gStyle->SetPalette(kRainBow);
-  TFile  F("rehi.root","RECREATE");
+  //TFile  F("rehi.root","RECREATE");
   //TH2F h3("stopxsec","",275, 0, 550, 350, 100, 800);
   //h3.GetXaxis()->SetTitle("m_{#tilde{#chi}^{0}} [GeV]");
   //h3.GetYaxis()->SetTitle("m_{#tilde{t}}   [GeV]  ");
@@ -272,7 +251,7 @@ void excludedRegionStop() {
   }
 
   //h3.GetZaxis()->SetTitle("95% CL upper limit on #sigma#bf{#it{#Beta}} [pb]");
-  h3.GetZaxis()->SetMaxDigits(2);
+  //h3.GetZaxis()->SetMaxDigits(2);
   h3.GetZaxis()->SetTitle("95% CL upper limit on #sigma(pp #rightarrow #tilde{t}#tilde{t}) #bf{#it{#Beta}}(#tilde{t} #rightarrow t#tilde{#chi}^{0}) [fb]");
   h3.Draw("COLZ");
   h3.SetContour(1000);
@@ -423,6 +402,13 @@ void excludedRegionStop() {
   int iPeriod = 4;
   int iPos=11;
   CMS_lumi(&canvas3, iPeriod, iPos);
+
+  g_obs70y->Write();
+  g_obsExcl70exp.Write("expExcl70");
+  g_obsExcl70expp1.Write("expExcl70p1");
+  g_obsExcl70expm1.Write("expExcl70m1");
+  f.Write();
+
   canvas3.Print("excludedRegionStop_awesome.pdf");
   canvas3.Print("excludedRegionStop.eps");
   /*

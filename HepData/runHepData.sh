@@ -24,5 +24,15 @@ mv lim_* to_submit/
 mv background_extrapolating.yaml to_submit/
 mv ereco_*.yaml to_submit/
 mv delta*.yaml to_submit/
-cp submission.yaml to_submit/
-tar -cvzf submission.tar.gz to_submit/
+
+#from exo-hepdata, need to be copied to the rest
+python limitsHepData_sp_g2b_2d_graphs.py
+python limitsHepData_sp_stop_2d_graphs.py
+python limitsHepData_sp_g3b_2d_graphs.py
+cp submission_limits_calo_g2b_2d_graphs/figure*.yaml to_submit/
+cp submission_limits_calo_stop_2d_graphs/figure*.yaml to_submit/
+cp submission_limits_calo_g3b_2d_graphs/figure*.yaml to_submit/
+cat submission.yaml submission_limits_calo_g2b_2d_graphs/submission.yaml submission_limits_calo_stop_2d_graphs/submission.yaml submission_limits_calo_g3b_2d_graphs/submission.yaml > to_submit/submission.yaml
+
+#need to adjust to_submit/submission.yaml, then do this tar command:
+#tar -cvzf submission.tar.gz to_submit/
