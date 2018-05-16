@@ -105,25 +105,25 @@ location: Data from Figure 5 (right), located on page 18.
 
 
 ---
-name: Table 30
+name: Table 33
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 1000 GeV gluino pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_gdecay.yaml
 location: Data from Figure 7 (left), located on page 19.
 ---
-name: Table 31
+name: Table 34
 description: The 95% CL upper limits on $\mathcal{B}\sigma$ for 400 GeV MCHAMP pair production as a function of lifetime, for combined 2015 and 2016 data for the muon search.
 keywords: []
 data_file: lim_delayedmuon_mchampdecay.yaml
 location: Data from Figure 7 (right), located on page 19.
 ---
-name: Table 32
+name: Table 35
 description: 95% CL upper limits on $\mathcal{B}\sigma$ for gluino pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$.
 keywords: []
 data_file: lim_delayedmuon_gdecaymass.yaml
 location: Data from Figure 8 (left), located on page 19.
 ---
-name: Table 33
+name: Table 36
 description: 95% CL upper limits on $\mathcal{B}\sigma$ for MCHAMP pair production as a function of mass, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the muon search. The theory curves assume $\mathcal{B}=100\%$.
 keywords: []
 data_file: lim_delayedmuon_mchampdecaymass.yaml

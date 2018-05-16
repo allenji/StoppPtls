@@ -77,6 +77,29 @@ def make_figure_6_graph_expM1(outdir):
 
     return table
 
+def make_figure_6_lower(outdir):
+    reader = RootFileReader("data/excludedRegionGluinoThreeBody_CWR_new.root")
+    points = reader.read_hist_2d("gluinoxsec")
+
+    gluinoMass = Variable("Gluino mass", is_independent=True, is_binned=True, units="GeV")
+    gluinoMass.values = [(x-2,x+2) for x in points["x"]]
+
+    neutralinoMass = Variable("Neutralino mass", is_independent=True, is_binned=True, units="GeV")
+    neutralinoMass.values = [(y-1.75,y+1.75) for y in points["y"]]
+
+    limit = Variable("95% CL upper limit on $\\sigma(pp \\rightarrow \\tilde{g}\\tilde{g}) ~\\mathcal{B}(\\tilde{g} \\rightarrow q\\bar{q}\\tilde{\\chi}^{0})$",is_independent=False, is_binned=False,units="fb")
+    limit.values = points["z"]
+
+    table = Table("Figure 6 lower 2D limits")
+    table.location = "Data from Figure 6 (lower), located on page 18."
+    table.description = """The 95% CL upper limits in the neutralino mass vs.~gluino mass plane, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95% CL upper limits on $\mathcal{B}\sigma$. We show gluinos that undergo a three-body decay."""
+    table.add_variable(gluinoMass)
+    table.add_variable(neutralinoMass)
+    table.add_variable(limit)
+
+    return table
+
+
 def main():
     # Write to this directory
     outdir = "./submission_limits_calo_g3b_2d_graphs/"
@@ -87,6 +110,7 @@ def main():
     submission.tables.append(make_figure_6_graph_exp(outdir))
     submission.tables.append(make_figure_6_graph_expP1(outdir))
     submission.tables.append(make_figure_6_graph_expM1(outdir))
+    submission.tables.append(make_figure_6_lower(outdir))
     #submission.read_abstract("./input/abstract.txt")
     submission.create_files(outdir)
 
