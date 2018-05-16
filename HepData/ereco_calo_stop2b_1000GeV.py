@@ -28,7 +28,7 @@ if __name__ == '__main__':
         v_e = error_ereco_stop2body_1000GeV[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     with open("ereco_2body_stop1000GeV.yaml", "w") as f:
         f.write(info)

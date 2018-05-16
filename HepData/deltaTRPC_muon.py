@@ -387,7 +387,7 @@ if __name__ == '__main__':
         v_e = error_data[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     info += "- header:\n"
     info += "    name: Fraction of Entries / 5.0 ns\n"
@@ -400,7 +400,7 @@ if __name__ == '__main__':
         v_e = error_cosmicMC[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     info += "- header:\n"
     info += "    name: Fraction of Entries / 5.0 ns\n"
@@ -413,7 +413,7 @@ if __name__ == '__main__':
         v_e = error_gluinos[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     info += "- header:\n"
     info += "    name: Fraction of Entries / 5.0 ns\n"
@@ -426,7 +426,7 @@ if __name__ == '__main__':
         v_e = error_mchamps[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     with open("deltaTRPC.yaml", "w") as f:
         f.write(info)

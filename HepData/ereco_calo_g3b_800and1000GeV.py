@@ -33,7 +33,7 @@ if __name__ == '__main__':
         v_e = error_ereco_gluino3body_800GeV[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     info += "- header:\n"
     info += "    name: $\\varepsilon_{reco}$ ($\\tilde{g} \\rightarrow q\\bar{q}\\tilde{\\chi}^{0})$\n"
@@ -45,7 +45,7 @@ if __name__ == '__main__':
         v_e = error_ereco_gluino3body_1000GeV[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{symerror: {0:.6g}, label: '1 sigma'}}\n".format(v_e)
+        info += "    - {{symerror: {0:.6g}, label: 'stat'}}\n".format(v_e)
 
     with open("ereco_3body_800and1000GeV.yaml", "w") as f:
         f.write(info)

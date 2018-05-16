@@ -37,7 +37,7 @@ if __name__ == '__main__':
         v_dn1 = errorMinus_int_delta_tDT2015[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{asymerror: {{plus: {0:.6g}, minus: {1:.6g}}}, label: '1 sigma'}}\n".format(v_up1, -v_dn1)
+        info += "    - {{asymerror: {{plus: {0:.6g}, minus: {1:.6g}}}, label: 'stat'}}\n".format(v_up1, -v_dn1)
 
     info += "- header:\n"
     info += "    name: Fit integral for $\\Delta t_{\\mathrm{DT}}$ > -20 ns\n"
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         v_dn1 = errorMinus_int_delta_tDT2016[idx]
         info += "  - value: {0:.6g}\n".format(v)
         info += "    errors:\n"
-        info += "    - {{asymerror: {{plus: {0:.6g}, minus: {1:.6g}}}, label: '1 sigma'}}\n".format(v_up1, -v_dn1)
+        info += "    - {{asymerror: {{plus: {0:.6g}, minus: {1:.6g}}}, label: 'stat'}}\n".format(v_up1, -v_dn1)
 
     with open("background_extrapolating.yaml", "w") as f:
         f.write(info)
