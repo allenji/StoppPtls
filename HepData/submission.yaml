@@ -1,4 +1,10 @@
-comment: ''
+additional_resources:
+  - location: figure-6-upper-left-2d-limits.yaml
+    description: Data from Figure 6 (upper left), located on page 18. The 95% CL upper limits in the neutralino mass vs.~gluino mass plane, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95% CL upper limits on $\mathcal{B}\sigma$. We show gluinos that undergo a two-body decay.
+  - location: figure-6-upper-right-2d-limits.yaml
+    description: Data from Figure 6 (upper right), located on page 18. The 95% CL upper limits in the neutralino mass vs.~top squark mass plane, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95% CL upper limits on $\mathcal{B}\sigma$. We show top squarks that undergo a two-body decay.
+  - location: figure-6-lower-2d-limits.yaml
+    description: Data from Figure 6 (lower), located on page 18. The 95% CL upper limits in the neutralino mass vs.~gluino mass plane, for lifetimes between 10 $\mu$s and 1000 s, for combined 2015 and 2016 data for the calorimeter search. The color map indicates the 95% CL upper limits on $\mathcal{B}\sigma$. We show gluinos that undergo a three-body decay.
 ---
 name: Table 1
 description: The $\Delta t_{\text{DT}}$ distribution for 2016 data, MC simulated cosmic ray muon, 1000 GeV gluino signal, and 600 GeV MCHAMP signal events, for the muon search. The events plotted pass a subset of the full analysis selection that is designed to select good-quality DSA muon tracks but does not reject the cosmic ray muon background. The number of cosmic ray muon background events is greatly reduced when the full selection is applied, as we require $\Delta t_{\text{DT}}>-20$ ns and $\Delta t_{\text{RPC}}>-7.5$ ns. The histograms are normalized to unit area.
