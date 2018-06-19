@@ -243,6 +243,8 @@ process.StoppPtlsLivetimeEventVariableProducer.livetimeRootFile = cms.string("/d
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/weifengji/condor/092016_2016ControlLivetime/NoBPTX_CosJet_2016BCDE_PromptReco.root")
 #process.StoppPtlsEventVariableProducer.livetimeRootFile = cms.string("/data/users/jalimena/condor/Livetime/NoBPTX_2015D.root")
 
-process.StoppPtlsJetsEventVariableProducer.jetEnergyResolutionWidth = cms.double(0.25) 
+#process.StoppPtlsJetsEventVariableProducer.jetEnergyResolutionWidth = cms.double(0.25) 
+process.StoppPtlsJetsEventVariableProducer.jetEnergyResolutionWidth = cms.double(0.50) 
+
 # uncomment to produce a full python configuration log file
 #outfile = open('dumpedConfig.py','w'); print >> outfile,process.dumpPython(); outfile.close()

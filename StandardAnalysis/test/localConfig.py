@@ -4,17 +4,27 @@ from OSUT3Analysis.Configuration.RECOSamples import *
 intLumi = 2460
 
 #config_file = "SecondJetAnalysis.py"
-config_file = "StoppedParticlesAnalysis.py"
+#config_file = "StoppedParticlesAnalysis.py"
+config_file = "StoppedParticlesAnalysis_2016.py"
 
 datasetsSig = [
-  'GluinoToUUbarChi0_1200_200',
-  'GluinoToUUbarChi0_1200_600',
-  'GluinoToUUbarChi0_1200_1000',
-  'GluinoToGChi0_1200_200',
-  'GluinoToGChi0_1200_400',
-  'GluinoToGChi0_1200_600',
-  'GluinoToGChi0_1200_800',
-  'GluinoToGChi0_1200_1000',
+    #'Stop2TChi0_400_214_2016Run2_80x',
+    #'Stop2TChi0_600_417_2016Run2_80x',
+    #'Stop2TChi0_1200_1018_2016Run2_80x',
+    #'Gluino2GChi0_600_489_2016Run2_80x',
+    #'Gluino2GChi0_1200_1095_2016Run2_80x',
+    #'Gluino2GChi0_1800_1697_2016Run2_80x',
+    'GluinoToQQbarChi0_1800_1325_2016Simulation',
+    'GluinoToQQbarChi0_1000_100_2016Simulation',
+
+  #'GluinoToUUbarChi0_1200_200',
+  #'GluinoToUUbarChi0_1200_600',
+  #'GluinoToUUbarChi0_1200_1000',
+  #'GluinoToGChi0_1200_200',
+  #'GluinoToGChi0_1200_400',
+  #'GluinoToGChi0_1200_600',
+  #'GluinoToGChi0_1200_800',
+  #'GluinoToGChi0_1200_1000',
 ]
 
 datasetsData = [
@@ -51,7 +61,7 @@ datasetsRpcStudy = [
     
 #datasets = datasetsSig + datasetsData + datasetsControl
 #datasets = datasetsSig + datasetsData
-#datasets = datasetsSig
+datasets = datasetsSig
 #datasets = datasetsData
 #datasets = datasetsControl
 #datasets = datasetsCosmic + datasetsSig_2BodyDecay
