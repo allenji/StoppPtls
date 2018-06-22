@@ -68,6 +68,7 @@ process.load('Configuration.EventContent.EventContent_cff')
 
 # Apply lumi mask; comment out to process all events  
 
+from StoppPtls.Collection.outputCommands import *
 process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     compressionAlgorithm = cms.untracked.string('LZMA'),
     compressionLevel = cms.untracked.int32(4),
@@ -85,17 +86,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     #  SelectEvents = cms.vstring('filter_step')
     #)
 )
-
-process.RECOSIMoutput.outputCommands.append ("drop *")
-process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
-process.RECOSIMoutput.outputCommands.append ("keep *_genParticles_*_*")
-process.RECOSIMoutput.outputCommands.append ("keep recoGenJets_*_*_*")
-process.RECOSIMoutput.outputCommands.append ("keep recoGenMETs_*_*_*")
-#process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
-process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
-#process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")
-
-process.RECOSIMoutput.outputCommands.append ("keep *_*_*_STOPPPTLS")
+process.RECOSIMoutput.outputCommands.extend(stoppedParticlesJetsOutputCommands)
 
 process.myEndPath = cms.EndPath (process.RECOSIMoutput)
 process.schedule = cms.Schedule(process.noisefilter, process.eventproducer, process.myEndPath)

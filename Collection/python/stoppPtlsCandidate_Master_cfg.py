@@ -73,6 +73,7 @@ myLumis = LumiList.LumiList(filename = os.environ['CMSSW_BASE']+'/src/StoppedHSC
 process.source.lumisToProcess = CfgTypes.untracked(CfgTypes.VLuminosityBlockRange())
 process.source.lumisToProcess.extend(myLumis)
 
+from StoppPtls.Collection.outputCommands import *
 process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
     compressionAlgorithm = cms.untracked.string('LZMA'),
     compressionLevel = cms.untracked.int32(4),
@@ -90,14 +91,7 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
       SelectEvents = cms.vstring('filter_step')
     )
 )
-
-process.RECOSIMoutput.outputCommands.append ("drop *")
-process.RECOSIMoutput.outputCommands.append ("keep *_candidateStoppPtls_*_*")
-#process.RECOSIMoutput.outputCommands.append ("keep *_*_*_RECO")
-process.RECOSIMoutput.outputCommands.append ("keep *_TriggerResults_*_*")
-#process.RECOSIMoutput.outputCommands.append ("keep *_ak4CaloJets_*_*")
-
-process.RECOSIMoutput.outputCommands.append ("keep *_*_*_STOPPPTLS")
+process.RECOSIMoutput.outputCommands.extend(stoppedParticlesJetsOutputCommands)
 
 process.myEndPath = cms.EndPath (process.RECOSIMoutput)
 process.schedule = cms.Schedule(process.filter_step, process.noisefilter, process.eventproducer, process.myEndPath)
